@@ -1,0 +1,7 @@
+
+---@alias vec2 any
+---@alias vec4 any
+---@alias mat4 any
+---@alias cdata any
+
+---@alias light_userdata any
