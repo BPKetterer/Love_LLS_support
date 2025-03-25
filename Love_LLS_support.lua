@@ -1,4 +1,4 @@
-local love_api = require("Love_LLS_support.love-api-master.love_api")
+local love_api = require("Love_LLS_support.love-api.love_api")
 
 ---@alias detail_level # some text
 ---| "full" # prints all descriptions
