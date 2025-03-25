@@ -1,5 +1,7 @@
 local love_api = require("love-api.love_api")
 
+---a lookup for different type aliases
+---@type string[]
 local type_aliasas = {
     ["light userdata"]  = "lightuserdata",
     Variant = "love.Variant",
@@ -8,15 +10,22 @@ local type_aliasas = {
     RenderTargetSetup = "Canvas"
 }
 
----@type table[]
-local class_queue = {}
----@type table[]
-local enum_queue = {}
----@type {obj: table}
-local function_queue = {}
-local callback_queue = {}
+---@alias class_queue_item {obj: table, full_name: string, is_class: boolean}
+---@alias enum_queue_item {obj: table, full_name: string}
+---@alias function_queue_item {obj: table, full_name: string}
+---@alias callback_queue_item {obj: table, full_name: string}
 
-local fields = {} --todo remove
+---@type class_queue_item[]
+local class_queue = {}
+
+---@type enum_queue_item[]
+local enum_queue = {}
+
+---@type function_queue_item[]
+local function_queue = {}
+
+---@type callback_queue_item[]
+local callback_queue = {}
 
 ---gets the alias of a type
 ---@param type_name  string
@@ -28,28 +37,10 @@ local function get_type_alias(type_name)
     return type_name
 end
 
-local function human_table(t, indent)
-    indent = indent or 0
-    local s = ""
-    local had_first = false
-    local indent_str = string.rep("    ", indent)
-    for k, v in pairs(t) do
-        if had_first then
-            s = s .. ",\n"
-        end
-        had_first = true
-        if type(v) == "string" then
-            v , _ = string.gsub(v, "\n", "%\n")
-        end
-        if type(v) == "table" then
-            s = s .. indent_str .. k .. " = {\n" .. indent_str .. human_table(v, indent + 1) .. "\n" .. indent_str .. "}"
-        else
-            s = s .. indent_str .. k .. " = " .. tostring(v)
-        end
-    end
-    return s
-end
-
+---splits a string
+---@param str string
+---@param delimiter string
+---@return string[]
 local function split_str(str, delimiter)
     local result = {}
     for match in (str .. delimiter):gmatch("(.-)" .. delimiter) do
@@ -58,11 +49,15 @@ local function split_str(str, delimiter)
     return result
 end
 
+---checks if a string contains a substring
+---@param str string
+---@param substring string
+---@return boolean
 local function str_contains(str, substring)
     return string.find(str, substring, 1, true) ~= nil
 end
 
----formats description
+---formats an arguments description
 ---@param description string
 ---@return string
 local function format_arg_desc(description, default)
@@ -79,6 +74,10 @@ local function format_arg_desc(description, default)
     end
 end
 
+---formats a header desciption
+---@param description? string
+---@param wiki_name? string
+---@return string
 local function format_head_desc(description, wiki_name)
     description = description or ""
     description , _ = string.gsub(description, "\n", "\n---")
@@ -88,6 +87,9 @@ local function format_head_desc(description, wiki_name)
     return "---" .. description
 end
 
+---converts an argument into a lls string
+---@param arg table
+---@return string
 local function serialize_arg_type(arg)
     local arg_type = arg.type
     if arg_type == "..." then
@@ -165,7 +167,7 @@ end
 
 ---prints a class
 ---@param f file*
----@param data table
+---@param data class_queue_item
 local function print_class(f, data)
     local obj = data.obj
     local full_name = data.full_name
@@ -206,7 +208,7 @@ end
 
 ---prints an enum
 ---@param f file*
----@param data table
+---@param data enum_queue_item
 local function print_enum(f, data)
     local full_name = data.full_name
     local obj = data.obj
@@ -225,6 +227,11 @@ local function print_enum(f, data)
     f:write("\n")
 end
 
+---prints a variant of a function
+---@param f file*
+---@param variant table
+---@param full_name string
+---@param header string
 local function print_variant(f, variant, full_name, header)
     f:write(header)
     local raw_args = {}
@@ -249,7 +256,7 @@ end
 
 ---prints a function
 ---@param f file*
----@param data table
+---@param data function_queue_item
 local function print_function(f, data)
     local obj =  data.obj
     local full_name = data.full_name
@@ -263,6 +270,9 @@ local function print_function(f, data)
     end
 end
 
+---prints a callback
+---@param f file*
+---@param data callback_queue_item
 local function print_callback(f, data)
     local obj =  data.obj
     local full_name = data.full_name
@@ -297,8 +307,9 @@ local function print_callback(f, data)
 end
 
 ---prints all element from a queue
----@param queue table
----@param fun fun(file*, table, string, )
+---@generic item: class_queue_item|function_queue_item|callback_queue_item|enum_queue_item
+---@param queue item[]
+---@param fun fun(file*, item)
 ---@param f file*
 local function print_queue(queue, fun, f)
     for _, item in pairs(queue) do
@@ -324,8 +335,8 @@ end
 
 ---collects the data of the module/type
 ---@param obj table
----@param path string|nil
----@param is_class boolean|nil
+---@param path? string
+---@param is_class? boolean
 local function collect(obj, path, is_class)
     assert(obj)
     local full_name = "love"
@@ -398,8 +409,5 @@ return function(file_path)
     
     print_all(file)
 
-    for k, _ in pairs(fields) do
-        file:write(k .. "\n")
-    end
     file:close()
 end

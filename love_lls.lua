@@ -3043,7 +3043,7 @@ function Source:setCone(innerAngle, outerAngle, outerVolume) end
 function Source:setDirection(x, y, z) end
 
 ---Applies an audio effect to the Source.
----
+---{}
 ---The effect must have been previously defined using love.audio.setEffect.
 ---
 ---[Wiki](https://love2d.org/wiki/Source:setEffect)
