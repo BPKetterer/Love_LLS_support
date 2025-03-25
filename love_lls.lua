@@ -2741,442 +2741,6 @@ function Object:type() end
 ---@diagnostic disable-next-line: args-after-dots
 function Object:typeOf(name) end
 
----Gets the number of bits per sample in the data currently being recorded.
----
----[Wiki](https://love2d.org/wiki/RecordingDevice:getBitDepth)
----
----@diagnostic disable-next-line: args-after-dots
-function RecordingDevice:getBitDepth() end
-
----Gets the number of channels currently being recorded (mono or stereo).
----
----[Wiki](https://love2d.org/wiki/RecordingDevice:getChannelCount)
----
----@diagnostic disable-next-line: args-after-dots
-function RecordingDevice:getChannelCount() end
-
----Gets all recorded audio SoundData stored in the device's internal ring buffer.
----
----The internal ring buffer is cleared when this function is called, so calling it again will only get audio recorded after the previous call. If the device's internal ring buffer completely fills up before getData is called, the oldest data that doesn't fit into the buffer will be lost.
----
----[Wiki](https://love2d.org/wiki/RecordingDevice:getData)
----
----@diagnostic disable-next-line: args-after-dots
-function RecordingDevice:getData() end
-
----Gets the name of the recording device.
----
----[Wiki](https://love2d.org/wiki/RecordingDevice:getName)
----
----@diagnostic disable-next-line: args-after-dots
-function RecordingDevice:getName() end
-
----Gets the number of currently recorded samples.
----
----[Wiki](https://love2d.org/wiki/RecordingDevice:getSampleCount)
----
----@diagnostic disable-next-line: args-after-dots
-function RecordingDevice:getSampleCount() end
-
----Gets the number of samples per second currently being recorded.
----
----[Wiki](https://love2d.org/wiki/RecordingDevice:getSampleRate)
----
----@diagnostic disable-next-line: args-after-dots
-function RecordingDevice:getSampleRate() end
-
----Gets whether the device is currently recording.
----
----[Wiki](https://love2d.org/wiki/RecordingDevice:isRecording)
----
----@diagnostic disable-next-line: args-after-dots
-function RecordingDevice:isRecording() end
-
----Begins recording audio using this device.
----
----[Wiki](https://love2d.org/wiki/RecordingDevice:start)
----
----@param samplecount number# The maximum number of samples to store in an internal ring buffer when recording. RecordingDevice:getData clears the internal buffer when called.
----@param samplerate? number# (8000) The number of samples per second to store when recording.
----@param bitdepth? number# (16) The number of bits per sample.
----@param channels? number# (1) Whether to record in mono or stereo. Most microphones don't support more than 1 channel.
----@diagnostic disable-next-line: args-after-dots
-function RecordingDevice:start(samplecount, samplerate, bitdepth, channels) end
-
----Stops recording audio from this device. Any sound data currently in the device's buffer will be returned.
----
----[Wiki](https://love2d.org/wiki/RecordingDevice:stop)
----
----@diagnostic disable-next-line: args-after-dots
-function RecordingDevice:stop() end
-
----Creates an identical copy of the Source in the stopped state.
----
----Static Sources will use significantly less memory and take much less time to be created if Source:clone is used to create them instead of love.audio.newSource, so this method should be preferred when making multiple Sources which play the same sound.
----
----[Wiki](https://love2d.org/wiki/Source:clone)
----
----@diagnostic disable-next-line: args-after-dots
-function Source:clone() end
-
----Gets a list of the Source's active effect names.
----
----[Wiki](https://love2d.org/wiki/Source:getActiveEffects)
----
----@diagnostic disable-next-line: args-after-dots
-function Source:getActiveEffects() end
-
----Gets the amount of air absorption applied to the Source.
----
----By default the value is set to 0 which means that air absorption effects are disabled. A value of 1 will apply high frequency attenuation to the Source at a rate of 0.05 dB per meter.
----
----[Wiki](https://love2d.org/wiki/Source:getAirAbsorption)
----
----@diagnostic disable-next-line: args-after-dots
-function Source:getAirAbsorption() end
-
----Gets the reference and maximum attenuation distances of the Source. The values, combined with the current DistanceModel, affect how the Source's volume attenuates based on distance from the listener.
----
----[Wiki](https://love2d.org/wiki/Source:getAttenuationDistances)
----
----@diagnostic disable-next-line: args-after-dots
-function Source:getAttenuationDistances() end
-
----Gets the number of channels in the Source. Only 1-channel (mono) Sources can use directional and positional effects.
----
----[Wiki](https://love2d.org/wiki/Source:getChannelCount)
----
----@diagnostic disable-next-line: args-after-dots
-function Source:getChannelCount() end
-
----Gets the Source's directional volume cones. Together with Source:setDirection, the cone angles allow for the Source's volume to vary depending on its direction.
----
----[Wiki](https://love2d.org/wiki/Source:getCone)
----
----@diagnostic disable-next-line: args-after-dots
-function Source:getCone() end
-
----Gets the direction of the Source.
----
----[Wiki](https://love2d.org/wiki/Source:getDirection)
----
----@diagnostic disable-next-line: args-after-dots
-function Source:getDirection() end
-
----Gets the duration of the Source. For streaming Sources it may not always be sample-accurate, and may return -1 if the duration cannot be determined at all.
----
----[Wiki](https://love2d.org/wiki/Source:getDuration)
----
----@param unit? love.TimeUnit# ('seconds') The time unit for the return value.
----@diagnostic disable-next-line: args-after-dots
-function Source:getDuration(unit) end
-
----Gets the filter settings associated to a specific effect.
----
----This function returns nil if the effect was applied with no filter settings associated to it.
----
----[Wiki](https://love2d.org/wiki/Source:getEffect)
----
----@param name string# The name of the effect.
----@param filtersettings? table# ({}) An optional empty table that will be filled with the filter settings.
----@diagnostic disable-next-line: args-after-dots
-function Source:getEffect(name, filtersettings) end
-
----Gets the filter settings currently applied to the Source.
----
----[Wiki](https://love2d.org/wiki/Source:getFilter)
----
----@diagnostic disable-next-line: args-after-dots
-function Source:getFilter() end
-
----Gets the number of free buffer slots in a queueable Source. If the queueable Source is playing, this value will increase up to the amount the Source was created with. If the queueable Source is stopped, it will process all of its internal buffers first, in which case this function will always return the amount it was created with.
----
----[Wiki](https://love2d.org/wiki/Source:getFreeBufferCount)
----
----@diagnostic disable-next-line: args-after-dots
-function Source:getFreeBufferCount() end
-
----Gets the current pitch of the Source.
----
----[Wiki](https://love2d.org/wiki/Source:getPitch)
----
----@diagnostic disable-next-line: args-after-dots
-function Source:getPitch() end
-
----Gets the position of the Source.
----
----[Wiki](https://love2d.org/wiki/Source:getPosition)
----
----@diagnostic disable-next-line: args-after-dots
-function Source:getPosition() end
-
----Returns the rolloff factor of the source.
----
----[Wiki](https://love2d.org/wiki/Source:getRolloff)
----
----@diagnostic disable-next-line: args-after-dots
-function Source:getRolloff() end
-
----Gets the type of the Source.
----
----[Wiki](https://love2d.org/wiki/Source:getType)
----
----@diagnostic disable-next-line: args-after-dots
-function Source:getType() end
-
----Gets the velocity of the Source.
----
----[Wiki](https://love2d.org/wiki/Source:getVelocity)
----
----@diagnostic disable-next-line: args-after-dots
-function Source:getVelocity() end
-
----Gets the current volume of the Source.
----
----[Wiki](https://love2d.org/wiki/Source:getVolume)
----
----@diagnostic disable-next-line: args-after-dots
-function Source:getVolume() end
-
----Returns the volume limits of the source.
----
----[Wiki](https://love2d.org/wiki/Source:getVolumeLimits)
----
----@diagnostic disable-next-line: args-after-dots
-function Source:getVolumeLimits() end
-
----Returns whether the Source will loop.
----
----[Wiki](https://love2d.org/wiki/Source:isLooping)
----
----@diagnostic disable-next-line: args-after-dots
-function Source:isLooping() end
-
----Returns whether the Source is playing.
----
----[Wiki](https://love2d.org/wiki/Source:isPlaying)
----
----@diagnostic disable-next-line: args-after-dots
-function Source:isPlaying() end
-
----Gets whether the Source's position, velocity, direction, and cone angles are relative to the listener.
----
----[Wiki](https://love2d.org/wiki/Source:isRelative)
----
----@diagnostic disable-next-line: args-after-dots
-function Source:isRelative() end
-
----Pauses the Source.
----
----[Wiki](https://love2d.org/wiki/Source:pause)
----
----@diagnostic disable-next-line: args-after-dots
-function Source:pause() end
-
----Starts playing the Source.
----
----[Wiki](https://love2d.org/wiki/Source:play)
----
----@diagnostic disable-next-line: args-after-dots
-function Source:play() end
-
----Queues SoundData for playback in a queueable Source.
----
----This method requires the Source to be created via love.audio.newQueueableSource.
----
----[Wiki](https://love2d.org/wiki/Source:queue)
----
----@param sounddata love.SoundData# The data to queue. The SoundData's sample rate, bit depth, and channel count must match the Source's.
----@diagnostic disable-next-line: args-after-dots
-function Source:queue(sounddata) end
-
----Sets the currently playing position of the Source.
----
----[Wiki](https://love2d.org/wiki/Source:seek)
----
----@param offset number# The position to seek to.
----@param unit? love.TimeUnit# ('seconds') The unit of the position value.
----@diagnostic disable-next-line: args-after-dots
-function Source:seek(offset, unit) end
-
----Sets the amount of air absorption applied to the Source.
----
----By default the value is set to 0 which means that air absorption effects are disabled. A value of 1 will apply high frequency attenuation to the Source at a rate of 0.05 dB per meter.
----
----Air absorption can simulate sound transmission through foggy air, dry air, smoky atmosphere, etc. It can be used to simulate different atmospheric conditions within different locations in an area.
----
----[Wiki](https://love2d.org/wiki/Source:setAirAbsorption)
----
----@param amount number# The amount of air absorption applied to the Source. Must be between 0 and 10.
----@diagnostic disable-next-line: args-after-dots
-function Source:setAirAbsorption(amount) end
-
----Sets the reference and maximum attenuation distances of the Source. The parameters, combined with the current DistanceModel, affect how the Source's volume attenuates based on distance.
----
----Distance attenuation is only applicable to Sources based on mono (rather than stereo) audio.
----
----[Wiki](https://love2d.org/wiki/Source:setAttenuationDistances)
----
----@param ref number# The new reference attenuation distance. If the current DistanceModel is clamped, this is the minimum attenuation distance.
----@param max number# The new maximum attenuation distance.
----@diagnostic disable-next-line: args-after-dots
-function Source:setAttenuationDistances(ref, max) end
-
----Sets the Source's directional volume cones. Together with Source:setDirection, the cone angles allow for the Source's volume to vary depending on its direction.
----
----[Wiki](https://love2d.org/wiki/Source:setCone)
----
----@param innerAngle number# The inner angle from the Source's direction, in radians. The Source will play at normal volume if the listener is inside the cone defined by this angle.
----@param outerAngle number# The outer angle from the Source's direction, in radians. The Source will play at a volume between the normal and outer volumes, if the listener is in between the cones defined by the inner and outer angles.
----@param outerVolume? number# (0) The Source's volume when the listener is outside both the inner and outer cone angles.
----@diagnostic disable-next-line: args-after-dots
-function Source:setCone(innerAngle, outerAngle, outerVolume) end
-
----Sets the direction vector of the Source. A zero vector makes the source non-directional.
----
----[Wiki](https://love2d.org/wiki/Source:setDirection)
----
----@param x number# The X part of the direction vector.
----@param y number# The Y part of the direction vector.
----@param z number# The Z part of the direction vector.
----@diagnostic disable-next-line: args-after-dots
-function Source:setDirection(x, y, z) end
-
----Applies an audio effect to the Source.
----{}
----The effect must have been previously defined using love.audio.setEffect.
----
----[Wiki](https://love2d.org/wiki/Source:setEffect)
----
----@param name string# The name of the effect previously set up with love.audio.setEffect.
----@param enable? boolean# (true) If false and the given effect name was previously enabled on this Source, disables the effect.
----@diagnostic disable-next-line: args-after-dots
-function Source:setEffect(name, enable) end
-
----Applies an audio effect to the Source.
----
----The effect must have been previously defined using love.audio.setEffect.
----
----[Wiki](https://love2d.org/wiki/Source:setEffect)
----
----@param name string# The name of the effect previously set up with love.audio.setEffect.
----@param filtersettings {
----type : love.FilterType,
----volume : number,
----highgain : number,
----lowgain : number}# The filter settings to apply prior to the effect, with the following fields:
----@diagnostic disable-next-line: args-after-dots
-function Source:setEffect(name, filtersettings) end
-
----Sets a low-pass, high-pass, or band-pass filter to apply when playing the Source.
----
----[Wiki](https://love2d.org/wiki/Source:setFilter)
----
----@param settings {
----type : love.FilterType,
----volume : number,
----highgain : number,
----lowgain : number}# The filter settings to use for this Source, with the following fields:
----@diagnostic disable-next-line: args-after-dots
-function Source:setFilter(settings) end
-
----Sets a low-pass, high-pass, or band-pass filter to apply when playing the Source.
----
----[Wiki](https://love2d.org/wiki/Source:setFilter)
----
----@diagnostic disable-next-line: args-after-dots
-function Source:setFilter() end
-
----Sets whether the Source should loop.
----
----[Wiki](https://love2d.org/wiki/Source:setLooping)
----
----@param loop boolean# True if the source should loop, false otherwise.
----@diagnostic disable-next-line: args-after-dots
-function Source:setLooping(loop) end
-
----Sets the pitch of the Source.
----
----[Wiki](https://love2d.org/wiki/Source:setPitch)
----
----@param pitch number# Calculated with regard to 1 being the base pitch. Each reduction by 50 percent equals a pitch shift of -12 semitones (one octave reduction). Each doubling equals a pitch shift of 12 semitones (one octave increase). Zero is not a legal value.
----@diagnostic disable-next-line: args-after-dots
-function Source:setPitch(pitch) end
-
----Sets the position of the Source. Please note that this only works for mono (i.e. non-stereo) sound files!
----
----[Wiki](https://love2d.org/wiki/Source:setPosition)
----
----@param x number# The X position of the Source.
----@param y number# The Y position of the Source.
----@param z number# The Z position of the Source.
----@diagnostic disable-next-line: args-after-dots
-function Source:setPosition(x, y, z) end
-
----Sets whether the Source's position, velocity, direction, and cone angles are relative to the listener, or absolute.
----
----By default, all sources are absolute and therefore relative to the origin of love's coordinate system 0, 0. Only absolute sources are affected by the position of the listener. Please note that positional audio only works for mono (i.e. non-stereo) sources. 
----
----[Wiki](https://love2d.org/wiki/Source:setRelative)
----
----@param enable? boolean# (false) True to make the position, velocity, direction and cone angles relative to the listener, false to make them absolute.
----@diagnostic disable-next-line: args-after-dots
-function Source:setRelative(enable) end
-
----Sets the rolloff factor which affects the strength of the used distance attenuation.
----
----Extended information and detailed formulas can be found in the chapter '3.4. Attenuation By Distance' of OpenAL 1.1 specification.
----
----[Wiki](https://love2d.org/wiki/Source:setRolloff)
----
----@param rolloff number# The new rolloff factor.
----@diagnostic disable-next-line: args-after-dots
-function Source:setRolloff(rolloff) end
-
----Sets the velocity of the Source.
----
----This does '''not''' change the position of the Source, but lets the application know how it has to calculate the doppler effect.
----
----[Wiki](https://love2d.org/wiki/Source:setVelocity)
----
----@param x number# The X part of the velocity vector.
----@param y number# The Y part of the velocity vector.
----@param z number# The Z part of the velocity vector.
----@diagnostic disable-next-line: args-after-dots
-function Source:setVelocity(x, y, z) end
-
----Sets the current volume of the Source.
----
----[Wiki](https://love2d.org/wiki/Source:setVolume)
----
----@param volume number# The volume for a Source, where 1.0 is normal volume. Volume cannot be raised above 1.0.
----@diagnostic disable-next-line: args-after-dots
-function Source:setVolume(volume) end
-
----Sets the volume limits of the source. The limits have to be numbers from 0 to 1.
----
----[Wiki](https://love2d.org/wiki/Source:setVolumeLimits)
----
----@param min number# The minimum volume.
----@param max number# The maximum volume.
----@diagnostic disable-next-line: args-after-dots
-function Source:setVolumeLimits(min, max) end
-
----Stops a Source.
----
----[Wiki](https://love2d.org/wiki/Source:stop)
----
----@diagnostic disable-next-line: args-after-dots
-function Source:stop() end
-
----Gets the currently playing position of the Source.
----
----[Wiki](https://love2d.org/wiki/Source:tell)
----
----@param unit? love.TimeUnit# ('seconds') The type of unit for the return value.
----@diagnostic disable-next-line: args-after-dots
-function Source:tell(unit) end
-
 ---Gets a list of the names of the currently enabled effects.
 ---
 ---[Wiki](https://love2d.org/wiki/love.audio.getActiveEffects)
@@ -3511,12 +3075,441 @@ function love.audio.stop(source1, source2, ...) end
 ---@diagnostic disable-next-line: args-after-dots
 function love.audio.stop(sources) end
 
----Gets the compression format of the CompressedData.
+---Gets the number of bits per sample in the data currently being recorded.
 ---
----[Wiki](https://love2d.org/wiki/CompressedData:getFormat)
+---[Wiki](https://love2d.org/wiki/RecordingDevice:getBitDepth)
 ---
 ---@diagnostic disable-next-line: args-after-dots
-function CompressedData:getFormat() end
+function RecordingDevice:getBitDepth() end
+
+---Gets the number of channels currently being recorded (mono or stereo).
+---
+---[Wiki](https://love2d.org/wiki/RecordingDevice:getChannelCount)
+---
+---@diagnostic disable-next-line: args-after-dots
+function RecordingDevice:getChannelCount() end
+
+---Gets all recorded audio SoundData stored in the device's internal ring buffer.
+---
+---The internal ring buffer is cleared when this function is called, so calling it again will only get audio recorded after the previous call. If the device's internal ring buffer completely fills up before getData is called, the oldest data that doesn't fit into the buffer will be lost.
+---
+---[Wiki](https://love2d.org/wiki/RecordingDevice:getData)
+---
+---@diagnostic disable-next-line: args-after-dots
+function RecordingDevice:getData() end
+
+---Gets the name of the recording device.
+---
+---[Wiki](https://love2d.org/wiki/RecordingDevice:getName)
+---
+---@diagnostic disable-next-line: args-after-dots
+function RecordingDevice:getName() end
+
+---Gets the number of currently recorded samples.
+---
+---[Wiki](https://love2d.org/wiki/RecordingDevice:getSampleCount)
+---
+---@diagnostic disable-next-line: args-after-dots
+function RecordingDevice:getSampleCount() end
+
+---Gets the number of samples per second currently being recorded.
+---
+---[Wiki](https://love2d.org/wiki/RecordingDevice:getSampleRate)
+---
+---@diagnostic disable-next-line: args-after-dots
+function RecordingDevice:getSampleRate() end
+
+---Gets whether the device is currently recording.
+---
+---[Wiki](https://love2d.org/wiki/RecordingDevice:isRecording)
+---
+---@diagnostic disable-next-line: args-after-dots
+function RecordingDevice:isRecording() end
+
+---Begins recording audio using this device.
+---
+---[Wiki](https://love2d.org/wiki/RecordingDevice:start)
+---
+---@param samplecount number# The maximum number of samples to store in an internal ring buffer when recording. RecordingDevice:getData clears the internal buffer when called.
+---@param samplerate? number# (8000) The number of samples per second to store when recording.
+---@param bitdepth? number# (16) The number of bits per sample.
+---@param channels? number# (1) Whether to record in mono or stereo. Most microphones don't support more than 1 channel.
+---@diagnostic disable-next-line: args-after-dots
+function RecordingDevice:start(samplecount, samplerate, bitdepth, channels) end
+
+---Stops recording audio from this device. Any sound data currently in the device's buffer will be returned.
+---
+---[Wiki](https://love2d.org/wiki/RecordingDevice:stop)
+---
+---@diagnostic disable-next-line: args-after-dots
+function RecordingDevice:stop() end
+
+---Creates an identical copy of the Source in the stopped state.
+---
+---Static Sources will use significantly less memory and take much less time to be created if Source:clone is used to create them instead of love.audio.newSource, so this method should be preferred when making multiple Sources which play the same sound.
+---
+---[Wiki](https://love2d.org/wiki/Source:clone)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Source:clone() end
+
+---Gets a list of the Source's active effect names.
+---
+---[Wiki](https://love2d.org/wiki/Source:getActiveEffects)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Source:getActiveEffects() end
+
+---Gets the amount of air absorption applied to the Source.
+---
+---By default the value is set to 0 which means that air absorption effects are disabled. A value of 1 will apply high frequency attenuation to the Source at a rate of 0.05 dB per meter.
+---
+---[Wiki](https://love2d.org/wiki/Source:getAirAbsorption)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Source:getAirAbsorption() end
+
+---Gets the reference and maximum attenuation distances of the Source. The values, combined with the current DistanceModel, affect how the Source's volume attenuates based on distance from the listener.
+---
+---[Wiki](https://love2d.org/wiki/Source:getAttenuationDistances)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Source:getAttenuationDistances() end
+
+---Gets the number of channels in the Source. Only 1-channel (mono) Sources can use directional and positional effects.
+---
+---[Wiki](https://love2d.org/wiki/Source:getChannelCount)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Source:getChannelCount() end
+
+---Gets the Source's directional volume cones. Together with Source:setDirection, the cone angles allow for the Source's volume to vary depending on its direction.
+---
+---[Wiki](https://love2d.org/wiki/Source:getCone)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Source:getCone() end
+
+---Gets the direction of the Source.
+---
+---[Wiki](https://love2d.org/wiki/Source:getDirection)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Source:getDirection() end
+
+---Gets the duration of the Source. For streaming Sources it may not always be sample-accurate, and may return -1 if the duration cannot be determined at all.
+---
+---[Wiki](https://love2d.org/wiki/Source:getDuration)
+---
+---@param unit? love.TimeUnit# ('seconds') The time unit for the return value.
+---@diagnostic disable-next-line: args-after-dots
+function Source:getDuration(unit) end
+
+---Gets the filter settings associated to a specific effect.
+---
+---This function returns nil if the effect was applied with no filter settings associated to it.
+---
+---[Wiki](https://love2d.org/wiki/Source:getEffect)
+---
+---@param name string# The name of the effect.
+---@param filtersettings? table# ({}) An optional empty table that will be filled with the filter settings.
+---@diagnostic disable-next-line: args-after-dots
+function Source:getEffect(name, filtersettings) end
+
+---Gets the filter settings currently applied to the Source.
+---
+---[Wiki](https://love2d.org/wiki/Source:getFilter)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Source:getFilter() end
+
+---Gets the number of free buffer slots in a queueable Source. If the queueable Source is playing, this value will increase up to the amount the Source was created with. If the queueable Source is stopped, it will process all of its internal buffers first, in which case this function will always return the amount it was created with.
+---
+---[Wiki](https://love2d.org/wiki/Source:getFreeBufferCount)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Source:getFreeBufferCount() end
+
+---Gets the current pitch of the Source.
+---
+---[Wiki](https://love2d.org/wiki/Source:getPitch)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Source:getPitch() end
+
+---Gets the position of the Source.
+---
+---[Wiki](https://love2d.org/wiki/Source:getPosition)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Source:getPosition() end
+
+---Returns the rolloff factor of the source.
+---
+---[Wiki](https://love2d.org/wiki/Source:getRolloff)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Source:getRolloff() end
+
+---Gets the type of the Source.
+---
+---[Wiki](https://love2d.org/wiki/Source:getType)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Source:getType() end
+
+---Gets the velocity of the Source.
+---
+---[Wiki](https://love2d.org/wiki/Source:getVelocity)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Source:getVelocity() end
+
+---Gets the current volume of the Source.
+---
+---[Wiki](https://love2d.org/wiki/Source:getVolume)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Source:getVolume() end
+
+---Returns the volume limits of the source.
+---
+---[Wiki](https://love2d.org/wiki/Source:getVolumeLimits)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Source:getVolumeLimits() end
+
+---Returns whether the Source will loop.
+---
+---[Wiki](https://love2d.org/wiki/Source:isLooping)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Source:isLooping() end
+
+---Returns whether the Source is playing.
+---
+---[Wiki](https://love2d.org/wiki/Source:isPlaying)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Source:isPlaying() end
+
+---Gets whether the Source's position, velocity, direction, and cone angles are relative to the listener.
+---
+---[Wiki](https://love2d.org/wiki/Source:isRelative)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Source:isRelative() end
+
+---Pauses the Source.
+---
+---[Wiki](https://love2d.org/wiki/Source:pause)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Source:pause() end
+
+---Starts playing the Source.
+---
+---[Wiki](https://love2d.org/wiki/Source:play)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Source:play() end
+
+---Queues SoundData for playback in a queueable Source.
+---
+---This method requires the Source to be created via love.audio.newQueueableSource.
+---
+---[Wiki](https://love2d.org/wiki/Source:queue)
+---
+---@param sounddata love.SoundData# The data to queue. The SoundData's sample rate, bit depth, and channel count must match the Source's.
+---@diagnostic disable-next-line: args-after-dots
+function Source:queue(sounddata) end
+
+---Sets the currently playing position of the Source.
+---
+---[Wiki](https://love2d.org/wiki/Source:seek)
+---
+---@param offset number# The position to seek to.
+---@param unit? love.TimeUnit# ('seconds') The unit of the position value.
+---@diagnostic disable-next-line: args-after-dots
+function Source:seek(offset, unit) end
+
+---Sets the amount of air absorption applied to the Source.
+---
+---By default the value is set to 0 which means that air absorption effects are disabled. A value of 1 will apply high frequency attenuation to the Source at a rate of 0.05 dB per meter.
+---
+---Air absorption can simulate sound transmission through foggy air, dry air, smoky atmosphere, etc. It can be used to simulate different atmospheric conditions within different locations in an area.
+---
+---[Wiki](https://love2d.org/wiki/Source:setAirAbsorption)
+---
+---@param amount number# The amount of air absorption applied to the Source. Must be between 0 and 10.
+---@diagnostic disable-next-line: args-after-dots
+function Source:setAirAbsorption(amount) end
+
+---Sets the reference and maximum attenuation distances of the Source. The parameters, combined with the current DistanceModel, affect how the Source's volume attenuates based on distance.
+---
+---Distance attenuation is only applicable to Sources based on mono (rather than stereo) audio.
+---
+---[Wiki](https://love2d.org/wiki/Source:setAttenuationDistances)
+---
+---@param ref number# The new reference attenuation distance. If the current DistanceModel is clamped, this is the minimum attenuation distance.
+---@param max number# The new maximum attenuation distance.
+---@diagnostic disable-next-line: args-after-dots
+function Source:setAttenuationDistances(ref, max) end
+
+---Sets the Source's directional volume cones. Together with Source:setDirection, the cone angles allow for the Source's volume to vary depending on its direction.
+---
+---[Wiki](https://love2d.org/wiki/Source:setCone)
+---
+---@param innerAngle number# The inner angle from the Source's direction, in radians. The Source will play at normal volume if the listener is inside the cone defined by this angle.
+---@param outerAngle number# The outer angle from the Source's direction, in radians. The Source will play at a volume between the normal and outer volumes, if the listener is in between the cones defined by the inner and outer angles.
+---@param outerVolume? number# (0) The Source's volume when the listener is outside both the inner and outer cone angles.
+---@diagnostic disable-next-line: args-after-dots
+function Source:setCone(innerAngle, outerAngle, outerVolume) end
+
+---Sets the direction vector of the Source. A zero vector makes the source non-directional.
+---
+---[Wiki](https://love2d.org/wiki/Source:setDirection)
+---
+---@param x number# The X part of the direction vector.
+---@param y number# The Y part of the direction vector.
+---@param z number# The Z part of the direction vector.
+---@diagnostic disable-next-line: args-after-dots
+function Source:setDirection(x, y, z) end
+
+---Applies an audio effect to the Source.
+---
+---The effect must have been previously defined using love.audio.setEffect.
+---
+---[Wiki](https://love2d.org/wiki/Source:setEffect)
+---
+---@param name string# The name of the effect previously set up with love.audio.setEffect.
+---@param enable? boolean# (true) If false and the given effect name was previously enabled on this Source, disables the effect.
+---@diagnostic disable-next-line: args-after-dots
+function Source:setEffect(name, enable) end
+
+---Applies an audio effect to the Source.
+---
+---The effect must have been previously defined using love.audio.setEffect.
+---
+---[Wiki](https://love2d.org/wiki/Source:setEffect)
+---
+---@param name string# The name of the effect previously set up with love.audio.setEffect.
+---@param filtersettings {
+---type : love.FilterType,
+---volume : number,
+---highgain : number,
+---lowgain : number}# The filter settings to apply prior to the effect, with the following fields:
+---@diagnostic disable-next-line: args-after-dots
+function Source:setEffect(name, filtersettings) end
+
+---Sets a low-pass, high-pass, or band-pass filter to apply when playing the Source.
+---
+---[Wiki](https://love2d.org/wiki/Source:setFilter)
+---
+---@param settings {
+---type : love.FilterType,
+---volume : number,
+---highgain : number,
+---lowgain : number}# The filter settings to use for this Source, with the following fields:
+---@diagnostic disable-next-line: args-after-dots
+function Source:setFilter(settings) end
+
+---Sets a low-pass, high-pass, or band-pass filter to apply when playing the Source.
+---
+---[Wiki](https://love2d.org/wiki/Source:setFilter)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Source:setFilter() end
+
+---Sets whether the Source should loop.
+---
+---[Wiki](https://love2d.org/wiki/Source:setLooping)
+---
+---@param loop boolean# True if the source should loop, false otherwise.
+---@diagnostic disable-next-line: args-after-dots
+function Source:setLooping(loop) end
+
+---Sets the pitch of the Source.
+---
+---[Wiki](https://love2d.org/wiki/Source:setPitch)
+---
+---@param pitch number# Calculated with regard to 1 being the base pitch. Each reduction by 50 percent equals a pitch shift of -12 semitones (one octave reduction). Each doubling equals a pitch shift of 12 semitones (one octave increase). Zero is not a legal value.
+---@diagnostic disable-next-line: args-after-dots
+function Source:setPitch(pitch) end
+
+---Sets the position of the Source. Please note that this only works for mono (i.e. non-stereo) sound files!
+---
+---[Wiki](https://love2d.org/wiki/Source:setPosition)
+---
+---@param x number# The X position of the Source.
+---@param y number# The Y position of the Source.
+---@param z number# The Z position of the Source.
+---@diagnostic disable-next-line: args-after-dots
+function Source:setPosition(x, y, z) end
+
+---Sets whether the Source's position, velocity, direction, and cone angles are relative to the listener, or absolute.
+---
+---By default, all sources are absolute and therefore relative to the origin of love's coordinate system 0, 0. Only absolute sources are affected by the position of the listener. Please note that positional audio only works for mono (i.e. non-stereo) sources. 
+---
+---[Wiki](https://love2d.org/wiki/Source:setRelative)
+---
+---@param enable? boolean# (false) True to make the position, velocity, direction and cone angles relative to the listener, false to make them absolute.
+---@diagnostic disable-next-line: args-after-dots
+function Source:setRelative(enable) end
+
+---Sets the rolloff factor which affects the strength of the used distance attenuation.
+---
+---Extended information and detailed formulas can be found in the chapter '3.4. Attenuation By Distance' of OpenAL 1.1 specification.
+---
+---[Wiki](https://love2d.org/wiki/Source:setRolloff)
+---
+---@param rolloff number# The new rolloff factor.
+---@diagnostic disable-next-line: args-after-dots
+function Source:setRolloff(rolloff) end
+
+---Sets the velocity of the Source.
+---
+---This does '''not''' change the position of the Source, but lets the application know how it has to calculate the doppler effect.
+---
+---[Wiki](https://love2d.org/wiki/Source:setVelocity)
+---
+---@param x number# The X part of the velocity vector.
+---@param y number# The Y part of the velocity vector.
+---@param z number# The Z part of the velocity vector.
+---@diagnostic disable-next-line: args-after-dots
+function Source:setVelocity(x, y, z) end
+
+---Sets the current volume of the Source.
+---
+---[Wiki](https://love2d.org/wiki/Source:setVolume)
+---
+---@param volume number# The volume for a Source, where 1.0 is normal volume. Volume cannot be raised above 1.0.
+---@diagnostic disable-next-line: args-after-dots
+function Source:setVolume(volume) end
+
+---Sets the volume limits of the source. The limits have to be numbers from 0 to 1.
+---
+---[Wiki](https://love2d.org/wiki/Source:setVolumeLimits)
+---
+---@param min number# The minimum volume.
+---@param max number# The maximum volume.
+---@diagnostic disable-next-line: args-after-dots
+function Source:setVolumeLimits(min, max) end
+
+---Stops a Source.
+---
+---[Wiki](https://love2d.org/wiki/Source:stop)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Source:stop() end
+
+---Gets the currently playing position of the Source.
+---
+---[Wiki](https://love2d.org/wiki/Source:tell)
+---
+---@param unit? love.TimeUnit# ('seconds') The type of unit for the return value.
+---@diagnostic disable-next-line: args-after-dots
+function Source:tell(unit) end
 
 ---Compresses a string or data using a specific compression algorithm.
 ---
@@ -3718,6 +3711,13 @@ function love.data.unpack(format, datastring, pos) end
 ---@diagnostic disable-next-line: args-after-dots
 function love.data.unpack(format, data, pos) end
 
+---Gets the compression format of the CompressedData.
+---
+---[Wiki](https://love2d.org/wiki/CompressedData:getFormat)
+---
+---@diagnostic disable-next-line: args-after-dots
+function CompressedData:getFormat() end
+
 ---Clears the event queue.
 ---
 ---[Wiki](https://love2d.org/wiki/love.event.clear)
@@ -3788,152 +3788,6 @@ function love.event.quit(restart) end
 ---
 ---@diagnostic disable-next-line: args-after-dots
 function love.event.wait() end
-
----Closes a File.
----
----[Wiki](https://love2d.org/wiki/File:close)
----
----@diagnostic disable-next-line: args-after-dots
-function File:close() end
-
----Flushes any buffered written data in the file to the disk.
----
----[Wiki](https://love2d.org/wiki/File:flush)
----
----@diagnostic disable-next-line: args-after-dots
-function File:flush() end
-
----Gets the buffer mode of a file.
----
----[Wiki](https://love2d.org/wiki/File:getBuffer)
----
----@diagnostic disable-next-line: args-after-dots
-function File:getBuffer() end
-
----Gets the filename that the File object was created with. If the file object originated from the love.filedropped callback, the filename will be the full platform-dependent file path.
----
----[Wiki](https://love2d.org/wiki/File:getFilename)
----
----@diagnostic disable-next-line: args-after-dots
-function File:getFilename() end
-
----Gets the FileMode the file has been opened with.
----
----[Wiki](https://love2d.org/wiki/File:getMode)
----
----@diagnostic disable-next-line: args-after-dots
-function File:getMode() end
-
----Returns the file size.
----
----[Wiki](https://love2d.org/wiki/File:getSize)
----
----@diagnostic disable-next-line: args-after-dots
-function File:getSize() end
-
----Gets whether end-of-file has been reached.
----
----[Wiki](https://love2d.org/wiki/File:isEOF)
----
----@diagnostic disable-next-line: args-after-dots
-function File:isEOF() end
-
----Gets whether the file is open.
----
----[Wiki](https://love2d.org/wiki/File:isOpen)
----
----@diagnostic disable-next-line: args-after-dots
-function File:isOpen() end
-
----Iterate over all the lines in a file.
----
----[Wiki](https://love2d.org/wiki/File:lines)
----
----@diagnostic disable-next-line: args-after-dots
-function File:lines() end
-
----Open the file for write, read or append.
----
----[Wiki](https://love2d.org/wiki/File:open)
----
----@param mode love.FileMode# The mode to open the file in.
----@diagnostic disable-next-line: args-after-dots
-function File:open(mode) end
-
----Read a number of bytes from a file.
----
----[Wiki](https://love2d.org/wiki/File:read)
----
----@param bytes? number# (all) The number of bytes to read.
----@diagnostic disable-next-line: args-after-dots
-function File:read(bytes) end
-
----Read a number of bytes from a file.
----
----[Wiki](https://love2d.org/wiki/File:read)
----
----@param container love.ContainerType# What type to return the file's contents as.
----@param bytes? number# (all) The number of bytes to read.
----@diagnostic disable-next-line: args-after-dots
-function File:read(container, bytes) end
-
----Seek to a position in a file
----
----[Wiki](https://love2d.org/wiki/File:seek)
----
----@param pos number# The position to seek to
----@diagnostic disable-next-line: args-after-dots
-function File:seek(pos) end
-
----Sets the buffer mode for a file opened for writing or appending. Files with buffering enabled will not write data to the disk until the buffer size limit is reached, depending on the buffer mode.
----
----File:flush will force any buffered data to be written to the disk.
----
----[Wiki](https://love2d.org/wiki/File:setBuffer)
----
----@param mode love.BufferMode# The buffer mode to use.
----@param size? number# (0) The maximum size in bytes of the file's buffer.
----@diagnostic disable-next-line: args-after-dots
-function File:setBuffer(mode, size) end
-
----Returns the position in the file.
----
----[Wiki](https://love2d.org/wiki/File:tell)
----
----@diagnostic disable-next-line: args-after-dots
-function File:tell() end
-
----Write data to a file.
----
----[Wiki](https://love2d.org/wiki/File:write)
----
----@param data string# The string data to write.
----@param size? number# (all) How many bytes to write.
----@diagnostic disable-next-line: args-after-dots
-function File:write(data, size) end
-
----Write data to a file.
----
----[Wiki](https://love2d.org/wiki/File:write)
----
----@param data love.Data# The Data object to write.
----@param size? number# (all) How many bytes to write.
----@diagnostic disable-next-line: args-after-dots
-function File:write(data, size) end
-
----Gets the extension of the FileData.
----
----[Wiki](https://love2d.org/wiki/FileData:getExtension)
----
----@diagnostic disable-next-line: args-after-dots
-function FileData:getExtension() end
-
----Gets the filename of the FileData.
----
----[Wiki](https://love2d.org/wiki/FileData:getFilename)
----
----@diagnostic disable-next-line: args-after-dots
-function FileData:getFilename() end
 
 ---Append data to an existing file.
 ---
@@ -4344,136 +4198,151 @@ function love.filesystem.write(name, data, size) end
 ---@diagnostic disable-next-line: args-after-dots
 function love.filesystem.write(name, data, size) end
 
----Gets glyph advance.
+---Closes a File.
 ---
----[Wiki](https://love2d.org/wiki/GlyphData:getAdvance)
+---[Wiki](https://love2d.org/wiki/File:close)
 ---
 ---@diagnostic disable-next-line: args-after-dots
-function GlyphData:getAdvance() end
+function File:close() end
 
----Gets glyph bearing.
+---Flushes any buffered written data in the file to the disk.
 ---
----[Wiki](https://love2d.org/wiki/GlyphData:getBearing)
+---[Wiki](https://love2d.org/wiki/File:flush)
 ---
 ---@diagnostic disable-next-line: args-after-dots
-function GlyphData:getBearing() end
+function File:flush() end
 
----Gets glyph bounding box.
+---Gets the buffer mode of a file.
 ---
----[Wiki](https://love2d.org/wiki/GlyphData:getBoundingBox)
+---[Wiki](https://love2d.org/wiki/File:getBuffer)
 ---
 ---@diagnostic disable-next-line: args-after-dots
-function GlyphData:getBoundingBox() end
+function File:getBuffer() end
 
----Gets glyph dimensions.
+---Gets the filename that the File object was created with. If the file object originated from the love.filedropped callback, the filename will be the full platform-dependent file path.
 ---
----[Wiki](https://love2d.org/wiki/GlyphData:getDimensions)
+---[Wiki](https://love2d.org/wiki/File:getFilename)
 ---
 ---@diagnostic disable-next-line: args-after-dots
-function GlyphData:getDimensions() end
+function File:getFilename() end
 
----Gets glyph pixel format.
+---Gets the FileMode the file has been opened with.
 ---
----[Wiki](https://love2d.org/wiki/GlyphData:getFormat)
+---[Wiki](https://love2d.org/wiki/File:getMode)
 ---
 ---@diagnostic disable-next-line: args-after-dots
-function GlyphData:getFormat() end
+function File:getMode() end
 
----Gets glyph number.
+---Returns the file size.
 ---
----[Wiki](https://love2d.org/wiki/GlyphData:getGlyph)
+---[Wiki](https://love2d.org/wiki/File:getSize)
 ---
 ---@diagnostic disable-next-line: args-after-dots
-function GlyphData:getGlyph() end
+function File:getSize() end
 
----Gets glyph string.
+---Gets whether end-of-file has been reached.
 ---
----[Wiki](https://love2d.org/wiki/GlyphData:getGlyphString)
+---[Wiki](https://love2d.org/wiki/File:isEOF)
 ---
 ---@diagnostic disable-next-line: args-after-dots
-function GlyphData:getGlyphString() end
+function File:isEOF() end
 
----Gets glyph height.
+---Gets whether the file is open.
 ---
----[Wiki](https://love2d.org/wiki/GlyphData:getHeight)
+---[Wiki](https://love2d.org/wiki/File:isOpen)
 ---
 ---@diagnostic disable-next-line: args-after-dots
-function GlyphData:getHeight() end
+function File:isOpen() end
 
----Gets glyph width.
+---Iterate over all the lines in a file.
 ---
----[Wiki](https://love2d.org/wiki/GlyphData:getWidth)
+---[Wiki](https://love2d.org/wiki/File:lines)
 ---
 ---@diagnostic disable-next-line: args-after-dots
-function GlyphData:getWidth() end
+function File:lines() end
 
----Gets font advance.
+---Open the file for write, read or append.
 ---
----[Wiki](https://love2d.org/wiki/Rasterizer:getAdvance)
+---[Wiki](https://love2d.org/wiki/File:open)
 ---
+---@param mode love.FileMode# The mode to open the file in.
 ---@diagnostic disable-next-line: args-after-dots
-function Rasterizer:getAdvance() end
+function File:open(mode) end
 
----Gets ascent height.
+---Read a number of bytes from a file.
 ---
----[Wiki](https://love2d.org/wiki/Rasterizer:getAscent)
+---[Wiki](https://love2d.org/wiki/File:read)
 ---
+---@param bytes? number# (all) The number of bytes to read.
 ---@diagnostic disable-next-line: args-after-dots
-function Rasterizer:getAscent() end
+function File:read(bytes) end
 
----Gets descent height.
+---Read a number of bytes from a file.
 ---
----[Wiki](https://love2d.org/wiki/Rasterizer:getDescent)
+---[Wiki](https://love2d.org/wiki/File:read)
 ---
+---@param container love.ContainerType# What type to return the file's contents as.
+---@param bytes? number# (all) The number of bytes to read.
 ---@diagnostic disable-next-line: args-after-dots
-function Rasterizer:getDescent() end
+function File:read(container, bytes) end
 
----Gets number of glyphs in font.
+---Seek to a position in a file
 ---
----[Wiki](https://love2d.org/wiki/Rasterizer:getGlyphCount)
+---[Wiki](https://love2d.org/wiki/File:seek)
 ---
+---@param pos number# The position to seek to
 ---@diagnostic disable-next-line: args-after-dots
-function Rasterizer:getGlyphCount() end
+function File:seek(pos) end
 
----Gets glyph data of a specified glyph.
+---Sets the buffer mode for a file opened for writing or appending. Files with buffering enabled will not write data to the disk until the buffer size limit is reached, depending on the buffer mode.
 ---
----[Wiki](https://love2d.org/wiki/Rasterizer:getGlyphData)
+---File:flush will force any buffered data to be written to the disk.
 ---
----@param glyph string# Glyph
+---[Wiki](https://love2d.org/wiki/File:setBuffer)
+---
+---@param mode love.BufferMode# The buffer mode to use.
+---@param size? number# (0) The maximum size in bytes of the file's buffer.
 ---@diagnostic disable-next-line: args-after-dots
-function Rasterizer:getGlyphData(glyph) end
+function File:setBuffer(mode, size) end
 
----Gets glyph data of a specified glyph.
+---Returns the position in the file.
 ---
----[Wiki](https://love2d.org/wiki/Rasterizer:getGlyphData)
+---[Wiki](https://love2d.org/wiki/File:tell)
 ---
----@param glyphNumber number# Glyph number
 ---@diagnostic disable-next-line: args-after-dots
-function Rasterizer:getGlyphData(glyphNumber) end
+function File:tell() end
 
----Gets font height.
+---Write data to a file.
 ---
----[Wiki](https://love2d.org/wiki/Rasterizer:getHeight)
+---[Wiki](https://love2d.org/wiki/File:write)
 ---
+---@param data string# The string data to write.
+---@param size? number# (all) How many bytes to write.
 ---@diagnostic disable-next-line: args-after-dots
-function Rasterizer:getHeight() end
+function File:write(data, size) end
 
----Gets line height of a font.
+---Write data to a file.
 ---
----[Wiki](https://love2d.org/wiki/Rasterizer:getLineHeight)
+---[Wiki](https://love2d.org/wiki/File:write)
 ---
+---@param data love.Data# The Data object to write.
+---@param size? number# (all) How many bytes to write.
 ---@diagnostic disable-next-line: args-after-dots
-function Rasterizer:getLineHeight() end
+function File:write(data, size) end
 
----Checks if font contains specified glyphs.
+---Gets the extension of the FileData.
 ---
----[Wiki](https://love2d.org/wiki/Rasterizer:hasGlyphs)
+---[Wiki](https://love2d.org/wiki/FileData:getExtension)
 ---
----@param glyph1 string|number# Glyph
----@param glyph2 string|number# Glyph
----@param ... string|number# Additional glyphs
 ---@diagnostic disable-next-line: args-after-dots
-function Rasterizer:hasGlyphs(glyph1, glyph2, ...) end
+function FileData:getExtension() end
+
+---Gets the filename of the FileData.
+---
+---[Wiki](https://love2d.org/wiki/FileData:getFilename)
+---
+---@diagnostic disable-next-line: args-after-dots
+function FileData:getFilename() end
 
 ---Creates a new BMFont Rasterizer.
 ---
@@ -4615,2218 +4484,136 @@ function love.font.newTrueTypeRasterizer(fileName, size, hinting, dpiscale) end
 ---@diagnostic disable-next-line: args-after-dots
 function love.font.newTrueTypeRasterizer(fileData, size, hinting, dpiscale) end
 
----Generates mipmaps for the Canvas, based on the contents of the highest-resolution mipmap level.
+---Gets glyph advance.
 ---
----The Canvas must be created with mipmaps set to a MipmapMode other than 'none' for this function to work. It should only be called while the Canvas is not the active render target.
+---[Wiki](https://love2d.org/wiki/GlyphData:getAdvance)
 ---
----If the mipmap mode is set to 'auto', this function is automatically called inside love.graphics.setCanvas when switching from this Canvas to another Canvas or to the main screen.
----
----[Wiki](https://love2d.org/wiki/Canvas:generateMipmaps)
----
----@diagnostic disable-next-line: args-after-dots
-function Canvas:generateMipmaps() end
-
----Gets the number of multisample antialiasing (MSAA) samples used when drawing to the Canvas.
----
----This may be different than the number used as an argument to love.graphics.newCanvas if the system running LÖVE doesn't support that number.
----
----[Wiki](https://love2d.org/wiki/Canvas:getMSAA)
----
----@diagnostic disable-next-line: args-after-dots
-function Canvas:getMSAA() end
-
----Gets the MipmapMode this Canvas was created with.
----
----[Wiki](https://love2d.org/wiki/Canvas:getMipmapMode)
----
----@diagnostic disable-next-line: args-after-dots
-function Canvas:getMipmapMode() end
-
----Generates ImageData from the contents of the Canvas.
----
----[Wiki](https://love2d.org/wiki/Canvas:newImageData)
----
----@diagnostic disable-next-line: args-after-dots
-function Canvas:newImageData() end
-
----Generates ImageData from the contents of the Canvas.
----
----[Wiki](https://love2d.org/wiki/Canvas:newImageData)
----
----@param slice number# The cubemap face index, array index, or depth layer for cubemap, array, or volume type Canvases, respectively. This argument is ignored for regular 2D canvases.
----@param mipmap? number# (1) The mipmap index to use, for Canvases with mipmaps.
----@param x number# The x-axis of the top-left corner (in pixels) of the area within the Canvas to capture.
----@param y number# The y-axis of the top-left corner (in pixels) of the area within the Canvas to capture.
----@param width number# The width in pixels of the area within the Canvas to capture.
----@param height number# The height in pixels of the area within the Canvas to capture.
----@diagnostic disable-next-line: args-after-dots
-function Canvas:newImageData(slice, mipmap, x, y, width, height) end
-
----Render to the Canvas using a function.
----
----This is a shortcut to love.graphics.setCanvas:
----
----canvas:renderTo( func )
----
----is the same as
----
----love.graphics.setCanvas( canvas )
----
----func()
----
----love.graphics.setCanvas()
----
----[Wiki](https://love2d.org/wiki/Canvas:renderTo)
----
----@param func fun(...:any)# A function performing drawing operations.
----@param ... any# Additional arguments to call the function with.
----@diagnostic disable-next-line: args-after-dots
-function Canvas:renderTo(func, ...) end
-
----Gets the ascent of the Font.
----
----The ascent spans the distance between the baseline and the top of the glyph that reaches farthest from the baseline.
----
----[Wiki](https://love2d.org/wiki/Font:getAscent)
----
----@diagnostic disable-next-line: args-after-dots
-function Font:getAscent() end
-
----Gets the baseline of the Font.
----
----Most scripts share the notion of a baseline: an imaginary horizontal line on which characters rest. In some scripts, parts of glyphs lie below the baseline.
----
----[Wiki](https://love2d.org/wiki/Font:getBaseline)
----
----@diagnostic disable-next-line: args-after-dots
-function Font:getBaseline() end
-
----Gets the DPI scale factor of the Font.
----
----The DPI scale factor represents relative pixel density. A DPI scale factor of 2 means the font's glyphs have twice the pixel density in each dimension (4 times as many pixels in the same area) compared to a font with a DPI scale factor of 1.
----
----The font size of TrueType fonts is scaled internally by the font's specified DPI scale factor. By default, LÖVE uses the screen's DPI scale factor when creating TrueType fonts.
----
----[Wiki](https://love2d.org/wiki/Font:getDPIScale)
----
----@diagnostic disable-next-line: args-after-dots
-function Font:getDPIScale() end
-
----Gets the descent of the Font.
----
----The descent spans the distance between the baseline and the lowest descending glyph in a typeface.
----
----[Wiki](https://love2d.org/wiki/Font:getDescent)
----
----@diagnostic disable-next-line: args-after-dots
-function Font:getDescent() end
-
----Gets the filter mode for a font.
----
----[Wiki](https://love2d.org/wiki/Font:getFilter)
----
----@diagnostic disable-next-line: args-after-dots
-function Font:getFilter() end
-
----Gets the height of the Font.
----
----The height of the font is the size including any spacing; the height which it will need.
----
----[Wiki](https://love2d.org/wiki/Font:getHeight)
----
----@diagnostic disable-next-line: args-after-dots
-function Font:getHeight() end
-
----Gets the kerning between two characters in the Font.
----
----Kerning is normally handled automatically in love.graphics.print, Text objects, Font:getWidth, Font:getWrap, etc. This function is useful when stitching text together manually.
----
----[Wiki](https://love2d.org/wiki/Font:getKerning)
----
----@param leftchar string# The left character.
----@param rightchar string# The right character.
----@diagnostic disable-next-line: args-after-dots
-function Font:getKerning(leftchar, rightchar) end
-
----Gets the kerning between two characters in the Font.
----
----Kerning is normally handled automatically in love.graphics.print, Text objects, Font:getWidth, Font:getWrap, etc. This function is useful when stitching text together manually.
----
----[Wiki](https://love2d.org/wiki/Font:getKerning)
----
----@param leftglyph number# The unicode number for the left glyph.
----@param rightglyph number# The unicode number for the right glyph.
----@diagnostic disable-next-line: args-after-dots
-function Font:getKerning(leftglyph, rightglyph) end
-
----Gets the line height.
----
----This will be the value previously set by Font:setLineHeight, or 1.0 by default.
----
----[Wiki](https://love2d.org/wiki/Font:getLineHeight)
----
----@diagnostic disable-next-line: args-after-dots
-function Font:getLineHeight() end
-
----Determines the maximum width (accounting for newlines) taken by the given string.
----
----[Wiki](https://love2d.org/wiki/Font:getWidth)
----
----@param text string# A string.
----@diagnostic disable-next-line: args-after-dots
-function Font:getWidth(text) end
-
----Gets formatting information for text, given a wrap limit.
----
----This function accounts for newlines correctly (i.e. '\n').
----
----[Wiki](https://love2d.org/wiki/Font:getWrap)
----
----@param text string# The text that will be wrapped.
----@param wraplimit number# The maximum width in pixels of each line that ''text'' is allowed before wrapping.
----@diagnostic disable-next-line: args-after-dots
-function Font:getWrap(text, wraplimit) end
-
----Gets formatting information for text, given a wrap limit.
----
----This function accounts for newlines correctly (i.e. '\n').
----
----[Wiki](https://love2d.org/wiki/Font:getWrap)
----
----@param coloredtext {
----color1 : table,
----string1 : string,
----color2 : table,
----string2 : string,
----[...] : table|string}# A table containing colors and strings to add to the object, in the form of {color1, string1, color2, string2, ...}.
----@param wraplimit number# The maximum width in pixels of each line that ''text'' is allowed before wrapping.
----@diagnostic disable-next-line: args-after-dots
-function Font:getWrap(coloredtext, wraplimit) end
-
----Gets whether the Font can render a character or string.
----
----[Wiki](https://love2d.org/wiki/Font:hasGlyphs)
----
----@param text string# A UTF-8 encoded unicode string.
----@diagnostic disable-next-line: args-after-dots
-function Font:hasGlyphs(text) end
-
----Gets whether the Font can render a character or string.
----
----[Wiki](https://love2d.org/wiki/Font:hasGlyphs)
----
----@param character1 string# A unicode character.
----@param character2 string# Another unicode character.
----@diagnostic disable-next-line: args-after-dots
-function Font:hasGlyphs(character1, character2) end
-
----Gets whether the Font can render a character or string.
----
----[Wiki](https://love2d.org/wiki/Font:hasGlyphs)
----
----@param codepoint1 number# A unicode codepoint number.
----@param codepoint2 number# Another unicode codepoint number.
----@diagnostic disable-next-line: args-after-dots
-function Font:hasGlyphs(codepoint1, codepoint2) end
-
----Sets the fallback fonts. When the Font doesn't contain a glyph, it will substitute the glyph from the next subsequent fallback Fonts. This is akin to setting a 'font stack' in Cascading Style Sheets (CSS).
----
----[Wiki](https://love2d.org/wiki/Font:setFallbacks)
----
----@param fallbackfont1 love.Font# The first fallback Font to use.
----@param ... love.Font# Additional fallback Fonts.
----@diagnostic disable-next-line: args-after-dots
-function Font:setFallbacks(fallbackfont1, ...) end
-
----Sets the filter mode for a font.
----
----[Wiki](https://love2d.org/wiki/Font:setFilter)
----
----@param min love.FilterMode# How to scale a font down.
----@param mag love.FilterMode# How to scale a font up.
----@param anisotropy? number# (1) Maximum amount of anisotropic filtering used.
----@diagnostic disable-next-line: args-after-dots
-function Font:setFilter(min, mag, anisotropy) end
-
----Sets the line height.
----
----When rendering the font in lines the actual height will be determined by the line height multiplied by the height of the font. The default is 1.0.
----
----[Wiki](https://love2d.org/wiki/Font:setLineHeight)
----
----@param height number# The new line height.
----@diagnostic disable-next-line: args-after-dots
-function Font:setLineHeight(height) end
-
----Gets whether the Image was created from CompressedData.
----
----Compressed images take up less space in VRAM, and drawing a compressed image will generally be more efficient than drawing one created from raw pixel data.
----
----[Wiki](https://love2d.org/wiki/Image:isCompressed)
----
----@diagnostic disable-next-line: args-after-dots
-function Image:isCompressed() end
-
----Gets whether the Image was created with the linear (non-gamma corrected) flag set to true.
----
----This method always returns false when gamma-correct rendering is not enabled.
----
----[Wiki](https://love2d.org/wiki/Image:isFormatLinear)
----
----@diagnostic disable-next-line: args-after-dots
-function Image:isFormatLinear() end
-
----Replace the contents of an Image.
----
----[Wiki](https://love2d.org/wiki/Image:replacePixels)
----
----@param data love.ImageData# The new ImageData to replace the contents with.
----@param slice? number# (1) Which cubemap face, array index, or volume layer to replace, if applicable.
----@param mipmap? number# (1) The mimap level to replace, if the Image has mipmaps.
----@param x? number# (0) The x-offset in pixels from the top-left of the image to replace. The given ImageData's width plus this value must not be greater than the pixel width of the Image's specified mipmap level.
----@param y? number# (0) The y-offset in pixels from the top-left of the image to replace. The given ImageData's height plus this value must not be greater than the pixel height of the Image's specified mipmap level.
----@param reloadmipmaps? boolean# (false) Whether to generate new mipmaps after replacing the Image's pixels. True by default if the Image was created with automatically generated mipmaps, false by default otherwise.
----@diagnostic disable-next-line: args-after-dots
-function Image:replacePixels(data, slice, mipmap, x, y, reloadmipmaps) end
-
----Attaches a vertex attribute from a different Mesh onto this Mesh, for use when drawing. This can be used to share vertex attribute data between several different Meshes.
----
----[Wiki](https://love2d.org/wiki/Mesh:attachAttribute)
----
----@param name string# The name of the vertex attribute to attach.
----@param mesh love.Mesh# The Mesh to get the vertex attribute from.
----@diagnostic disable-next-line: args-after-dots
-function Mesh:attachAttribute(name, mesh) end
-
----Attaches a vertex attribute from a different Mesh onto this Mesh, for use when drawing. This can be used to share vertex attribute data between several different Meshes.
----
----[Wiki](https://love2d.org/wiki/Mesh:attachAttribute)
----
----@param name string# The name of the vertex attribute to attach.
----@param mesh love.Mesh# The Mesh to get the vertex attribute from.
----@param step? love.VertexAttributeStep# ('pervertex') Whether the attribute will be per-vertex or per-instance when the mesh is drawn.
----@param attachname? string# (name) The name of the attribute to use in shader code. Defaults to the name of the attribute in the given mesh. Can be used to use a different name for this attribute when rendering.
----@diagnostic disable-next-line: args-after-dots
-function Mesh:attachAttribute(name, mesh, step, attachname) end
-
----Removes a previously attached vertex attribute from this Mesh.
----
----[Wiki](https://love2d.org/wiki/Mesh:detachAttribute)
----
----@param name string# The name of the attached vertex attribute to detach.
----@diagnostic disable-next-line: args-after-dots
-function Mesh:detachAttribute(name) end
-
----Immediately sends all modified vertex data in the Mesh to the graphics card.
----
----Normally it isn't necessary to call this method as love.graphics.draw(mesh, ...) will do it automatically if needed, but explicitly using **Mesh:flush** gives more control over when the work happens.
----
----If this method is used, it generally shouldn't be called more than once (at most) between love.graphics.draw(mesh, ...) calls.
----
----[Wiki](https://love2d.org/wiki/Mesh:flush)
----
----@diagnostic disable-next-line: args-after-dots
-function Mesh:flush() end
-
----Gets the mode used when drawing the Mesh.
----
----[Wiki](https://love2d.org/wiki/Mesh:getDrawMode)
----
----@diagnostic disable-next-line: args-after-dots
-function Mesh:getDrawMode() end
-
----Gets the range of vertices used when drawing the Mesh.
----
----[Wiki](https://love2d.org/wiki/Mesh:getDrawRange)
----
----@diagnostic disable-next-line: args-after-dots
-function Mesh:getDrawRange() end
-
----Gets the texture (Image or Canvas) used when drawing the Mesh.
----
----[Wiki](https://love2d.org/wiki/Mesh:getTexture)
----
----@diagnostic disable-next-line: args-after-dots
-function Mesh:getTexture() end
-
----Gets the properties of a vertex in the Mesh.
----
----In versions prior to 11.0, color and byte component values were within the range of 0 to 255 instead of 0 to 1.
----
----[Wiki](https://love2d.org/wiki/Mesh:getVertex)
----
----@param index number# The one-based index of the vertex you want to retrieve the information for.
----@diagnostic disable-next-line: args-after-dots
-function Mesh:getVertex(index) end
-
----Gets the properties of a vertex in the Mesh.
----
----In versions prior to 11.0, color and byte component values were within the range of 0 to 255 instead of 0 to 1.
----
----[Wiki](https://love2d.org/wiki/Mesh:getVertex)
----
----@param index number# The index of the vertex you want to retrieve the information for.
----@diagnostic disable-next-line: args-after-dots
-function Mesh:getVertex(index) end
-
----Gets the properties of a specific attribute within a vertex in the Mesh.
----
----Meshes without a custom vertex format specified in love.graphics.newMesh have position as their first attribute, texture coordinates as their second attribute, and color as their third attribute.
----
----[Wiki](https://love2d.org/wiki/Mesh:getVertexAttribute)
----
----@param vertexindex number# The index of the the vertex you want to retrieve the attribute for (one-based).
----@param attributeindex number# The index of the attribute within the vertex to be retrieved (one-based).
----@diagnostic disable-next-line: args-after-dots
-function Mesh:getVertexAttribute(vertexindex, attributeindex) end
-
----Gets the total number of vertices in the Mesh.
----
----[Wiki](https://love2d.org/wiki/Mesh:getVertexCount)
----
----@diagnostic disable-next-line: args-after-dots
-function Mesh:getVertexCount() end
-
----Gets the vertex format that the Mesh was created with.
----
----[Wiki](https://love2d.org/wiki/Mesh:getVertexFormat)
----
----@diagnostic disable-next-line: args-after-dots
-function Mesh:getVertexFormat() end
-
----Gets the vertex map for the Mesh. The vertex map describes the order in which the vertices are used when the Mesh is drawn. The vertices, vertex map, and mesh draw mode work together to determine what exactly is displayed on the screen.
----
----If no vertex map has been set previously via Mesh:setVertexMap, then this function will return nil in LÖVE 0.10.0+, or an empty table in 0.9.2 and older.
----
----[Wiki](https://love2d.org/wiki/Mesh:getVertexMap)
----
----@diagnostic disable-next-line: args-after-dots
-function Mesh:getVertexMap() end
-
----Gets whether a specific vertex attribute in the Mesh is enabled. Vertex data from disabled attributes is not used when drawing the Mesh.
----
----[Wiki](https://love2d.org/wiki/Mesh:isAttributeEnabled)
----
----@param name string# The name of the vertex attribute to be checked.
----@diagnostic disable-next-line: args-after-dots
-function Mesh:isAttributeEnabled(name) end
-
----Enables or disables a specific vertex attribute in the Mesh. Vertex data from disabled attributes is not used when drawing the Mesh.
----
----[Wiki](https://love2d.org/wiki/Mesh:setAttributeEnabled)
----
----@param name string# The name of the vertex attribute to enable or disable.
----@param enable boolean# Whether the vertex attribute is used when drawing this Mesh.
----@diagnostic disable-next-line: args-after-dots
-function Mesh:setAttributeEnabled(name, enable) end
-
----Sets the mode used when drawing the Mesh.
----
----[Wiki](https://love2d.org/wiki/Mesh:setDrawMode)
----
----@param mode love.MeshDrawMode# The mode to use when drawing the Mesh.
----@diagnostic disable-next-line: args-after-dots
-function Mesh:setDrawMode(mode) end
-
----Restricts the drawn vertices of the Mesh to a subset of the total.
----
----[Wiki](https://love2d.org/wiki/Mesh:setDrawRange)
----
----@param start number# The index of the first vertex to use when drawing, or the index of the first value in the vertex map to use if one is set for this Mesh.
----@param count number# The number of vertices to use when drawing, or number of values in the vertex map to use if one is set for this Mesh.
----@diagnostic disable-next-line: args-after-dots
-function Mesh:setDrawRange(start, count) end
-
----Restricts the drawn vertices of the Mesh to a subset of the total.
----
----[Wiki](https://love2d.org/wiki/Mesh:setDrawRange)
----
----@diagnostic disable-next-line: args-after-dots
-function Mesh:setDrawRange() end
-
----Sets the texture (Image or Canvas) used when drawing the Mesh.
----
----[Wiki](https://love2d.org/wiki/Mesh:setTexture)
----
----@param texture love.Texture# The Image or Canvas to texture the Mesh with when drawing.
----@diagnostic disable-next-line: args-after-dots
-function Mesh:setTexture(texture) end
-
----Sets the texture (Image or Canvas) used when drawing the Mesh.
----
----[Wiki](https://love2d.org/wiki/Mesh:setTexture)
----
----@diagnostic disable-next-line: args-after-dots
-function Mesh:setTexture() end
-
----Sets the properties of a vertex in the Mesh.
----
----In versions prior to 11.0, color and byte component values were within the range of 0 to 255 instead of 0 to 1.
----
----[Wiki](https://love2d.org/wiki/Mesh:setVertex)
----
----@param index number# The index of the the vertex you want to modify (one-based).
----@param attributecomponent number# The first component of the first vertex attribute in the specified vertex.
----@param ... number# Additional components of all vertex attributes in the specified vertex.
----@diagnostic disable-next-line: args-after-dots
-function Mesh:setVertex(index, attributecomponent, ...) end
-
----Sets the properties of a vertex in the Mesh.
----
----In versions prior to 11.0, color and byte component values were within the range of 0 to 255 instead of 0 to 1.
----
----[Wiki](https://love2d.org/wiki/Mesh:setVertex)
----
----@param index number# The index of the the vertex you want to modify (one-based).
----@param vertex {
----attributecomponent : number,
----[...] : number}# A table with vertex information, in the form of {attributecomponent, ...}.
----@diagnostic disable-next-line: args-after-dots
-function Mesh:setVertex(index, vertex) end
-
----Sets the properties of a vertex in the Mesh.
----
----In versions prior to 11.0, color and byte component values were within the range of 0 to 255 instead of 0 to 1.
----
----[Wiki](https://love2d.org/wiki/Mesh:setVertex)
----
----@param index number# The index of the the vertex you want to modify (one-based).
----@param x number# The position of the vertex on the x-axis.
----@param y number# The position of the vertex on the y-axis.
----@param u number# The horizontal component of the texture coordinate.
----@param v number# The vertical component of the texture coordinate.
----@param r? number# (1) The red component of the vertex's color.
----@param g? number# (1) The green component of the vertex's color.
----@param b? number# (1) The blue component of the vertex's color.
----@param a? number# (1) The alpha component of the vertex's color.
----@diagnostic disable-next-line: args-after-dots
-function Mesh:setVertex(index, x, y, u, v, r, g, b, a) end
-
----Sets the properties of a vertex in the Mesh.
----
----In versions prior to 11.0, color and byte component values were within the range of 0 to 255 instead of 0 to 1.
----
----[Wiki](https://love2d.org/wiki/Mesh:setVertex)
----
----@param index number# The index of the the vertex you want to modify (one-based).
----@param vertex {
----[1] : number,
----[2] : number,
----[3] : number,
----[4] : number,
----[5] : number,
----[6] : number,
----[7] : number,
----[8] : number}# A table with vertex information.
----@diagnostic disable-next-line: args-after-dots
-function Mesh:setVertex(index, vertex) end
-
----Sets the properties of a specific attribute within a vertex in the Mesh.
----
----Meshes without a custom vertex format specified in love.graphics.newMesh have position as their first attribute, texture coordinates as their second attribute, and color as their third attribute.
----
----[Wiki](https://love2d.org/wiki/Mesh:setVertexAttribute)
----
----@param vertexindex number# The index of the the vertex to be modified (one-based).
----@param attributeindex number# The index of the attribute within the vertex to be modified (one-based).
----@param value1 number# The new value for the first component of the attribute.
----@param value2 number# The new value for the second component of the attribute.
----@param ... number# Any additional vertex attribute components.
----@diagnostic disable-next-line: args-after-dots
-function Mesh:setVertexAttribute(vertexindex, attributeindex, value1, value2, ...) end
-
----Sets the vertex map for the Mesh. The vertex map describes the order in which the vertices are used when the Mesh is drawn. The vertices, vertex map, and mesh draw mode work together to determine what exactly is displayed on the screen.
----
----The vertex map allows you to re-order or reuse vertices when drawing without changing the actual vertex parameters or duplicating vertices. It is especially useful when combined with different Mesh Draw Modes.
----
----[Wiki](https://love2d.org/wiki/Mesh:setVertexMap)
----
----@param map table# A table containing a list of vertex indices to use when drawing. Values must be in the range of Mesh:getVertexCount().
----@diagnostic disable-next-line: args-after-dots
-function Mesh:setVertexMap(map) end
-
----Sets the vertex map for the Mesh. The vertex map describes the order in which the vertices are used when the Mesh is drawn. The vertices, vertex map, and mesh draw mode work together to determine what exactly is displayed on the screen.
----
----The vertex map allows you to re-order or reuse vertices when drawing without changing the actual vertex parameters or duplicating vertices. It is especially useful when combined with different Mesh Draw Modes.
----
----[Wiki](https://love2d.org/wiki/Mesh:setVertexMap)
----
----@param vi1 number# The index of the first vertex to use when drawing. Must be in the range of Mesh:getVertexCount().
----@param vi2 number# The index of the second vertex to use when drawing.
----@param vi3 number# The index of the third vertex to use when drawing.
----@diagnostic disable-next-line: args-after-dots
-function Mesh:setVertexMap(vi1, vi2, vi3) end
-
----Sets the vertex map for the Mesh. The vertex map describes the order in which the vertices are used when the Mesh is drawn. The vertices, vertex map, and mesh draw mode work together to determine what exactly is displayed on the screen.
----
----The vertex map allows you to re-order or reuse vertices when drawing without changing the actual vertex parameters or duplicating vertices. It is especially useful when combined with different Mesh Draw Modes.
----
----[Wiki](https://love2d.org/wiki/Mesh:setVertexMap)
----
----@param data love.Data# Array of vertex indices to use when drawing. Values must be in the range of Mesh:getVertexCount()-1
----@param datatype love.IndexDataType# Datatype of the vertex indices array above.
----@diagnostic disable-next-line: args-after-dots
-function Mesh:setVertexMap(data, datatype) end
-
----Replaces a range of vertices in the Mesh with new ones. The total number of vertices in a Mesh cannot be changed after it has been created. This is often more efficient than calling Mesh:setVertex in a loop.
----
----[Wiki](https://love2d.org/wiki/Mesh:setVertices)
----
----@param vertices {
----attributecomponent : number,
----[...] : number}# The table filled with vertex information tables for each vertex, in the form of {vertex, ...} where each vertex is a table in the form of {attributecomponent, ...}.
----@param startvertex? number# (1) The index of the first vertex to replace.
----@param count? number# (all) Amount of vertices to replace.
----@diagnostic disable-next-line: args-after-dots
-function Mesh:setVertices(vertices, startvertex, count) end
-
----Replaces a range of vertices in the Mesh with new ones. The total number of vertices in a Mesh cannot be changed after it has been created. This is often more efficient than calling Mesh:setVertex in a loop.
----
----[Wiki](https://love2d.org/wiki/Mesh:setVertices)
----
----@param data love.Data# A Data object to copy from. The contents of the Data must match the layout of this Mesh's vertex format.
----@param startvertex? number# (1) The index of the first vertex to replace.
----@diagnostic disable-next-line: args-after-dots
-function Mesh:setVertices(data, startvertex) end
-
----Replaces a range of vertices in the Mesh with new ones. The total number of vertices in a Mesh cannot be changed after it has been created. This is often more efficient than calling Mesh:setVertex in a loop.
----
----[Wiki](https://love2d.org/wiki/Mesh:setVertices)
----
----@param vertices {
----[1] : number,
----[2] : number,
----[3] : number,
----[4] : number,
----[5] : number,
----[6] : number,
----[7] : number,
----[8] : number}# The table filled with vertex information tables for each vertex as follows:
----@diagnostic disable-next-line: args-after-dots
-function Mesh:setVertices(vertices) end
-
----Creates an identical copy of the ParticleSystem in the stopped state.
----
----[Wiki](https://love2d.org/wiki/ParticleSystem:clone)
----
----@diagnostic disable-next-line: args-after-dots
-function ParticleSystem:clone() end
-
----Emits a burst of particles from the particle emitter.
----
----[Wiki](https://love2d.org/wiki/ParticleSystem:emit)
----
----@param numparticles number# The amount of particles to emit. The number of emitted particles will be truncated if the particle system's max buffer size is reached.
----@diagnostic disable-next-line: args-after-dots
-function ParticleSystem:emit(numparticles) end
-
----Gets the maximum number of particles the ParticleSystem can have at once.
----
----[Wiki](https://love2d.org/wiki/ParticleSystem:getBufferSize)
----
----@diagnostic disable-next-line: args-after-dots
-function ParticleSystem:getBufferSize() end
-
----Gets the series of colors applied to the particle sprite.
----
----In versions prior to 11.0, color component values were within the range of 0 to 255 instead of 0 to 1.
----
----[Wiki](https://love2d.org/wiki/ParticleSystem:getColors)
----
----@diagnostic disable-next-line: args-after-dots
-function ParticleSystem:getColors() end
-
----Gets the number of particles that are currently in the system.
----
----[Wiki](https://love2d.org/wiki/ParticleSystem:getCount)
----
----@diagnostic disable-next-line: args-after-dots
-function ParticleSystem:getCount() end
-
----Gets the direction of the particle emitter (in radians).
----
----[Wiki](https://love2d.org/wiki/ParticleSystem:getDirection)
----
----@diagnostic disable-next-line: args-after-dots
-function ParticleSystem:getDirection() end
-
----Gets the area-based spawn parameters for the particles.
----
----[Wiki](https://love2d.org/wiki/ParticleSystem:getEmissionArea)
----
----@diagnostic disable-next-line: args-after-dots
-function ParticleSystem:getEmissionArea() end
-
----Gets the amount of particles emitted per second.
----
----[Wiki](https://love2d.org/wiki/ParticleSystem:getEmissionRate)
----
----@diagnostic disable-next-line: args-after-dots
-function ParticleSystem:getEmissionRate() end
-
----Gets how long the particle system will emit particles (if -1 then it emits particles forever).
----
----[Wiki](https://love2d.org/wiki/ParticleSystem:getEmitterLifetime)
----
----@diagnostic disable-next-line: args-after-dots
-function ParticleSystem:getEmitterLifetime() end
-
----Gets the mode used when the ParticleSystem adds new particles.
----
----[Wiki](https://love2d.org/wiki/ParticleSystem:getInsertMode)
----
----@diagnostic disable-next-line: args-after-dots
-function ParticleSystem:getInsertMode() end
-
----Gets the linear acceleration (acceleration along the x and y axes) for particles.
----
----Every particle created will accelerate along the x and y axes between xmin,ymin and xmax,ymax.
----
----[Wiki](https://love2d.org/wiki/ParticleSystem:getLinearAcceleration)
----
----@diagnostic disable-next-line: args-after-dots
-function ParticleSystem:getLinearAcceleration() end
-
----Gets the amount of linear damping (constant deceleration) for particles.
----
----[Wiki](https://love2d.org/wiki/ParticleSystem:getLinearDamping)
----
----@diagnostic disable-next-line: args-after-dots
-function ParticleSystem:getLinearDamping() end
-
----Gets the particle image's draw offset.
----
----[Wiki](https://love2d.org/wiki/ParticleSystem:getOffset)
----
----@diagnostic disable-next-line: args-after-dots
-function ParticleSystem:getOffset() end
-
----Gets the lifetime of the particles.
----
----[Wiki](https://love2d.org/wiki/ParticleSystem:getParticleLifetime)
----
----@diagnostic disable-next-line: args-after-dots
-function ParticleSystem:getParticleLifetime() end
-
----Gets the position of the emitter.
----
----[Wiki](https://love2d.org/wiki/ParticleSystem:getPosition)
----
----@diagnostic disable-next-line: args-after-dots
-function ParticleSystem:getPosition() end
-
----Gets the series of Quads used for the particle sprites.
----
----[Wiki](https://love2d.org/wiki/ParticleSystem:getQuads)
----
----@diagnostic disable-next-line: args-after-dots
-function ParticleSystem:getQuads() end
-
----Gets the radial acceleration (away from the emitter).
----
----[Wiki](https://love2d.org/wiki/ParticleSystem:getRadialAcceleration)
----
----@diagnostic disable-next-line: args-after-dots
-function ParticleSystem:getRadialAcceleration() end
-
----Gets the rotation of the image upon particle creation (in radians).
----
----[Wiki](https://love2d.org/wiki/ParticleSystem:getRotation)
----
----@diagnostic disable-next-line: args-after-dots
-function ParticleSystem:getRotation() end
-
----Gets the amount of size variation (0 meaning no variation and 1 meaning full variation between start and end).
----
----[Wiki](https://love2d.org/wiki/ParticleSystem:getSizeVariation)
----
----@diagnostic disable-next-line: args-after-dots
-function ParticleSystem:getSizeVariation() end
-
----Gets the series of sizes by which the sprite is scaled. 1.0 is normal size. The particle system will interpolate between each size evenly over the particle's lifetime.
----
----[Wiki](https://love2d.org/wiki/ParticleSystem:getSizes)
----
----@diagnostic disable-next-line: args-after-dots
-function ParticleSystem:getSizes() end
-
----Gets the speed of the particles.
----
----[Wiki](https://love2d.org/wiki/ParticleSystem:getSpeed)
----
----@diagnostic disable-next-line: args-after-dots
-function ParticleSystem:getSpeed() end
-
----Gets the spin of the sprite.
----
----[Wiki](https://love2d.org/wiki/ParticleSystem:getSpin)
----
----@diagnostic disable-next-line: args-after-dots
-function ParticleSystem:getSpin() end
-
----Gets the amount of spin variation (0 meaning no variation and 1 meaning full variation between start and end).
----
----[Wiki](https://love2d.org/wiki/ParticleSystem:getSpinVariation)
----
----@diagnostic disable-next-line: args-after-dots
-function ParticleSystem:getSpinVariation() end
-
----Gets the amount of directional spread of the particle emitter (in radians).
----
----[Wiki](https://love2d.org/wiki/ParticleSystem:getSpread)
----
----@diagnostic disable-next-line: args-after-dots
-function ParticleSystem:getSpread() end
-
----Gets the tangential acceleration (acceleration perpendicular to the particle's direction).
----
----[Wiki](https://love2d.org/wiki/ParticleSystem:getTangentialAcceleration)
----
----@diagnostic disable-next-line: args-after-dots
-function ParticleSystem:getTangentialAcceleration() end
-
----Gets the texture (Image or Canvas) used for the particles.
----
----[Wiki](https://love2d.org/wiki/ParticleSystem:getTexture)
----
----@diagnostic disable-next-line: args-after-dots
-function ParticleSystem:getTexture() end
-
----Gets whether particle angles and rotations are relative to their velocities. If enabled, particles are aligned to the angle of their velocities and rotate relative to that angle.
----
----[Wiki](https://love2d.org/wiki/ParticleSystem:hasRelativeRotation)
----
----@diagnostic disable-next-line: args-after-dots
-function ParticleSystem:hasRelativeRotation() end
-
----Checks whether the particle system is actively emitting particles.
----
----[Wiki](https://love2d.org/wiki/ParticleSystem:isActive)
----
----@diagnostic disable-next-line: args-after-dots
-function ParticleSystem:isActive() end
-
----Checks whether the particle system is paused.
----
----[Wiki](https://love2d.org/wiki/ParticleSystem:isPaused)
----
----@diagnostic disable-next-line: args-after-dots
-function ParticleSystem:isPaused() end
-
----Checks whether the particle system is stopped.
----
----[Wiki](https://love2d.org/wiki/ParticleSystem:isStopped)
----
----@diagnostic disable-next-line: args-after-dots
-function ParticleSystem:isStopped() end
-
----Moves the position of the emitter. This results in smoother particle spawning behaviour than if ParticleSystem:setPosition is used every frame.
----
----[Wiki](https://love2d.org/wiki/ParticleSystem:moveTo)
----
----@param x number# Position along x-axis.
----@param y number# Position along y-axis.
----@diagnostic disable-next-line: args-after-dots
-function ParticleSystem:moveTo(x, y) end
-
----Pauses the particle emitter.
----
----[Wiki](https://love2d.org/wiki/ParticleSystem:pause)
----
----@diagnostic disable-next-line: args-after-dots
-function ParticleSystem:pause() end
-
----Resets the particle emitter, removing any existing particles and resetting the lifetime counter.
----
----[Wiki](https://love2d.org/wiki/ParticleSystem:reset)
----
----@diagnostic disable-next-line: args-after-dots
-function ParticleSystem:reset() end
-
----Sets the size of the buffer (the max allowed amount of particles in the system).
----
----[Wiki](https://love2d.org/wiki/ParticleSystem:setBufferSize)
----
----@param size number# The buffer size.
----@diagnostic disable-next-line: args-after-dots
-function ParticleSystem:setBufferSize(size) end
-
----Sets a series of colors to apply to the particle sprite. The particle system will interpolate between each color evenly over the particle's lifetime.
----
----Arguments can be passed in groups of four, representing the components of the desired RGBA value, or as tables of RGBA component values, with a default alpha value of 1 if only three values are given. At least one color must be specified. A maximum of eight may be used.
----
----In versions prior to 11.0, color component values were within the range of 0 to 255 instead of 0 to 1.
----
----[Wiki](https://love2d.org/wiki/ParticleSystem:setColors)
----
----@param r1 number# First color, red component (0-1).
----@param g1 number# First color, green component (0-1).
----@param b1 number# First color, blue component (0-1).
----@param a1? number# (1) First color, alpha component (0-1).
----@param ... number# Additional colors.
----@diagnostic disable-next-line: args-after-dots
-function ParticleSystem:setColors(r1, g1, b1, a1, ...) end
-
----Sets a series of colors to apply to the particle sprite. The particle system will interpolate between each color evenly over the particle's lifetime.
----
----Arguments can be passed in groups of four, representing the components of the desired RGBA value, or as tables of RGBA component values, with a default alpha value of 1 if only three values are given. At least one color must be specified. A maximum of eight may be used.
----
----In versions prior to 11.0, color component values were within the range of 0 to 255 instead of 0 to 1.
----
----[Wiki](https://love2d.org/wiki/ParticleSystem:setColors)
----
----@param rgba1 table[]# First color, a numerical indexed table with the red, green, blue and alpha values as numbers (0-1). The alpha is optional and defaults to 1 if it is left out.
----@param ... table[]# Additional color, a numerical indexed table with the red, green, blue and alpha values as numbers (0-1). The alpha is optional and defaults to 1 if it is left out.
----@diagnostic disable-next-line: args-after-dots
-function ParticleSystem:setColors(rgba1, ...) end
-
----Sets the direction the particles will be emitted in.
----
----[Wiki](https://love2d.org/wiki/ParticleSystem:setDirection)
----
----@param direction number# The direction of the particles (in radians).
----@diagnostic disable-next-line: args-after-dots
-function ParticleSystem:setDirection(direction) end
-
----Sets area-based spawn parameters for the particles. Newly created particles will spawn in an area around the emitter based on the parameters to this function.
----
----[Wiki](https://love2d.org/wiki/ParticleSystem:setEmissionArea)
----
----@param distribution love.AreaSpreadDistribution# The type of distribution for new particles.
----@param dx number# The maximum spawn distance from the emitter along the x-axis for uniform distribution, or the standard deviation along the x-axis for normal distribution.
----@param dy number# The maximum spawn distance from the emitter along the y-axis for uniform distribution, or the standard deviation along the y-axis for normal distribution.
----@param angle? number# (0) The angle in radians of the emission area.
----@param directionRelativeToCenter? boolean# (false) True if newly spawned particles will be oriented relative to the center of the emission area, false otherwise.
----@diagnostic disable-next-line: args-after-dots
-function ParticleSystem:setEmissionArea(distribution, dx, dy, angle, directionRelativeToCenter) end
-
----Sets the amount of particles emitted per second.
----
----[Wiki](https://love2d.org/wiki/ParticleSystem:setEmissionRate)
----
----@param rate number# The amount of particles per second.
----@diagnostic disable-next-line: args-after-dots
-function ParticleSystem:setEmissionRate(rate) end
-
----Sets how long the particle system should emit particles (if -1 then it emits particles forever).
----
----[Wiki](https://love2d.org/wiki/ParticleSystem:setEmitterLifetime)
----
----@param life number# The lifetime of the emitter (in seconds).
----@diagnostic disable-next-line: args-after-dots
-function ParticleSystem:setEmitterLifetime(life) end
-
----Sets the mode to use when the ParticleSystem adds new particles.
----
----[Wiki](https://love2d.org/wiki/ParticleSystem:setInsertMode)
----
----@param mode love.ParticleInsertMode# The mode to use when the ParticleSystem adds new particles.
----@diagnostic disable-next-line: args-after-dots
-function ParticleSystem:setInsertMode(mode) end
-
----Sets the linear acceleration (acceleration along the x and y axes) for particles.
----
----Every particle created will accelerate along the x and y axes between xmin,ymin and xmax,ymax.
----
----[Wiki](https://love2d.org/wiki/ParticleSystem:setLinearAcceleration)
----
----@param xmin number# The minimum acceleration along the x axis.
----@param ymin number# The minimum acceleration along the y axis.
----@param xmax? number# (xmin) The maximum acceleration along the x axis.
----@param ymax? number# (ymin) The maximum acceleration along the y axis.
----@diagnostic disable-next-line: args-after-dots
-function ParticleSystem:setLinearAcceleration(xmin, ymin, xmax, ymax) end
-
----Sets the amount of linear damping (constant deceleration) for particles.
----
----[Wiki](https://love2d.org/wiki/ParticleSystem:setLinearDamping)
----
----@param min number# The minimum amount of linear damping applied to particles.
----@param max? number# (min) The maximum amount of linear damping applied to particles.
----@diagnostic disable-next-line: args-after-dots
-function ParticleSystem:setLinearDamping(min, max) end
-
----Set the offset position which the particle sprite is rotated around.
----
----If this function is not used, the particles rotate around their center.
----
----[Wiki](https://love2d.org/wiki/ParticleSystem:setOffset)
----
----@param x number# The x coordinate of the rotation offset.
----@param y number# The y coordinate of the rotation offset.
----@diagnostic disable-next-line: args-after-dots
-function ParticleSystem:setOffset(x, y) end
-
----Sets the lifetime of the particles.
----
----[Wiki](https://love2d.org/wiki/ParticleSystem:setParticleLifetime)
----
----@param min number# The minimum life of the particles (in seconds).
----@param max? number# (min) The maximum life of the particles (in seconds).
----@diagnostic disable-next-line: args-after-dots
-function ParticleSystem:setParticleLifetime(min, max) end
-
----Sets the position of the emitter.
----
----[Wiki](https://love2d.org/wiki/ParticleSystem:setPosition)
----
----@param x number# Position along x-axis.
----@param y number# Position along y-axis.
----@diagnostic disable-next-line: args-after-dots
-function ParticleSystem:setPosition(x, y) end
-
----Sets a series of Quads to use for the particle sprites. Particles will choose a Quad from the list based on the particle's current lifetime, allowing for the use of animated sprite sheets with ParticleSystems.
----
----[Wiki](https://love2d.org/wiki/ParticleSystem:setQuads)
----
----@param quad1 love.Quad# The first Quad to use.
----@param ... love.Quad# Additional Quads to use.
----@diagnostic disable-next-line: args-after-dots
-function ParticleSystem:setQuads(quad1, ...) end
-
----Sets a series of Quads to use for the particle sprites. Particles will choose a Quad from the list based on the particle's current lifetime, allowing for the use of animated sprite sheets with ParticleSystems.
----
----[Wiki](https://love2d.org/wiki/ParticleSystem:setQuads)
----
----@param quads table[]# A table containing the Quads to use.
----@diagnostic disable-next-line: args-after-dots
-function ParticleSystem:setQuads(quads) end
-
----Set the radial acceleration (away from the emitter).
----
----[Wiki](https://love2d.org/wiki/ParticleSystem:setRadialAcceleration)
----
----@param min number# The minimum acceleration.
----@param max? number# (min) The maximum acceleration.
----@diagnostic disable-next-line: args-after-dots
-function ParticleSystem:setRadialAcceleration(min, max) end
-
----Sets whether particle angles and rotations are relative to their velocities. If enabled, particles are aligned to the angle of their velocities and rotate relative to that angle.
----
----[Wiki](https://love2d.org/wiki/ParticleSystem:setRelativeRotation)
----
----@param enable boolean# True to enable relative particle rotation, false to disable it.
----@diagnostic disable-next-line: args-after-dots
-function ParticleSystem:setRelativeRotation(enable) end
-
----Sets the rotation of the image upon particle creation (in radians).
----
----[Wiki](https://love2d.org/wiki/ParticleSystem:setRotation)
----
----@param min number# The minimum initial angle (radians).
----@param max? number# (min) The maximum initial angle (radians).
----@diagnostic disable-next-line: args-after-dots
-function ParticleSystem:setRotation(min, max) end
-
----Sets the amount of size variation (0 meaning no variation and 1 meaning full variation between start and end).
----
----[Wiki](https://love2d.org/wiki/ParticleSystem:setSizeVariation)
----
----@param variation number# The amount of variation (0 meaning no variation and 1 meaning full variation between start and end).
----@diagnostic disable-next-line: args-after-dots
-function ParticleSystem:setSizeVariation(variation) end
-
----Sets a series of sizes by which to scale a particle sprite. 1.0 is normal size. The particle system will interpolate between each size evenly over the particle's lifetime.
----
----At least one size must be specified. A maximum of eight may be used.
----
----[Wiki](https://love2d.org/wiki/ParticleSystem:setSizes)
----
----@param size1 number# The first size.
----@param size2? number# (nil) The second size.
----@param size8? number# (nil) The eighth size.
----@diagnostic disable-next-line: args-after-dots
-function ParticleSystem:setSizes(size1, size2, size8) end
-
----Sets the speed of the particles.
----
----[Wiki](https://love2d.org/wiki/ParticleSystem:setSpeed)
----
----@param min number# The minimum linear speed of the particles.
----@param max? number# (min) The maximum linear speed of the particles.
----@diagnostic disable-next-line: args-after-dots
-function ParticleSystem:setSpeed(min, max) end
-
----Sets the spin of the sprite.
----
----[Wiki](https://love2d.org/wiki/ParticleSystem:setSpin)
----
----@param min number# The minimum spin (radians per second).
----@param max? number# (min) The maximum spin (radians per second).
----@diagnostic disable-next-line: args-after-dots
-function ParticleSystem:setSpin(min, max) end
-
----Sets the amount of spin variation (0 meaning no variation and 1 meaning full variation between start and end).
----
----[Wiki](https://love2d.org/wiki/ParticleSystem:setSpinVariation)
----
----@param variation number# The amount of variation (0 meaning no variation and 1 meaning full variation between start and end).
----@diagnostic disable-next-line: args-after-dots
-function ParticleSystem:setSpinVariation(variation) end
-
----Sets the amount of spread for the system.
----
----[Wiki](https://love2d.org/wiki/ParticleSystem:setSpread)
----
----@param spread number# The amount of spread (radians).
----@diagnostic disable-next-line: args-after-dots
-function ParticleSystem:setSpread(spread) end
-
----Sets the tangential acceleration (acceleration perpendicular to the particle's direction).
----
----[Wiki](https://love2d.org/wiki/ParticleSystem:setTangentialAcceleration)
----
----@param min number# The minimum acceleration.
----@param max? number# (min) The maximum acceleration.
----@diagnostic disable-next-line: args-after-dots
-function ParticleSystem:setTangentialAcceleration(min, max) end
-
----Sets the texture (Image or Canvas) to be used for the particles.
----
----[Wiki](https://love2d.org/wiki/ParticleSystem:setTexture)
----
----@param texture love.Texture# An Image or Canvas to use for the particles.
----@diagnostic disable-next-line: args-after-dots
-function ParticleSystem:setTexture(texture) end
-
----Starts the particle emitter.
----
----[Wiki](https://love2d.org/wiki/ParticleSystem:start)
----
----@diagnostic disable-next-line: args-after-dots
-function ParticleSystem:start() end
-
----Stops the particle emitter, resetting the lifetime counter.
----
----[Wiki](https://love2d.org/wiki/ParticleSystem:stop)
----
----@diagnostic disable-next-line: args-after-dots
-function ParticleSystem:stop() end
-
----Updates the particle system; moving, creating and killing particles.
----
----[Wiki](https://love2d.org/wiki/ParticleSystem:update)
----
----@param dt number# The time (seconds) since last frame.
----@diagnostic disable-next-line: args-after-dots
-function ParticleSystem:update(dt) end
-
----Gets reference texture dimensions initially specified in love.graphics.newQuad.
----
----[Wiki](https://love2d.org/wiki/Quad:getTextureDimensions)
----
----@diagnostic disable-next-line: args-after-dots
-function Quad:getTextureDimensions() end
-
----Gets the current viewport of this Quad.
----
----[Wiki](https://love2d.org/wiki/Quad:getViewport)
----
----@diagnostic disable-next-line: args-after-dots
-function Quad:getViewport() end
-
----Sets the texture coordinates according to a viewport.
----
----[Wiki](https://love2d.org/wiki/Quad:setViewport)
----
----@param x number# The top-left corner along the x-axis.
----@param y number# The top-left corner along the y-axis.
----@param w number# The width of the viewport.
----@param h number# The height of the viewport.
----@param sw? number# (nil) Optional new reference width, the width of the Texture. Must be greater than 0 if set.
----@param sh? number# (nil) Optional new reference height, the height of the Texture. Must be greater than 0 if set.
----@diagnostic disable-next-line: args-after-dots
-function Quad:setViewport(x, y, w, h, sw, sh) end
-
----Returns any warning and error messages from compiling the shader code. This can be used for debugging your shaders if there's anything the graphics hardware doesn't like.
----
----[Wiki](https://love2d.org/wiki/Shader:getWarnings)
----
----@diagnostic disable-next-line: args-after-dots
-function Shader:getWarnings() end
-
----Gets whether a uniform / extern variable exists in the Shader.
----
----If a graphics driver's shader compiler determines that a uniform / extern variable doesn't affect the final output of the shader, it may optimize the variable out. This function will return false in that case.
----
----[Wiki](https://love2d.org/wiki/Shader:hasUniform)
----
----@param name string# The name of the uniform variable.
----@diagnostic disable-next-line: args-after-dots
-function Shader:hasUniform(name) end
-
----Sends one or more values to a special (''uniform'') variable inside the shader. Uniform variables have to be marked using the ''uniform'' or ''extern'' keyword, e.g.
----
----uniform float time;  // 'float' is the typical number type used in GLSL shaders.
----
----uniform float varsvec2 light_pos;
----
----uniform vec4 colors[4;
----
----The corresponding send calls would be
----
----shader:send('time', t)
----
----shader:send('vars',a,b)
----
----shader:send('light_pos', {light_x, light_y})
----
----shader:send('colors', {r1, g1, b1, a1},  {r2, g2, b2, a2},  {r3, g3, b3, a3},  {r4, g4, b4, a4})
----
----Uniform / extern variables are read-only in the shader code and remain constant until modified by a Shader:send call. Uniform variables can be accessed in both the Vertex and Pixel components of a shader, as long as the variable is declared in each.
----
----[Wiki](https://love2d.org/wiki/Shader:send)
----
----@param name string# Name of the number to send to the shader.
----@param number number# Number to send to store in the uniform variable.
----@param ... number# Additional numbers to send if the uniform variable is an array.
----@diagnostic disable-next-line: args-after-dots
-function Shader:send(name, number, ...) end
-
----Sends one or more values to a special (''uniform'') variable inside the shader. Uniform variables have to be marked using the ''uniform'' or ''extern'' keyword, e.g.
----
----uniform float time;  // 'float' is the typical number type used in GLSL shaders.
----
----uniform float varsvec2 light_pos;
----
----uniform vec4 colors[4;
----
----The corresponding send calls would be
----
----shader:send('time', t)
----
----shader:send('vars',a,b)
----
----shader:send('light_pos', {light_x, light_y})
----
----shader:send('colors', {r1, g1, b1, a1},  {r2, g2, b2, a2},  {r3, g3, b3, a3},  {r4, g4, b4, a4})
----
----Uniform / extern variables are read-only in the shader code and remain constant until modified by a Shader:send call. Uniform variables can be accessed in both the Vertex and Pixel components of a shader, as long as the variable is declared in each.
----
----[Wiki](https://love2d.org/wiki/Shader:send)
----
----@param name string# Name of the vector to send to the shader.
----@param vector table# Numbers to send to the uniform variable as a vector. The number of elements in the table determines the type of the vector (e.g. two numbers -&gt; vec2). At least two and at most four numbers can be used.
----@param ... table# Additional vectors to send if the uniform variable is an array. All vectors need to be of the same size (e.g. only vec3's).
----@diagnostic disable-next-line: args-after-dots
-function Shader:send(name, vector, ...) end
-
----Sends one or more values to a special (''uniform'') variable inside the shader. Uniform variables have to be marked using the ''uniform'' or ''extern'' keyword, e.g.
----
----uniform float time;  // 'float' is the typical number type used in GLSL shaders.
----
----uniform float varsvec2 light_pos;
----
----uniform vec4 colors[4;
----
----The corresponding send calls would be
----
----shader:send('time', t)
----
----shader:send('vars',a,b)
----
----shader:send('light_pos', {light_x, light_y})
----
----shader:send('colors', {r1, g1, b1, a1},  {r2, g2, b2, a2},  {r3, g3, b3, a3},  {r4, g4, b4, a4})
----
----Uniform / extern variables are read-only in the shader code and remain constant until modified by a Shader:send call. Uniform variables can be accessed in both the Vertex and Pixel components of a shader, as long as the variable is declared in each.
----
----[Wiki](https://love2d.org/wiki/Shader:send)
----
----@param name string# Name of the matrix to send to the shader.
----@param matrix table# 2x2, 3x3, or 4x4 matrix to send to the uniform variable. Using table form: {{a,b,c,d}, {e,f,g,h}, ... } or (since version 0.10.2) {a,b,c,d, e,f,g,h, ...}. The order in 0.10.2 is column-major; starting in 11.0 it's row-major instead.
----@param ... table# Additional matrices of the same type as ''matrix'' to store in a uniform array.
----@diagnostic disable-next-line: args-after-dots
-function Shader:send(name, matrix, ...) end
-
----Sends one or more values to a special (''uniform'') variable inside the shader. Uniform variables have to be marked using the ''uniform'' or ''extern'' keyword, e.g.
----
----uniform float time;  // 'float' is the typical number type used in GLSL shaders.
----
----uniform float varsvec2 light_pos;
----
----uniform vec4 colors[4;
----
----The corresponding send calls would be
----
----shader:send('time', t)
----
----shader:send('vars',a,b)
----
----shader:send('light_pos', {light_x, light_y})
----
----shader:send('colors', {r1, g1, b1, a1},  {r2, g2, b2, a2},  {r3, g3, b3, a3},  {r4, g4, b4, a4})
----
----Uniform / extern variables are read-only in the shader code and remain constant until modified by a Shader:send call. Uniform variables can be accessed in both the Vertex and Pixel components of a shader, as long as the variable is declared in each.
----
----[Wiki](https://love2d.org/wiki/Shader:send)
----
----@param name string# Name of the Texture to send to the shader.
----@param texture love.Texture# Texture (Image or Canvas) to send to the uniform variable.
----@diagnostic disable-next-line: args-after-dots
-function Shader:send(name, texture) end
-
----Sends one or more values to a special (''uniform'') variable inside the shader. Uniform variables have to be marked using the ''uniform'' or ''extern'' keyword, e.g.
----
----uniform float time;  // 'float' is the typical number type used in GLSL shaders.
----
----uniform float varsvec2 light_pos;
----
----uniform vec4 colors[4;
----
----The corresponding send calls would be
----
----shader:send('time', t)
----
----shader:send('vars',a,b)
----
----shader:send('light_pos', {light_x, light_y})
----
----shader:send('colors', {r1, g1, b1, a1},  {r2, g2, b2, a2},  {r3, g3, b3, a3},  {r4, g4, b4, a4})
----
----Uniform / extern variables are read-only in the shader code and remain constant until modified by a Shader:send call. Uniform variables can be accessed in both the Vertex and Pixel components of a shader, as long as the variable is declared in each.
----
----[Wiki](https://love2d.org/wiki/Shader:send)
----
----@param name string# Name of the boolean to send to the shader.
----@param boolean boolean# Boolean to send to store in the uniform variable.
----@param ... boolean# Additional booleans to send if the uniform variable is an array.
----@diagnostic disable-next-line: args-after-dots
-function Shader:send(name, boolean, ...) end
-
----Sends one or more values to a special (''uniform'') variable inside the shader. Uniform variables have to be marked using the ''uniform'' or ''extern'' keyword, e.g.
----
----uniform float time;  // 'float' is the typical number type used in GLSL shaders.
----
----uniform float varsvec2 light_pos;
----
----uniform vec4 colors[4;
----
----The corresponding send calls would be
----
----shader:send('time', t)
----
----shader:send('vars',a,b)
----
----shader:send('light_pos', {light_x, light_y})
----
----shader:send('colors', {r1, g1, b1, a1},  {r2, g2, b2, a2},  {r3, g3, b3, a3},  {r4, g4, b4, a4})
----
----Uniform / extern variables are read-only in the shader code and remain constant until modified by a Shader:send call. Uniform variables can be accessed in both the Vertex and Pixel components of a shader, as long as the variable is declared in each.
----
----[Wiki](https://love2d.org/wiki/Shader:send)
----
----@param name string# Name of the matrix to send to the shader.
----@param matrixlayout love.MatrixLayout# The layout (row- or column-major) of the matrix.
----@param matrix table# 2x2, 3x3, or 4x4 matrix to send to the uniform variable. Using table form: {{a,b,c,d}, {e,f,g,h}, ... } or {a,b,c,d, e,f,g,h, ...}.
----@param ... table# Additional matrices of the same type as ''matrix'' to store in a uniform array.
----@diagnostic disable-next-line: args-after-dots
-function Shader:send(name, matrixlayout, matrix, ...) end
-
----Sends one or more values to a special (''uniform'') variable inside the shader. Uniform variables have to be marked using the ''uniform'' or ''extern'' keyword, e.g.
----
----uniform float time;  // 'float' is the typical number type used in GLSL shaders.
----
----uniform float varsvec2 light_pos;
----
----uniform vec4 colors[4;
----
----The corresponding send calls would be
----
----shader:send('time', t)
----
----shader:send('vars',a,b)
----
----shader:send('light_pos', {light_x, light_y})
----
----shader:send('colors', {r1, g1, b1, a1},  {r2, g2, b2, a2},  {r3, g3, b3, a3},  {r4, g4, b4, a4})
----
----Uniform / extern variables are read-only in the shader code and remain constant until modified by a Shader:send call. Uniform variables can be accessed in both the Vertex and Pixel components of a shader, as long as the variable is declared in each.
----
----[Wiki](https://love2d.org/wiki/Shader:send)
----
----@param name string# Name of the uniform to send to the shader.
----@param data love.Data# Data object containing the values to send.
----@param offset? number# (0) Offset in bytes from the start of the Data object.
----@param size? number# (all) Size in bytes of the data to send. If nil, as many bytes as the specified uniform uses will be copied.
----@diagnostic disable-next-line: args-after-dots
-function Shader:send(name, data, offset, size) end
-
----Sends one or more values to a special (''uniform'') variable inside the shader. Uniform variables have to be marked using the ''uniform'' or ''extern'' keyword, e.g.
----
----uniform float time;  // 'float' is the typical number type used in GLSL shaders.
----
----uniform float varsvec2 light_pos;
----
----uniform vec4 colors[4;
----
----The corresponding send calls would be
----
----shader:send('time', t)
----
----shader:send('vars',a,b)
----
----shader:send('light_pos', {light_x, light_y})
----
----shader:send('colors', {r1, g1, b1, a1},  {r2, g2, b2, a2},  {r3, g3, b3, a3},  {r4, g4, b4, a4})
----
----Uniform / extern variables are read-only in the shader code and remain constant until modified by a Shader:send call. Uniform variables can be accessed in both the Vertex and Pixel components of a shader, as long as the variable is declared in each.
----
----[Wiki](https://love2d.org/wiki/Shader:send)
----
----@param name string# Name of the uniform matrix to send to the shader.
----@param data love.Data# Data object containing the values to send.
----@param matrixlayout love.MatrixLayout# The layout (row- or column-major) of the matrix in memory.
----@param offset? number# (0) Offset in bytes from the start of the Data object.
----@param size? number# (all) Size in bytes of the data to send. If nil, as many bytes as the specified uniform uses will be copied.
----@diagnostic disable-next-line: args-after-dots
-function Shader:send(name, data, matrixlayout, offset, size) end
-
----Sends one or more values to a special (''uniform'') variable inside the shader. Uniform variables have to be marked using the ''uniform'' or ''extern'' keyword, e.g.
----
----uniform float time;  // 'float' is the typical number type used in GLSL shaders.
----
----uniform float varsvec2 light_pos;
----
----uniform vec4 colors[4;
----
----The corresponding send calls would be
----
----shader:send('time', t)
----
----shader:send('vars',a,b)
----
----shader:send('light_pos', {light_x, light_y})
----
----shader:send('colors', {r1, g1, b1, a1},  {r2, g2, b2, a2},  {r3, g3, b3, a3},  {r4, g4, b4, a4})
----
----Uniform / extern variables are read-only in the shader code and remain constant until modified by a Shader:send call. Uniform variables can be accessed in both the Vertex and Pixel components of a shader, as long as the variable is declared in each.
----
----[Wiki](https://love2d.org/wiki/Shader:send)
----
----@param name string# Name of the uniform matrix to send to the shader.
----@param matrixlayout love.MatrixLayout# The layout (row- or column-major) of the matrix in memory.
----@param data love.Data# Data object containing the values to send.
----@param offset? number# (0) Offset in bytes from the start of the Data object.
----@param size? number# (all) Size in bytes of the data to send. If nil, as many bytes as the specified uniform uses will be copied.
----@diagnostic disable-next-line: args-after-dots
-function Shader:send(name, matrixlayout, data, offset, size) end
-
----Sends one or more colors to a special (''extern'' / ''uniform'') vec3 or vec4 variable inside the shader. The color components must be in the range of 1. The colors are gamma-corrected if global gamma-correction is enabled.
----
----Extern variables must be marked using the ''extern'' keyword, e.g.
----
----extern vec4 Color;
----
----The corresponding sendColor call would be
----
----shader:sendColor('Color', {r, g, b, a})
----
----Extern variables can be accessed in both the Vertex and Pixel stages of a shader, as long as the variable is declared in each.
----
----In versions prior to 11.0, color component values were within the range of 0 to 255 instead of 0 to 1.
----
----[Wiki](https://love2d.org/wiki/Shader:sendColor)
----
----@param name string# The name of the color extern variable to send to in the shader.
----@param color table[]# A table with red, green, blue, and optional alpha color components in the range of 1 to send to the extern as a vector.
----@param ... table[]# Additional colors to send in case the extern is an array. All colors need to be of the same size (e.g. only vec3's).
----@diagnostic disable-next-line: args-after-dots
-function Shader:sendColor(name, color, ...) end
-
----Adds a sprite to the batch. Sprites are drawn in the order they are added.
----
----[Wiki](https://love2d.org/wiki/SpriteBatch:add)
----
----@param x number# The position to draw the object (x-axis).
----@param y number# The position to draw the object (y-axis).
----@param r? number# (0) Orientation (radians).
----@param sx? number# (1) Scale factor (x-axis).
----@param sy? number# (sx) Scale factor (y-axis).
----@param ox? number# (0) Origin offset (x-axis).
----@param oy? number# (0) Origin offset (y-axis).
----@param kx? number# (0) Shear factor (x-axis).
----@param ky? number# (0) Shear factor (y-axis).
----@diagnostic disable-next-line: args-after-dots
-function SpriteBatch:add(x, y, r, sx, sy, ox, oy, kx, ky) end
-
----Adds a sprite to the batch. Sprites are drawn in the order they are added.
----
----[Wiki](https://love2d.org/wiki/SpriteBatch:add)
----
----@param quad love.Quad# The Quad to add.
----@param x number# The position to draw the object (x-axis).
----@param y number# The position to draw the object (y-axis).
----@param r? number# (0) Orientation (radians).
----@param sx? number# (1) Scale factor (x-axis).
----@param sy? number# (sx) Scale factor (y-axis).
----@param ox? number# (0) Origin offset (x-axis).
----@param oy? number# (0) Origin offset (y-axis).
----@param kx? number# (0) Shear factor (x-axis).
----@param ky? number# (0) Shear factor (y-axis).
----@diagnostic disable-next-line: args-after-dots
-function SpriteBatch:add(quad, x, y, r, sx, sy, ox, oy, kx, ky) end
-
----Adds a sprite to a batch created with an Array Texture.
----
----[Wiki](https://love2d.org/wiki/SpriteBatch:addLayer)
----
----@param layerindex number# The index of the layer to use for this sprite.
----@param x? number# (0) The position to draw the sprite (x-axis).
----@param y? number# (0) The position to draw the sprite (y-axis).
----@param r? number# (0) Orientation (radians).
----@param sx? number# (1) Scale factor (x-axis).
----@param sy? number# (sx) Scale factor (y-axis).
----@param ox? number# (0) Origin offset (x-axis).
----@param oy? number# (0) Origin offset (y-axis).
----@param kx? number# (0) Shearing factor (x-axis).
----@param ky? number# (0) Shearing factor (y-axis).
----@diagnostic disable-next-line: args-after-dots
-function SpriteBatch:addLayer(layerindex, x, y, r, sx, sy, ox, oy, kx, ky) end
-
----Adds a sprite to a batch created with an Array Texture.
----
----[Wiki](https://love2d.org/wiki/SpriteBatch:addLayer)
----
----@param layerindex number# The index of the layer to use for this sprite.
----@param quad love.Quad# The subsection of the texture's layer to use when drawing the sprite.
----@param x? number# (0) The position to draw the sprite (x-axis).
----@param y? number# (0) The position to draw the sprite (y-axis).
----@param r? number# (0) Orientation (radians).
----@param sx? number# (1) Scale factor (x-axis).
----@param sy? number# (sx) Scale factor (y-axis).
----@param ox? number# (0) Origin offset (x-axis).
----@param oy? number# (0) Origin offset (y-axis).
----@param kx? number# (0) Shearing factor (x-axis).
----@param ky? number# (0) Shearing factor (y-axis).
----@diagnostic disable-next-line: args-after-dots
-function SpriteBatch:addLayer(layerindex, quad, x, y, r, sx, sy, ox, oy, kx, ky) end
-
----Adds a sprite to a batch created with an Array Texture.
----
----[Wiki](https://love2d.org/wiki/SpriteBatch:addLayer)
----
----@param layerindex number# The index of the layer to use for this sprite.
----@param transform love.Transform# A transform object.
----@diagnostic disable-next-line: args-after-dots
-function SpriteBatch:addLayer(layerindex, transform) end
-
----Adds a sprite to a batch created with an Array Texture.
----
----[Wiki](https://love2d.org/wiki/SpriteBatch:addLayer)
----
----@param layerindex number# The index of the layer to use for this sprite.
----@param quad love.Quad# The subsection of the texture's layer to use when drawing the sprite.
----@param transform love.Transform# A transform object.
----@diagnostic disable-next-line: args-after-dots
-function SpriteBatch:addLayer(layerindex, quad, transform) end
-
----Attaches a per-vertex attribute from a Mesh onto this SpriteBatch, for use when drawing. This can be combined with a Shader to augment a SpriteBatch with per-vertex or additional per-sprite information instead of just having per-sprite colors.
----
----Each sprite in a SpriteBatch has 4 vertices in the following order: top-left, bottom-left, top-right, bottom-right. The index returned by SpriteBatch:add (and used by SpriteBatch:set) can used to determine the first vertex of a specific sprite with the formula 1 + 4 * ( id - 1 ).
----
----[Wiki](https://love2d.org/wiki/SpriteBatch:attachAttribute)
----
----@param name string# The name of the vertex attribute to attach.
----@param mesh love.Mesh# The Mesh to get the vertex attribute from.
----@diagnostic disable-next-line: args-after-dots
-function SpriteBatch:attachAttribute(name, mesh) end
-
----Removes all sprites from the buffer.
----
----[Wiki](https://love2d.org/wiki/SpriteBatch:clear)
----
----@diagnostic disable-next-line: args-after-dots
-function SpriteBatch:clear() end
-
----Immediately sends all new and modified sprite data in the batch to the graphics card.
----
----Normally it isn't necessary to call this method as love.graphics.draw(spritebatch, ...) will do it automatically if needed, but explicitly using SpriteBatch:flush gives more control over when the work happens.
----
----If this method is used, it generally shouldn't be called more than once (at most) between love.graphics.draw(spritebatch, ...) calls.
----
----[Wiki](https://love2d.org/wiki/SpriteBatch:flush)
----
----@diagnostic disable-next-line: args-after-dots
-function SpriteBatch:flush() end
-
----Gets the maximum number of sprites the SpriteBatch can hold.
----
----[Wiki](https://love2d.org/wiki/SpriteBatch:getBufferSize)
----
----@diagnostic disable-next-line: args-after-dots
-function SpriteBatch:getBufferSize() end
-
----Gets the color that will be used for the next add and set operations.
----
----If no color has been set with SpriteBatch:setColor or the current SpriteBatch color has been cleared, this method will return nil.
----
----In versions prior to 11.0, color component values were within the range of 0 to 255 instead of 0 to 1.
----
----[Wiki](https://love2d.org/wiki/SpriteBatch:getColor)
----
----@diagnostic disable-next-line: args-after-dots
-function SpriteBatch:getColor() end
-
----Gets the number of sprites currently in the SpriteBatch.
----
----[Wiki](https://love2d.org/wiki/SpriteBatch:getCount)
----
----@diagnostic disable-next-line: args-after-dots
-function SpriteBatch:getCount() end
-
----Gets the texture (Image or Canvas) used by the SpriteBatch.
----
----[Wiki](https://love2d.org/wiki/SpriteBatch:getTexture)
----
----@diagnostic disable-next-line: args-after-dots
-function SpriteBatch:getTexture() end
-
----Changes a sprite in the batch. This requires the sprite index returned by SpriteBatch:add or SpriteBatch:addLayer.
----
----[Wiki](https://love2d.org/wiki/SpriteBatch:set)
----
----@param spriteindex number# The index of the sprite that will be changed.
----@param x number# The position to draw the object (x-axis).
----@param y number# The position to draw the object (y-axis).
----@param r? number# (0) Orientation (radians).
----@param sx? number# (1) Scale factor (x-axis).
----@param sy? number# (sx) Scale factor (y-axis).
----@param ox? number# (0) Origin offset (x-axis).
----@param oy? number# (0) Origin offset (y-axis).
----@param kx? number# (0) Shear factor (x-axis).
----@param ky? number# (0) Shear factor (y-axis).
----@diagnostic disable-next-line: args-after-dots
-function SpriteBatch:set(spriteindex, x, y, r, sx, sy, ox, oy, kx, ky) end
-
----Changes a sprite in the batch. This requires the sprite index returned by SpriteBatch:add or SpriteBatch:addLayer.
----
----[Wiki](https://love2d.org/wiki/SpriteBatch:set)
----
----@param spriteindex number# The index of the sprite that will be changed.
----@param quad love.Quad# The Quad used on the image of the batch.
----@param x number# The position to draw the object (x-axis).
----@param y number# The position to draw the object (y-axis).
----@param r? number# (0) Orientation (radians).
----@param sx? number# (1) Scale factor (x-axis).
----@param sy? number# (sx) Scale factor (y-axis).
----@param ox? number# (0) Origin offset (x-axis).
----@param oy? number# (0) Origin offset (y-axis).
----@param kx? number# (0) Shear factor (x-axis).
----@param ky? number# (0) Shear factor (y-axis).
----@diagnostic disable-next-line: args-after-dots
-function SpriteBatch:set(spriteindex, quad, x, y, r, sx, sy, ox, oy, kx, ky) end
-
----Sets the color that will be used for the next add and set operations. Calling the function without arguments will disable all per-sprite colors for the SpriteBatch.
----
----In versions prior to 11.0, color component values were within the range of 0 to 255 instead of 0 to 1.
----
----In version 0.9.2 and older, the global color set with love.graphics.setColor will not work on the SpriteBatch if any of the sprites has its own color.
----
----[Wiki](https://love2d.org/wiki/SpriteBatch:setColor)
----
----@param r number# The amount of red.
----@param g number# The amount of green.
----@param b number# The amount of blue.
----@param a? number# (1) The amount of alpha.
----@diagnostic disable-next-line: args-after-dots
-function SpriteBatch:setColor(r, g, b, a) end
-
----Sets the color that will be used for the next add and set operations. Calling the function without arguments will disable all per-sprite colors for the SpriteBatch.
----
----In versions prior to 11.0, color component values were within the range of 0 to 255 instead of 0 to 1.
----
----In version 0.9.2 and older, the global color set with love.graphics.setColor will not work on the SpriteBatch if any of the sprites has its own color.
----
----[Wiki](https://love2d.org/wiki/SpriteBatch:setColor)
----
----@diagnostic disable-next-line: args-after-dots
-function SpriteBatch:setColor() end
-
----Restricts the drawn sprites in the SpriteBatch to a subset of the total.
----
----[Wiki](https://love2d.org/wiki/SpriteBatch:setDrawRange)
----
----@param start number# The index of the first sprite to draw. Index 1 corresponds to the first sprite added with SpriteBatch:add.
----@param count number# The number of sprites to draw.
----@diagnostic disable-next-line: args-after-dots
-function SpriteBatch:setDrawRange(start, count) end
-
----Restricts the drawn sprites in the SpriteBatch to a subset of the total.
----
----[Wiki](https://love2d.org/wiki/SpriteBatch:setDrawRange)
----
----@diagnostic disable-next-line: args-after-dots
-function SpriteBatch:setDrawRange() end
-
----Changes a sprite previously added with add or addLayer, in a batch created with an Array Texture.
----
----[Wiki](https://love2d.org/wiki/SpriteBatch:setLayer)
----
----@param spriteindex number# The index of the existing sprite to replace.
----@param layerindex number# The index of the layer in the Array Texture to use for this sprite.
----@param x? number# (0) The position to draw the sprite (x-axis).
----@param y? number# (0) The position to draw the sprite (y-axis).
----@param r? number# (0) Orientation (radians).
----@param sx? number# (1) Scale factor (x-axis).
----@param sy? number# (sx) Scale factor (y-axis).
----@param ox? number# (0) Origin offset (x-axis).
----@param oy? number# (0) Origin offset (y-axis).
----@param kx? number# (0) Shearing factor (x-axis).
----@param ky? number# (0) Shearing factor (y-axis).
----@diagnostic disable-next-line: args-after-dots
-function SpriteBatch:setLayer(spriteindex, layerindex, x, y, r, sx, sy, ox, oy, kx, ky) end
-
----Changes a sprite previously added with add or addLayer, in a batch created with an Array Texture.
----
----[Wiki](https://love2d.org/wiki/SpriteBatch:setLayer)
----
----@param spriteindex number# The index of the existing sprite to replace.
----@param layerindex number# The index of the layer to use for this sprite.
----@param quad love.Quad# The subsection of the texture's layer to use when drawing the sprite.
----@param x? number# (0) The position to draw the sprite (x-axis).
----@param y? number# (0) The position to draw the sprite (y-axis).
----@param r? number# (0) Orientation (radians).
----@param sx? number# (1) Scale factor (x-axis).
----@param sy? number# (sx) Scale factor (y-axis).
----@param ox? number# (0) Origin offset (x-axis).
----@param oy? number# (0) Origin offset (y-axis).
----@param kx? number# (0) Shearing factor (x-axis).
----@param ky? number# (0) Shearing factor (y-axis).
----@diagnostic disable-next-line: args-after-dots
-function SpriteBatch:setLayer(spriteindex, layerindex, quad, x, y, r, sx, sy, ox, oy, kx, ky) end
-
----Changes a sprite previously added with add or addLayer, in a batch created with an Array Texture.
----
----[Wiki](https://love2d.org/wiki/SpriteBatch:setLayer)
----
----@param spriteindex number# The index of the existing sprite to replace.
----@param layerindex number# The index of the layer to use for the sprite.
----@param transform love.Transform# A transform object.
----@diagnostic disable-next-line: args-after-dots
-function SpriteBatch:setLayer(spriteindex, layerindex, transform) end
-
----Changes a sprite previously added with add or addLayer, in a batch created with an Array Texture.
----
----[Wiki](https://love2d.org/wiki/SpriteBatch:setLayer)
----
----@param spriteindex number# The index of the existing sprite to replace.
----@param layerindex number# The index of the layer to use for the sprite.
----@param quad love.Quad# The subsection of the texture's layer to use when drawing the sprite.
----@param transform love.Transform# A transform object.
----@diagnostic disable-next-line: args-after-dots
-function SpriteBatch:setLayer(spriteindex, layerindex, quad, transform) end
-
----Sets the texture (Image or Canvas) used for the sprites in the batch, when drawing.
----
----[Wiki](https://love2d.org/wiki/SpriteBatch:setTexture)
----
----@param texture love.Texture# The new Image or Canvas to use for the sprites in the batch.
----@diagnostic disable-next-line: args-after-dots
-function SpriteBatch:setTexture(texture) end
-
----Adds additional colored text to the Text object at the specified position.
----
----[Wiki](https://love2d.org/wiki/Text:add)
----
----@param textstring string# The text to add to the object.
----@param x? number# (0) The position of the new text on the x-axis.
----@param y? number# (0) The position of the new text on the y-axis.
----@param angle? number# (0) The orientation of the new text in radians.
----@param sx? number# (1) Scale factor on the x-axis.
----@param sy? number# (sx) Scale factor on the y-axis.
----@param ox? number# (0) Origin offset on the x-axis.
----@param oy? number# (0) Origin offset on the y-axis.
----@param kx? number# (0) Shearing / skew factor on the x-axis.
----@param ky? number# (0) Shearing / skew factor on the y-axis.
----@diagnostic disable-next-line: args-after-dots
-function Text:add(textstring, x, y, angle, sx, sy, ox, oy, kx, ky) end
-
----Adds additional colored text to the Text object at the specified position.
----
----[Wiki](https://love2d.org/wiki/Text:add)
----
----@param coloredtext {
----color1 : table,
----string1 : string,
----color2 : table,
----string2 : string,
----[...] : table|string}# A table containing colors and strings to add to the object, in the form of {color1, string1, color2, string2, ...}.
----@param x? number# (0) The position of the new text on the x-axis.
----@param y? number# (0) The position of the new text on the y-axis.
----@param angle? number# (0) The orientation of the new text in radians.
----@param sx? number# (1) Scale factor on the x-axis.
----@param sy? number# (sx) Scale factor on the y-axis.
----@param ox? number# (0) Origin offset on the x-axis.
----@param oy? number# (0) Origin offset on the y-axis.
----@param kx? number# (0) Shearing / skew factor on the x-axis.
----@param ky? number# (0) Shearing / skew factor on the y-axis.
----@diagnostic disable-next-line: args-after-dots
-function Text:add(coloredtext, x, y, angle, sx, sy, ox, oy, kx, ky) end
-
----Adds additional formatted / colored text to the Text object at the specified position.
----
----The word wrap limit is applied before any scaling, rotation, and other coordinate transformations. Therefore the amount of text per line stays constant given the same wrap limit, even if the scale arguments change.
----
----[Wiki](https://love2d.org/wiki/Text:addf)
----
----@param textstring string# The text to add to the object.
----@param wraplimit number# The maximum width in pixels of the text before it gets automatically wrapped to a new line.
----@param align love.AlignMode# The alignment of the text.
----@param x number# The position of the new text (x-axis).
----@param y number# The position of the new text (y-axis).
----@param angle? number# (0) Orientation (radians).
----@param sx? number# (1) Scale factor (x-axis).
----@param sy? number# (sx) Scale factor (y-axis).
----@param ox? number# (0) Origin offset (x-axis).
----@param oy? number# (0) Origin offset (y-axis).
----@param kx? number# (0) Shearing / skew factor (x-axis).
----@param ky? number# (0) Shearing / skew factor (y-axis).
----@diagnostic disable-next-line: args-after-dots
-function Text:addf(textstring, wraplimit, align, x, y, angle, sx, sy, ox, oy, kx, ky) end
-
----Adds additional formatted / colored text to the Text object at the specified position.
----
----The word wrap limit is applied before any scaling, rotation, and other coordinate transformations. Therefore the amount of text per line stays constant given the same wrap limit, even if the scale arguments change.
----
----[Wiki](https://love2d.org/wiki/Text:addf)
----
----@param coloredtext {
----color1 : table,
----string1 : string,
----color2 : table,
----string2 : string,
----[...] : table|string}# A table containing colors and strings to add to the object, in the form of {color1, string1, color2, string2, ...}.
----@param wraplimit number# The maximum width in pixels of the text before it gets automatically wrapped to a new line.
----@param align love.AlignMode# The alignment of the text.
----@param x number# The position of the new text (x-axis).
----@param y number# The position of the new text (y-axis).
----@param angle? number# (0) Orientation (radians).
----@param sx? number# (1) Scale factor (x-axis).
----@param sy? number# (sx) Scale factor (y-axis).
----@param ox? number# (0) Origin offset (x-axis).
----@param oy? number# (0) Origin offset (y-axis).
----@param kx? number# (0) Shearing / skew factor (x-axis).
----@param ky? number# (0) Shearing / skew factor (y-axis).
----@diagnostic disable-next-line: args-after-dots
-function Text:addf(coloredtext, wraplimit, align, x, y, angle, sx, sy, ox, oy, kx, ky) end
-
----Clears the contents of the Text object.
----
----[Wiki](https://love2d.org/wiki/Text:clear)
----
----@diagnostic disable-next-line: args-after-dots
-function Text:clear() end
-
----Gets the width and height of the text in pixels.
----
----[Wiki](https://love2d.org/wiki/Text:getDimensions)
----
----@diagnostic disable-next-line: args-after-dots
-function Text:getDimensions() end
-
----Gets the width and height of the text in pixels.
----
----[Wiki](https://love2d.org/wiki/Text:getDimensions)
----
----@param index number# An index number returned by Text:add or Text:addf.
----@diagnostic disable-next-line: args-after-dots
-function Text:getDimensions(index) end
-
----Gets the Font used with the Text object.
----
----[Wiki](https://love2d.org/wiki/Text:getFont)
----
----@diagnostic disable-next-line: args-after-dots
-function Text:getFont() end
-
----Gets the height of the text in pixels.
----
----[Wiki](https://love2d.org/wiki/Text:getHeight)
----
----@diagnostic disable-next-line: args-after-dots
-function Text:getHeight() end
-
----Gets the height of the text in pixels.
----
----[Wiki](https://love2d.org/wiki/Text:getHeight)
----
----@param index number# An index number returned by Text:add or Text:addf.
----@diagnostic disable-next-line: args-after-dots
-function Text:getHeight(index) end
-
----Gets the width of the text in pixels.
----
----[Wiki](https://love2d.org/wiki/Text:getWidth)
----
----@diagnostic disable-next-line: args-after-dots
-function Text:getWidth() end
-
----Gets the width of the text in pixels.
----
----[Wiki](https://love2d.org/wiki/Text:getWidth)
----
----@param index number# An index number returned by Text:add or Text:addf.
----@diagnostic disable-next-line: args-after-dots
-function Text:getWidth(index) end
-
----Replaces the contents of the Text object with a new unformatted string.
----
----[Wiki](https://love2d.org/wiki/Text:set)
----
----@param textstring string# The new string of text to use.
----@diagnostic disable-next-line: args-after-dots
-function Text:set(textstring) end
-
----Replaces the contents of the Text object with a new unformatted string.
----
----[Wiki](https://love2d.org/wiki/Text:set)
----
----@param coloredtext {
----color1 : table,
----string1 : string,
----color2 : table,
----string2 : string,
----[...] : table|string}# A table containing colors and strings to use as the new text, in the form of {color1, string1, color2, string2, ...}.
----@diagnostic disable-next-line: args-after-dots
-function Text:set(coloredtext) end
-
----Replaces the Font used with the text.
----
----[Wiki](https://love2d.org/wiki/Text:setFont)
----
----@param font love.Font# The new font to use with this Text object.
----@diagnostic disable-next-line: args-after-dots
-function Text:setFont(font) end
-
----Replaces the contents of the Text object with a new formatted string.
----
----[Wiki](https://love2d.org/wiki/Text:setf)
----
----@param textstring string# The new string of text to use.
----@param wraplimit number# The maximum width in pixels of the text before it gets automatically wrapped to a new line.
----@param align love.AlignMode# The alignment of the text.
----@diagnostic disable-next-line: args-after-dots
-function Text:setf(textstring, wraplimit, align) end
-
----Replaces the contents of the Text object with a new formatted string.
----
----[Wiki](https://love2d.org/wiki/Text:setf)
----
----@param coloredtext {
----color1 : table,
----string1 : string,
----color2 : table,
----string2 : string,
----[...] : table|string}# A table containing colors and strings to use as the new text, in the form of {color1, string1, color2, string2, ...}.
----@param wraplimit number# The maximum width in pixels of the text before it gets automatically wrapped to a new line.
----@param align love.AlignMode# The alignment of the text.
----@diagnostic disable-next-line: args-after-dots
-function Text:setf(coloredtext, wraplimit, align) end
-
----Gets the DPI scale factor of the Texture.
----
----The DPI scale factor represents relative pixel density. A DPI scale factor of 2 means the texture has twice the pixel density in each dimension (4 times as many pixels in the same area) compared to a texture with a DPI scale factor of 1.
----
----For example, a texture with pixel dimensions of 100x100 with a DPI scale factor of 2 will be drawn as if it was 50x50. This is useful with high-dpi /  retina displays to easily allow swapping out higher or lower pixel density Images and Canvases without needing any extra manual scaling logic.
----
----[Wiki](https://love2d.org/wiki/Texture:getDPIScale)
----
----@diagnostic disable-next-line: args-after-dots
-function Texture:getDPIScale() end
-
----Gets the depth of a Volume Texture. Returns 1 for 2D, Cubemap, and Array textures.
----
----[Wiki](https://love2d.org/wiki/Texture:getDepth)
----
----@diagnostic disable-next-line: args-after-dots
-function Texture:getDepth() end
-
----Gets the comparison mode used when sampling from a depth texture in a shader.
----
----Depth texture comparison modes are advanced low-level functionality typically used with shadow mapping in 3D.
----
----[Wiki](https://love2d.org/wiki/Texture:getDepthSampleMode)
----
----@diagnostic disable-next-line: args-after-dots
-function Texture:getDepthSampleMode() end
-
----Gets the width and height of the Texture.
----
----[Wiki](https://love2d.org/wiki/Texture:getDimensions)
----
----@diagnostic disable-next-line: args-after-dots
-function Texture:getDimensions() end
-
----Gets the filter mode of the Texture.
----
----[Wiki](https://love2d.org/wiki/Texture:getFilter)
----
----@diagnostic disable-next-line: args-after-dots
-function Texture:getFilter() end
-
----Gets the pixel format of the Texture.
----
----[Wiki](https://love2d.org/wiki/Texture:getFormat)
----
----@diagnostic disable-next-line: args-after-dots
-function Texture:getFormat() end
-
----Gets the height of the Texture.
----
----[Wiki](https://love2d.org/wiki/Texture:getHeight)
----
----@diagnostic disable-next-line: args-after-dots
-function Texture:getHeight() end
-
----Gets the number of layers / slices in an Array Texture. Returns 1 for 2D, Cubemap, and Volume textures.
----
----[Wiki](https://love2d.org/wiki/Texture:getLayerCount)
----
----@diagnostic disable-next-line: args-after-dots
-function Texture:getLayerCount() end
-
----Gets the number of mipmaps contained in the Texture. If the texture was not created with mipmaps, it will return 1.
----
----[Wiki](https://love2d.org/wiki/Texture:getMipmapCount)
----
----@diagnostic disable-next-line: args-after-dots
-function Texture:getMipmapCount() end
-
----Gets the mipmap filter mode for a Texture. Prior to 11.0 this method only worked on Images.
----
----[Wiki](https://love2d.org/wiki/Texture:getMipmapFilter)
----
----@diagnostic disable-next-line: args-after-dots
-function Texture:getMipmapFilter() end
-
----Gets the width and height in pixels of the Texture.
----
----Texture:getDimensions gets the dimensions of the texture in units scaled by the texture's DPI scale factor, rather than pixels. Use getDimensions for calculations related to drawing the texture (calculating an origin offset, for example), and getPixelDimensions only when dealing specifically with pixels, for example when using Canvas:newImageData.
----
----[Wiki](https://love2d.org/wiki/Texture:getPixelDimensions)
----
----@diagnostic disable-next-line: args-after-dots
-function Texture:getPixelDimensions() end
-
----Gets the height in pixels of the Texture.
----
----DPI scale factor, rather than pixels. Use getHeight for calculations related to drawing the texture (calculating an origin offset, for example), and getPixelHeight only when dealing specifically with pixels, for example when using Canvas:newImageData.
----
----[Wiki](https://love2d.org/wiki/Texture:getPixelHeight)
----
----@diagnostic disable-next-line: args-after-dots
-function Texture:getPixelHeight() end
-
----Gets the width in pixels of the Texture.
----
----DPI scale factor, rather than pixels. Use getWidth for calculations related to drawing the texture (calculating an origin offset, for example), and getPixelWidth only when dealing specifically with pixels, for example when using Canvas:newImageData.
----
----[Wiki](https://love2d.org/wiki/Texture:getPixelWidth)
----
----@diagnostic disable-next-line: args-after-dots
-function Texture:getPixelWidth() end
-
----Gets the type of the Texture.
----
----[Wiki](https://love2d.org/wiki/Texture:getTextureType)
----
 ---@diagnostic disable-next-line: args-after-dots
-function Texture:getTextureType() end
+function GlyphData:getAdvance() end
 
----Gets the width of the Texture.
+---Gets glyph bearing.
 ---
----[Wiki](https://love2d.org/wiki/Texture:getWidth)
+---[Wiki](https://love2d.org/wiki/GlyphData:getBearing)
 ---
 ---@diagnostic disable-next-line: args-after-dots
-function Texture:getWidth() end
+function GlyphData:getBearing() end
 
----Gets the wrapping properties of a Texture.
+---Gets glyph bounding box.
 ---
----This function returns the currently set horizontal and vertical wrapping modes for the texture.
+---[Wiki](https://love2d.org/wiki/GlyphData:getBoundingBox)
 ---
----[Wiki](https://love2d.org/wiki/Texture:getWrap)
----
----@diagnostic disable-next-line: args-after-dots
-function Texture:getWrap() end
-
----Gets whether the Texture can be drawn and sent to a Shader.
----
----Canvases created with stencil and/or depth PixelFormats are not readable by default, unless readable=true is specified in the settings table passed into love.graphics.newCanvas.
----
----Non-readable Canvases can still be rendered to.
----
----[Wiki](https://love2d.org/wiki/Texture:isReadable)
----
----@diagnostic disable-next-line: args-after-dots
-function Texture:isReadable() end
-
----Sets the comparison mode used when sampling from a depth texture in a shader. Depth texture comparison modes are advanced low-level functionality typically used with shadow mapping in 3D.
----
----When using a depth texture with a comparison mode set in a shader, it must be declared as a sampler2DShadow and used in a GLSL 3 Shader. The result of accessing the texture in the shader will return a float between 0 and 1, proportional to the number of samples (up to 4 samples will be used if bilinear filtering is enabled) that passed the test set by the comparison operation.
----
----Depth texture comparison can only be used with readable depth-formatted Canvases.
----
----[Wiki](https://love2d.org/wiki/Texture:setDepthSampleMode)
----
----@param compare love.CompareMode# The comparison mode used when sampling from this texture in a shader.
----@diagnostic disable-next-line: args-after-dots
-function Texture:setDepthSampleMode(compare) end
-
----Sets the filter mode of the Texture.
----
----[Wiki](https://love2d.org/wiki/Texture:setFilter)
----
----@param min love.FilterMode# Filter mode to use when minifying the texture (rendering it at a smaller size on-screen than its size in pixels).
----@param mag? love.FilterMode# (min) Filter mode to use when magnifying the texture (rendering it at a larger size on-screen than its size in pixels).
----@param anisotropy? number# (1) Maximum amount of anisotropic filtering to use.
----@diagnostic disable-next-line: args-after-dots
-function Texture:setFilter(min, mag, anisotropy) end
-
----Sets the mipmap filter mode for a Texture. Prior to 11.0 this method only worked on Images.
----
----Mipmapping is useful when drawing a texture at a reduced scale. It can improve performance and reduce aliasing issues.
----
----In created with the mipmaps flag enabled for the mipmap filter to have any effect. In versions prior to 0.10.0 it's best to call this method directly after creating the image with love.graphics.newImage, to avoid bugs in certain graphics drivers.
----
----Due to hardware restrictions and driver bugs, in versions prior to 0.10.0 images that weren't loaded from a CompressedData must have power-of-two dimensions (64x64, 512x256, etc.) to use mipmaps.
----
----[Wiki](https://love2d.org/wiki/Texture:setMipmapFilter)
----
----@param filtermode love.FilterMode# The filter mode to use in between mipmap levels. 'nearest' will often give better performance.
----@param sharpness? number# (0) A positive sharpness value makes the texture use a more detailed mipmap level when drawing, at the expense of performance. A negative value does the reverse.
 ---@diagnostic disable-next-line: args-after-dots
-function Texture:setMipmapFilter(filtermode, sharpness) end
+function GlyphData:getBoundingBox() end
 
----Sets the mipmap filter mode for a Texture. Prior to 11.0 this method only worked on Images.
----
----Mipmapping is useful when drawing a texture at a reduced scale. It can improve performance and reduce aliasing issues.
----
----In created with the mipmaps flag enabled for the mipmap filter to have any effect. In versions prior to 0.10.0 it's best to call this method directly after creating the image with love.graphics.newImage, to avoid bugs in certain graphics drivers.
----
----Due to hardware restrictions and driver bugs, in versions prior to 0.10.0 images that weren't loaded from a CompressedData must have power-of-two dimensions (64x64, 512x256, etc.) to use mipmaps.
----
----[Wiki](https://love2d.org/wiki/Texture:setMipmapFilter)
----
----@diagnostic disable-next-line: args-after-dots
-function Texture:setMipmapFilter() end
-
----Sets the wrapping properties of a Texture.
----
----This function sets the way a Texture is repeated when it is drawn with a Quad that is larger than the texture's extent, or when a custom Shader is used which uses texture coordinates outside of [0, 1]. A texture may be clamped or set to repeat in both horizontal and vertical directions.
----
----Clamped textures appear only once (with the edges of the texture stretching to fill the extent of the Quad), whereas repeated ones repeat as many times as there is room in the Quad.
+---Gets glyph dimensions.
 ---
----[Wiki](https://love2d.org/wiki/Texture:setWrap)
+---[Wiki](https://love2d.org/wiki/GlyphData:getDimensions)
 ---
----@param horiz love.WrapMode# Horizontal wrapping mode of the texture.
----@param vert? love.WrapMode# (horiz) Vertical wrapping mode of the texture.
----@param depth? love.WrapMode# (horiz) Wrapping mode for the z-axis of a Volume texture.
 ---@diagnostic disable-next-line: args-after-dots
-function Texture:setWrap(horiz, vert, depth) end
+function GlyphData:getDimensions() end
 
----Gets the width and height of the Video in pixels.
+---Gets glyph pixel format.
 ---
----[Wiki](https://love2d.org/wiki/Video:getDimensions)
+---[Wiki](https://love2d.org/wiki/GlyphData:getFormat)
 ---
 ---@diagnostic disable-next-line: args-after-dots
-function Video:getDimensions() end
+function GlyphData:getFormat() end
 
----Gets the scaling filters used when drawing the Video.
+---Gets glyph number.
 ---
----[Wiki](https://love2d.org/wiki/Video:getFilter)
+---[Wiki](https://love2d.org/wiki/GlyphData:getGlyph)
 ---
 ---@diagnostic disable-next-line: args-after-dots
-function Video:getFilter() end
+function GlyphData:getGlyph() end
 
----Gets the height of the Video in pixels.
+---Gets glyph string.
 ---
----[Wiki](https://love2d.org/wiki/Video:getHeight)
+---[Wiki](https://love2d.org/wiki/GlyphData:getGlyphString)
 ---
 ---@diagnostic disable-next-line: args-after-dots
-function Video:getHeight() end
+function GlyphData:getGlyphString() end
 
----Gets the audio Source used for playing back the video's audio. May return nil if the video has no audio, or if Video:setSource is called with a nil argument.
+---Gets glyph height.
 ---
----[Wiki](https://love2d.org/wiki/Video:getSource)
+---[Wiki](https://love2d.org/wiki/GlyphData:getHeight)
 ---
 ---@diagnostic disable-next-line: args-after-dots
-function Video:getSource() end
+function GlyphData:getHeight() end
 
----Gets the VideoStream object used for decoding and controlling the video.
+---Gets glyph width.
 ---
----[Wiki](https://love2d.org/wiki/Video:getStream)
+---[Wiki](https://love2d.org/wiki/GlyphData:getWidth)
 ---
 ---@diagnostic disable-next-line: args-after-dots
-function Video:getStream() end
+function GlyphData:getWidth() end
 
----Gets the width of the Video in pixels.
+---Gets font advance.
 ---
----[Wiki](https://love2d.org/wiki/Video:getWidth)
+---[Wiki](https://love2d.org/wiki/Rasterizer:getAdvance)
 ---
 ---@diagnostic disable-next-line: args-after-dots
-function Video:getWidth() end
+function Rasterizer:getAdvance() end
 
----Gets whether the Video is currently playing.
+---Gets ascent height.
 ---
----[Wiki](https://love2d.org/wiki/Video:isPlaying)
+---[Wiki](https://love2d.org/wiki/Rasterizer:getAscent)
 ---
 ---@diagnostic disable-next-line: args-after-dots
-function Video:isPlaying() end
+function Rasterizer:getAscent() end
 
----Pauses the Video.
+---Gets descent height.
 ---
----[Wiki](https://love2d.org/wiki/Video:pause)
+---[Wiki](https://love2d.org/wiki/Rasterizer:getDescent)
 ---
 ---@diagnostic disable-next-line: args-after-dots
-function Video:pause() end
+function Rasterizer:getDescent() end
 
----Starts playing the Video. In order for the video to appear onscreen it must be drawn with love.graphics.draw.
+---Gets number of glyphs in font.
 ---
----[Wiki](https://love2d.org/wiki/Video:play)
+---[Wiki](https://love2d.org/wiki/Rasterizer:getGlyphCount)
 ---
 ---@diagnostic disable-next-line: args-after-dots
-function Video:play() end
+function Rasterizer:getGlyphCount() end
 
----Rewinds the Video to the beginning.
+---Gets glyph data of a specified glyph.
 ---
----[Wiki](https://love2d.org/wiki/Video:rewind)
+---[Wiki](https://love2d.org/wiki/Rasterizer:getGlyphData)
 ---
+---@param glyph string# Glyph
 ---@diagnostic disable-next-line: args-after-dots
-function Video:rewind() end
+function Rasterizer:getGlyphData(glyph) end
 
----Sets the current playback position of the Video.
+---Gets glyph data of a specified glyph.
 ---
----[Wiki](https://love2d.org/wiki/Video:seek)
+---[Wiki](https://love2d.org/wiki/Rasterizer:getGlyphData)
 ---
----@param offset number# The time in seconds since the beginning of the Video.
+---@param glyphNumber number# Glyph number
 ---@diagnostic disable-next-line: args-after-dots
-function Video:seek(offset) end
+function Rasterizer:getGlyphData(glyphNumber) end
 
----Sets the scaling filters used when drawing the Video.
+---Gets font height.
 ---
----[Wiki](https://love2d.org/wiki/Video:setFilter)
+---[Wiki](https://love2d.org/wiki/Rasterizer:getHeight)
 ---
----@param min love.FilterMode# The filter mode used when scaling the Video down.
----@param mag love.FilterMode# The filter mode used when scaling the Video up.
----@param anisotropy? number# (1) Maximum amount of anisotropic filtering used.
 ---@diagnostic disable-next-line: args-after-dots
-function Video:setFilter(min, mag, anisotropy) end
+function Rasterizer:getHeight() end
 
----Sets the audio Source used for playing back the video's audio. The audio Source also controls playback speed and synchronization.
+---Gets line height of a font.
 ---
----[Wiki](https://love2d.org/wiki/Video:setSource)
+---[Wiki](https://love2d.org/wiki/Rasterizer:getLineHeight)
 ---
----@param source? love.Source# (nil) The audio Source used for audio playback, or nil to disable audio synchronization.
 ---@diagnostic disable-next-line: args-after-dots
-function Video:setSource(source) end
+function Rasterizer:getLineHeight() end
 
----Gets the current playback position of the Video.
+---Checks if font contains specified glyphs.
 ---
----[Wiki](https://love2d.org/wiki/Video:tell)
+---[Wiki](https://love2d.org/wiki/Rasterizer:hasGlyphs)
 ---
+---@param glyph1 string|number# Glyph
+---@param glyph2 string|number# Glyph
+---@param ... string|number# Additional glyphs
 ---@diagnostic disable-next-line: args-after-dots
-function Video:tell() end
+function Rasterizer:hasGlyphs(glyph1, glyph2, ...) end
 
 ---Applies the given Transform object to the current coordinate transformation.
 ---
@@ -9058,6 +6845,2297 @@ function love.graphics.validateShader(gles, code) end
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.validateShader(gles, pixelcode, vertexcode) end
 
+---Generates mipmaps for the Canvas, based on the contents of the highest-resolution mipmap level.
+---
+---The Canvas must be created with mipmaps set to a MipmapMode other than 'none' for this function to work. It should only be called while the Canvas is not the active render target.
+---
+---If the mipmap mode is set to 'auto', this function is automatically called inside love.graphics.setCanvas when switching from this Canvas to another Canvas or to the main screen.
+---
+---[Wiki](https://love2d.org/wiki/Canvas:generateMipmaps)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Canvas:generateMipmaps() end
+
+---Gets the number of multisample antialiasing (MSAA) samples used when drawing to the Canvas.
+---
+---This may be different than the number used as an argument to love.graphics.newCanvas if the system running LÖVE doesn't support that number.
+---
+---[Wiki](https://love2d.org/wiki/Canvas:getMSAA)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Canvas:getMSAA() end
+
+---Gets the MipmapMode this Canvas was created with.
+---
+---[Wiki](https://love2d.org/wiki/Canvas:getMipmapMode)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Canvas:getMipmapMode() end
+
+---Generates ImageData from the contents of the Canvas.
+---
+---[Wiki](https://love2d.org/wiki/Canvas:newImageData)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Canvas:newImageData() end
+
+---Generates ImageData from the contents of the Canvas.
+---
+---[Wiki](https://love2d.org/wiki/Canvas:newImageData)
+---
+---@param slice number# The cubemap face index, array index, or depth layer for cubemap, array, or volume type Canvases, respectively. This argument is ignored for regular 2D canvases.
+---@param mipmap? number# (1) The mipmap index to use, for Canvases with mipmaps.
+---@param x number# The x-axis of the top-left corner (in pixels) of the area within the Canvas to capture.
+---@param y number# The y-axis of the top-left corner (in pixels) of the area within the Canvas to capture.
+---@param width number# The width in pixels of the area within the Canvas to capture.
+---@param height number# The height in pixels of the area within the Canvas to capture.
+---@diagnostic disable-next-line: args-after-dots
+function Canvas:newImageData(slice, mipmap, x, y, width, height) end
+
+---Render to the Canvas using a function.
+---
+---This is a shortcut to love.graphics.setCanvas:
+---
+---canvas:renderTo( func )
+---
+---is the same as
+---
+---love.graphics.setCanvas( canvas )
+---
+---func()
+---
+---love.graphics.setCanvas()
+---
+---[Wiki](https://love2d.org/wiki/Canvas:renderTo)
+---
+---@param func fun(...:any)# A function performing drawing operations.
+---@param ... any# Additional arguments to call the function with.
+---@diagnostic disable-next-line: args-after-dots
+function Canvas:renderTo(func, ...) end
+
+---Gets the ascent of the Font.
+---
+---The ascent spans the distance between the baseline and the top of the glyph that reaches farthest from the baseline.
+---
+---[Wiki](https://love2d.org/wiki/Font:getAscent)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Font:getAscent() end
+
+---Gets the baseline of the Font.
+---
+---Most scripts share the notion of a baseline: an imaginary horizontal line on which characters rest. In some scripts, parts of glyphs lie below the baseline.
+---
+---[Wiki](https://love2d.org/wiki/Font:getBaseline)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Font:getBaseline() end
+
+---Gets the DPI scale factor of the Font.
+---
+---The DPI scale factor represents relative pixel density. A DPI scale factor of 2 means the font's glyphs have twice the pixel density in each dimension (4 times as many pixels in the same area) compared to a font with a DPI scale factor of 1.
+---
+---The font size of TrueType fonts is scaled internally by the font's specified DPI scale factor. By default, LÖVE uses the screen's DPI scale factor when creating TrueType fonts.
+---
+---[Wiki](https://love2d.org/wiki/Font:getDPIScale)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Font:getDPIScale() end
+
+---Gets the descent of the Font.
+---
+---The descent spans the distance between the baseline and the lowest descending glyph in a typeface.
+---
+---[Wiki](https://love2d.org/wiki/Font:getDescent)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Font:getDescent() end
+
+---Gets the filter mode for a font.
+---
+---[Wiki](https://love2d.org/wiki/Font:getFilter)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Font:getFilter() end
+
+---Gets the height of the Font.
+---
+---The height of the font is the size including any spacing; the height which it will need.
+---
+---[Wiki](https://love2d.org/wiki/Font:getHeight)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Font:getHeight() end
+
+---Gets the kerning between two characters in the Font.
+---
+---Kerning is normally handled automatically in love.graphics.print, Text objects, Font:getWidth, Font:getWrap, etc. This function is useful when stitching text together manually.
+---
+---[Wiki](https://love2d.org/wiki/Font:getKerning)
+---
+---@param leftchar string# The left character.
+---@param rightchar string# The right character.
+---@diagnostic disable-next-line: args-after-dots
+function Font:getKerning(leftchar, rightchar) end
+
+---Gets the kerning between two characters in the Font.
+---
+---Kerning is normally handled automatically in love.graphics.print, Text objects, Font:getWidth, Font:getWrap, etc. This function is useful when stitching text together manually.
+---
+---[Wiki](https://love2d.org/wiki/Font:getKerning)
+---
+---@param leftglyph number# The unicode number for the left glyph.
+---@param rightglyph number# The unicode number for the right glyph.
+---@diagnostic disable-next-line: args-after-dots
+function Font:getKerning(leftglyph, rightglyph) end
+
+---Gets the line height.
+---
+---This will be the value previously set by Font:setLineHeight, or 1.0 by default.
+---
+---[Wiki](https://love2d.org/wiki/Font:getLineHeight)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Font:getLineHeight() end
+
+---Determines the maximum width (accounting for newlines) taken by the given string.
+---
+---[Wiki](https://love2d.org/wiki/Font:getWidth)
+---
+---@param text string# A string.
+---@diagnostic disable-next-line: args-after-dots
+function Font:getWidth(text) end
+
+---Gets formatting information for text, given a wrap limit.
+---
+---This function accounts for newlines correctly (i.e. '\n').
+---
+---[Wiki](https://love2d.org/wiki/Font:getWrap)
+---
+---@param text string# The text that will be wrapped.
+---@param wraplimit number# The maximum width in pixels of each line that ''text'' is allowed before wrapping.
+---@diagnostic disable-next-line: args-after-dots
+function Font:getWrap(text, wraplimit) end
+
+---Gets formatting information for text, given a wrap limit.
+---
+---This function accounts for newlines correctly (i.e. '\n').
+---
+---[Wiki](https://love2d.org/wiki/Font:getWrap)
+---
+---@param coloredtext {
+---color1 : table,
+---string1 : string,
+---color2 : table,
+---string2 : string,
+---[...] : table|string}# A table containing colors and strings to add to the object, in the form of {color1, string1, color2, string2, ...}.
+---@param wraplimit number# The maximum width in pixels of each line that ''text'' is allowed before wrapping.
+---@diagnostic disable-next-line: args-after-dots
+function Font:getWrap(coloredtext, wraplimit) end
+
+---Gets whether the Font can render a character or string.
+---
+---[Wiki](https://love2d.org/wiki/Font:hasGlyphs)
+---
+---@param text string# A UTF-8 encoded unicode string.
+---@diagnostic disable-next-line: args-after-dots
+function Font:hasGlyphs(text) end
+
+---Gets whether the Font can render a character or string.
+---
+---[Wiki](https://love2d.org/wiki/Font:hasGlyphs)
+---
+---@param character1 string# A unicode character.
+---@param character2 string# Another unicode character.
+---@diagnostic disable-next-line: args-after-dots
+function Font:hasGlyphs(character1, character2) end
+
+---Gets whether the Font can render a character or string.
+---
+---[Wiki](https://love2d.org/wiki/Font:hasGlyphs)
+---
+---@param codepoint1 number# A unicode codepoint number.
+---@param codepoint2 number# Another unicode codepoint number.
+---@diagnostic disable-next-line: args-after-dots
+function Font:hasGlyphs(codepoint1, codepoint2) end
+
+---Sets the fallback fonts. When the Font doesn't contain a glyph, it will substitute the glyph from the next subsequent fallback Fonts. This is akin to setting a 'font stack' in Cascading Style Sheets (CSS).
+---
+---[Wiki](https://love2d.org/wiki/Font:setFallbacks)
+---
+---@param fallbackfont1 love.Font# The first fallback Font to use.
+---@param ... love.Font# Additional fallback Fonts.
+---@diagnostic disable-next-line: args-after-dots
+function Font:setFallbacks(fallbackfont1, ...) end
+
+---Sets the filter mode for a font.
+---
+---[Wiki](https://love2d.org/wiki/Font:setFilter)
+---
+---@param min love.FilterMode# How to scale a font down.
+---@param mag love.FilterMode# How to scale a font up.
+---@param anisotropy? number# (1) Maximum amount of anisotropic filtering used.
+---@diagnostic disable-next-line: args-after-dots
+function Font:setFilter(min, mag, anisotropy) end
+
+---Sets the line height.
+---
+---When rendering the font in lines the actual height will be determined by the line height multiplied by the height of the font. The default is 1.0.
+---
+---[Wiki](https://love2d.org/wiki/Font:setLineHeight)
+---
+---@param height number# The new line height.
+---@diagnostic disable-next-line: args-after-dots
+function Font:setLineHeight(height) end
+
+---Gets whether the Image was created from CompressedData.
+---
+---Compressed images take up less space in VRAM, and drawing a compressed image will generally be more efficient than drawing one created from raw pixel data.
+---
+---[Wiki](https://love2d.org/wiki/Image:isCompressed)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Image:isCompressed() end
+
+---Gets whether the Image was created with the linear (non-gamma corrected) flag set to true.
+---
+---This method always returns false when gamma-correct rendering is not enabled.
+---
+---[Wiki](https://love2d.org/wiki/Image:isFormatLinear)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Image:isFormatLinear() end
+
+---Replace the contents of an Image.
+---
+---[Wiki](https://love2d.org/wiki/Image:replacePixels)
+---
+---@param data love.ImageData# The new ImageData to replace the contents with.
+---@param slice? number# (1) Which cubemap face, array index, or volume layer to replace, if applicable.
+---@param mipmap? number# (1) The mimap level to replace, if the Image has mipmaps.
+---@param x? number# (0) The x-offset in pixels from the top-left of the image to replace. The given ImageData's width plus this value must not be greater than the pixel width of the Image's specified mipmap level.
+---@param y? number# (0) The y-offset in pixels from the top-left of the image to replace. The given ImageData's height plus this value must not be greater than the pixel height of the Image's specified mipmap level.
+---@param reloadmipmaps? boolean# (false) Whether to generate new mipmaps after replacing the Image's pixels. True by default if the Image was created with automatically generated mipmaps, false by default otherwise.
+---@diagnostic disable-next-line: args-after-dots
+function Image:replacePixels(data, slice, mipmap, x, y, reloadmipmaps) end
+
+---Attaches a vertex attribute from a different Mesh onto this Mesh, for use when drawing. This can be used to share vertex attribute data between several different Meshes.
+---
+---[Wiki](https://love2d.org/wiki/Mesh:attachAttribute)
+---
+---@param name string# The name of the vertex attribute to attach.
+---@param mesh love.Mesh# The Mesh to get the vertex attribute from.
+---@diagnostic disable-next-line: args-after-dots
+function Mesh:attachAttribute(name, mesh) end
+
+---Attaches a vertex attribute from a different Mesh onto this Mesh, for use when drawing. This can be used to share vertex attribute data between several different Meshes.
+---
+---[Wiki](https://love2d.org/wiki/Mesh:attachAttribute)
+---
+---@param name string# The name of the vertex attribute to attach.
+---@param mesh love.Mesh# The Mesh to get the vertex attribute from.
+---@param step? love.VertexAttributeStep# ('pervertex') Whether the attribute will be per-vertex or per-instance when the mesh is drawn.
+---@param attachname? string# (name) The name of the attribute to use in shader code. Defaults to the name of the attribute in the given mesh. Can be used to use a different name for this attribute when rendering.
+---@diagnostic disable-next-line: args-after-dots
+function Mesh:attachAttribute(name, mesh, step, attachname) end
+
+---Removes a previously attached vertex attribute from this Mesh.
+---
+---[Wiki](https://love2d.org/wiki/Mesh:detachAttribute)
+---
+---@param name string# The name of the attached vertex attribute to detach.
+---@diagnostic disable-next-line: args-after-dots
+function Mesh:detachAttribute(name) end
+
+---Immediately sends all modified vertex data in the Mesh to the graphics card.
+---
+---Normally it isn't necessary to call this method as love.graphics.draw(mesh, ...) will do it automatically if needed, but explicitly using **Mesh:flush** gives more control over when the work happens.
+---
+---If this method is used, it generally shouldn't be called more than once (at most) between love.graphics.draw(mesh, ...) calls.
+---
+---[Wiki](https://love2d.org/wiki/Mesh:flush)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Mesh:flush() end
+
+---Gets the mode used when drawing the Mesh.
+---
+---[Wiki](https://love2d.org/wiki/Mesh:getDrawMode)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Mesh:getDrawMode() end
+
+---Gets the range of vertices used when drawing the Mesh.
+---
+---[Wiki](https://love2d.org/wiki/Mesh:getDrawRange)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Mesh:getDrawRange() end
+
+---Gets the texture (Image or Canvas) used when drawing the Mesh.
+---
+---[Wiki](https://love2d.org/wiki/Mesh:getTexture)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Mesh:getTexture() end
+
+---Gets the properties of a vertex in the Mesh.
+---
+---In versions prior to 11.0, color and byte component values were within the range of 0 to 255 instead of 0 to 1.
+---
+---[Wiki](https://love2d.org/wiki/Mesh:getVertex)
+---
+---@param index number# The one-based index of the vertex you want to retrieve the information for.
+---@diagnostic disable-next-line: args-after-dots
+function Mesh:getVertex(index) end
+
+---Gets the properties of a vertex in the Mesh.
+---
+---In versions prior to 11.0, color and byte component values were within the range of 0 to 255 instead of 0 to 1.
+---
+---[Wiki](https://love2d.org/wiki/Mesh:getVertex)
+---
+---@param index number# The index of the vertex you want to retrieve the information for.
+---@diagnostic disable-next-line: args-after-dots
+function Mesh:getVertex(index) end
+
+---Gets the properties of a specific attribute within a vertex in the Mesh.
+---
+---Meshes without a custom vertex format specified in love.graphics.newMesh have position as their first attribute, texture coordinates as their second attribute, and color as their third attribute.
+---
+---[Wiki](https://love2d.org/wiki/Mesh:getVertexAttribute)
+---
+---@param vertexindex number# The index of the the vertex you want to retrieve the attribute for (one-based).
+---@param attributeindex number# The index of the attribute within the vertex to be retrieved (one-based).
+---@diagnostic disable-next-line: args-after-dots
+function Mesh:getVertexAttribute(vertexindex, attributeindex) end
+
+---Gets the total number of vertices in the Mesh.
+---
+---[Wiki](https://love2d.org/wiki/Mesh:getVertexCount)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Mesh:getVertexCount() end
+
+---Gets the vertex format that the Mesh was created with.
+---
+---[Wiki](https://love2d.org/wiki/Mesh:getVertexFormat)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Mesh:getVertexFormat() end
+
+---Gets the vertex map for the Mesh. The vertex map describes the order in which the vertices are used when the Mesh is drawn. The vertices, vertex map, and mesh draw mode work together to determine what exactly is displayed on the screen.
+---
+---If no vertex map has been set previously via Mesh:setVertexMap, then this function will return nil in LÖVE 0.10.0+, or an empty table in 0.9.2 and older.
+---
+---[Wiki](https://love2d.org/wiki/Mesh:getVertexMap)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Mesh:getVertexMap() end
+
+---Gets whether a specific vertex attribute in the Mesh is enabled. Vertex data from disabled attributes is not used when drawing the Mesh.
+---
+---[Wiki](https://love2d.org/wiki/Mesh:isAttributeEnabled)
+---
+---@param name string# The name of the vertex attribute to be checked.
+---@diagnostic disable-next-line: args-after-dots
+function Mesh:isAttributeEnabled(name) end
+
+---Enables or disables a specific vertex attribute in the Mesh. Vertex data from disabled attributes is not used when drawing the Mesh.
+---
+---[Wiki](https://love2d.org/wiki/Mesh:setAttributeEnabled)
+---
+---@param name string# The name of the vertex attribute to enable or disable.
+---@param enable boolean# Whether the vertex attribute is used when drawing this Mesh.
+---@diagnostic disable-next-line: args-after-dots
+function Mesh:setAttributeEnabled(name, enable) end
+
+---Sets the mode used when drawing the Mesh.
+---
+---[Wiki](https://love2d.org/wiki/Mesh:setDrawMode)
+---
+---@param mode love.MeshDrawMode# The mode to use when drawing the Mesh.
+---@diagnostic disable-next-line: args-after-dots
+function Mesh:setDrawMode(mode) end
+
+---Restricts the drawn vertices of the Mesh to a subset of the total.
+---
+---[Wiki](https://love2d.org/wiki/Mesh:setDrawRange)
+---
+---@param start number# The index of the first vertex to use when drawing, or the index of the first value in the vertex map to use if one is set for this Mesh.
+---@param count number# The number of vertices to use when drawing, or number of values in the vertex map to use if one is set for this Mesh.
+---@diagnostic disable-next-line: args-after-dots
+function Mesh:setDrawRange(start, count) end
+
+---Restricts the drawn vertices of the Mesh to a subset of the total.
+---
+---[Wiki](https://love2d.org/wiki/Mesh:setDrawRange)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Mesh:setDrawRange() end
+
+---Sets the texture (Image or Canvas) used when drawing the Mesh.
+---
+---[Wiki](https://love2d.org/wiki/Mesh:setTexture)
+---
+---@param texture love.Texture# The Image or Canvas to texture the Mesh with when drawing.
+---@diagnostic disable-next-line: args-after-dots
+function Mesh:setTexture(texture) end
+
+---Sets the texture (Image or Canvas) used when drawing the Mesh.
+---
+---[Wiki](https://love2d.org/wiki/Mesh:setTexture)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Mesh:setTexture() end
+
+---Sets the properties of a vertex in the Mesh.
+---
+---In versions prior to 11.0, color and byte component values were within the range of 0 to 255 instead of 0 to 1.
+---
+---[Wiki](https://love2d.org/wiki/Mesh:setVertex)
+---
+---@param index number# The index of the the vertex you want to modify (one-based).
+---@param attributecomponent number# The first component of the first vertex attribute in the specified vertex.
+---@param ... number# Additional components of all vertex attributes in the specified vertex.
+---@diagnostic disable-next-line: args-after-dots
+function Mesh:setVertex(index, attributecomponent, ...) end
+
+---Sets the properties of a vertex in the Mesh.
+---
+---In versions prior to 11.0, color and byte component values were within the range of 0 to 255 instead of 0 to 1.
+---
+---[Wiki](https://love2d.org/wiki/Mesh:setVertex)
+---
+---@param index number# The index of the the vertex you want to modify (one-based).
+---@param vertex {
+---attributecomponent : number,
+---[...] : number}# A table with vertex information, in the form of {attributecomponent, ...}.
+---@diagnostic disable-next-line: args-after-dots
+function Mesh:setVertex(index, vertex) end
+
+---Sets the properties of a vertex in the Mesh.
+---
+---In versions prior to 11.0, color and byte component values were within the range of 0 to 255 instead of 0 to 1.
+---
+---[Wiki](https://love2d.org/wiki/Mesh:setVertex)
+---
+---@param index number# The index of the the vertex you want to modify (one-based).
+---@param x number# The position of the vertex on the x-axis.
+---@param y number# The position of the vertex on the y-axis.
+---@param u number# The horizontal component of the texture coordinate.
+---@param v number# The vertical component of the texture coordinate.
+---@param r? number# (1) The red component of the vertex's color.
+---@param g? number# (1) The green component of the vertex's color.
+---@param b? number# (1) The blue component of the vertex's color.
+---@param a? number# (1) The alpha component of the vertex's color.
+---@diagnostic disable-next-line: args-after-dots
+function Mesh:setVertex(index, x, y, u, v, r, g, b, a) end
+
+---Sets the properties of a vertex in the Mesh.
+---
+---In versions prior to 11.0, color and byte component values were within the range of 0 to 255 instead of 0 to 1.
+---
+---[Wiki](https://love2d.org/wiki/Mesh:setVertex)
+---
+---@param index number# The index of the the vertex you want to modify (one-based).
+---@param vertex {
+---[1] : number,
+---[2] : number,
+---[3] : number,
+---[4] : number,
+---[5] : number,
+---[6] : number,
+---[7] : number,
+---[8] : number}# A table with vertex information.
+---@diagnostic disable-next-line: args-after-dots
+function Mesh:setVertex(index, vertex) end
+
+---Sets the properties of a specific attribute within a vertex in the Mesh.
+---
+---Meshes without a custom vertex format specified in love.graphics.newMesh have position as their first attribute, texture coordinates as their second attribute, and color as their third attribute.
+---
+---[Wiki](https://love2d.org/wiki/Mesh:setVertexAttribute)
+---
+---@param vertexindex number# The index of the the vertex to be modified (one-based).
+---@param attributeindex number# The index of the attribute within the vertex to be modified (one-based).
+---@param value1 number# The new value for the first component of the attribute.
+---@param value2 number# The new value for the second component of the attribute.
+---@param ... number# Any additional vertex attribute components.
+---@diagnostic disable-next-line: args-after-dots
+function Mesh:setVertexAttribute(vertexindex, attributeindex, value1, value2, ...) end
+
+---Sets the vertex map for the Mesh. The vertex map describes the order in which the vertices are used when the Mesh is drawn. The vertices, vertex map, and mesh draw mode work together to determine what exactly is displayed on the screen.
+---
+---The vertex map allows you to re-order or reuse vertices when drawing without changing the actual vertex parameters or duplicating vertices. It is especially useful when combined with different Mesh Draw Modes.
+---
+---[Wiki](https://love2d.org/wiki/Mesh:setVertexMap)
+---
+---@param map table# A table containing a list of vertex indices to use when drawing. Values must be in the range of Mesh:getVertexCount().
+---@diagnostic disable-next-line: args-after-dots
+function Mesh:setVertexMap(map) end
+
+---Sets the vertex map for the Mesh. The vertex map describes the order in which the vertices are used when the Mesh is drawn. The vertices, vertex map, and mesh draw mode work together to determine what exactly is displayed on the screen.
+---
+---The vertex map allows you to re-order or reuse vertices when drawing without changing the actual vertex parameters or duplicating vertices. It is especially useful when combined with different Mesh Draw Modes.
+---
+---[Wiki](https://love2d.org/wiki/Mesh:setVertexMap)
+---
+---@param vi1 number# The index of the first vertex to use when drawing. Must be in the range of Mesh:getVertexCount().
+---@param vi2 number# The index of the second vertex to use when drawing.
+---@param vi3 number# The index of the third vertex to use when drawing.
+---@diagnostic disable-next-line: args-after-dots
+function Mesh:setVertexMap(vi1, vi2, vi3) end
+
+---Sets the vertex map for the Mesh. The vertex map describes the order in which the vertices are used when the Mesh is drawn. The vertices, vertex map, and mesh draw mode work together to determine what exactly is displayed on the screen.
+---
+---The vertex map allows you to re-order or reuse vertices when drawing without changing the actual vertex parameters or duplicating vertices. It is especially useful when combined with different Mesh Draw Modes.
+---
+---[Wiki](https://love2d.org/wiki/Mesh:setVertexMap)
+---
+---@param data love.Data# Array of vertex indices to use when drawing. Values must be in the range of Mesh:getVertexCount()-1
+---@param datatype love.IndexDataType# Datatype of the vertex indices array above.
+---@diagnostic disable-next-line: args-after-dots
+function Mesh:setVertexMap(data, datatype) end
+
+---Replaces a range of vertices in the Mesh with new ones. The total number of vertices in a Mesh cannot be changed after it has been created. This is often more efficient than calling Mesh:setVertex in a loop.
+---
+---[Wiki](https://love2d.org/wiki/Mesh:setVertices)
+---
+---@param vertices {
+---attributecomponent : number,
+---[...] : number}# The table filled with vertex information tables for each vertex, in the form of {vertex, ...} where each vertex is a table in the form of {attributecomponent, ...}.
+---@param startvertex? number# (1) The index of the first vertex to replace.
+---@param count? number# (all) Amount of vertices to replace.
+---@diagnostic disable-next-line: args-after-dots
+function Mesh:setVertices(vertices, startvertex, count) end
+
+---Replaces a range of vertices in the Mesh with new ones. The total number of vertices in a Mesh cannot be changed after it has been created. This is often more efficient than calling Mesh:setVertex in a loop.
+---
+---[Wiki](https://love2d.org/wiki/Mesh:setVertices)
+---
+---@param data love.Data# A Data object to copy from. The contents of the Data must match the layout of this Mesh's vertex format.
+---@param startvertex? number# (1) The index of the first vertex to replace.
+---@diagnostic disable-next-line: args-after-dots
+function Mesh:setVertices(data, startvertex) end
+
+---Replaces a range of vertices in the Mesh with new ones. The total number of vertices in a Mesh cannot be changed after it has been created. This is often more efficient than calling Mesh:setVertex in a loop.
+---
+---[Wiki](https://love2d.org/wiki/Mesh:setVertices)
+---
+---@param vertices {
+---[1] : number,
+---[2] : number,
+---[3] : number,
+---[4] : number,
+---[5] : number,
+---[6] : number,
+---[7] : number,
+---[8] : number}# The table filled with vertex information tables for each vertex as follows:
+---@diagnostic disable-next-line: args-after-dots
+function Mesh:setVertices(vertices) end
+
+---Creates an identical copy of the ParticleSystem in the stopped state.
+---
+---[Wiki](https://love2d.org/wiki/ParticleSystem:clone)
+---
+---@diagnostic disable-next-line: args-after-dots
+function ParticleSystem:clone() end
+
+---Emits a burst of particles from the particle emitter.
+---
+---[Wiki](https://love2d.org/wiki/ParticleSystem:emit)
+---
+---@param numparticles number# The amount of particles to emit. The number of emitted particles will be truncated if the particle system's max buffer size is reached.
+---@diagnostic disable-next-line: args-after-dots
+function ParticleSystem:emit(numparticles) end
+
+---Gets the maximum number of particles the ParticleSystem can have at once.
+---
+---[Wiki](https://love2d.org/wiki/ParticleSystem:getBufferSize)
+---
+---@diagnostic disable-next-line: args-after-dots
+function ParticleSystem:getBufferSize() end
+
+---Gets the series of colors applied to the particle sprite.
+---
+---In versions prior to 11.0, color component values were within the range of 0 to 255 instead of 0 to 1.
+---
+---[Wiki](https://love2d.org/wiki/ParticleSystem:getColors)
+---
+---@diagnostic disable-next-line: args-after-dots
+function ParticleSystem:getColors() end
+
+---Gets the number of particles that are currently in the system.
+---
+---[Wiki](https://love2d.org/wiki/ParticleSystem:getCount)
+---
+---@diagnostic disable-next-line: args-after-dots
+function ParticleSystem:getCount() end
+
+---Gets the direction of the particle emitter (in radians).
+---
+---[Wiki](https://love2d.org/wiki/ParticleSystem:getDirection)
+---
+---@diagnostic disable-next-line: args-after-dots
+function ParticleSystem:getDirection() end
+
+---Gets the area-based spawn parameters for the particles.
+---
+---[Wiki](https://love2d.org/wiki/ParticleSystem:getEmissionArea)
+---
+---@diagnostic disable-next-line: args-after-dots
+function ParticleSystem:getEmissionArea() end
+
+---Gets the amount of particles emitted per second.
+---
+---[Wiki](https://love2d.org/wiki/ParticleSystem:getEmissionRate)
+---
+---@diagnostic disable-next-line: args-after-dots
+function ParticleSystem:getEmissionRate() end
+
+---Gets how long the particle system will emit particles (if -1 then it emits particles forever).
+---
+---[Wiki](https://love2d.org/wiki/ParticleSystem:getEmitterLifetime)
+---
+---@diagnostic disable-next-line: args-after-dots
+function ParticleSystem:getEmitterLifetime() end
+
+---Gets the mode used when the ParticleSystem adds new particles.
+---
+---[Wiki](https://love2d.org/wiki/ParticleSystem:getInsertMode)
+---
+---@diagnostic disable-next-line: args-after-dots
+function ParticleSystem:getInsertMode() end
+
+---Gets the linear acceleration (acceleration along the x and y axes) for particles.
+---
+---Every particle created will accelerate along the x and y axes between xmin,ymin and xmax,ymax.
+---
+---[Wiki](https://love2d.org/wiki/ParticleSystem:getLinearAcceleration)
+---
+---@diagnostic disable-next-line: args-after-dots
+function ParticleSystem:getLinearAcceleration() end
+
+---Gets the amount of linear damping (constant deceleration) for particles.
+---
+---[Wiki](https://love2d.org/wiki/ParticleSystem:getLinearDamping)
+---
+---@diagnostic disable-next-line: args-after-dots
+function ParticleSystem:getLinearDamping() end
+
+---Gets the particle image's draw offset.
+---
+---[Wiki](https://love2d.org/wiki/ParticleSystem:getOffset)
+---
+---@diagnostic disable-next-line: args-after-dots
+function ParticleSystem:getOffset() end
+
+---Gets the lifetime of the particles.
+---
+---[Wiki](https://love2d.org/wiki/ParticleSystem:getParticleLifetime)
+---
+---@diagnostic disable-next-line: args-after-dots
+function ParticleSystem:getParticleLifetime() end
+
+---Gets the position of the emitter.
+---
+---[Wiki](https://love2d.org/wiki/ParticleSystem:getPosition)
+---
+---@diagnostic disable-next-line: args-after-dots
+function ParticleSystem:getPosition() end
+
+---Gets the series of Quads used for the particle sprites.
+---
+---[Wiki](https://love2d.org/wiki/ParticleSystem:getQuads)
+---
+---@diagnostic disable-next-line: args-after-dots
+function ParticleSystem:getQuads() end
+
+---Gets the radial acceleration (away from the emitter).
+---
+---[Wiki](https://love2d.org/wiki/ParticleSystem:getRadialAcceleration)
+---
+---@diagnostic disable-next-line: args-after-dots
+function ParticleSystem:getRadialAcceleration() end
+
+---Gets the rotation of the image upon particle creation (in radians).
+---
+---[Wiki](https://love2d.org/wiki/ParticleSystem:getRotation)
+---
+---@diagnostic disable-next-line: args-after-dots
+function ParticleSystem:getRotation() end
+
+---Gets the amount of size variation (0 meaning no variation and 1 meaning full variation between start and end).
+---
+---[Wiki](https://love2d.org/wiki/ParticleSystem:getSizeVariation)
+---
+---@diagnostic disable-next-line: args-after-dots
+function ParticleSystem:getSizeVariation() end
+
+---Gets the series of sizes by which the sprite is scaled. 1.0 is normal size. The particle system will interpolate between each size evenly over the particle's lifetime.
+---
+---[Wiki](https://love2d.org/wiki/ParticleSystem:getSizes)
+---
+---@diagnostic disable-next-line: args-after-dots
+function ParticleSystem:getSizes() end
+
+---Gets the speed of the particles.
+---
+---[Wiki](https://love2d.org/wiki/ParticleSystem:getSpeed)
+---
+---@diagnostic disable-next-line: args-after-dots
+function ParticleSystem:getSpeed() end
+
+---Gets the spin of the sprite.
+---
+---[Wiki](https://love2d.org/wiki/ParticleSystem:getSpin)
+---
+---@diagnostic disable-next-line: args-after-dots
+function ParticleSystem:getSpin() end
+
+---Gets the amount of spin variation (0 meaning no variation and 1 meaning full variation between start and end).
+---
+---[Wiki](https://love2d.org/wiki/ParticleSystem:getSpinVariation)
+---
+---@diagnostic disable-next-line: args-after-dots
+function ParticleSystem:getSpinVariation() end
+
+---Gets the amount of directional spread of the particle emitter (in radians).
+---
+---[Wiki](https://love2d.org/wiki/ParticleSystem:getSpread)
+---
+---@diagnostic disable-next-line: args-after-dots
+function ParticleSystem:getSpread() end
+
+---Gets the tangential acceleration (acceleration perpendicular to the particle's direction).
+---
+---[Wiki](https://love2d.org/wiki/ParticleSystem:getTangentialAcceleration)
+---
+---@diagnostic disable-next-line: args-after-dots
+function ParticleSystem:getTangentialAcceleration() end
+
+---Gets the texture (Image or Canvas) used for the particles.
+---
+---[Wiki](https://love2d.org/wiki/ParticleSystem:getTexture)
+---
+---@diagnostic disable-next-line: args-after-dots
+function ParticleSystem:getTexture() end
+
+---Gets whether particle angles and rotations are relative to their velocities. If enabled, particles are aligned to the angle of their velocities and rotate relative to that angle.
+---
+---[Wiki](https://love2d.org/wiki/ParticleSystem:hasRelativeRotation)
+---
+---@diagnostic disable-next-line: args-after-dots
+function ParticleSystem:hasRelativeRotation() end
+
+---Checks whether the particle system is actively emitting particles.
+---
+---[Wiki](https://love2d.org/wiki/ParticleSystem:isActive)
+---
+---@diagnostic disable-next-line: args-after-dots
+function ParticleSystem:isActive() end
+
+---Checks whether the particle system is paused.
+---
+---[Wiki](https://love2d.org/wiki/ParticleSystem:isPaused)
+---
+---@diagnostic disable-next-line: args-after-dots
+function ParticleSystem:isPaused() end
+
+---Checks whether the particle system is stopped.
+---
+---[Wiki](https://love2d.org/wiki/ParticleSystem:isStopped)
+---
+---@diagnostic disable-next-line: args-after-dots
+function ParticleSystem:isStopped() end
+
+---Moves the position of the emitter. This results in smoother particle spawning behaviour than if ParticleSystem:setPosition is used every frame.
+---
+---[Wiki](https://love2d.org/wiki/ParticleSystem:moveTo)
+---
+---@param x number# Position along x-axis.
+---@param y number# Position along y-axis.
+---@diagnostic disable-next-line: args-after-dots
+function ParticleSystem:moveTo(x, y) end
+
+---Pauses the particle emitter.
+---
+---[Wiki](https://love2d.org/wiki/ParticleSystem:pause)
+---
+---@diagnostic disable-next-line: args-after-dots
+function ParticleSystem:pause() end
+
+---Resets the particle emitter, removing any existing particles and resetting the lifetime counter.
+---
+---[Wiki](https://love2d.org/wiki/ParticleSystem:reset)
+---
+---@diagnostic disable-next-line: args-after-dots
+function ParticleSystem:reset() end
+
+---Sets the size of the buffer (the max allowed amount of particles in the system).
+---
+---[Wiki](https://love2d.org/wiki/ParticleSystem:setBufferSize)
+---
+---@param size number# The buffer size.
+---@diagnostic disable-next-line: args-after-dots
+function ParticleSystem:setBufferSize(size) end
+
+---Sets a series of colors to apply to the particle sprite. The particle system will interpolate between each color evenly over the particle's lifetime.
+---
+---Arguments can be passed in groups of four, representing the components of the desired RGBA value, or as tables of RGBA component values, with a default alpha value of 1 if only three values are given. At least one color must be specified. A maximum of eight may be used.
+---
+---In versions prior to 11.0, color component values were within the range of 0 to 255 instead of 0 to 1.
+---
+---[Wiki](https://love2d.org/wiki/ParticleSystem:setColors)
+---
+---@param r1 number# First color, red component (0-1).
+---@param g1 number# First color, green component (0-1).
+---@param b1 number# First color, blue component (0-1).
+---@param a1? number# (1) First color, alpha component (0-1).
+---@param ... number# Additional colors.
+---@diagnostic disable-next-line: args-after-dots
+function ParticleSystem:setColors(r1, g1, b1, a1, ...) end
+
+---Sets a series of colors to apply to the particle sprite. The particle system will interpolate between each color evenly over the particle's lifetime.
+---
+---Arguments can be passed in groups of four, representing the components of the desired RGBA value, or as tables of RGBA component values, with a default alpha value of 1 if only three values are given. At least one color must be specified. A maximum of eight may be used.
+---
+---In versions prior to 11.0, color component values were within the range of 0 to 255 instead of 0 to 1.
+---
+---[Wiki](https://love2d.org/wiki/ParticleSystem:setColors)
+---
+---@param rgba1 table[]# First color, a numerical indexed table with the red, green, blue and alpha values as numbers (0-1). The alpha is optional and defaults to 1 if it is left out.
+---@param ... table[]# Additional color, a numerical indexed table with the red, green, blue and alpha values as numbers (0-1). The alpha is optional and defaults to 1 if it is left out.
+---@diagnostic disable-next-line: args-after-dots
+function ParticleSystem:setColors(rgba1, ...) end
+
+---Sets the direction the particles will be emitted in.
+---
+---[Wiki](https://love2d.org/wiki/ParticleSystem:setDirection)
+---
+---@param direction number# The direction of the particles (in radians).
+---@diagnostic disable-next-line: args-after-dots
+function ParticleSystem:setDirection(direction) end
+
+---Sets area-based spawn parameters for the particles. Newly created particles will spawn in an area around the emitter based on the parameters to this function.
+---
+---[Wiki](https://love2d.org/wiki/ParticleSystem:setEmissionArea)
+---
+---@param distribution love.AreaSpreadDistribution# The type of distribution for new particles.
+---@param dx number# The maximum spawn distance from the emitter along the x-axis for uniform distribution, or the standard deviation along the x-axis for normal distribution.
+---@param dy number# The maximum spawn distance from the emitter along the y-axis for uniform distribution, or the standard deviation along the y-axis for normal distribution.
+---@param angle? number# (0) The angle in radians of the emission area.
+---@param directionRelativeToCenter? boolean# (false) True if newly spawned particles will be oriented relative to the center of the emission area, false otherwise.
+---@diagnostic disable-next-line: args-after-dots
+function ParticleSystem:setEmissionArea(distribution, dx, dy, angle, directionRelativeToCenter) end
+
+---Sets the amount of particles emitted per second.
+---
+---[Wiki](https://love2d.org/wiki/ParticleSystem:setEmissionRate)
+---
+---@param rate number# The amount of particles per second.
+---@diagnostic disable-next-line: args-after-dots
+function ParticleSystem:setEmissionRate(rate) end
+
+---Sets how long the particle system should emit particles (if -1 then it emits particles forever).
+---
+---[Wiki](https://love2d.org/wiki/ParticleSystem:setEmitterLifetime)
+---
+---@param life number# The lifetime of the emitter (in seconds).
+---@diagnostic disable-next-line: args-after-dots
+function ParticleSystem:setEmitterLifetime(life) end
+
+---Sets the mode to use when the ParticleSystem adds new particles.
+---
+---[Wiki](https://love2d.org/wiki/ParticleSystem:setInsertMode)
+---
+---@param mode love.ParticleInsertMode# The mode to use when the ParticleSystem adds new particles.
+---@diagnostic disable-next-line: args-after-dots
+function ParticleSystem:setInsertMode(mode) end
+
+---Sets the linear acceleration (acceleration along the x and y axes) for particles.
+---
+---Every particle created will accelerate along the x and y axes between xmin,ymin and xmax,ymax.
+---
+---[Wiki](https://love2d.org/wiki/ParticleSystem:setLinearAcceleration)
+---
+---@param xmin number# The minimum acceleration along the x axis.
+---@param ymin number# The minimum acceleration along the y axis.
+---@param xmax? number# (xmin) The maximum acceleration along the x axis.
+---@param ymax? number# (ymin) The maximum acceleration along the y axis.
+---@diagnostic disable-next-line: args-after-dots
+function ParticleSystem:setLinearAcceleration(xmin, ymin, xmax, ymax) end
+
+---Sets the amount of linear damping (constant deceleration) for particles.
+---
+---[Wiki](https://love2d.org/wiki/ParticleSystem:setLinearDamping)
+---
+---@param min number# The minimum amount of linear damping applied to particles.
+---@param max? number# (min) The maximum amount of linear damping applied to particles.
+---@diagnostic disable-next-line: args-after-dots
+function ParticleSystem:setLinearDamping(min, max) end
+
+---Set the offset position which the particle sprite is rotated around.
+---
+---If this function is not used, the particles rotate around their center.
+---
+---[Wiki](https://love2d.org/wiki/ParticleSystem:setOffset)
+---
+---@param x number# The x coordinate of the rotation offset.
+---@param y number# The y coordinate of the rotation offset.
+---@diagnostic disable-next-line: args-after-dots
+function ParticleSystem:setOffset(x, y) end
+
+---Sets the lifetime of the particles.
+---
+---[Wiki](https://love2d.org/wiki/ParticleSystem:setParticleLifetime)
+---
+---@param min number# The minimum life of the particles (in seconds).
+---@param max? number# (min) The maximum life of the particles (in seconds).
+---@diagnostic disable-next-line: args-after-dots
+function ParticleSystem:setParticleLifetime(min, max) end
+
+---Sets the position of the emitter.
+---
+---[Wiki](https://love2d.org/wiki/ParticleSystem:setPosition)
+---
+---@param x number# Position along x-axis.
+---@param y number# Position along y-axis.
+---@diagnostic disable-next-line: args-after-dots
+function ParticleSystem:setPosition(x, y) end
+
+---Sets a series of Quads to use for the particle sprites. Particles will choose a Quad from the list based on the particle's current lifetime, allowing for the use of animated sprite sheets with ParticleSystems.
+---
+---[Wiki](https://love2d.org/wiki/ParticleSystem:setQuads)
+---
+---@param quad1 love.Quad# The first Quad to use.
+---@param ... love.Quad# Additional Quads to use.
+---@diagnostic disable-next-line: args-after-dots
+function ParticleSystem:setQuads(quad1, ...) end
+
+---Sets a series of Quads to use for the particle sprites. Particles will choose a Quad from the list based on the particle's current lifetime, allowing for the use of animated sprite sheets with ParticleSystems.
+---
+---[Wiki](https://love2d.org/wiki/ParticleSystem:setQuads)
+---
+---@param quads table[]# A table containing the Quads to use.
+---@diagnostic disable-next-line: args-after-dots
+function ParticleSystem:setQuads(quads) end
+
+---Set the radial acceleration (away from the emitter).
+---
+---[Wiki](https://love2d.org/wiki/ParticleSystem:setRadialAcceleration)
+---
+---@param min number# The minimum acceleration.
+---@param max? number# (min) The maximum acceleration.
+---@diagnostic disable-next-line: args-after-dots
+function ParticleSystem:setRadialAcceleration(min, max) end
+
+---Sets whether particle angles and rotations are relative to their velocities. If enabled, particles are aligned to the angle of their velocities and rotate relative to that angle.
+---
+---[Wiki](https://love2d.org/wiki/ParticleSystem:setRelativeRotation)
+---
+---@param enable boolean# True to enable relative particle rotation, false to disable it.
+---@diagnostic disable-next-line: args-after-dots
+function ParticleSystem:setRelativeRotation(enable) end
+
+---Sets the rotation of the image upon particle creation (in radians).
+---
+---[Wiki](https://love2d.org/wiki/ParticleSystem:setRotation)
+---
+---@param min number# The minimum initial angle (radians).
+---@param max? number# (min) The maximum initial angle (radians).
+---@diagnostic disable-next-line: args-after-dots
+function ParticleSystem:setRotation(min, max) end
+
+---Sets the amount of size variation (0 meaning no variation and 1 meaning full variation between start and end).
+---
+---[Wiki](https://love2d.org/wiki/ParticleSystem:setSizeVariation)
+---
+---@param variation number# The amount of variation (0 meaning no variation and 1 meaning full variation between start and end).
+---@diagnostic disable-next-line: args-after-dots
+function ParticleSystem:setSizeVariation(variation) end
+
+---Sets a series of sizes by which to scale a particle sprite. 1.0 is normal size. The particle system will interpolate between each size evenly over the particle's lifetime.
+---
+---At least one size must be specified. A maximum of eight may be used.
+---
+---[Wiki](https://love2d.org/wiki/ParticleSystem:setSizes)
+---
+---@param size1 number# The first size.
+---@param size2? number# (nil) The second size.
+---@param size8? number# (nil) The eighth size.
+---@diagnostic disable-next-line: args-after-dots
+function ParticleSystem:setSizes(size1, size2, size8) end
+
+---Sets the speed of the particles.
+---
+---[Wiki](https://love2d.org/wiki/ParticleSystem:setSpeed)
+---
+---@param min number# The minimum linear speed of the particles.
+---@param max? number# (min) The maximum linear speed of the particles.
+---@diagnostic disable-next-line: args-after-dots
+function ParticleSystem:setSpeed(min, max) end
+
+---Sets the spin of the sprite.
+---
+---[Wiki](https://love2d.org/wiki/ParticleSystem:setSpin)
+---
+---@param min number# The minimum spin (radians per second).
+---@param max? number# (min) The maximum spin (radians per second).
+---@diagnostic disable-next-line: args-after-dots
+function ParticleSystem:setSpin(min, max) end
+
+---Sets the amount of spin variation (0 meaning no variation and 1 meaning full variation between start and end).
+---
+---[Wiki](https://love2d.org/wiki/ParticleSystem:setSpinVariation)
+---
+---@param variation number# The amount of variation (0 meaning no variation and 1 meaning full variation between start and end).
+---@diagnostic disable-next-line: args-after-dots
+function ParticleSystem:setSpinVariation(variation) end
+
+---Sets the amount of spread for the system.
+---
+---[Wiki](https://love2d.org/wiki/ParticleSystem:setSpread)
+---
+---@param spread number# The amount of spread (radians).
+---@diagnostic disable-next-line: args-after-dots
+function ParticleSystem:setSpread(spread) end
+
+---Sets the tangential acceleration (acceleration perpendicular to the particle's direction).
+---
+---[Wiki](https://love2d.org/wiki/ParticleSystem:setTangentialAcceleration)
+---
+---@param min number# The minimum acceleration.
+---@param max? number# (min) The maximum acceleration.
+---@diagnostic disable-next-line: args-after-dots
+function ParticleSystem:setTangentialAcceleration(min, max) end
+
+---Sets the texture (Image or Canvas) to be used for the particles.
+---
+---[Wiki](https://love2d.org/wiki/ParticleSystem:setTexture)
+---
+---@param texture love.Texture# An Image or Canvas to use for the particles.
+---@diagnostic disable-next-line: args-after-dots
+function ParticleSystem:setTexture(texture) end
+
+---Starts the particle emitter.
+---
+---[Wiki](https://love2d.org/wiki/ParticleSystem:start)
+---
+---@diagnostic disable-next-line: args-after-dots
+function ParticleSystem:start() end
+
+---Stops the particle emitter, resetting the lifetime counter.
+---
+---[Wiki](https://love2d.org/wiki/ParticleSystem:stop)
+---
+---@diagnostic disable-next-line: args-after-dots
+function ParticleSystem:stop() end
+
+---Updates the particle system; moving, creating and killing particles.
+---
+---[Wiki](https://love2d.org/wiki/ParticleSystem:update)
+---
+---@param dt number# The time (seconds) since last frame.
+---@diagnostic disable-next-line: args-after-dots
+function ParticleSystem:update(dt) end
+
+---Gets reference texture dimensions initially specified in love.graphics.newQuad.
+---
+---[Wiki](https://love2d.org/wiki/Quad:getTextureDimensions)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Quad:getTextureDimensions() end
+
+---Gets the current viewport of this Quad.
+---
+---[Wiki](https://love2d.org/wiki/Quad:getViewport)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Quad:getViewport() end
+
+---Sets the texture coordinates according to a viewport.
+---
+---[Wiki](https://love2d.org/wiki/Quad:setViewport)
+---
+---@param x number# The top-left corner along the x-axis.
+---@param y number# The top-left corner along the y-axis.
+---@param w number# The width of the viewport.
+---@param h number# The height of the viewport.
+---@param sw? number# (nil) Optional new reference width, the width of the Texture. Must be greater than 0 if set.
+---@param sh? number# (nil) Optional new reference height, the height of the Texture. Must be greater than 0 if set.
+---@diagnostic disable-next-line: args-after-dots
+function Quad:setViewport(x, y, w, h, sw, sh) end
+
+---Returns any warning and error messages from compiling the shader code. This can be used for debugging your shaders if there's anything the graphics hardware doesn't like.
+---
+---[Wiki](https://love2d.org/wiki/Shader:getWarnings)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Shader:getWarnings() end
+
+---Gets whether a uniform / extern variable exists in the Shader.
+---
+---If a graphics driver's shader compiler determines that a uniform / extern variable doesn't affect the final output of the shader, it may optimize the variable out. This function will return false in that case.
+---
+---[Wiki](https://love2d.org/wiki/Shader:hasUniform)
+---
+---@param name string# The name of the uniform variable.
+---@diagnostic disable-next-line: args-after-dots
+function Shader:hasUniform(name) end
+
+---Sends one or more values to a special (''uniform'') variable inside the shader. Uniform variables have to be marked using the ''uniform'' or ''extern'' keyword, e.g.
+---
+---uniform float time;  // 'float' is the typical number type used in GLSL shaders.
+---
+---uniform float varsvec2 light_pos;
+---
+---uniform vec4 colors[4;
+---
+---The corresponding send calls would be
+---
+---shader:send('time', t)
+---
+---shader:send('vars',a,b)
+---
+---shader:send('light_pos', {light_x, light_y})
+---
+---shader:send('colors', {r1, g1, b1, a1},  {r2, g2, b2, a2},  {r3, g3, b3, a3},  {r4, g4, b4, a4})
+---
+---Uniform / extern variables are read-only in the shader code and remain constant until modified by a Shader:send call. Uniform variables can be accessed in both the Vertex and Pixel components of a shader, as long as the variable is declared in each.
+---
+---[Wiki](https://love2d.org/wiki/Shader:send)
+---
+---@param name string# Name of the number to send to the shader.
+---@param number number# Number to send to store in the uniform variable.
+---@param ... number# Additional numbers to send if the uniform variable is an array.
+---@diagnostic disable-next-line: args-after-dots
+function Shader:send(name, number, ...) end
+
+---Sends one or more values to a special (''uniform'') variable inside the shader. Uniform variables have to be marked using the ''uniform'' or ''extern'' keyword, e.g.
+---
+---uniform float time;  // 'float' is the typical number type used in GLSL shaders.
+---
+---uniform float varsvec2 light_pos;
+---
+---uniform vec4 colors[4;
+---
+---The corresponding send calls would be
+---
+---shader:send('time', t)
+---
+---shader:send('vars',a,b)
+---
+---shader:send('light_pos', {light_x, light_y})
+---
+---shader:send('colors', {r1, g1, b1, a1},  {r2, g2, b2, a2},  {r3, g3, b3, a3},  {r4, g4, b4, a4})
+---
+---Uniform / extern variables are read-only in the shader code and remain constant until modified by a Shader:send call. Uniform variables can be accessed in both the Vertex and Pixel components of a shader, as long as the variable is declared in each.
+---
+---[Wiki](https://love2d.org/wiki/Shader:send)
+---
+---@param name string# Name of the vector to send to the shader.
+---@param vector table# Numbers to send to the uniform variable as a vector. The number of elements in the table determines the type of the vector (e.g. two numbers -&gt; vec2). At least two and at most four numbers can be used.
+---@param ... table# Additional vectors to send if the uniform variable is an array. All vectors need to be of the same size (e.g. only vec3's).
+---@diagnostic disable-next-line: args-after-dots
+function Shader:send(name, vector, ...) end
+
+---Sends one or more values to a special (''uniform'') variable inside the shader. Uniform variables have to be marked using the ''uniform'' or ''extern'' keyword, e.g.
+---
+---uniform float time;  // 'float' is the typical number type used in GLSL shaders.
+---
+---uniform float varsvec2 light_pos;
+---
+---uniform vec4 colors[4;
+---
+---The corresponding send calls would be
+---
+---shader:send('time', t)
+---
+---shader:send('vars',a,b)
+---
+---shader:send('light_pos', {light_x, light_y})
+---
+---shader:send('colors', {r1, g1, b1, a1},  {r2, g2, b2, a2},  {r3, g3, b3, a3},  {r4, g4, b4, a4})
+---
+---Uniform / extern variables are read-only in the shader code and remain constant until modified by a Shader:send call. Uniform variables can be accessed in both the Vertex and Pixel components of a shader, as long as the variable is declared in each.
+---
+---[Wiki](https://love2d.org/wiki/Shader:send)
+---
+---@param name string# Name of the matrix to send to the shader.
+---@param matrix table# 2x2, 3x3, or 4x4 matrix to send to the uniform variable. Using table form: {{a,b,c,d}, {e,f,g,h}, ... } or (since version 0.10.2) {a,b,c,d, e,f,g,h, ...}. The order in 0.10.2 is column-major; starting in 11.0 it's row-major instead.
+---@param ... table# Additional matrices of the same type as ''matrix'' to store in a uniform array.
+---@diagnostic disable-next-line: args-after-dots
+function Shader:send(name, matrix, ...) end
+
+---Sends one or more values to a special (''uniform'') variable inside the shader. Uniform variables have to be marked using the ''uniform'' or ''extern'' keyword, e.g.
+---
+---uniform float time;  // 'float' is the typical number type used in GLSL shaders.
+---
+---uniform float varsvec2 light_pos;
+---
+---uniform vec4 colors[4;
+---
+---The corresponding send calls would be
+---
+---shader:send('time', t)
+---
+---shader:send('vars',a,b)
+---
+---shader:send('light_pos', {light_x, light_y})
+---
+---shader:send('colors', {r1, g1, b1, a1},  {r2, g2, b2, a2},  {r3, g3, b3, a3},  {r4, g4, b4, a4})
+---
+---Uniform / extern variables are read-only in the shader code and remain constant until modified by a Shader:send call. Uniform variables can be accessed in both the Vertex and Pixel components of a shader, as long as the variable is declared in each.
+---
+---[Wiki](https://love2d.org/wiki/Shader:send)
+---
+---@param name string# Name of the Texture to send to the shader.
+---@param texture love.Texture# Texture (Image or Canvas) to send to the uniform variable.
+---@diagnostic disable-next-line: args-after-dots
+function Shader:send(name, texture) end
+
+---Sends one or more values to a special (''uniform'') variable inside the shader. Uniform variables have to be marked using the ''uniform'' or ''extern'' keyword, e.g.
+---
+---uniform float time;  // 'float' is the typical number type used in GLSL shaders.
+---
+---uniform float varsvec2 light_pos;
+---
+---uniform vec4 colors[4;
+---
+---The corresponding send calls would be
+---
+---shader:send('time', t)
+---
+---shader:send('vars',a,b)
+---
+---shader:send('light_pos', {light_x, light_y})
+---
+---shader:send('colors', {r1, g1, b1, a1},  {r2, g2, b2, a2},  {r3, g3, b3, a3},  {r4, g4, b4, a4})
+---
+---Uniform / extern variables are read-only in the shader code and remain constant until modified by a Shader:send call. Uniform variables can be accessed in both the Vertex and Pixel components of a shader, as long as the variable is declared in each.
+---
+---[Wiki](https://love2d.org/wiki/Shader:send)
+---
+---@param name string# Name of the boolean to send to the shader.
+---@param boolean boolean# Boolean to send to store in the uniform variable.
+---@param ... boolean# Additional booleans to send if the uniform variable is an array.
+---@diagnostic disable-next-line: args-after-dots
+function Shader:send(name, boolean, ...) end
+
+---Sends one or more values to a special (''uniform'') variable inside the shader. Uniform variables have to be marked using the ''uniform'' or ''extern'' keyword, e.g.
+---
+---uniform float time;  // 'float' is the typical number type used in GLSL shaders.
+---
+---uniform float varsvec2 light_pos;
+---
+---uniform vec4 colors[4;
+---
+---The corresponding send calls would be
+---
+---shader:send('time', t)
+---
+---shader:send('vars',a,b)
+---
+---shader:send('light_pos', {light_x, light_y})
+---
+---shader:send('colors', {r1, g1, b1, a1},  {r2, g2, b2, a2},  {r3, g3, b3, a3},  {r4, g4, b4, a4})
+---
+---Uniform / extern variables are read-only in the shader code and remain constant until modified by a Shader:send call. Uniform variables can be accessed in both the Vertex and Pixel components of a shader, as long as the variable is declared in each.
+---
+---[Wiki](https://love2d.org/wiki/Shader:send)
+---
+---@param name string# Name of the matrix to send to the shader.
+---@param matrixlayout love.MatrixLayout# The layout (row- or column-major) of the matrix.
+---@param matrix table# 2x2, 3x3, or 4x4 matrix to send to the uniform variable. Using table form: {{a,b,c,d}, {e,f,g,h}, ... } or {a,b,c,d, e,f,g,h, ...}.
+---@param ... table# Additional matrices of the same type as ''matrix'' to store in a uniform array.
+---@diagnostic disable-next-line: args-after-dots
+function Shader:send(name, matrixlayout, matrix, ...) end
+
+---Sends one or more values to a special (''uniform'') variable inside the shader. Uniform variables have to be marked using the ''uniform'' or ''extern'' keyword, e.g.
+---
+---uniform float time;  // 'float' is the typical number type used in GLSL shaders.
+---
+---uniform float varsvec2 light_pos;
+---
+---uniform vec4 colors[4;
+---
+---The corresponding send calls would be
+---
+---shader:send('time', t)
+---
+---shader:send('vars',a,b)
+---
+---shader:send('light_pos', {light_x, light_y})
+---
+---shader:send('colors', {r1, g1, b1, a1},  {r2, g2, b2, a2},  {r3, g3, b3, a3},  {r4, g4, b4, a4})
+---
+---Uniform / extern variables are read-only in the shader code and remain constant until modified by a Shader:send call. Uniform variables can be accessed in both the Vertex and Pixel components of a shader, as long as the variable is declared in each.
+---
+---[Wiki](https://love2d.org/wiki/Shader:send)
+---
+---@param name string# Name of the uniform to send to the shader.
+---@param data love.Data# Data object containing the values to send.
+---@param offset? number# (0) Offset in bytes from the start of the Data object.
+---@param size? number# (all) Size in bytes of the data to send. If nil, as many bytes as the specified uniform uses will be copied.
+---@diagnostic disable-next-line: args-after-dots
+function Shader:send(name, data, offset, size) end
+
+---Sends one or more values to a special (''uniform'') variable inside the shader. Uniform variables have to be marked using the ''uniform'' or ''extern'' keyword, e.g.
+---
+---uniform float time;  // 'float' is the typical number type used in GLSL shaders.
+---
+---uniform float varsvec2 light_pos;
+---
+---uniform vec4 colors[4;
+---
+---The corresponding send calls would be
+---
+---shader:send('time', t)
+---
+---shader:send('vars',a,b)
+---
+---shader:send('light_pos', {light_x, light_y})
+---
+---shader:send('colors', {r1, g1, b1, a1},  {r2, g2, b2, a2},  {r3, g3, b3, a3},  {r4, g4, b4, a4})
+---
+---Uniform / extern variables are read-only in the shader code and remain constant until modified by a Shader:send call. Uniform variables can be accessed in both the Vertex and Pixel components of a shader, as long as the variable is declared in each.
+---
+---[Wiki](https://love2d.org/wiki/Shader:send)
+---
+---@param name string# Name of the uniform matrix to send to the shader.
+---@param data love.Data# Data object containing the values to send.
+---@param matrixlayout love.MatrixLayout# The layout (row- or column-major) of the matrix in memory.
+---@param offset? number# (0) Offset in bytes from the start of the Data object.
+---@param size? number# (all) Size in bytes of the data to send. If nil, as many bytes as the specified uniform uses will be copied.
+---@diagnostic disable-next-line: args-after-dots
+function Shader:send(name, data, matrixlayout, offset, size) end
+
+---Sends one or more values to a special (''uniform'') variable inside the shader. Uniform variables have to be marked using the ''uniform'' or ''extern'' keyword, e.g.
+---
+---uniform float time;  // 'float' is the typical number type used in GLSL shaders.
+---
+---uniform float varsvec2 light_pos;
+---
+---uniform vec4 colors[4;
+---
+---The corresponding send calls would be
+---
+---shader:send('time', t)
+---
+---shader:send('vars',a,b)
+---
+---shader:send('light_pos', {light_x, light_y})
+---
+---shader:send('colors', {r1, g1, b1, a1},  {r2, g2, b2, a2},  {r3, g3, b3, a3},  {r4, g4, b4, a4})
+---
+---Uniform / extern variables are read-only in the shader code and remain constant until modified by a Shader:send call. Uniform variables can be accessed in both the Vertex and Pixel components of a shader, as long as the variable is declared in each.
+---
+---[Wiki](https://love2d.org/wiki/Shader:send)
+---
+---@param name string# Name of the uniform matrix to send to the shader.
+---@param matrixlayout love.MatrixLayout# The layout (row- or column-major) of the matrix in memory.
+---@param data love.Data# Data object containing the values to send.
+---@param offset? number# (0) Offset in bytes from the start of the Data object.
+---@param size? number# (all) Size in bytes of the data to send. If nil, as many bytes as the specified uniform uses will be copied.
+---@diagnostic disable-next-line: args-after-dots
+function Shader:send(name, matrixlayout, data, offset, size) end
+
+---Sends one or more colors to a special (''extern'' / ''uniform'') vec3 or vec4 variable inside the shader. The color components must be in the range of 1. The colors are gamma-corrected if global gamma-correction is enabled.
+---
+---Extern variables must be marked using the ''extern'' keyword, e.g.
+---
+---extern vec4 Color;
+---
+---The corresponding sendColor call would be
+---
+---shader:sendColor('Color', {r, g, b, a})
+---
+---Extern variables can be accessed in both the Vertex and Pixel stages of a shader, as long as the variable is declared in each.
+---
+---In versions prior to 11.0, color component values were within the range of 0 to 255 instead of 0 to 1.
+---
+---[Wiki](https://love2d.org/wiki/Shader:sendColor)
+---
+---@param name string# The name of the color extern variable to send to in the shader.
+---@param color table[]# A table with red, green, blue, and optional alpha color components in the range of 1 to send to the extern as a vector.
+---@param ... table[]# Additional colors to send in case the extern is an array. All colors need to be of the same size (e.g. only vec3's).
+---@diagnostic disable-next-line: args-after-dots
+function Shader:sendColor(name, color, ...) end
+
+---Adds a sprite to the batch. Sprites are drawn in the order they are added.
+---
+---[Wiki](https://love2d.org/wiki/SpriteBatch:add)
+---
+---@param x number# The position to draw the object (x-axis).
+---@param y number# The position to draw the object (y-axis).
+---@param r? number# (0) Orientation (radians).
+---@param sx? number# (1) Scale factor (x-axis).
+---@param sy? number# (sx) Scale factor (y-axis).
+---@param ox? number# (0) Origin offset (x-axis).
+---@param oy? number# (0) Origin offset (y-axis).
+---@param kx? number# (0) Shear factor (x-axis).
+---@param ky? number# (0) Shear factor (y-axis).
+---@diagnostic disable-next-line: args-after-dots
+function SpriteBatch:add(x, y, r, sx, sy, ox, oy, kx, ky) end
+
+---Adds a sprite to the batch. Sprites are drawn in the order they are added.
+---
+---[Wiki](https://love2d.org/wiki/SpriteBatch:add)
+---
+---@param quad love.Quad# The Quad to add.
+---@param x number# The position to draw the object (x-axis).
+---@param y number# The position to draw the object (y-axis).
+---@param r? number# (0) Orientation (radians).
+---@param sx? number# (1) Scale factor (x-axis).
+---@param sy? number# (sx) Scale factor (y-axis).
+---@param ox? number# (0) Origin offset (x-axis).
+---@param oy? number# (0) Origin offset (y-axis).
+---@param kx? number# (0) Shear factor (x-axis).
+---@param ky? number# (0) Shear factor (y-axis).
+---@diagnostic disable-next-line: args-after-dots
+function SpriteBatch:add(quad, x, y, r, sx, sy, ox, oy, kx, ky) end
+
+---Adds a sprite to a batch created with an Array Texture.
+---
+---[Wiki](https://love2d.org/wiki/SpriteBatch:addLayer)
+---
+---@param layerindex number# The index of the layer to use for this sprite.
+---@param x? number# (0) The position to draw the sprite (x-axis).
+---@param y? number# (0) The position to draw the sprite (y-axis).
+---@param r? number# (0) Orientation (radians).
+---@param sx? number# (1) Scale factor (x-axis).
+---@param sy? number# (sx) Scale factor (y-axis).
+---@param ox? number# (0) Origin offset (x-axis).
+---@param oy? number# (0) Origin offset (y-axis).
+---@param kx? number# (0) Shearing factor (x-axis).
+---@param ky? number# (0) Shearing factor (y-axis).
+---@diagnostic disable-next-line: args-after-dots
+function SpriteBatch:addLayer(layerindex, x, y, r, sx, sy, ox, oy, kx, ky) end
+
+---Adds a sprite to a batch created with an Array Texture.
+---
+---[Wiki](https://love2d.org/wiki/SpriteBatch:addLayer)
+---
+---@param layerindex number# The index of the layer to use for this sprite.
+---@param quad love.Quad# The subsection of the texture's layer to use when drawing the sprite.
+---@param x? number# (0) The position to draw the sprite (x-axis).
+---@param y? number# (0) The position to draw the sprite (y-axis).
+---@param r? number# (0) Orientation (radians).
+---@param sx? number# (1) Scale factor (x-axis).
+---@param sy? number# (sx) Scale factor (y-axis).
+---@param ox? number# (0) Origin offset (x-axis).
+---@param oy? number# (0) Origin offset (y-axis).
+---@param kx? number# (0) Shearing factor (x-axis).
+---@param ky? number# (0) Shearing factor (y-axis).
+---@diagnostic disable-next-line: args-after-dots
+function SpriteBatch:addLayer(layerindex, quad, x, y, r, sx, sy, ox, oy, kx, ky) end
+
+---Adds a sprite to a batch created with an Array Texture.
+---
+---[Wiki](https://love2d.org/wiki/SpriteBatch:addLayer)
+---
+---@param layerindex number# The index of the layer to use for this sprite.
+---@param transform love.Transform# A transform object.
+---@diagnostic disable-next-line: args-after-dots
+function SpriteBatch:addLayer(layerindex, transform) end
+
+---Adds a sprite to a batch created with an Array Texture.
+---
+---[Wiki](https://love2d.org/wiki/SpriteBatch:addLayer)
+---
+---@param layerindex number# The index of the layer to use for this sprite.
+---@param quad love.Quad# The subsection of the texture's layer to use when drawing the sprite.
+---@param transform love.Transform# A transform object.
+---@diagnostic disable-next-line: args-after-dots
+function SpriteBatch:addLayer(layerindex, quad, transform) end
+
+---Attaches a per-vertex attribute from a Mesh onto this SpriteBatch, for use when drawing. This can be combined with a Shader to augment a SpriteBatch with per-vertex or additional per-sprite information instead of just having per-sprite colors.
+---
+---Each sprite in a SpriteBatch has 4 vertices in the following order: top-left, bottom-left, top-right, bottom-right. The index returned by SpriteBatch:add (and used by SpriteBatch:set) can used to determine the first vertex of a specific sprite with the formula 1 + 4 * ( id - 1 ).
+---
+---[Wiki](https://love2d.org/wiki/SpriteBatch:attachAttribute)
+---
+---@param name string# The name of the vertex attribute to attach.
+---@param mesh love.Mesh# The Mesh to get the vertex attribute from.
+---@diagnostic disable-next-line: args-after-dots
+function SpriteBatch:attachAttribute(name, mesh) end
+
+---Removes all sprites from the buffer.
+---
+---[Wiki](https://love2d.org/wiki/SpriteBatch:clear)
+---
+---@diagnostic disable-next-line: args-after-dots
+function SpriteBatch:clear() end
+
+---Immediately sends all new and modified sprite data in the batch to the graphics card.
+---
+---Normally it isn't necessary to call this method as love.graphics.draw(spritebatch, ...) will do it automatically if needed, but explicitly using SpriteBatch:flush gives more control over when the work happens.
+---
+---If this method is used, it generally shouldn't be called more than once (at most) between love.graphics.draw(spritebatch, ...) calls.
+---
+---[Wiki](https://love2d.org/wiki/SpriteBatch:flush)
+---
+---@diagnostic disable-next-line: args-after-dots
+function SpriteBatch:flush() end
+
+---Gets the maximum number of sprites the SpriteBatch can hold.
+---
+---[Wiki](https://love2d.org/wiki/SpriteBatch:getBufferSize)
+---
+---@diagnostic disable-next-line: args-after-dots
+function SpriteBatch:getBufferSize() end
+
+---Gets the color that will be used for the next add and set operations.
+---
+---If no color has been set with SpriteBatch:setColor or the current SpriteBatch color has been cleared, this method will return nil.
+---
+---In versions prior to 11.0, color component values were within the range of 0 to 255 instead of 0 to 1.
+---
+---[Wiki](https://love2d.org/wiki/SpriteBatch:getColor)
+---
+---@diagnostic disable-next-line: args-after-dots
+function SpriteBatch:getColor() end
+
+---Gets the number of sprites currently in the SpriteBatch.
+---
+---[Wiki](https://love2d.org/wiki/SpriteBatch:getCount)
+---
+---@diagnostic disable-next-line: args-after-dots
+function SpriteBatch:getCount() end
+
+---Gets the texture (Image or Canvas) used by the SpriteBatch.
+---
+---[Wiki](https://love2d.org/wiki/SpriteBatch:getTexture)
+---
+---@diagnostic disable-next-line: args-after-dots
+function SpriteBatch:getTexture() end
+
+---Changes a sprite in the batch. This requires the sprite index returned by SpriteBatch:add or SpriteBatch:addLayer.
+---
+---[Wiki](https://love2d.org/wiki/SpriteBatch:set)
+---
+---@param spriteindex number# The index of the sprite that will be changed.
+---@param x number# The position to draw the object (x-axis).
+---@param y number# The position to draw the object (y-axis).
+---@param r? number# (0) Orientation (radians).
+---@param sx? number# (1) Scale factor (x-axis).
+---@param sy? number# (sx) Scale factor (y-axis).
+---@param ox? number# (0) Origin offset (x-axis).
+---@param oy? number# (0) Origin offset (y-axis).
+---@param kx? number# (0) Shear factor (x-axis).
+---@param ky? number# (0) Shear factor (y-axis).
+---@diagnostic disable-next-line: args-after-dots
+function SpriteBatch:set(spriteindex, x, y, r, sx, sy, ox, oy, kx, ky) end
+
+---Changes a sprite in the batch. This requires the sprite index returned by SpriteBatch:add or SpriteBatch:addLayer.
+---
+---[Wiki](https://love2d.org/wiki/SpriteBatch:set)
+---
+---@param spriteindex number# The index of the sprite that will be changed.
+---@param quad love.Quad# The Quad used on the image of the batch.
+---@param x number# The position to draw the object (x-axis).
+---@param y number# The position to draw the object (y-axis).
+---@param r? number# (0) Orientation (radians).
+---@param sx? number# (1) Scale factor (x-axis).
+---@param sy? number# (sx) Scale factor (y-axis).
+---@param ox? number# (0) Origin offset (x-axis).
+---@param oy? number# (0) Origin offset (y-axis).
+---@param kx? number# (0) Shear factor (x-axis).
+---@param ky? number# (0) Shear factor (y-axis).
+---@diagnostic disable-next-line: args-after-dots
+function SpriteBatch:set(spriteindex, quad, x, y, r, sx, sy, ox, oy, kx, ky) end
+
+---Sets the color that will be used for the next add and set operations. Calling the function without arguments will disable all per-sprite colors for the SpriteBatch.
+---
+---In versions prior to 11.0, color component values were within the range of 0 to 255 instead of 0 to 1.
+---
+---In version 0.9.2 and older, the global color set with love.graphics.setColor will not work on the SpriteBatch if any of the sprites has its own color.
+---
+---[Wiki](https://love2d.org/wiki/SpriteBatch:setColor)
+---
+---@param r number# The amount of red.
+---@param g number# The amount of green.
+---@param b number# The amount of blue.
+---@param a? number# (1) The amount of alpha.
+---@diagnostic disable-next-line: args-after-dots
+function SpriteBatch:setColor(r, g, b, a) end
+
+---Sets the color that will be used for the next add and set operations. Calling the function without arguments will disable all per-sprite colors for the SpriteBatch.
+---
+---In versions prior to 11.0, color component values were within the range of 0 to 255 instead of 0 to 1.
+---
+---In version 0.9.2 and older, the global color set with love.graphics.setColor will not work on the SpriteBatch if any of the sprites has its own color.
+---
+---[Wiki](https://love2d.org/wiki/SpriteBatch:setColor)
+---
+---@diagnostic disable-next-line: args-after-dots
+function SpriteBatch:setColor() end
+
+---Restricts the drawn sprites in the SpriteBatch to a subset of the total.
+---
+---[Wiki](https://love2d.org/wiki/SpriteBatch:setDrawRange)
+---
+---@param start number# The index of the first sprite to draw. Index 1 corresponds to the first sprite added with SpriteBatch:add.
+---@param count number# The number of sprites to draw.
+---@diagnostic disable-next-line: args-after-dots
+function SpriteBatch:setDrawRange(start, count) end
+
+---Restricts the drawn sprites in the SpriteBatch to a subset of the total.
+---
+---[Wiki](https://love2d.org/wiki/SpriteBatch:setDrawRange)
+---
+---@diagnostic disable-next-line: args-after-dots
+function SpriteBatch:setDrawRange() end
+
+---Changes a sprite previously added with add or addLayer, in a batch created with an Array Texture.
+---
+---[Wiki](https://love2d.org/wiki/SpriteBatch:setLayer)
+---
+---@param spriteindex number# The index of the existing sprite to replace.
+---@param layerindex number# The index of the layer in the Array Texture to use for this sprite.
+---@param x? number# (0) The position to draw the sprite (x-axis).
+---@param y? number# (0) The position to draw the sprite (y-axis).
+---@param r? number# (0) Orientation (radians).
+---@param sx? number# (1) Scale factor (x-axis).
+---@param sy? number# (sx) Scale factor (y-axis).
+---@param ox? number# (0) Origin offset (x-axis).
+---@param oy? number# (0) Origin offset (y-axis).
+---@param kx? number# (0) Shearing factor (x-axis).
+---@param ky? number# (0) Shearing factor (y-axis).
+---@diagnostic disable-next-line: args-after-dots
+function SpriteBatch:setLayer(spriteindex, layerindex, x, y, r, sx, sy, ox, oy, kx, ky) end
+
+---Changes a sprite previously added with add or addLayer, in a batch created with an Array Texture.
+---
+---[Wiki](https://love2d.org/wiki/SpriteBatch:setLayer)
+---
+---@param spriteindex number# The index of the existing sprite to replace.
+---@param layerindex number# The index of the layer to use for this sprite.
+---@param quad love.Quad# The subsection of the texture's layer to use when drawing the sprite.
+---@param x? number# (0) The position to draw the sprite (x-axis).
+---@param y? number# (0) The position to draw the sprite (y-axis).
+---@param r? number# (0) Orientation (radians).
+---@param sx? number# (1) Scale factor (x-axis).
+---@param sy? number# (sx) Scale factor (y-axis).
+---@param ox? number# (0) Origin offset (x-axis).
+---@param oy? number# (0) Origin offset (y-axis).
+---@param kx? number# (0) Shearing factor (x-axis).
+---@param ky? number# (0) Shearing factor (y-axis).
+---@diagnostic disable-next-line: args-after-dots
+function SpriteBatch:setLayer(spriteindex, layerindex, quad, x, y, r, sx, sy, ox, oy, kx, ky) end
+
+---Changes a sprite previously added with add or addLayer, in a batch created with an Array Texture.
+---
+---[Wiki](https://love2d.org/wiki/SpriteBatch:setLayer)
+---
+---@param spriteindex number# The index of the existing sprite to replace.
+---@param layerindex number# The index of the layer to use for the sprite.
+---@param transform love.Transform# A transform object.
+---@diagnostic disable-next-line: args-after-dots
+function SpriteBatch:setLayer(spriteindex, layerindex, transform) end
+
+---Changes a sprite previously added with add or addLayer, in a batch created with an Array Texture.
+---
+---[Wiki](https://love2d.org/wiki/SpriteBatch:setLayer)
+---
+---@param spriteindex number# The index of the existing sprite to replace.
+---@param layerindex number# The index of the layer to use for the sprite.
+---@param quad love.Quad# The subsection of the texture's layer to use when drawing the sprite.
+---@param transform love.Transform# A transform object.
+---@diagnostic disable-next-line: args-after-dots
+function SpriteBatch:setLayer(spriteindex, layerindex, quad, transform) end
+
+---Sets the texture (Image or Canvas) used for the sprites in the batch, when drawing.
+---
+---[Wiki](https://love2d.org/wiki/SpriteBatch:setTexture)
+---
+---@param texture love.Texture# The new Image or Canvas to use for the sprites in the batch.
+---@diagnostic disable-next-line: args-after-dots
+function SpriteBatch:setTexture(texture) end
+
+---Adds additional colored text to the Text object at the specified position.
+---
+---[Wiki](https://love2d.org/wiki/Text:add)
+---
+---@param textstring string# The text to add to the object.
+---@param x? number# (0) The position of the new text on the x-axis.
+---@param y? number# (0) The position of the new text on the y-axis.
+---@param angle? number# (0) The orientation of the new text in radians.
+---@param sx? number# (1) Scale factor on the x-axis.
+---@param sy? number# (sx) Scale factor on the y-axis.
+---@param ox? number# (0) Origin offset on the x-axis.
+---@param oy? number# (0) Origin offset on the y-axis.
+---@param kx? number# (0) Shearing / skew factor on the x-axis.
+---@param ky? number# (0) Shearing / skew factor on the y-axis.
+---@diagnostic disable-next-line: args-after-dots
+function Text:add(textstring, x, y, angle, sx, sy, ox, oy, kx, ky) end
+
+---Adds additional colored text to the Text object at the specified position.
+---
+---[Wiki](https://love2d.org/wiki/Text:add)
+---
+---@param coloredtext {
+---color1 : table,
+---string1 : string,
+---color2 : table,
+---string2 : string,
+---[...] : table|string}# A table containing colors and strings to add to the object, in the form of {color1, string1, color2, string2, ...}.
+---@param x? number# (0) The position of the new text on the x-axis.
+---@param y? number# (0) The position of the new text on the y-axis.
+---@param angle? number# (0) The orientation of the new text in radians.
+---@param sx? number# (1) Scale factor on the x-axis.
+---@param sy? number# (sx) Scale factor on the y-axis.
+---@param ox? number# (0) Origin offset on the x-axis.
+---@param oy? number# (0) Origin offset on the y-axis.
+---@param kx? number# (0) Shearing / skew factor on the x-axis.
+---@param ky? number# (0) Shearing / skew factor on the y-axis.
+---@diagnostic disable-next-line: args-after-dots
+function Text:add(coloredtext, x, y, angle, sx, sy, ox, oy, kx, ky) end
+
+---Adds additional formatted / colored text to the Text object at the specified position.
+---
+---The word wrap limit is applied before any scaling, rotation, and other coordinate transformations. Therefore the amount of text per line stays constant given the same wrap limit, even if the scale arguments change.
+---
+---[Wiki](https://love2d.org/wiki/Text:addf)
+---
+---@param textstring string# The text to add to the object.
+---@param wraplimit number# The maximum width in pixels of the text before it gets automatically wrapped to a new line.
+---@param align love.AlignMode# The alignment of the text.
+---@param x number# The position of the new text (x-axis).
+---@param y number# The position of the new text (y-axis).
+---@param angle? number# (0) Orientation (radians).
+---@param sx? number# (1) Scale factor (x-axis).
+---@param sy? number# (sx) Scale factor (y-axis).
+---@param ox? number# (0) Origin offset (x-axis).
+---@param oy? number# (0) Origin offset (y-axis).
+---@param kx? number# (0) Shearing / skew factor (x-axis).
+---@param ky? number# (0) Shearing / skew factor (y-axis).
+---@diagnostic disable-next-line: args-after-dots
+function Text:addf(textstring, wraplimit, align, x, y, angle, sx, sy, ox, oy, kx, ky) end
+
+---Adds additional formatted / colored text to the Text object at the specified position.
+---
+---The word wrap limit is applied before any scaling, rotation, and other coordinate transformations. Therefore the amount of text per line stays constant given the same wrap limit, even if the scale arguments change.
+---
+---[Wiki](https://love2d.org/wiki/Text:addf)
+---
+---@param coloredtext {
+---color1 : table,
+---string1 : string,
+---color2 : table,
+---string2 : string,
+---[...] : table|string}# A table containing colors and strings to add to the object, in the form of {color1, string1, color2, string2, ...}.
+---@param wraplimit number# The maximum width in pixels of the text before it gets automatically wrapped to a new line.
+---@param align love.AlignMode# The alignment of the text.
+---@param x number# The position of the new text (x-axis).
+---@param y number# The position of the new text (y-axis).
+---@param angle? number# (0) Orientation (radians).
+---@param sx? number# (1) Scale factor (x-axis).
+---@param sy? number# (sx) Scale factor (y-axis).
+---@param ox? number# (0) Origin offset (x-axis).
+---@param oy? number# (0) Origin offset (y-axis).
+---@param kx? number# (0) Shearing / skew factor (x-axis).
+---@param ky? number# (0) Shearing / skew factor (y-axis).
+---@diagnostic disable-next-line: args-after-dots
+function Text:addf(coloredtext, wraplimit, align, x, y, angle, sx, sy, ox, oy, kx, ky) end
+
+---Clears the contents of the Text object.
+---
+---[Wiki](https://love2d.org/wiki/Text:clear)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Text:clear() end
+
+---Gets the width and height of the text in pixels.
+---
+---[Wiki](https://love2d.org/wiki/Text:getDimensions)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Text:getDimensions() end
+
+---Gets the width and height of the text in pixels.
+---
+---[Wiki](https://love2d.org/wiki/Text:getDimensions)
+---
+---@param index number# An index number returned by Text:add or Text:addf.
+---@diagnostic disable-next-line: args-after-dots
+function Text:getDimensions(index) end
+
+---Gets the Font used with the Text object.
+---
+---[Wiki](https://love2d.org/wiki/Text:getFont)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Text:getFont() end
+
+---Gets the height of the text in pixels.
+---
+---[Wiki](https://love2d.org/wiki/Text:getHeight)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Text:getHeight() end
+
+---Gets the height of the text in pixels.
+---
+---[Wiki](https://love2d.org/wiki/Text:getHeight)
+---
+---@param index number# An index number returned by Text:add or Text:addf.
+---@diagnostic disable-next-line: args-after-dots
+function Text:getHeight(index) end
+
+---Gets the width of the text in pixels.
+---
+---[Wiki](https://love2d.org/wiki/Text:getWidth)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Text:getWidth() end
+
+---Gets the width of the text in pixels.
+---
+---[Wiki](https://love2d.org/wiki/Text:getWidth)
+---
+---@param index number# An index number returned by Text:add or Text:addf.
+---@diagnostic disable-next-line: args-after-dots
+function Text:getWidth(index) end
+
+---Replaces the contents of the Text object with a new unformatted string.
+---
+---[Wiki](https://love2d.org/wiki/Text:set)
+---
+---@param textstring string# The new string of text to use.
+---@diagnostic disable-next-line: args-after-dots
+function Text:set(textstring) end
+
+---Replaces the contents of the Text object with a new unformatted string.
+---
+---[Wiki](https://love2d.org/wiki/Text:set)
+---
+---@param coloredtext {
+---color1 : table,
+---string1 : string,
+---color2 : table,
+---string2 : string,
+---[...] : table|string}# A table containing colors and strings to use as the new text, in the form of {color1, string1, color2, string2, ...}.
+---@diagnostic disable-next-line: args-after-dots
+function Text:set(coloredtext) end
+
+---Replaces the Font used with the text.
+---
+---[Wiki](https://love2d.org/wiki/Text:setFont)
+---
+---@param font love.Font# The new font to use with this Text object.
+---@diagnostic disable-next-line: args-after-dots
+function Text:setFont(font) end
+
+---Replaces the contents of the Text object with a new formatted string.
+---
+---[Wiki](https://love2d.org/wiki/Text:setf)
+---
+---@param textstring string# The new string of text to use.
+---@param wraplimit number# The maximum width in pixels of the text before it gets automatically wrapped to a new line.
+---@param align love.AlignMode# The alignment of the text.
+---@diagnostic disable-next-line: args-after-dots
+function Text:setf(textstring, wraplimit, align) end
+
+---Replaces the contents of the Text object with a new formatted string.
+---
+---[Wiki](https://love2d.org/wiki/Text:setf)
+---
+---@param coloredtext {
+---color1 : table,
+---string1 : string,
+---color2 : table,
+---string2 : string,
+---[...] : table|string}# A table containing colors and strings to use as the new text, in the form of {color1, string1, color2, string2, ...}.
+---@param wraplimit number# The maximum width in pixels of the text before it gets automatically wrapped to a new line.
+---@param align love.AlignMode# The alignment of the text.
+---@diagnostic disable-next-line: args-after-dots
+function Text:setf(coloredtext, wraplimit, align) end
+
+---Gets the DPI scale factor of the Texture.
+---
+---The DPI scale factor represents relative pixel density. A DPI scale factor of 2 means the texture has twice the pixel density in each dimension (4 times as many pixels in the same area) compared to a texture with a DPI scale factor of 1.
+---
+---For example, a texture with pixel dimensions of 100x100 with a DPI scale factor of 2 will be drawn as if it was 50x50. This is useful with high-dpi /  retina displays to easily allow swapping out higher or lower pixel density Images and Canvases without needing any extra manual scaling logic.
+---
+---[Wiki](https://love2d.org/wiki/Texture:getDPIScale)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Texture:getDPIScale() end
+
+---Gets the depth of a Volume Texture. Returns 1 for 2D, Cubemap, and Array textures.
+---
+---[Wiki](https://love2d.org/wiki/Texture:getDepth)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Texture:getDepth() end
+
+---Gets the comparison mode used when sampling from a depth texture in a shader.
+---
+---Depth texture comparison modes are advanced low-level functionality typically used with shadow mapping in 3D.
+---
+---[Wiki](https://love2d.org/wiki/Texture:getDepthSampleMode)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Texture:getDepthSampleMode() end
+
+---Gets the width and height of the Texture.
+---
+---[Wiki](https://love2d.org/wiki/Texture:getDimensions)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Texture:getDimensions() end
+
+---Gets the filter mode of the Texture.
+---
+---[Wiki](https://love2d.org/wiki/Texture:getFilter)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Texture:getFilter() end
+
+---Gets the pixel format of the Texture.
+---
+---[Wiki](https://love2d.org/wiki/Texture:getFormat)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Texture:getFormat() end
+
+---Gets the height of the Texture.
+---
+---[Wiki](https://love2d.org/wiki/Texture:getHeight)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Texture:getHeight() end
+
+---Gets the number of layers / slices in an Array Texture. Returns 1 for 2D, Cubemap, and Volume textures.
+---
+---[Wiki](https://love2d.org/wiki/Texture:getLayerCount)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Texture:getLayerCount() end
+
+---Gets the number of mipmaps contained in the Texture. If the texture was not created with mipmaps, it will return 1.
+---
+---[Wiki](https://love2d.org/wiki/Texture:getMipmapCount)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Texture:getMipmapCount() end
+
+---Gets the mipmap filter mode for a Texture. Prior to 11.0 this method only worked on Images.
+---
+---[Wiki](https://love2d.org/wiki/Texture:getMipmapFilter)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Texture:getMipmapFilter() end
+
+---Gets the width and height in pixels of the Texture.
+---
+---Texture:getDimensions gets the dimensions of the texture in units scaled by the texture's DPI scale factor, rather than pixels. Use getDimensions for calculations related to drawing the texture (calculating an origin offset, for example), and getPixelDimensions only when dealing specifically with pixels, for example when using Canvas:newImageData.
+---
+---[Wiki](https://love2d.org/wiki/Texture:getPixelDimensions)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Texture:getPixelDimensions() end
+
+---Gets the height in pixels of the Texture.
+---
+---DPI scale factor, rather than pixels. Use getHeight for calculations related to drawing the texture (calculating an origin offset, for example), and getPixelHeight only when dealing specifically with pixels, for example when using Canvas:newImageData.
+---
+---[Wiki](https://love2d.org/wiki/Texture:getPixelHeight)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Texture:getPixelHeight() end
+
+---Gets the width in pixels of the Texture.
+---
+---DPI scale factor, rather than pixels. Use getWidth for calculations related to drawing the texture (calculating an origin offset, for example), and getPixelWidth only when dealing specifically with pixels, for example when using Canvas:newImageData.
+---
+---[Wiki](https://love2d.org/wiki/Texture:getPixelWidth)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Texture:getPixelWidth() end
+
+---Gets the type of the Texture.
+---
+---[Wiki](https://love2d.org/wiki/Texture:getTextureType)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Texture:getTextureType() end
+
+---Gets the width of the Texture.
+---
+---[Wiki](https://love2d.org/wiki/Texture:getWidth)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Texture:getWidth() end
+
+---Gets the wrapping properties of a Texture.
+---
+---This function returns the currently set horizontal and vertical wrapping modes for the texture.
+---
+---[Wiki](https://love2d.org/wiki/Texture:getWrap)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Texture:getWrap() end
+
+---Gets whether the Texture can be drawn and sent to a Shader.
+---
+---Canvases created with stencil and/or depth PixelFormats are not readable by default, unless readable=true is specified in the settings table passed into love.graphics.newCanvas.
+---
+---Non-readable Canvases can still be rendered to.
+---
+---[Wiki](https://love2d.org/wiki/Texture:isReadable)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Texture:isReadable() end
+
+---Sets the comparison mode used when sampling from a depth texture in a shader. Depth texture comparison modes are advanced low-level functionality typically used with shadow mapping in 3D.
+---
+---When using a depth texture with a comparison mode set in a shader, it must be declared as a sampler2DShadow and used in a GLSL 3 Shader. The result of accessing the texture in the shader will return a float between 0 and 1, proportional to the number of samples (up to 4 samples will be used if bilinear filtering is enabled) that passed the test set by the comparison operation.
+---
+---Depth texture comparison can only be used with readable depth-formatted Canvases.
+---
+---[Wiki](https://love2d.org/wiki/Texture:setDepthSampleMode)
+---
+---@param compare love.CompareMode# The comparison mode used when sampling from this texture in a shader.
+---@diagnostic disable-next-line: args-after-dots
+function Texture:setDepthSampleMode(compare) end
+
+---Sets the filter mode of the Texture.
+---
+---[Wiki](https://love2d.org/wiki/Texture:setFilter)
+---
+---@param min love.FilterMode# Filter mode to use when minifying the texture (rendering it at a smaller size on-screen than its size in pixels).
+---@param mag? love.FilterMode# (min) Filter mode to use when magnifying the texture (rendering it at a larger size on-screen than its size in pixels).
+---@param anisotropy? number# (1) Maximum amount of anisotropic filtering to use.
+---@diagnostic disable-next-line: args-after-dots
+function Texture:setFilter(min, mag, anisotropy) end
+
+---Sets the mipmap filter mode for a Texture. Prior to 11.0 this method only worked on Images.
+---
+---Mipmapping is useful when drawing a texture at a reduced scale. It can improve performance and reduce aliasing issues.
+---
+---In created with the mipmaps flag enabled for the mipmap filter to have any effect. In versions prior to 0.10.0 it's best to call this method directly after creating the image with love.graphics.newImage, to avoid bugs in certain graphics drivers.
+---
+---Due to hardware restrictions and driver bugs, in versions prior to 0.10.0 images that weren't loaded from a CompressedData must have power-of-two dimensions (64x64, 512x256, etc.) to use mipmaps.
+---
+---[Wiki](https://love2d.org/wiki/Texture:setMipmapFilter)
+---
+---@param filtermode love.FilterMode# The filter mode to use in between mipmap levels. 'nearest' will often give better performance.
+---@param sharpness? number# (0) A positive sharpness value makes the texture use a more detailed mipmap level when drawing, at the expense of performance. A negative value does the reverse.
+---@diagnostic disable-next-line: args-after-dots
+function Texture:setMipmapFilter(filtermode, sharpness) end
+
+---Sets the mipmap filter mode for a Texture. Prior to 11.0 this method only worked on Images.
+---
+---Mipmapping is useful when drawing a texture at a reduced scale. It can improve performance and reduce aliasing issues.
+---
+---In created with the mipmaps flag enabled for the mipmap filter to have any effect. In versions prior to 0.10.0 it's best to call this method directly after creating the image with love.graphics.newImage, to avoid bugs in certain graphics drivers.
+---
+---Due to hardware restrictions and driver bugs, in versions prior to 0.10.0 images that weren't loaded from a CompressedData must have power-of-two dimensions (64x64, 512x256, etc.) to use mipmaps.
+---
+---[Wiki](https://love2d.org/wiki/Texture:setMipmapFilter)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Texture:setMipmapFilter() end
+
+---Sets the wrapping properties of a Texture.
+---
+---This function sets the way a Texture is repeated when it is drawn with a Quad that is larger than the texture's extent, or when a custom Shader is used which uses texture coordinates outside of [0, 1]. A texture may be clamped or set to repeat in both horizontal and vertical directions.
+---
+---Clamped textures appear only once (with the edges of the texture stretching to fill the extent of the Quad), whereas repeated ones repeat as many times as there is room in the Quad.
+---
+---[Wiki](https://love2d.org/wiki/Texture:setWrap)
+---
+---@param horiz love.WrapMode# Horizontal wrapping mode of the texture.
+---@param vert? love.WrapMode# (horiz) Vertical wrapping mode of the texture.
+---@param depth? love.WrapMode# (horiz) Wrapping mode for the z-axis of a Volume texture.
+---@diagnostic disable-next-line: args-after-dots
+function Texture:setWrap(horiz, vert, depth) end
+
+---Gets the width and height of the Video in pixels.
+---
+---[Wiki](https://love2d.org/wiki/Video:getDimensions)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Video:getDimensions() end
+
+---Gets the scaling filters used when drawing the Video.
+---
+---[Wiki](https://love2d.org/wiki/Video:getFilter)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Video:getFilter() end
+
+---Gets the height of the Video in pixels.
+---
+---[Wiki](https://love2d.org/wiki/Video:getHeight)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Video:getHeight() end
+
+---Gets the audio Source used for playing back the video's audio. May return nil if the video has no audio, or if Video:setSource is called with a nil argument.
+---
+---[Wiki](https://love2d.org/wiki/Video:getSource)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Video:getSource() end
+
+---Gets the VideoStream object used for decoding and controlling the video.
+---
+---[Wiki](https://love2d.org/wiki/Video:getStream)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Video:getStream() end
+
+---Gets the width of the Video in pixels.
+---
+---[Wiki](https://love2d.org/wiki/Video:getWidth)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Video:getWidth() end
+
+---Gets whether the Video is currently playing.
+---
+---[Wiki](https://love2d.org/wiki/Video:isPlaying)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Video:isPlaying() end
+
+---Pauses the Video.
+---
+---[Wiki](https://love2d.org/wiki/Video:pause)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Video:pause() end
+
+---Starts playing the Video. In order for the video to appear onscreen it must be drawn with love.graphics.draw.
+---
+---[Wiki](https://love2d.org/wiki/Video:play)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Video:play() end
+
+---Rewinds the Video to the beginning.
+---
+---[Wiki](https://love2d.org/wiki/Video:rewind)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Video:rewind() end
+
+---Sets the current playback position of the Video.
+---
+---[Wiki](https://love2d.org/wiki/Video:seek)
+---
+---@param offset number# The time in seconds since the beginning of the Video.
+---@diagnostic disable-next-line: args-after-dots
+function Video:seek(offset) end
+
+---Sets the scaling filters used when drawing the Video.
+---
+---[Wiki](https://love2d.org/wiki/Video:setFilter)
+---
+---@param min love.FilterMode# The filter mode used when scaling the Video down.
+---@param mag love.FilterMode# The filter mode used when scaling the Video up.
+---@param anisotropy? number# (1) Maximum amount of anisotropic filtering used.
+---@diagnostic disable-next-line: args-after-dots
+function Video:setFilter(min, mag, anisotropy) end
+
+---Sets the audio Source used for playing back the video's audio. The audio Source also controls playback speed and synchronization.
+---
+---[Wiki](https://love2d.org/wiki/Video:setSource)
+---
+---@param source? love.Source# (nil) The audio Source used for audio playback, or nil to disable audio synchronization.
+---@diagnostic disable-next-line: args-after-dots
+function Video:setSource(source) end
+
+---Gets the current playback position of the Video.
+---
+---[Wiki](https://love2d.org/wiki/Video:tell)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Video:tell() end
+
+---Determines whether a file can be loaded as CompressedImageData.
+---
+---[Wiki](https://love2d.org/wiki/love.image.isCompressed)
+---
+---@param filename string# The filename of the potentially compressed image file.
+---@diagnostic disable-next-line: args-after-dots
+function love.image.isCompressed(filename) end
+
+---Determines whether a file can be loaded as CompressedImageData.
+---
+---[Wiki](https://love2d.org/wiki/love.image.isCompressed)
+---
+---@param fileData love.FileData# A FileData potentially containing a compressed image.
+---@diagnostic disable-next-line: args-after-dots
+function love.image.isCompressed(fileData) end
+
+---Create a new CompressedImageData object from a compressed image file. LÖVE supports several compressed texture formats, enumerated in the CompressedImageFormat page.
+---
+---[Wiki](https://love2d.org/wiki/love.image.newCompressedData)
+---
+---@param filename string# The filename of the compressed image file.
+---@diagnostic disable-next-line: args-after-dots
+function love.image.newCompressedData(filename) end
+
+---Create a new CompressedImageData object from a compressed image file. LÖVE supports several compressed texture formats, enumerated in the CompressedImageFormat page.
+---
+---[Wiki](https://love2d.org/wiki/love.image.newCompressedData)
+---
+---@param fileData love.FileData# A FileData containing a compressed image.
+---@diagnostic disable-next-line: args-after-dots
+function love.image.newCompressedData(fileData) end
+
+---Creates a new ImageData object.
+---
+---[Wiki](https://love2d.org/wiki/love.image.newImageData)
+---
+---@param width number# The width of the ImageData.
+---@param height number# The height of the ImageData.
+---@diagnostic disable-next-line: args-after-dots
+function love.image.newImageData(width, height) end
+
+---Creates a new ImageData object.
+---
+---[Wiki](https://love2d.org/wiki/love.image.newImageData)
+---
+---@param width number# The width of the ImageData.
+---@param height number# The height of the ImageData.
+---@param format? love.PixelFormat# ('rgba8') The pixel format of the ImageData.
+---@param data? string# (nil) Optional raw byte data to load into the ImageData, in the format specified by ''format''.
+---@diagnostic disable-next-line: args-after-dots
+function love.image.newImageData(width, height, format, data) end
+
+---Creates a new ImageData object.
+---
+---[Wiki](https://love2d.org/wiki/love.image.newImageData)
+---
+---@param width number# The width of the ImageData.
+---@param height number# The height of the ImageData.
+---@param data string# The data to load into the ImageData (RGBA bytes, left to right and top to bottom).
+---@diagnostic disable-next-line: args-after-dots
+function love.image.newImageData(width, height, data) end
+
+---Creates a new ImageData object.
+---
+---[Wiki](https://love2d.org/wiki/love.image.newImageData)
+---
+---@param filename string# The filename of the image file.
+---@diagnostic disable-next-line: args-after-dots
+function love.image.newImageData(filename) end
+
+---Creates a new ImageData object.
+---
+---[Wiki](https://love2d.org/wiki/love.image.newImageData)
+---
+---@param filedata love.FileData# The encoded file data to decode into image data.
+---@diagnostic disable-next-line: args-after-dots
+function love.image.newImageData(filedata) end
+
 ---Gets the width and height of the CompressedImageData.
 ---
 ---[Wiki](https://love2d.org/wiki/CompressedImageData:getDimensions)
@@ -9259,83 +9337,100 @@ function ImageData:setPixel(x, y, color) end
 ---@diagnostic disable-next-line: args-after-dots
 function ImageData:getFormat() end
 
----Determines whether a file can be loaded as CompressedImageData.
+---Gets the full gamepad mapping string of the Joysticks which have the given GUID, or nil if the GUID isn't recognized as a gamepad.
 ---
----[Wiki](https://love2d.org/wiki/love.image.isCompressed)
+---The mapping string contains binding information used to map the Joystick's buttons an axes to the standard gamepad layout, and can be used later with love.joystick.loadGamepadMappings.
 ---
----@param filename string# The filename of the potentially compressed image file.
+---[Wiki](https://love2d.org/wiki/love.joystick.getGamepadMappingString)
+---
+---@param guid string# The GUID value to get the mapping string for.
 ---@diagnostic disable-next-line: args-after-dots
-function love.image.isCompressed(filename) end
+function love.joystick.getGamepadMappingString(guid) end
 
----Determines whether a file can be loaded as CompressedImageData.
+---Gets the number of connected joysticks.
 ---
----[Wiki](https://love2d.org/wiki/love.image.isCompressed)
+---[Wiki](https://love2d.org/wiki/love.joystick.getJoystickCount)
 ---
----@param fileData love.FileData# A FileData potentially containing a compressed image.
 ---@diagnostic disable-next-line: args-after-dots
-function love.image.isCompressed(fileData) end
+function love.joystick.getJoystickCount() end
 
----Create a new CompressedImageData object from a compressed image file. LÖVE supports several compressed texture formats, enumerated in the CompressedImageFormat page.
+---Gets a list of connected Joysticks.
 ---
----[Wiki](https://love2d.org/wiki/love.image.newCompressedData)
+---[Wiki](https://love2d.org/wiki/love.joystick.getJoysticks)
 ---
----@param filename string# The filename of the compressed image file.
 ---@diagnostic disable-next-line: args-after-dots
-function love.image.newCompressedData(filename) end
+function love.joystick.getJoysticks() end
 
----Create a new CompressedImageData object from a compressed image file. LÖVE supports several compressed texture formats, enumerated in the CompressedImageFormat page.
+---Loads a gamepad mappings string or file created with love.joystick.saveGamepadMappings.
 ---
----[Wiki](https://love2d.org/wiki/love.image.newCompressedData)
+---It also recognizes any SDL gamecontroller mapping string, such as those created with Steam's Big Picture controller configure interface, or this nice database. If a new mapping is loaded for an already known controller GUID, the later version will overwrite the one currently loaded.
 ---
----@param fileData love.FileData# A FileData containing a compressed image.
+---[Wiki](https://love2d.org/wiki/love.joystick.loadGamepadMappings)
+---
+---@param filename string# The filename to load the mappings string from.
 ---@diagnostic disable-next-line: args-after-dots
-function love.image.newCompressedData(fileData) end
+function love.joystick.loadGamepadMappings(filename) end
 
----Creates a new ImageData object.
+---Loads a gamepad mappings string or file created with love.joystick.saveGamepadMappings.
 ---
----[Wiki](https://love2d.org/wiki/love.image.newImageData)
+---It also recognizes any SDL gamecontroller mapping string, such as those created with Steam's Big Picture controller configure interface, or this nice database. If a new mapping is loaded for an already known controller GUID, the later version will overwrite the one currently loaded.
 ---
----@param width number# The width of the ImageData.
----@param height number# The height of the ImageData.
+---[Wiki](https://love2d.org/wiki/love.joystick.loadGamepadMappings)
+---
+---@param mappings string# The mappings string to load.
 ---@diagnostic disable-next-line: args-after-dots
-function love.image.newImageData(width, height) end
+function love.joystick.loadGamepadMappings(mappings) end
 
----Creates a new ImageData object.
+---Saves the virtual gamepad mappings of all recognized as gamepads and have either been recently used or their gamepad bindings have been modified.
 ---
----[Wiki](https://love2d.org/wiki/love.image.newImageData)
+---The mappings are stored as a string for use with love.joystick.loadGamepadMappings.
 ---
----@param width number# The width of the ImageData.
----@param height number# The height of the ImageData.
----@param format? love.PixelFormat# ('rgba8') The pixel format of the ImageData.
----@param data? string# (nil) Optional raw byte data to load into the ImageData, in the format specified by ''format''.
+---[Wiki](https://love2d.org/wiki/love.joystick.saveGamepadMappings)
+---
+---@param filename string# The filename to save the mappings string to.
 ---@diagnostic disable-next-line: args-after-dots
-function love.image.newImageData(width, height, format, data) end
+function love.joystick.saveGamepadMappings(filename) end
 
----Creates a new ImageData object.
+---Saves the virtual gamepad mappings of all recognized as gamepads and have either been recently used or their gamepad bindings have been modified.
 ---
----[Wiki](https://love2d.org/wiki/love.image.newImageData)
+---The mappings are stored as a string for use with love.joystick.loadGamepadMappings.
 ---
----@param width number# The width of the ImageData.
----@param height number# The height of the ImageData.
----@param data string# The data to load into the ImageData (RGBA bytes, left to right and top to bottom).
+---[Wiki](https://love2d.org/wiki/love.joystick.saveGamepadMappings)
+---
 ---@diagnostic disable-next-line: args-after-dots
-function love.image.newImageData(width, height, data) end
+function love.joystick.saveGamepadMappings() end
 
----Creates a new ImageData object.
+---Binds a virtual gamepad input to a button, axis or hat for all Joysticks of a certain type. For example, if this function is used with a GUID returned by a Dualshock 3 controller in OS X, the binding will affect Joystick:getGamepadAxis and Joystick:isGamepadDown for ''all'' Dualshock 3 controllers used with the game when run in OS X.
 ---
----[Wiki](https://love2d.org/wiki/love.image.newImageData)
+---LÖVE includes built-in gamepad bindings for many common controllers. This function lets you change the bindings or add new ones for types of Joysticks which aren't recognized as gamepads by default.
 ---
----@param filename string# The filename of the image file.
+---The virtual gamepad buttons and axes are designed around the Xbox 360 controller layout.
+---
+---[Wiki](https://love2d.org/wiki/love.joystick.setGamepadMapping)
+---
+---@param guid string# The OS-dependent GUID for the type of Joystick the binding will affect.
+---@param button love.GamepadButton# The virtual gamepad button to bind.
+---@param inputtype love.JoystickInputType# The type of input to bind the virtual gamepad button to.
+---@param inputindex number# The index of the axis, button, or hat to bind the virtual gamepad button to.
+---@param hatdir? love.JoystickHat# (nil) The direction of the hat, if the virtual gamepad button will be bound to a hat. nil otherwise.
 ---@diagnostic disable-next-line: args-after-dots
-function love.image.newImageData(filename) end
+function love.joystick.setGamepadMapping(guid, button, inputtype, inputindex, hatdir) end
 
----Creates a new ImageData object.
+---Binds a virtual gamepad input to a button, axis or hat for all Joysticks of a certain type. For example, if this function is used with a GUID returned by a Dualshock 3 controller in OS X, the binding will affect Joystick:getGamepadAxis and Joystick:isGamepadDown for ''all'' Dualshock 3 controllers used with the game when run in OS X.
 ---
----[Wiki](https://love2d.org/wiki/love.image.newImageData)
+---LÖVE includes built-in gamepad bindings for many common controllers. This function lets you change the bindings or add new ones for types of Joysticks which aren't recognized as gamepads by default.
 ---
----@param filedata love.FileData# The encoded file data to decode into image data.
+---The virtual gamepad buttons and axes are designed around the Xbox 360 controller layout.
+---
+---[Wiki](https://love2d.org/wiki/love.joystick.setGamepadMapping)
+---
+---@param guid string# The OS-dependent GUID for the type of Joystick the binding will affect.
+---@param axis love.GamepadAxis# The virtual gamepad axis to bind.
+---@param inputtype love.JoystickInputType# The type of input to bind the virtual gamepad axis to.
+---@param inputindex number# The index of the axis, button, or hat to bind the virtual gamepad axis to.
+---@param hatdir? love.JoystickHat# (nil) The direction of the hat, if the virtual gamepad axis will be bound to a hat. nil otherwise.
 ---@diagnostic disable-next-line: args-after-dots
-function love.image.newImageData(filedata) end
+function love.joystick.setGamepadMapping(guid, axis, inputtype, inputindex, hatdir) end
 
 ---Gets the direction of each axis.
 ---
@@ -9518,101 +9613,6 @@ function Joystick:setVibration() end
 ---@diagnostic disable-next-line: args-after-dots
 function Joystick:setVibration(left, right, duration) end
 
----Gets the full gamepad mapping string of the Joysticks which have the given GUID, or nil if the GUID isn't recognized as a gamepad.
----
----The mapping string contains binding information used to map the Joystick's buttons an axes to the standard gamepad layout, and can be used later with love.joystick.loadGamepadMappings.
----
----[Wiki](https://love2d.org/wiki/love.joystick.getGamepadMappingString)
----
----@param guid string# The GUID value to get the mapping string for.
----@diagnostic disable-next-line: args-after-dots
-function love.joystick.getGamepadMappingString(guid) end
-
----Gets the number of connected joysticks.
----
----[Wiki](https://love2d.org/wiki/love.joystick.getJoystickCount)
----
----@diagnostic disable-next-line: args-after-dots
-function love.joystick.getJoystickCount() end
-
----Gets a list of connected Joysticks.
----
----[Wiki](https://love2d.org/wiki/love.joystick.getJoysticks)
----
----@diagnostic disable-next-line: args-after-dots
-function love.joystick.getJoysticks() end
-
----Loads a gamepad mappings string or file created with love.joystick.saveGamepadMappings.
----
----It also recognizes any SDL gamecontroller mapping string, such as those created with Steam's Big Picture controller configure interface, or this nice database. If a new mapping is loaded for an already known controller GUID, the later version will overwrite the one currently loaded.
----
----[Wiki](https://love2d.org/wiki/love.joystick.loadGamepadMappings)
----
----@param filename string# The filename to load the mappings string from.
----@diagnostic disable-next-line: args-after-dots
-function love.joystick.loadGamepadMappings(filename) end
-
----Loads a gamepad mappings string or file created with love.joystick.saveGamepadMappings.
----
----It also recognizes any SDL gamecontroller mapping string, such as those created with Steam's Big Picture controller configure interface, or this nice database. If a new mapping is loaded for an already known controller GUID, the later version will overwrite the one currently loaded.
----
----[Wiki](https://love2d.org/wiki/love.joystick.loadGamepadMappings)
----
----@param mappings string# The mappings string to load.
----@diagnostic disable-next-line: args-after-dots
-function love.joystick.loadGamepadMappings(mappings) end
-
----Saves the virtual gamepad mappings of all recognized as gamepads and have either been recently used or their gamepad bindings have been modified.
----
----The mappings are stored as a string for use with love.joystick.loadGamepadMappings.
----
----[Wiki](https://love2d.org/wiki/love.joystick.saveGamepadMappings)
----
----@param filename string# The filename to save the mappings string to.
----@diagnostic disable-next-line: args-after-dots
-function love.joystick.saveGamepadMappings(filename) end
-
----Saves the virtual gamepad mappings of all recognized as gamepads and have either been recently used or their gamepad bindings have been modified.
----
----The mappings are stored as a string for use with love.joystick.loadGamepadMappings.
----
----[Wiki](https://love2d.org/wiki/love.joystick.saveGamepadMappings)
----
----@diagnostic disable-next-line: args-after-dots
-function love.joystick.saveGamepadMappings() end
-
----Binds a virtual gamepad input to a button, axis or hat for all Joysticks of a certain type. For example, if this function is used with a GUID returned by a Dualshock 3 controller in OS X, the binding will affect Joystick:getGamepadAxis and Joystick:isGamepadDown for ''all'' Dualshock 3 controllers used with the game when run in OS X.
----
----LÖVE includes built-in gamepad bindings for many common controllers. This function lets you change the bindings or add new ones for types of Joysticks which aren't recognized as gamepads by default.
----
----The virtual gamepad buttons and axes are designed around the Xbox 360 controller layout.
----
----[Wiki](https://love2d.org/wiki/love.joystick.setGamepadMapping)
----
----@param guid string# The OS-dependent GUID for the type of Joystick the binding will affect.
----@param button love.GamepadButton# The virtual gamepad button to bind.
----@param inputtype love.JoystickInputType# The type of input to bind the virtual gamepad button to.
----@param inputindex number# The index of the axis, button, or hat to bind the virtual gamepad button to.
----@param hatdir? love.JoystickHat# (nil) The direction of the hat, if the virtual gamepad button will be bound to a hat. nil otherwise.
----@diagnostic disable-next-line: args-after-dots
-function love.joystick.setGamepadMapping(guid, button, inputtype, inputindex, hatdir) end
-
----Binds a virtual gamepad input to a button, axis or hat for all Joysticks of a certain type. For example, if this function is used with a GUID returned by a Dualshock 3 controller in OS X, the binding will affect Joystick:getGamepadAxis and Joystick:isGamepadDown for ''all'' Dualshock 3 controllers used with the game when run in OS X.
----
----LÖVE includes built-in gamepad bindings for many common controllers. This function lets you change the bindings or add new ones for types of Joysticks which aren't recognized as gamepads by default.
----
----The virtual gamepad buttons and axes are designed around the Xbox 360 controller layout.
----
----[Wiki](https://love2d.org/wiki/love.joystick.setGamepadMapping)
----
----@param guid string# The OS-dependent GUID for the type of Joystick the binding will affect.
----@param axis love.GamepadAxis# The virtual gamepad axis to bind.
----@param inputtype love.JoystickInputType# The type of input to bind the virtual gamepad axis to.
----@param inputindex number# The index of the axis, button, or hat to bind the virtual gamepad axis to.
----@param hatdir? love.JoystickHat# (nil) The direction of the hat, if the virtual gamepad axis will be bound to a hat. nil otherwise.
----@diagnostic disable-next-line: args-after-dots
-function love.joystick.setGamepadMapping(guid, axis, inputtype, inputindex, hatdir) end
-
 ---Gets the key corresponding to the given hardware scancode.
 ---
 ---Unlike key constants, Scancodes are keyboard layout-independent. For example the scancode 'w' will be generated if the key in the same place as the 'w' key on an American keyboard is pressed, no matter what the key is labelled or what the user's operating system settings are.
@@ -9717,6 +9717,358 @@ function love.keyboard.setTextInput(enable) end
 ---@param h number# Text rectangle height.
 ---@diagnostic disable-next-line: args-after-dots
 function love.keyboard.setTextInput(enable, x, y, w, h) end
+
+---Converts a color from 0..255 to 0..1 range.
+---
+---[Wiki](https://love2d.org/wiki/love.math.colorFromBytes)
+---
+---@param rb number# Red color component in 0..255 range.
+---@param gb number# Green color component in 0..255 range.
+---@param bb number# Blue color component in 0..255 range.
+---@param ab? number# (nil) Alpha color component in 0..255 range.
+---@diagnostic disable-next-line: args-after-dots
+function love.math.colorFromBytes(rb, gb, bb, ab) end
+
+---Converts a color from 0..1 to 0..255 range.
+---
+---[Wiki](https://love2d.org/wiki/love.math.colorToBytes)
+---
+---@param r number# Red color component.
+---@param g number# Green color component.
+---@param b number# Blue color component.
+---@param a? number# (nil) Alpha color component.
+---@diagnostic disable-next-line: args-after-dots
+function love.math.colorToBytes(r, g, b, a) end
+
+---Converts a color from gamma-space (sRGB) to linear-space (RGB). This is useful when doing gamma-correct rendering and you need to do math in linear RGB in the few cases where LÖVE doesn't handle conversions automatically.
+---
+---Read more about gamma-correct rendering here, here, and here.
+---
+---In versions prior to 11.0, color component values were within the range of 0 to 255 instead of 0 to 1.
+---
+---[Wiki](https://love2d.org/wiki/love.math.gammaToLinear)
+---
+---@param r number# The red channel of the sRGB color to convert.
+---@param g number# The green channel of the sRGB color to convert.
+---@param b number# The blue channel of the sRGB color to convert.
+---@diagnostic disable-next-line: args-after-dots
+function love.math.gammaToLinear(r, g, b) end
+
+---Converts a color from gamma-space (sRGB) to linear-space (RGB). This is useful when doing gamma-correct rendering and you need to do math in linear RGB in the few cases where LÖVE doesn't handle conversions automatically.
+---
+---Read more about gamma-correct rendering here, here, and here.
+---
+---In versions prior to 11.0, color component values were within the range of 0 to 255 instead of 0 to 1.
+---
+---[Wiki](https://love2d.org/wiki/love.math.gammaToLinear)
+---
+---@param color table# An array with the red, green, and blue channels of the sRGB color to convert.
+---@diagnostic disable-next-line: args-after-dots
+function love.math.gammaToLinear(color) end
+
+---Converts a color from gamma-space (sRGB) to linear-space (RGB). This is useful when doing gamma-correct rendering and you need to do math in linear RGB in the few cases where LÖVE doesn't handle conversions automatically.
+---
+---Read more about gamma-correct rendering here, here, and here.
+---
+---In versions prior to 11.0, color component values were within the range of 0 to 255 instead of 0 to 1.
+---
+---[Wiki](https://love2d.org/wiki/love.math.gammaToLinear)
+---
+---@param c number# The value of a color channel in sRGB space to convert.
+---@diagnostic disable-next-line: args-after-dots
+function love.math.gammaToLinear(c) end
+
+---Gets the seed of the random number generator.
+---
+---The seed is split into two numbers due to Lua's use of doubles for all number values - doubles can't accurately represent integer  values above 2^53, but the seed can be an integer value up to 2^64.
+---
+---[Wiki](https://love2d.org/wiki/love.math.getRandomSeed)
+---
+---@diagnostic disable-next-line: args-after-dots
+function love.math.getRandomSeed() end
+
+---Gets the current state of the random number generator. This returns an opaque implementation-dependent string which is only useful for later use with love.math.setRandomState or RandomGenerator:setState.
+---
+---This is different from love.math.getRandomSeed in that getRandomState gets the random number generator's current state, whereas getRandomSeed gets the previously set seed number.
+---
+---[Wiki](https://love2d.org/wiki/love.math.getRandomState)
+---
+---@diagnostic disable-next-line: args-after-dots
+function love.math.getRandomState() end
+
+---Checks whether a polygon is convex.
+---
+---PolygonShapes in love.physics, some forms of Meshes, and polygons drawn with love.graphics.polygon must be simple convex polygons.
+---
+---[Wiki](https://love2d.org/wiki/love.math.isConvex)
+---
+---@param vertices table[]# The vertices of the polygon as a table in the form of {x1, y1, x2, y2, x3, y3, ...}.
+---@diagnostic disable-next-line: args-after-dots
+function love.math.isConvex(vertices) end
+
+---Checks whether a polygon is convex.
+---
+---PolygonShapes in love.physics, some forms of Meshes, and polygons drawn with love.graphics.polygon must be simple convex polygons.
+---
+---[Wiki](https://love2d.org/wiki/love.math.isConvex)
+---
+---@param x1 number# The position of the first vertex of the polygon on the x-axis.
+---@param y1 number# The position of the first vertex of the polygon on the y-axis.
+---@param x2 number# The position of the second vertex of the polygon on the x-axis.
+---@param y2 number# The position of the second vertex of the polygon on the y-axis.
+---@param ... number# Additional position of the vertex of the polygon on the x-axis and y-axis.
+---@diagnostic disable-next-line: args-after-dots
+function love.math.isConvex(x1, y1, x2, y2, ...) end
+
+---Converts a color from linear-space (RGB) to gamma-space (sRGB). This is useful when storing linear RGB color values in an image, because the linear RGB color space has less precision than sRGB for dark colors, which can result in noticeable color banding when drawing.
+---
+---In general, colors chosen based on what they look like on-screen are already in gamma-space and should not be double-converted. Colors calculated using math are often in the linear RGB space.
+---
+---Read more about gamma-correct rendering here, here, and here.
+---
+---In versions prior to 11.0, color component values were within the range of 0 to 255 instead of 0 to 1.
+---
+---[Wiki](https://love2d.org/wiki/love.math.linearToGamma)
+---
+---@param lr number# The red channel of the linear RGB color to convert.
+---@param lg number# The green channel of the linear RGB color to convert.
+---@param lb number# The blue channel of the linear RGB color to convert.
+---@diagnostic disable-next-line: args-after-dots
+function love.math.linearToGamma(lr, lg, lb) end
+
+---Converts a color from linear-space (RGB) to gamma-space (sRGB). This is useful when storing linear RGB color values in an image, because the linear RGB color space has less precision than sRGB for dark colors, which can result in noticeable color banding when drawing.
+---
+---In general, colors chosen based on what they look like on-screen are already in gamma-space and should not be double-converted. Colors calculated using math are often in the linear RGB space.
+---
+---Read more about gamma-correct rendering here, here, and here.
+---
+---In versions prior to 11.0, color component values were within the range of 0 to 255 instead of 0 to 1.
+---
+---[Wiki](https://love2d.org/wiki/love.math.linearToGamma)
+---
+---@param color table[]# An array with the red, green, and blue channels of the linear RGB color to convert.
+---@diagnostic disable-next-line: args-after-dots
+function love.math.linearToGamma(color) end
+
+---Converts a color from linear-space (RGB) to gamma-space (sRGB). This is useful when storing linear RGB color values in an image, because the linear RGB color space has less precision than sRGB for dark colors, which can result in noticeable color banding when drawing.
+---
+---In general, colors chosen based on what they look like on-screen are already in gamma-space and should not be double-converted. Colors calculated using math are often in the linear RGB space.
+---
+---Read more about gamma-correct rendering here, here, and here.
+---
+---In versions prior to 11.0, color component values were within the range of 0 to 255 instead of 0 to 1.
+---
+---[Wiki](https://love2d.org/wiki/love.math.linearToGamma)
+---
+---@param lc number# The value of a color channel in linear RGB space to convert.
+---@diagnostic disable-next-line: args-after-dots
+function love.math.linearToGamma(lc) end
+
+---Creates a new BezierCurve object.
+---
+---The number of vertices in the control polygon determines the degree of the curve, e.g. three vertices define a quadratic (degree 2) Bézier curve, four vertices define a cubic (degree 3) Bézier curve, etc.
+---
+---[Wiki](https://love2d.org/wiki/love.math.newBezierCurve)
+---
+---@param vertices table[]# The vertices of the control polygon as a table in the form of {x1, y1, x2, y2, x3, y3, ...}.
+---@diagnostic disable-next-line: args-after-dots
+function love.math.newBezierCurve(vertices) end
+
+---Creates a new BezierCurve object.
+---
+---The number of vertices in the control polygon determines the degree of the curve, e.g. three vertices define a quadratic (degree 2) Bézier curve, four vertices define a cubic (degree 3) Bézier curve, etc.
+---
+---[Wiki](https://love2d.org/wiki/love.math.newBezierCurve)
+---
+---@param x1 number# The position of the first vertex of the control polygon on the x-axis.
+---@param y1 number# The position of the first vertex of the control polygon on the y-axis.
+---@param x2 number# The position of the second vertex of the control polygon on the x-axis.
+---@param y2 number# The position of the second vertex of the control polygon on the y-axis.
+---@param ... number# Additional position of the vertex of the control polygon on the x-axis and y-axis.
+---@diagnostic disable-next-line: args-after-dots
+function love.math.newBezierCurve(x1, y1, x2, y2, ...) end
+
+---Creates a new RandomGenerator object which is completely independent of other RandomGenerator objects and random functions.
+---
+---[Wiki](https://love2d.org/wiki/love.math.newRandomGenerator)
+---
+---@diagnostic disable-next-line: args-after-dots
+function love.math.newRandomGenerator() end
+
+---Creates a new RandomGenerator object which is completely independent of other RandomGenerator objects and random functions.
+---
+---[Wiki](https://love2d.org/wiki/love.math.newRandomGenerator)
+---
+---@param seed number# The initial seed number to use for this object.
+---@diagnostic disable-next-line: args-after-dots
+function love.math.newRandomGenerator(seed) end
+
+---Creates a new RandomGenerator object which is completely independent of other RandomGenerator objects and random functions.
+---
+---[Wiki](https://love2d.org/wiki/love.math.newRandomGenerator)
+---
+---@param low number# The lower 32 bits of the seed number to use for this object.
+---@param high number# The higher 32 bits of the seed number to use for this object.
+---@diagnostic disable-next-line: args-after-dots
+function love.math.newRandomGenerator(low, high) end
+
+---Creates a new Transform object.
+---
+---[Wiki](https://love2d.org/wiki/love.math.newTransform)
+---
+---@diagnostic disable-next-line: args-after-dots
+function love.math.newTransform() end
+
+---Creates a new Transform object.
+---
+---[Wiki](https://love2d.org/wiki/love.math.newTransform)
+---
+---@param x number# The position of the new Transform on the x-axis.
+---@param y number# The position of the new Transform on the y-axis.
+---@param angle? number# (0) The orientation of the new Transform in radians.
+---@param sx? number# (1) Scale factor on the x-axis.
+---@param sy? number# (sx) Scale factor on the y-axis.
+---@param ox? number# (0) Origin offset on the x-axis.
+---@param oy? number# (0) Origin offset on the y-axis.
+---@param kx? number# (0) Shearing / skew factor on the x-axis.
+---@param ky? number# (0) Shearing / skew factor on the y-axis.
+---@diagnostic disable-next-line: args-after-dots
+function love.math.newTransform(x, y, angle, sx, sy, ox, oy, kx, ky) end
+
+---Generates a Simplex or Perlin noise value in 1-4 dimensions. The return value will always be the same, given the same arguments.
+---
+---Simplex noise is closely related to Perlin noise. It is widely used for procedural content generation.
+---
+---There are many webpages which discuss Perlin and Simplex noise in detail.
+---
+---[Wiki](https://love2d.org/wiki/love.math.noise)
+---
+---@param x number# The number used to generate the noise value.
+---@diagnostic disable-next-line: args-after-dots
+function love.math.noise(x) end
+
+---Generates a Simplex or Perlin noise value in 1-4 dimensions. The return value will always be the same, given the same arguments.
+---
+---Simplex noise is closely related to Perlin noise. It is widely used for procedural content generation.
+---
+---There are many webpages which discuss Perlin and Simplex noise in detail.
+---
+---[Wiki](https://love2d.org/wiki/love.math.noise)
+---
+---@param x number# The first value of the 2-dimensional vector used to generate the noise value.
+---@param y number# The second value of the 2-dimensional vector used to generate the noise value.
+---@diagnostic disable-next-line: args-after-dots
+function love.math.noise(x, y) end
+
+---Generates a Simplex or Perlin noise value in 1-4 dimensions. The return value will always be the same, given the same arguments.
+---
+---Simplex noise is closely related to Perlin noise. It is widely used for procedural content generation.
+---
+---There are many webpages which discuss Perlin and Simplex noise in detail.
+---
+---[Wiki](https://love2d.org/wiki/love.math.noise)
+---
+---@param x number# The first value of the 3-dimensional vector used to generate the noise value.
+---@param y number# The second value of the 3-dimensional vector used to generate the noise value.
+---@param z number# The third value of the 3-dimensional vector used to generate the noise value.
+---@diagnostic disable-next-line: args-after-dots
+function love.math.noise(x, y, z) end
+
+---Generates a Simplex or Perlin noise value in 1-4 dimensions. The return value will always be the same, given the same arguments.
+---
+---Simplex noise is closely related to Perlin noise. It is widely used for procedural content generation.
+---
+---There are many webpages which discuss Perlin and Simplex noise in detail.
+---
+---[Wiki](https://love2d.org/wiki/love.math.noise)
+---
+---@param x number# The first value of the 4-dimensional vector used to generate the noise value.
+---@param y number# The second value of the 4-dimensional vector used to generate the noise value.
+---@param z number# The third value of the 4-dimensional vector used to generate the noise value.
+---@param w number# The fourth value of the 4-dimensional vector used to generate the noise value.
+---@diagnostic disable-next-line: args-after-dots
+function love.math.noise(x, y, z, w) end
+
+---Generates a pseudo-random number in a platform independent manner. The default love.run seeds this function at startup, so you generally don't need to seed it yourself.
+---
+---[Wiki](https://love2d.org/wiki/love.math.random)
+---
+---@diagnostic disable-next-line: args-after-dots
+function love.math.random() end
+
+---Generates a pseudo-random number in a platform independent manner. The default love.run seeds this function at startup, so you generally don't need to seed it yourself.
+---
+---[Wiki](https://love2d.org/wiki/love.math.random)
+---
+---@param max number# The maximum possible value it should return.
+---@diagnostic disable-next-line: args-after-dots
+function love.math.random(max) end
+
+---Generates a pseudo-random number in a platform independent manner. The default love.run seeds this function at startup, so you generally don't need to seed it yourself.
+---
+---[Wiki](https://love2d.org/wiki/love.math.random)
+---
+---@param min number# The minimum possible value it should return.
+---@param max number# The maximum possible value it should return.
+---@diagnostic disable-next-line: args-after-dots
+function love.math.random(min, max) end
+
+---Get a normally distributed pseudo random number.
+---
+---[Wiki](https://love2d.org/wiki/love.math.randomNormal)
+---
+---@param stddev? number# (1) Standard deviation of the distribution.
+---@param mean? number# (0) The mean of the distribution.
+---@diagnostic disable-next-line: args-after-dots
+function love.math.randomNormal(stddev, mean) end
+
+---Sets the seed of the random number generator using the specified integer number. This is called internally at startup, so you generally don't need to call it yourself.
+---
+---[Wiki](https://love2d.org/wiki/love.math.setRandomSeed)
+---
+---@param seed number# The integer number with which you want to seed the randomization. Must be within the range of 2^53 - 1.
+---@diagnostic disable-next-line: args-after-dots
+function love.math.setRandomSeed(seed) end
+
+---Sets the seed of the random number generator using the specified integer number. This is called internally at startup, so you generally don't need to call it yourself.
+---
+---[Wiki](https://love2d.org/wiki/love.math.setRandomSeed)
+---
+---@param low number# The lower 32 bits of the seed value. Must be within the range of 2^32 - 1.
+---@param high number# The higher 32 bits of the seed value. Must be within the range of 2^32 - 1.
+---@diagnostic disable-next-line: args-after-dots
+function love.math.setRandomSeed(low, high) end
+
+---Sets the current state of the random number generator. The value used as an argument for this function is an opaque implementation-dependent string and should only originate from a previous call to love.math.getRandomState.
+---
+---This is different from love.math.setRandomSeed in that setRandomState directly sets the random number generator's current implementation-dependent state, whereas setRandomSeed gives it a new seed value.
+---
+---[Wiki](https://love2d.org/wiki/love.math.setRandomState)
+---
+---@param state string# The new state of the random number generator, represented as a string. This should originate from a previous call to love.math.getRandomState.
+---@diagnostic disable-next-line: args-after-dots
+function love.math.setRandomState(state) end
+
+---Decomposes a simple convex or concave polygon into triangles.
+---
+---[Wiki](https://love2d.org/wiki/love.math.triangulate)
+---
+---@param polygon table# Polygon to triangulate. Must not intersect itself.
+---@diagnostic disable-next-line: args-after-dots
+function love.math.triangulate(polygon) end
+
+---Decomposes a simple convex or concave polygon into triangles.
+---
+---[Wiki](https://love2d.org/wiki/love.math.triangulate)
+---
+---@param x1 number# The position of the first vertex of the polygon on the x-axis.
+---@param y1 number# The position of the first vertex of the polygon on the y-axis.
+---@param x2 number# The position of the second vertex of the polygon on the x-axis.
+---@param y2 number# The position of the second vertex of the polygon on the y-axis.
+---@param x3 number# The position of the third vertex of the polygon on the x-axis.
+---@param y3 number# The position of the third vertex of the polygon on the y-axis.
+---@diagnostic disable-next-line: args-after-dots
+function love.math.triangulate(x1, y1, x2, y2, x3, y3) end
 
 ---Evaluate Bézier curve at parameter t. The parameter must be between 0 and 1 (inclusive).
 ---
@@ -10114,365 +10466,6 @@ function Transform:transformPoint(globalX, globalY) end
 ---@diagnostic disable-next-line: args-after-dots
 function Transform:translate(dx, dy) end
 
----Converts a color from 0..255 to 0..1 range.
----
----[Wiki](https://love2d.org/wiki/love.math.colorFromBytes)
----
----@param rb number# Red color component in 0..255 range.
----@param gb number# Green color component in 0..255 range.
----@param bb number# Blue color component in 0..255 range.
----@param ab? number# (nil) Alpha color component in 0..255 range.
----@diagnostic disable-next-line: args-after-dots
-function love.math.colorFromBytes(rb, gb, bb, ab) end
-
----Converts a color from 0..1 to 0..255 range.
----
----[Wiki](https://love2d.org/wiki/love.math.colorToBytes)
----
----@param r number# Red color component.
----@param g number# Green color component.
----@param b number# Blue color component.
----@param a? number# (nil) Alpha color component.
----@diagnostic disable-next-line: args-after-dots
-function love.math.colorToBytes(r, g, b, a) end
-
----Converts a color from gamma-space (sRGB) to linear-space (RGB). This is useful when doing gamma-correct rendering and you need to do math in linear RGB in the few cases where LÖVE doesn't handle conversions automatically.
----
----Read more about gamma-correct rendering here, here, and here.
----
----In versions prior to 11.0, color component values were within the range of 0 to 255 instead of 0 to 1.
----
----[Wiki](https://love2d.org/wiki/love.math.gammaToLinear)
----
----@param r number# The red channel of the sRGB color to convert.
----@param g number# The green channel of the sRGB color to convert.
----@param b number# The blue channel of the sRGB color to convert.
----@diagnostic disable-next-line: args-after-dots
-function love.math.gammaToLinear(r, g, b) end
-
----Converts a color from gamma-space (sRGB) to linear-space (RGB). This is useful when doing gamma-correct rendering and you need to do math in linear RGB in the few cases where LÖVE doesn't handle conversions automatically.
----
----Read more about gamma-correct rendering here, here, and here.
----
----In versions prior to 11.0, color component values were within the range of 0 to 255 instead of 0 to 1.
----
----[Wiki](https://love2d.org/wiki/love.math.gammaToLinear)
----
----@param color table# An array with the red, green, and blue channels of the sRGB color to convert.
----@diagnostic disable-next-line: args-after-dots
-function love.math.gammaToLinear(color) end
-
----Converts a color from gamma-space (sRGB) to linear-space (RGB). This is useful when doing gamma-correct rendering and you need to do math in linear RGB in the few cases where LÖVE doesn't handle conversions automatically.
----
----Read more about gamma-correct rendering here, here, and here.
----
----In versions prior to 11.0, color component values were within the range of 0 to 255 instead of 0 to 1.
----
----[Wiki](https://love2d.org/wiki/love.math.gammaToLinear)
----
----@param c number# The value of a color channel in sRGB space to convert.
----@diagnostic disable-next-line: args-after-dots
-function love.math.gammaToLinear(c) end
-
----Gets the seed of the random number generator.
----
----The seed is split into two numbers due to Lua's use of doubles for all number values - doubles can't accurately represent integer  values above 2^53, but the seed can be an integer value up to 2^64.
----
----[Wiki](https://love2d.org/wiki/love.math.getRandomSeed)
----
----@diagnostic disable-next-line: args-after-dots
-function love.math.getRandomSeed() end
-
----Gets the current state of the random number generator. This returns an opaque implementation-dependent string which is only useful for later use with love.math.setRandomState or RandomGenerator:setState.
----
----This is different from love.math.getRandomSeed in that getRandomState gets the random number generator's current state, whereas getRandomSeed gets the previously set seed number.
----
----[Wiki](https://love2d.org/wiki/love.math.getRandomState)
----
----@diagnostic disable-next-line: args-after-dots
-function love.math.getRandomState() end
-
----Checks whether a polygon is convex.
----
----PolygonShapes in love.physics, some forms of Meshes, and polygons drawn with love.graphics.polygon must be simple convex polygons.
----
----[Wiki](https://love2d.org/wiki/love.math.isConvex)
----
----@param vertices table[]# The vertices of the polygon as a table in the form of {x1, y1, x2, y2, x3, y3, ...}.
----@diagnostic disable-next-line: args-after-dots
-function love.math.isConvex(vertices) end
-
----Checks whether a polygon is convex.
----
----PolygonShapes in love.physics, some forms of Meshes, and polygons drawn with love.graphics.polygon must be simple convex polygons.
----
----[Wiki](https://love2d.org/wiki/love.math.isConvex)
----
----@param x1 number# The position of the first vertex of the polygon on the x-axis.
----@param y1 number# The position of the first vertex of the polygon on the y-axis.
----@param x2 number# The position of the second vertex of the polygon on the x-axis.
----@param y2 number# The position of the second vertex of the polygon on the y-axis.
----@param ... number# Additional position of the vertex of the polygon on the x-axis and y-axis.
----@diagnostic disable-next-line: args-after-dots
-function love.math.isConvex(x1, y1, x2, y2, ...) end
-
----Converts a color from linear-space (RGB) to gamma-space (sRGB). This is useful when storing linear RGB color values in an image, because the linear RGB color space has less precision than sRGB for dark colors, which can result in noticeable color banding when drawing.
----
----In general, colors chosen based on what they look like on-screen are already in gamma-space and should not be double-converted. Colors calculated using math are often in the linear RGB space.
----
----Read more about gamma-correct rendering here, here, and here.
----
----In versions prior to 11.0, color component values were within the range of 0 to 255 instead of 0 to 1.
----
----[Wiki](https://love2d.org/wiki/love.math.linearToGamma)
----
----@param lr number# The red channel of the linear RGB color to convert.
----@param lg number# The green channel of the linear RGB color to convert.
----@param lb number# The blue channel of the linear RGB color to convert.
----@diagnostic disable-next-line: args-after-dots
-function love.math.linearToGamma(lr, lg, lb) end
-
----Converts a color from linear-space (RGB) to gamma-space (sRGB). This is useful when storing linear RGB color values in an image, because the linear RGB color space has less precision than sRGB for dark colors, which can result in noticeable color banding when drawing.
----
----In general, colors chosen based on what they look like on-screen are already in gamma-space and should not be double-converted. Colors calculated using math are often in the linear RGB space.
----
----Read more about gamma-correct rendering here, here, and here.
----
----In versions prior to 11.0, color component values were within the range of 0 to 255 instead of 0 to 1.
----
----[Wiki](https://love2d.org/wiki/love.math.linearToGamma)
----
----@param color table[]# An array with the red, green, and blue channels of the linear RGB color to convert.
----@diagnostic disable-next-line: args-after-dots
-function love.math.linearToGamma(color) end
-
----Converts a color from linear-space (RGB) to gamma-space (sRGB). This is useful when storing linear RGB color values in an image, because the linear RGB color space has less precision than sRGB for dark colors, which can result in noticeable color banding when drawing.
----
----In general, colors chosen based on what they look like on-screen are already in gamma-space and should not be double-converted. Colors calculated using math are often in the linear RGB space.
----
----Read more about gamma-correct rendering here, here, and here.
----
----In versions prior to 11.0, color component values were within the range of 0 to 255 instead of 0 to 1.
----
----[Wiki](https://love2d.org/wiki/love.math.linearToGamma)
----
----@param lc number# The value of a color channel in linear RGB space to convert.
----@diagnostic disable-next-line: args-after-dots
-function love.math.linearToGamma(lc) end
-
----Creates a new BezierCurve object.
----
----The number of vertices in the control polygon determines the degree of the curve, e.g. three vertices define a quadratic (degree 2) Bézier curve, four vertices define a cubic (degree 3) Bézier curve, etc.
----
----[Wiki](https://love2d.org/wiki/love.math.newBezierCurve)
----
----@param vertices table[]# The vertices of the control polygon as a table in the form of {x1, y1, x2, y2, x3, y3, ...}.
----@diagnostic disable-next-line: args-after-dots
-function love.math.newBezierCurve(vertices) end
-
----Creates a new BezierCurve object.
----
----The number of vertices in the control polygon determines the degree of the curve, e.g. three vertices define a quadratic (degree 2) Bézier curve, four vertices define a cubic (degree 3) Bézier curve, etc.
----
----[Wiki](https://love2d.org/wiki/love.math.newBezierCurve)
----
----@param x1 number# The position of the first vertex of the control polygon on the x-axis.
----@param y1 number# The position of the first vertex of the control polygon on the y-axis.
----@param x2 number# The position of the second vertex of the control polygon on the x-axis.
----@param y2 number# The position of the second vertex of the control polygon on the y-axis.
----@param ... number# Additional position of the vertex of the control polygon on the x-axis and y-axis.
----@diagnostic disable-next-line: args-after-dots
-function love.math.newBezierCurve(x1, y1, x2, y2, ...) end
-
----Creates a new RandomGenerator object which is completely independent of other RandomGenerator objects and random functions.
----
----[Wiki](https://love2d.org/wiki/love.math.newRandomGenerator)
----
----@diagnostic disable-next-line: args-after-dots
-function love.math.newRandomGenerator() end
-
----Creates a new RandomGenerator object which is completely independent of other RandomGenerator objects and random functions.
----
----[Wiki](https://love2d.org/wiki/love.math.newRandomGenerator)
----
----@param seed number# The initial seed number to use for this object.
----@diagnostic disable-next-line: args-after-dots
-function love.math.newRandomGenerator(seed) end
-
----Creates a new RandomGenerator object which is completely independent of other RandomGenerator objects and random functions.
----
----[Wiki](https://love2d.org/wiki/love.math.newRandomGenerator)
----
----@param low number# The lower 32 bits of the seed number to use for this object.
----@param high number# The higher 32 bits of the seed number to use for this object.
----@diagnostic disable-next-line: args-after-dots
-function love.math.newRandomGenerator(low, high) end
-
----Creates a new Transform object.
----
----[Wiki](https://love2d.org/wiki/love.math.newTransform)
----
----@diagnostic disable-next-line: args-after-dots
-function love.math.newTransform() end
-
----Creates a new Transform object.
----
----[Wiki](https://love2d.org/wiki/love.math.newTransform)
----
----@param x number# The position of the new Transform on the x-axis.
----@param y number# The position of the new Transform on the y-axis.
----@param angle? number# (0) The orientation of the new Transform in radians.
----@param sx? number# (1) Scale factor on the x-axis.
----@param sy? number# (sx) Scale factor on the y-axis.
----@param ox? number# (0) Origin offset on the x-axis.
----@param oy? number# (0) Origin offset on the y-axis.
----@param kx? number# (0) Shearing / skew factor on the x-axis.
----@param ky? number# (0) Shearing / skew factor on the y-axis.
----@diagnostic disable-next-line: args-after-dots
-function love.math.newTransform(x, y, angle, sx, sy, ox, oy, kx, ky) end
-
----Generates a Simplex or Perlin noise value in 1-4 dimensions. The return value will always be the same, given the same arguments.
----
----Simplex noise is closely related to Perlin noise. It is widely used for procedural content generation.
----
----There are many webpages which discuss Perlin and Simplex noise in detail.
----
----[Wiki](https://love2d.org/wiki/love.math.noise)
----
----@param x number# The number used to generate the noise value.
----@diagnostic disable-next-line: args-after-dots
-function love.math.noise(x) end
-
----Generates a Simplex or Perlin noise value in 1-4 dimensions. The return value will always be the same, given the same arguments.
----
----Simplex noise is closely related to Perlin noise. It is widely used for procedural content generation.
----
----There are many webpages which discuss Perlin and Simplex noise in detail.
----
----[Wiki](https://love2d.org/wiki/love.math.noise)
----
----@param x number# The first value of the 2-dimensional vector used to generate the noise value.
----@param y number# The second value of the 2-dimensional vector used to generate the noise value.
----@diagnostic disable-next-line: args-after-dots
-function love.math.noise(x, y) end
-
----Generates a Simplex or Perlin noise value in 1-4 dimensions. The return value will always be the same, given the same arguments.
----
----Simplex noise is closely related to Perlin noise. It is widely used for procedural content generation.
----
----There are many webpages which discuss Perlin and Simplex noise in detail.
----
----[Wiki](https://love2d.org/wiki/love.math.noise)
----
----@param x number# The first value of the 3-dimensional vector used to generate the noise value.
----@param y number# The second value of the 3-dimensional vector used to generate the noise value.
----@param z number# The third value of the 3-dimensional vector used to generate the noise value.
----@diagnostic disable-next-line: args-after-dots
-function love.math.noise(x, y, z) end
-
----Generates a Simplex or Perlin noise value in 1-4 dimensions. The return value will always be the same, given the same arguments.
----
----Simplex noise is closely related to Perlin noise. It is widely used for procedural content generation.
----
----There are many webpages which discuss Perlin and Simplex noise in detail.
----
----[Wiki](https://love2d.org/wiki/love.math.noise)
----
----@param x number# The first value of the 4-dimensional vector used to generate the noise value.
----@param y number# The second value of the 4-dimensional vector used to generate the noise value.
----@param z number# The third value of the 4-dimensional vector used to generate the noise value.
----@param w number# The fourth value of the 4-dimensional vector used to generate the noise value.
----@diagnostic disable-next-line: args-after-dots
-function love.math.noise(x, y, z, w) end
-
----Generates a pseudo-random number in a platform independent manner. The default love.run seeds this function at startup, so you generally don't need to seed it yourself.
----
----[Wiki](https://love2d.org/wiki/love.math.random)
----
----@diagnostic disable-next-line: args-after-dots
-function love.math.random() end
-
----Generates a pseudo-random number in a platform independent manner. The default love.run seeds this function at startup, so you generally don't need to seed it yourself.
----
----[Wiki](https://love2d.org/wiki/love.math.random)
----
----@param max number# The maximum possible value it should return.
----@diagnostic disable-next-line: args-after-dots
-function love.math.random(max) end
-
----Generates a pseudo-random number in a platform independent manner. The default love.run seeds this function at startup, so you generally don't need to seed it yourself.
----
----[Wiki](https://love2d.org/wiki/love.math.random)
----
----@param min number# The minimum possible value it should return.
----@param max number# The maximum possible value it should return.
----@diagnostic disable-next-line: args-after-dots
-function love.math.random(min, max) end
-
----Get a normally distributed pseudo random number.
----
----[Wiki](https://love2d.org/wiki/love.math.randomNormal)
----
----@param stddev? number# (1) Standard deviation of the distribution.
----@param mean? number# (0) The mean of the distribution.
----@diagnostic disable-next-line: args-after-dots
-function love.math.randomNormal(stddev, mean) end
-
----Sets the seed of the random number generator using the specified integer number. This is called internally at startup, so you generally don't need to call it yourself.
----
----[Wiki](https://love2d.org/wiki/love.math.setRandomSeed)
----
----@param seed number# The integer number with which you want to seed the randomization. Must be within the range of 2^53 - 1.
----@diagnostic disable-next-line: args-after-dots
-function love.math.setRandomSeed(seed) end
-
----Sets the seed of the random number generator using the specified integer number. This is called internally at startup, so you generally don't need to call it yourself.
----
----[Wiki](https://love2d.org/wiki/love.math.setRandomSeed)
----
----@param low number# The lower 32 bits of the seed value. Must be within the range of 2^32 - 1.
----@param high number# The higher 32 bits of the seed value. Must be within the range of 2^32 - 1.
----@diagnostic disable-next-line: args-after-dots
-function love.math.setRandomSeed(low, high) end
-
----Sets the current state of the random number generator. The value used as an argument for this function is an opaque implementation-dependent string and should only originate from a previous call to love.math.getRandomState.
----
----This is different from love.math.setRandomSeed in that setRandomState directly sets the random number generator's current implementation-dependent state, whereas setRandomSeed gives it a new seed value.
----
----[Wiki](https://love2d.org/wiki/love.math.setRandomState)
----
----@param state string# The new state of the random number generator, represented as a string. This should originate from a previous call to love.math.getRandomState.
----@diagnostic disable-next-line: args-after-dots
-function love.math.setRandomState(state) end
-
----Decomposes a simple convex or concave polygon into triangles.
----
----[Wiki](https://love2d.org/wiki/love.math.triangulate)
----
----@param polygon table# Polygon to triangulate. Must not intersect itself.
----@diagnostic disable-next-line: args-after-dots
-function love.math.triangulate(polygon) end
-
----Decomposes a simple convex or concave polygon into triangles.
----
----[Wiki](https://love2d.org/wiki/love.math.triangulate)
----
----@param x1 number# The position of the first vertex of the polygon on the x-axis.
----@param y1 number# The position of the first vertex of the polygon on the y-axis.
----@param x2 number# The position of the second vertex of the polygon on the x-axis.
----@param y2 number# The position of the second vertex of the polygon on the y-axis.
----@param x3 number# The position of the third vertex of the polygon on the x-axis.
----@param y3 number# The position of the third vertex of the polygon on the y-axis.
----@diagnostic disable-next-line: args-after-dots
-function love.math.triangulate(x1, y1, x2, y2, x3, y3) end
-
----Gets the type of the Cursor.
----
----[Wiki](https://love2d.org/wiki/Cursor:getType)
----
----@diagnostic disable-next-line: args-after-dots
-function Cursor:getType() end
-
 ---Gets the current Cursor.
 ---
 ---[Wiki](https://love2d.org/wiki/love.mouse.getCursor)
@@ -10669,6 +10662,479 @@ function love.mouse.setX(x) end
 ---@param y number# The new position of the mouse along the y-axis.
 ---@diagnostic disable-next-line: args-after-dots
 function love.mouse.setY(y) end
+
+---Gets the type of the Cursor.
+---
+---[Wiki](https://love2d.org/wiki/Cursor:getType)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Cursor:getType() end
+
+---Returns the two closest points between two fixtures and their distance.
+---
+---[Wiki](https://love2d.org/wiki/love.physics.getDistance)
+---
+---@param fixture1 love.Fixture# The first fixture.
+---@param fixture2 love.Fixture# The second fixture.
+---@diagnostic disable-next-line: args-after-dots
+function love.physics.getDistance(fixture1, fixture2) end
+
+---Returns the meter scale factor.
+---
+---All coordinates in the physics module are divided by this number, creating a convenient way to draw the objects directly to the screen without the need for graphics transformations.
+---
+---It is recommended to create shapes no larger than 10 times the scale. This is important because Box2D is tuned to work well with shape sizes from 0.1 to 10 meters.
+---
+---[Wiki](https://love2d.org/wiki/love.physics.getMeter)
+---
+---@diagnostic disable-next-line: args-after-dots
+function love.physics.getMeter() end
+
+---Creates a new body.
+---
+---There are three types of bodies. 
+---
+---* Static bodies do not move, have a infinite mass, and can be used for level boundaries. 
+---
+---* Dynamic bodies are the main actors in the simulation, they collide with everything. 
+---
+---* Kinematic bodies do not react to forces and only collide with dynamic bodies.
+---
+---The mass of the body gets calculated when a Fixture is attached or removed, but can be changed at any time with Body:setMass or Body:resetMassData.
+---
+---[Wiki](https://love2d.org/wiki/love.physics.newBody)
+---
+---@param world love.World# The world to create the body in.
+---@param x? number# (0) The x position of the body.
+---@param y? number# (0) The y position of the body.
+---@param type? love.BodyType# ('static') The type of the body.
+---@diagnostic disable-next-line: args-after-dots
+function love.physics.newBody(world, x, y, type) end
+
+---Creates a new ChainShape.
+---
+---[Wiki](https://love2d.org/wiki/love.physics.newChainShape)
+---
+---@param loop boolean# If the chain should loop back to the first point.
+---@param x1 number# The x position of the first point.
+---@param y1 number# The y position of the first point.
+---@param x2 number# The x position of the second point.
+---@param y2 number# The y position of the second point.
+---@param ... number# Additional point positions.
+---@diagnostic disable-next-line: args-after-dots
+function love.physics.newChainShape(loop, x1, y1, x2, y2, ...) end
+
+---Creates a new ChainShape.
+---
+---[Wiki](https://love2d.org/wiki/love.physics.newChainShape)
+---
+---@param loop boolean# If the chain should loop back to the first point.
+---@param points table[]# A list of points to construct the ChainShape, in the form of {x1, y1, x2, y2, ...}.
+---@diagnostic disable-next-line: args-after-dots
+function love.physics.newChainShape(loop, points) end
+
+---Creates a new CircleShape.
+---
+---[Wiki](https://love2d.org/wiki/love.physics.newCircleShape)
+---
+---@param radius number# The radius of the circle.
+---@diagnostic disable-next-line: args-after-dots
+function love.physics.newCircleShape(radius) end
+
+---Creates a new CircleShape.
+---
+---[Wiki](https://love2d.org/wiki/love.physics.newCircleShape)
+---
+---@param x number# The x position of the circle.
+---@param y number# The y position of the circle.
+---@param radius number# The radius of the circle.
+---@diagnostic disable-next-line: args-after-dots
+function love.physics.newCircleShape(x, y, radius) end
+
+---Creates a DistanceJoint between two bodies.
+---
+---This joint constrains the distance between two points on two bodies to be constant. These two points are specified in world coordinates and the two bodies are assumed to be in place when this joint is created. The first anchor point is connected to the first body and the second to the second body, and the points define the length of the distance joint.
+---
+---[Wiki](https://love2d.org/wiki/love.physics.newDistanceJoint)
+---
+---@param body1 love.Body# The first body to attach to the joint.
+---@param body2 love.Body# The second body to attach to the joint.
+---@param x1 number# The x position of the first anchor point (world space).
+---@param y1 number# The y position of the first anchor point (world space).
+---@param x2 number# The x position of the second anchor point (world space).
+---@param y2 number# The y position of the second anchor point (world space).
+---@param collideConnected? boolean# (false) Specifies whether the two bodies should collide with each other.
+---@diagnostic disable-next-line: args-after-dots
+function love.physics.newDistanceJoint(body1, body2, x1, y1, x2, y2, collideConnected) end
+
+---Creates a new EdgeShape.
+---
+---[Wiki](https://love2d.org/wiki/love.physics.newEdgeShape)
+---
+---@param x1 number# The x position of the first point.
+---@param y1 number# The y position of the first point.
+---@param x2 number# The x position of the second point.
+---@param y2 number# The y position of the second point.
+---@diagnostic disable-next-line: args-after-dots
+function love.physics.newEdgeShape(x1, y1, x2, y2) end
+
+---Creates and attaches a Fixture to a body.
+---
+---Note that the Shape object is copied rather than kept as a reference when the Fixture is created. To get the Shape object that the Fixture owns, use Fixture:getShape.
+---
+---[Wiki](https://love2d.org/wiki/love.physics.newFixture)
+---
+---@param body love.Body# The body which gets the fixture attached.
+---@param shape love.Shape# The shape to be copied to the fixture.
+---@param density? number# (1) The density of the fixture.
+---@diagnostic disable-next-line: args-after-dots
+function love.physics.newFixture(body, shape, density) end
+
+---Create a friction joint between two bodies. A FrictionJoint applies friction to a body.
+---
+---[Wiki](https://love2d.org/wiki/love.physics.newFrictionJoint)
+---
+---@param body1 love.Body# The first body to attach to the joint.
+---@param body2 love.Body# The second body to attach to the joint.
+---@param x number# The x position of the anchor point.
+---@param y number# The y position of the anchor point.
+---@param collideConnected? boolean# (false) Specifies whether the two bodies should collide with each other.
+---@diagnostic disable-next-line: args-after-dots
+function love.physics.newFrictionJoint(body1, body2, x, y, collideConnected) end
+
+---Create a friction joint between two bodies. A FrictionJoint applies friction to a body.
+---
+---[Wiki](https://love2d.org/wiki/love.physics.newFrictionJoint)
+---
+---@param body1 love.Body# The first body to attach to the joint.
+---@param body2 love.Body# The second body to attach to the joint.
+---@param x1 number# The x position of the first anchor point.
+---@param y1 number# The y position of the first anchor point.
+---@param x2 number# The x position of the second anchor point.
+---@param y2 number# The y position of the second anchor point.
+---@param collideConnected? boolean# (false) Specifies whether the two bodies should collide with each other.
+---@diagnostic disable-next-line: args-after-dots
+function love.physics.newFrictionJoint(body1, body2, x1, y1, x2, y2, collideConnected) end
+
+---Create a GearJoint connecting two Joints.
+---
+---The gear joint connects two joints that must be either  prismatic or  revolute joints. Using this joint requires that the joints it uses connect their respective bodies to the ground and have the ground as the first body. When destroying the bodies and joints you must make sure you destroy the gear joint before the other joints.
+---
+---The gear joint has a ratio the determines how the angular or distance values of the connected joints relate to each other. The formula coordinate1 + ratio * coordinate2 always has a constant value that is set when the gear joint is created.
+---
+---[Wiki](https://love2d.org/wiki/love.physics.newGearJoint)
+---
+---@param joint1 love.Joint# The first joint to connect with a gear joint.
+---@param joint2 love.Joint# The second joint to connect with a gear joint.
+---@param ratio? number# (1) The gear ratio.
+---@param collideConnected? boolean# (false) Specifies whether the two bodies should collide with each other.
+---@diagnostic disable-next-line: args-after-dots
+function love.physics.newGearJoint(joint1, joint2, ratio, collideConnected) end
+
+---Creates a joint between two bodies which controls the relative motion between them.
+---
+---Position and rotation offsets can be specified once the MotorJoint has been created, as well as the maximum motor force and torque that will be be applied to reach the target offsets.
+---
+---[Wiki](https://love2d.org/wiki/love.physics.newMotorJoint)
+---
+---@param body1 love.Body# The first body to attach to the joint.
+---@param body2 love.Body# The second body to attach to the joint.
+---@param correctionFactor? number# (0.3) The joint's initial position correction factor, in the range of 1.
+---@diagnostic disable-next-line: args-after-dots
+function love.physics.newMotorJoint(body1, body2, correctionFactor) end
+
+---Creates a joint between two bodies which controls the relative motion between them.
+---
+---Position and rotation offsets can be specified once the MotorJoint has been created, as well as the maximum motor force and torque that will be be applied to reach the target offsets.
+---
+---[Wiki](https://love2d.org/wiki/love.physics.newMotorJoint)
+---
+---@param body1 love.Body# The first body to attach to the joint.
+---@param body2 love.Body# The second body to attach to the joint.
+---@param correctionFactor? number# (0.3) The joint's initial position correction factor, in the range of 1.
+---@param collideConnected? boolean# (false) Specifies whether the two bodies should collide with each other.
+---@diagnostic disable-next-line: args-after-dots
+function love.physics.newMotorJoint(body1, body2, correctionFactor, collideConnected) end
+
+---Create a joint between a body and the mouse.
+---
+---This joint actually connects the body to a fixed point in the world. To make it follow the mouse, the fixed point must be updated every timestep (example below).
+---
+---The advantage of using a MouseJoint instead of just changing a body position directly is that collisions and reactions to other joints are handled by the physics engine. 
+---
+---[Wiki](https://love2d.org/wiki/love.physics.newMouseJoint)
+---
+---@param body love.Body# The body to attach to the mouse.
+---@param x number# The x position of the connecting point.
+---@param y number# The y position of the connecting point.
+---@diagnostic disable-next-line: args-after-dots
+function love.physics.newMouseJoint(body, x, y) end
+
+---Creates a new PolygonShape.
+---
+---This shape can have 8 vertices at most, and must form a convex shape.
+---
+---[Wiki](https://love2d.org/wiki/love.physics.newPolygonShape)
+---
+---@param x1 number# The x position of the first point.
+---@param y1 number# The y position of the first point.
+---@param x2 number# The x position of the second point.
+---@param y2 number# The y position of the second point.
+---@param x3 number# The x position of the third point.
+---@param y3 number# The y position of the third point.
+---@param ... number# You can continue passing more point positions to create the PolygonShape.
+---@diagnostic disable-next-line: args-after-dots
+function love.physics.newPolygonShape(x1, y1, x2, y2, x3, y3, ...) end
+
+---Creates a new PolygonShape.
+---
+---This shape can have 8 vertices at most, and must form a convex shape.
+---
+---[Wiki](https://love2d.org/wiki/love.physics.newPolygonShape)
+---
+---@param vertices table[]# A list of vertices to construct the polygon, in the form of {x1, y1, x2, y2, x3, y3, ...}.
+---@diagnostic disable-next-line: args-after-dots
+function love.physics.newPolygonShape(vertices) end
+
+---Creates a PrismaticJoint between two bodies.
+---
+---A prismatic joint constrains two bodies to move relatively to each other on a specified axis. It does not allow for relative rotation. Its definition and operation are similar to a  revolute joint, but with translation and force substituted for angle and torque.
+---
+---[Wiki](https://love2d.org/wiki/love.physics.newPrismaticJoint)
+---
+---@param body1 love.Body# The first body to connect with a prismatic joint.
+---@param body2 love.Body# The second body to connect with a prismatic joint.
+---@param x number# The x coordinate of the anchor point.
+---@param y number# The y coordinate of the anchor point.
+---@param ax number# The x coordinate of the axis vector.
+---@param ay number# The y coordinate of the axis vector.
+---@param collideConnected? boolean# (false) Specifies whether the two bodies should collide with each other.
+---@diagnostic disable-next-line: args-after-dots
+function love.physics.newPrismaticJoint(body1, body2, x, y, ax, ay, collideConnected) end
+
+---Creates a PrismaticJoint between two bodies.
+---
+---A prismatic joint constrains two bodies to move relatively to each other on a specified axis. It does not allow for relative rotation. Its definition and operation are similar to a  revolute joint, but with translation and force substituted for angle and torque.
+---
+---[Wiki](https://love2d.org/wiki/love.physics.newPrismaticJoint)
+---
+---@param body1 love.Body# The first body to connect with a prismatic joint.
+---@param body2 love.Body# The second body to connect with a prismatic joint.
+---@param x1 number# The x coordinate of the first anchor point.
+---@param y1 number# The y coordinate of the first anchor point.
+---@param x2 number# The x coordinate of the second anchor point.
+---@param y2 number# The y coordinate of the second anchor point.
+---@param ax number# The x coordinate of the axis unit vector.
+---@param ay number# The y coordinate of the axis unit vector.
+---@param collideConnected? boolean# (false) Specifies whether the two bodies should collide with each other.
+---@diagnostic disable-next-line: args-after-dots
+function love.physics.newPrismaticJoint(body1, body2, x1, y1, x2, y2, ax, ay, collideConnected) end
+
+---Creates a PrismaticJoint between two bodies.
+---
+---A prismatic joint constrains two bodies to move relatively to each other on a specified axis. It does not allow for relative rotation. Its definition and operation are similar to a  revolute joint, but with translation and force substituted for angle and torque.
+---
+---[Wiki](https://love2d.org/wiki/love.physics.newPrismaticJoint)
+---
+---@param body1 love.Body# The first body to connect with a prismatic joint.
+---@param body2 love.Body# The second body to connect with a prismatic joint.
+---@param x1 number# The x coordinate of the first anchor point.
+---@param y1 number# The y coordinate of the first anchor point.
+---@param x2 number# The x coordinate of the second anchor point.
+---@param y2 number# The y coordinate of the second anchor point.
+---@param ax number# The x coordinate of the axis unit vector.
+---@param ay number# The y coordinate of the axis unit vector.
+---@param collideConnected? boolean# (false) Specifies whether the two bodies should collide with each other.
+---@param referenceAngle? number# (0) The reference angle between body1 and body2, in radians.
+---@diagnostic disable-next-line: args-after-dots
+function love.physics.newPrismaticJoint(body1, body2, x1, y1, x2, y2, ax, ay, collideConnected, referenceAngle) end
+
+---Creates a PulleyJoint to join two bodies to each other and the ground.
+---
+---The pulley joint simulates a pulley with an optional block and tackle. If the ratio parameter has a value different from one, then the simulated rope extends faster on one side than the other. In a pulley joint the total length of the simulated rope is the constant length1 + ratio * length2, which is set when the pulley joint is created.
+---
+---Pulley joints can behave unpredictably if one side is fully extended. It is recommended that the method  setMaxLengths  be used to constrain the maximum lengths each side can attain.
+---
+---[Wiki](https://love2d.org/wiki/love.physics.newPulleyJoint)
+---
+---@param body1 love.Body# The first body to connect with a pulley joint.
+---@param body2 love.Body# The second body to connect with a pulley joint.
+---@param gx1 number# The x coordinate of the first body's ground anchor.
+---@param gy1 number# The y coordinate of the first body's ground anchor.
+---@param gx2 number# The x coordinate of the second body's ground anchor.
+---@param gy2 number# The y coordinate of the second body's ground anchor.
+---@param x1 number# The x coordinate of the pulley joint anchor in the first body.
+---@param y1 number# The y coordinate of the pulley joint anchor in the first body.
+---@param x2 number# The x coordinate of the pulley joint anchor in the second body.
+---@param y2 number# The y coordinate of the pulley joint anchor in the second body.
+---@param ratio? number# (1) The joint ratio.
+---@param collideConnected? boolean# (true) Specifies whether the two bodies should collide with each other.
+---@diagnostic disable-next-line: args-after-dots
+function love.physics.newPulleyJoint(body1, body2, gx1, gy1, gx2, gy2, x1, y1, x2, y2, ratio, collideConnected) end
+
+---Shorthand for creating rectangular PolygonShapes. 
+---
+---By default, the local origin is located at the '''center''' of the rectangle as opposed to the top left for graphics.
+---
+---[Wiki](https://love2d.org/wiki/love.physics.newRectangleShape)
+---
+---@param width number# The width of the rectangle.
+---@param height number# The height of the rectangle.
+---@diagnostic disable-next-line: args-after-dots
+function love.physics.newRectangleShape(width, height) end
+
+---Shorthand for creating rectangular PolygonShapes. 
+---
+---By default, the local origin is located at the '''center''' of the rectangle as opposed to the top left for graphics.
+---
+---[Wiki](https://love2d.org/wiki/love.physics.newRectangleShape)
+---
+---@param x number# The offset along the x-axis.
+---@param y number# The offset along the y-axis.
+---@param width number# The width of the rectangle.
+---@param height number# The height of the rectangle.
+---@param angle? number# (0) The initial angle of the rectangle.
+---@diagnostic disable-next-line: args-after-dots
+function love.physics.newRectangleShape(x, y, width, height, angle) end
+
+---Creates a pivot joint between two bodies.
+---
+---This joint connects two bodies to a point around which they can pivot.
+---
+---[Wiki](https://love2d.org/wiki/love.physics.newRevoluteJoint)
+---
+---@param body1 love.Body# The first body.
+---@param body2 love.Body# The second body.
+---@param x number# The x position of the connecting point.
+---@param y number# The y position of the connecting point.
+---@param collideConnected? boolean# (false) Specifies whether the two bodies should collide with each other.
+---@diagnostic disable-next-line: args-after-dots
+function love.physics.newRevoluteJoint(body1, body2, x, y, collideConnected) end
+
+---Creates a pivot joint between two bodies.
+---
+---This joint connects two bodies to a point around which they can pivot.
+---
+---[Wiki](https://love2d.org/wiki/love.physics.newRevoluteJoint)
+---
+---@param body1 love.Body# The first body.
+---@param body2 love.Body# The second body.
+---@param x1 number# The x position of the first connecting point.
+---@param y1 number# The y position of the first connecting point.
+---@param x2 number# The x position of the second connecting point.
+---@param y2 number# The y position of the second connecting point.
+---@param collideConnected? boolean# (false) Specifies whether the two bodies should collide with each other.
+---@param referenceAngle? number# (0) The reference angle between body1 and body2, in radians.
+---@diagnostic disable-next-line: args-after-dots
+function love.physics.newRevoluteJoint(body1, body2, x1, y1, x2, y2, collideConnected, referenceAngle) end
+
+---Creates a joint between two bodies. Its only function is enforcing a max distance between these bodies.
+---
+---[Wiki](https://love2d.org/wiki/love.physics.newRopeJoint)
+---
+---@param body1 love.Body# The first body to attach to the joint.
+---@param body2 love.Body# The second body to attach to the joint.
+---@param x1 number# The x position of the first anchor point.
+---@param y1 number# The y position of the first anchor point.
+---@param x2 number# The x position of the second anchor point.
+---@param y2 number# The y position of the second anchor point.
+---@param maxLength number# The maximum distance for the bodies.
+---@param collideConnected? boolean# (false) Specifies whether the two bodies should collide with each other.
+---@diagnostic disable-next-line: args-after-dots
+function love.physics.newRopeJoint(body1, body2, x1, y1, x2, y2, maxLength, collideConnected) end
+
+---Creates a constraint joint between two bodies. A WeldJoint essentially glues two bodies together. The constraint is a bit soft, however, due to Box2D's iterative solver.
+---
+---[Wiki](https://love2d.org/wiki/love.physics.newWeldJoint)
+---
+---@param body1 love.Body# The first body to attach to the joint.
+---@param body2 love.Body# The second body to attach to the joint.
+---@param x number# The x position of the anchor point (world space).
+---@param y number# The y position of the anchor point (world space).
+---@param collideConnected? boolean# (false) Specifies whether the two bodies should collide with each other.
+---@diagnostic disable-next-line: args-after-dots
+function love.physics.newWeldJoint(body1, body2, x, y, collideConnected) end
+
+---Creates a constraint joint between two bodies. A WeldJoint essentially glues two bodies together. The constraint is a bit soft, however, due to Box2D's iterative solver.
+---
+---[Wiki](https://love2d.org/wiki/love.physics.newWeldJoint)
+---
+---@param body1 love.Body# The first body to attach to the joint.
+---@param body2 love.Body# The second body to attach to the joint.
+---@param x1 number# The x position of the first anchor point (world space).
+---@param y1 number# The y position of the first anchor point (world space).
+---@param x2 number# The x position of the second anchor point (world space).
+---@param y2 number# The y position of the second anchor point (world space).
+---@param collideConnected? boolean# (false) Specifies whether the two bodies should collide with each other.
+---@diagnostic disable-next-line: args-after-dots
+function love.physics.newWeldJoint(body1, body2, x1, y1, x2, y2, collideConnected) end
+
+---Creates a constraint joint between two bodies. A WeldJoint essentially glues two bodies together. The constraint is a bit soft, however, due to Box2D's iterative solver.
+---
+---[Wiki](https://love2d.org/wiki/love.physics.newWeldJoint)
+---
+---@param body1 love.Body# The first body to attach to the joint.
+---@param body2 love.Body# The second body to attach to the joint.
+---@param x1 number# The x position of the first anchor point (world space).
+---@param y1 number# The y position of the first anchor point  (world space).
+---@param x2 number# The x position of the second anchor point (world space).
+---@param y2 number# The y position of the second anchor point (world space).
+---@param collideConnected? boolean# (false) Specifies whether the two bodies should collide with each other.
+---@param referenceAngle? number# (0) The reference angle between body1 and body2, in radians.
+---@diagnostic disable-next-line: args-after-dots
+function love.physics.newWeldJoint(body1, body2, x1, y1, x2, y2, collideConnected, referenceAngle) end
+
+---Creates a wheel joint.
+---
+---[Wiki](https://love2d.org/wiki/love.physics.newWheelJoint)
+---
+---@param body1 love.Body# The first body.
+---@param body2 love.Body# The second body.
+---@param x number# The x position of the anchor point.
+---@param y number# The y position of the anchor point.
+---@param ax number# The x position of the axis unit vector.
+---@param ay number# The y position of the axis unit vector.
+---@param collideConnected? boolean# (false) Specifies whether the two bodies should collide with each other.
+---@diagnostic disable-next-line: args-after-dots
+function love.physics.newWheelJoint(body1, body2, x, y, ax, ay, collideConnected) end
+
+---Creates a wheel joint.
+---
+---[Wiki](https://love2d.org/wiki/love.physics.newWheelJoint)
+---
+---@param body1 love.Body# The first body.
+---@param body2 love.Body# The second body.
+---@param x1 number# The x position of the first anchor point.
+---@param y1 number# The y position of the first anchor point.
+---@param x2 number# The x position of the second anchor point.
+---@param y2 number# The y position of the second anchor point.
+---@param ax number# The x position of the axis unit vector.
+---@param ay number# The y position of the axis unit vector.
+---@param collideConnected? boolean# (false) Specifies whether the two bodies should collide with each other.
+---@diagnostic disable-next-line: args-after-dots
+function love.physics.newWheelJoint(body1, body2, x1, y1, x2, y2, ax, ay, collideConnected) end
+
+---Creates a new World.
+---
+---[Wiki](https://love2d.org/wiki/love.physics.newWorld)
+---
+---@param xg? number# (0) The x component of gravity.
+---@param yg? number# (0) The y component of gravity.
+---@param sleep? boolean# (true) Whether the bodies in this world are allowed to sleep.
+---@diagnostic disable-next-line: args-after-dots
+function love.physics.newWorld(xg, yg, sleep) end
+
+---Sets the pixels to meter scale factor.
+---
+---All coordinates in the physics module are divided by this number and converted to meters, and it creates a convenient way to draw the objects directly to the screen without the need for graphics transformations.
+---
+---It is recommended to create shapes no larger than 10 times the scale. This is important because Box2D is tuned to work well with shape sizes from 0.1 to 10 meters. The default meter scale is 30.
+---
+---[Wiki](https://love2d.org/wiki/love.physics.setMeter)
+---
+---@param scale number# The scale factor as an integer.
+---@diagnostic disable-next-line: args-after-dots
+function love.physics.setMeter(scale) end
 
 ---Applies an angular impulse to a body. This makes a single, instantaneous addition to the body momentum.
 ---
@@ -12852,471 +13318,66 @@ function World:translateOrigin(x, y) end
 ---@diagnostic disable-next-line: args-after-dots
 function World:update(dt, velocityiterations, positioniterations) end
 
----Returns the two closest points between two fixtures and their distance.
+---Attempts to find a decoder for the encoded sound data in the specified file.
 ---
----[Wiki](https://love2d.org/wiki/love.physics.getDistance)
+---[Wiki](https://love2d.org/wiki/love.sound.newDecoder)
 ---
----@param fixture1 love.Fixture# The first fixture.
----@param fixture2 love.Fixture# The second fixture.
+---@param file love.File# The file with encoded sound data.
+---@param buffer? number# (2048) The size of each decoded chunk, in bytes.
 ---@diagnostic disable-next-line: args-after-dots
-function love.physics.getDistance(fixture1, fixture2) end
+function love.sound.newDecoder(file, buffer) end
 
----Returns the meter scale factor.
+---Attempts to find a decoder for the encoded sound data in the specified file.
 ---
----All coordinates in the physics module are divided by this number, creating a convenient way to draw the objects directly to the screen without the need for graphics transformations.
+---[Wiki](https://love2d.org/wiki/love.sound.newDecoder)
 ---
----It is recommended to create shapes no larger than 10 times the scale. This is important because Box2D is tuned to work well with shape sizes from 0.1 to 10 meters.
----
----[Wiki](https://love2d.org/wiki/love.physics.getMeter)
----
+---@param filename string# The filename of the file with encoded sound data.
+---@param buffer? number# (2048) The size of each decoded chunk, in bytes.
 ---@diagnostic disable-next-line: args-after-dots
-function love.physics.getMeter() end
+function love.sound.newDecoder(filename, buffer) end
 
----Creates a new body.
+---Creates new SoundData from a filepath, File, or Decoder. It's also possible to create SoundData with a custom sample rate, channel and bit depth.
 ---
----There are three types of bodies. 
+---The sound data will be decoded to the memory in a raw format. It is recommended to create only short sounds like effects, as a 3 minute song uses 30 MB of memory this way.
 ---
----* Static bodies do not move, have a infinite mass, and can be used for level boundaries. 
+---[Wiki](https://love2d.org/wiki/love.sound.newSoundData)
 ---
----* Dynamic bodies are the main actors in the simulation, they collide with everything. 
----
----* Kinematic bodies do not react to forces and only collide with dynamic bodies.
----
----The mass of the body gets calculated when a Fixture is attached or removed, but can be changed at any time with Body:setMass or Body:resetMassData.
----
----[Wiki](https://love2d.org/wiki/love.physics.newBody)
----
----@param world love.World# The world to create the body in.
----@param x? number# (0) The x position of the body.
----@param y? number# (0) The y position of the body.
----@param type? love.BodyType# ('static') The type of the body.
+---@param filename string# The file name of the file to load.
 ---@diagnostic disable-next-line: args-after-dots
-function love.physics.newBody(world, x, y, type) end
+function love.sound.newSoundData(filename) end
 
----Creates a new ChainShape.
+---Creates new SoundData from a filepath, File, or Decoder. It's also possible to create SoundData with a custom sample rate, channel and bit depth.
 ---
----[Wiki](https://love2d.org/wiki/love.physics.newChainShape)
+---The sound data will be decoded to the memory in a raw format. It is recommended to create only short sounds like effects, as a 3 minute song uses 30 MB of memory this way.
 ---
----@param loop boolean# If the chain should loop back to the first point.
----@param x1 number# The x position of the first point.
----@param y1 number# The y position of the first point.
----@param x2 number# The x position of the second point.
----@param y2 number# The y position of the second point.
----@param ... number# Additional point positions.
+---[Wiki](https://love2d.org/wiki/love.sound.newSoundData)
+---
+---@param file love.File# A File pointing to an audio file.
 ---@diagnostic disable-next-line: args-after-dots
-function love.physics.newChainShape(loop, x1, y1, x2, y2, ...) end
+function love.sound.newSoundData(file) end
 
----Creates a new ChainShape.
+---Creates new SoundData from a filepath, File, or Decoder. It's also possible to create SoundData with a custom sample rate, channel and bit depth.
 ---
----[Wiki](https://love2d.org/wiki/love.physics.newChainShape)
+---The sound data will be decoded to the memory in a raw format. It is recommended to create only short sounds like effects, as a 3 minute song uses 30 MB of memory this way.
 ---
----@param loop boolean# If the chain should loop back to the first point.
----@param points table[]# A list of points to construct the ChainShape, in the form of {x1, y1, x2, y2, ...}.
+---[Wiki](https://love2d.org/wiki/love.sound.newSoundData)
+---
+---@param decoder love.Decoder# Decode data from this Decoder until EOF.
 ---@diagnostic disable-next-line: args-after-dots
-function love.physics.newChainShape(loop, points) end
+function love.sound.newSoundData(decoder) end
 
----Creates a new CircleShape.
+---Creates new SoundData from a filepath, File, or Decoder. It's also possible to create SoundData with a custom sample rate, channel and bit depth.
 ---
----[Wiki](https://love2d.org/wiki/love.physics.newCircleShape)
+---The sound data will be decoded to the memory in a raw format. It is recommended to create only short sounds like effects, as a 3 minute song uses 30 MB of memory this way.
 ---
----@param radius number# The radius of the circle.
+---[Wiki](https://love2d.org/wiki/love.sound.newSoundData)
+---
+---@param samples number# Total number of samples.
+---@param rate? number# (44100) Number of samples per second
+---@param bits? number# (16) Bits per sample (8 or 16).
+---@param channels? number# (2) Either 1 for mono or 2 for stereo.
 ---@diagnostic disable-next-line: args-after-dots
-function love.physics.newCircleShape(radius) end
-
----Creates a new CircleShape.
----
----[Wiki](https://love2d.org/wiki/love.physics.newCircleShape)
----
----@param x number# The x position of the circle.
----@param y number# The y position of the circle.
----@param radius number# The radius of the circle.
----@diagnostic disable-next-line: args-after-dots
-function love.physics.newCircleShape(x, y, radius) end
-
----Creates a DistanceJoint between two bodies.
----
----This joint constrains the distance between two points on two bodies to be constant. These two points are specified in world coordinates and the two bodies are assumed to be in place when this joint is created. The first anchor point is connected to the first body and the second to the second body, and the points define the length of the distance joint.
----
----[Wiki](https://love2d.org/wiki/love.physics.newDistanceJoint)
----
----@param body1 love.Body# The first body to attach to the joint.
----@param body2 love.Body# The second body to attach to the joint.
----@param x1 number# The x position of the first anchor point (world space).
----@param y1 number# The y position of the first anchor point (world space).
----@param x2 number# The x position of the second anchor point (world space).
----@param y2 number# The y position of the second anchor point (world space).
----@param collideConnected? boolean# (false) Specifies whether the two bodies should collide with each other.
----@diagnostic disable-next-line: args-after-dots
-function love.physics.newDistanceJoint(body1, body2, x1, y1, x2, y2, collideConnected) end
-
----Creates a new EdgeShape.
----
----[Wiki](https://love2d.org/wiki/love.physics.newEdgeShape)
----
----@param x1 number# The x position of the first point.
----@param y1 number# The y position of the first point.
----@param x2 number# The x position of the second point.
----@param y2 number# The y position of the second point.
----@diagnostic disable-next-line: args-after-dots
-function love.physics.newEdgeShape(x1, y1, x2, y2) end
-
----Creates and attaches a Fixture to a body.
----
----Note that the Shape object is copied rather than kept as a reference when the Fixture is created. To get the Shape object that the Fixture owns, use Fixture:getShape.
----
----[Wiki](https://love2d.org/wiki/love.physics.newFixture)
----
----@param body love.Body# The body which gets the fixture attached.
----@param shape love.Shape# The shape to be copied to the fixture.
----@param density? number# (1) The density of the fixture.
----@diagnostic disable-next-line: args-after-dots
-function love.physics.newFixture(body, shape, density) end
-
----Create a friction joint between two bodies. A FrictionJoint applies friction to a body.
----
----[Wiki](https://love2d.org/wiki/love.physics.newFrictionJoint)
----
----@param body1 love.Body# The first body to attach to the joint.
----@param body2 love.Body# The second body to attach to the joint.
----@param x number# The x position of the anchor point.
----@param y number# The y position of the anchor point.
----@param collideConnected? boolean# (false) Specifies whether the two bodies should collide with each other.
----@diagnostic disable-next-line: args-after-dots
-function love.physics.newFrictionJoint(body1, body2, x, y, collideConnected) end
-
----Create a friction joint between two bodies. A FrictionJoint applies friction to a body.
----
----[Wiki](https://love2d.org/wiki/love.physics.newFrictionJoint)
----
----@param body1 love.Body# The first body to attach to the joint.
----@param body2 love.Body# The second body to attach to the joint.
----@param x1 number# The x position of the first anchor point.
----@param y1 number# The y position of the first anchor point.
----@param x2 number# The x position of the second anchor point.
----@param y2 number# The y position of the second anchor point.
----@param collideConnected? boolean# (false) Specifies whether the two bodies should collide with each other.
----@diagnostic disable-next-line: args-after-dots
-function love.physics.newFrictionJoint(body1, body2, x1, y1, x2, y2, collideConnected) end
-
----Create a GearJoint connecting two Joints.
----
----The gear joint connects two joints that must be either  prismatic or  revolute joints. Using this joint requires that the joints it uses connect their respective bodies to the ground and have the ground as the first body. When destroying the bodies and joints you must make sure you destroy the gear joint before the other joints.
----
----The gear joint has a ratio the determines how the angular or distance values of the connected joints relate to each other. The formula coordinate1 + ratio * coordinate2 always has a constant value that is set when the gear joint is created.
----
----[Wiki](https://love2d.org/wiki/love.physics.newGearJoint)
----
----@param joint1 love.Joint# The first joint to connect with a gear joint.
----@param joint2 love.Joint# The second joint to connect with a gear joint.
----@param ratio? number# (1) The gear ratio.
----@param collideConnected? boolean# (false) Specifies whether the two bodies should collide with each other.
----@diagnostic disable-next-line: args-after-dots
-function love.physics.newGearJoint(joint1, joint2, ratio, collideConnected) end
-
----Creates a joint between two bodies which controls the relative motion between them.
----
----Position and rotation offsets can be specified once the MotorJoint has been created, as well as the maximum motor force and torque that will be be applied to reach the target offsets.
----
----[Wiki](https://love2d.org/wiki/love.physics.newMotorJoint)
----
----@param body1 love.Body# The first body to attach to the joint.
----@param body2 love.Body# The second body to attach to the joint.
----@param correctionFactor? number# (0.3) The joint's initial position correction factor, in the range of 1.
----@diagnostic disable-next-line: args-after-dots
-function love.physics.newMotorJoint(body1, body2, correctionFactor) end
-
----Creates a joint between two bodies which controls the relative motion between them.
----
----Position and rotation offsets can be specified once the MotorJoint has been created, as well as the maximum motor force and torque that will be be applied to reach the target offsets.
----
----[Wiki](https://love2d.org/wiki/love.physics.newMotorJoint)
----
----@param body1 love.Body# The first body to attach to the joint.
----@param body2 love.Body# The second body to attach to the joint.
----@param correctionFactor? number# (0.3) The joint's initial position correction factor, in the range of 1.
----@param collideConnected? boolean# (false) Specifies whether the two bodies should collide with each other.
----@diagnostic disable-next-line: args-after-dots
-function love.physics.newMotorJoint(body1, body2, correctionFactor, collideConnected) end
-
----Create a joint between a body and the mouse.
----
----This joint actually connects the body to a fixed point in the world. To make it follow the mouse, the fixed point must be updated every timestep (example below).
----
----The advantage of using a MouseJoint instead of just changing a body position directly is that collisions and reactions to other joints are handled by the physics engine. 
----
----[Wiki](https://love2d.org/wiki/love.physics.newMouseJoint)
----
----@param body love.Body# The body to attach to the mouse.
----@param x number# The x position of the connecting point.
----@param y number# The y position of the connecting point.
----@diagnostic disable-next-line: args-after-dots
-function love.physics.newMouseJoint(body, x, y) end
-
----Creates a new PolygonShape.
----
----This shape can have 8 vertices at most, and must form a convex shape.
----
----[Wiki](https://love2d.org/wiki/love.physics.newPolygonShape)
----
----@param x1 number# The x position of the first point.
----@param y1 number# The y position of the first point.
----@param x2 number# The x position of the second point.
----@param y2 number# The y position of the second point.
----@param x3 number# The x position of the third point.
----@param y3 number# The y position of the third point.
----@param ... number# You can continue passing more point positions to create the PolygonShape.
----@diagnostic disable-next-line: args-after-dots
-function love.physics.newPolygonShape(x1, y1, x2, y2, x3, y3, ...) end
-
----Creates a new PolygonShape.
----
----This shape can have 8 vertices at most, and must form a convex shape.
----
----[Wiki](https://love2d.org/wiki/love.physics.newPolygonShape)
----
----@param vertices table[]# A list of vertices to construct the polygon, in the form of {x1, y1, x2, y2, x3, y3, ...}.
----@diagnostic disable-next-line: args-after-dots
-function love.physics.newPolygonShape(vertices) end
-
----Creates a PrismaticJoint between two bodies.
----
----A prismatic joint constrains two bodies to move relatively to each other on a specified axis. It does not allow for relative rotation. Its definition and operation are similar to a  revolute joint, but with translation and force substituted for angle and torque.
----
----[Wiki](https://love2d.org/wiki/love.physics.newPrismaticJoint)
----
----@param body1 love.Body# The first body to connect with a prismatic joint.
----@param body2 love.Body# The second body to connect with a prismatic joint.
----@param x number# The x coordinate of the anchor point.
----@param y number# The y coordinate of the anchor point.
----@param ax number# The x coordinate of the axis vector.
----@param ay number# The y coordinate of the axis vector.
----@param collideConnected? boolean# (false) Specifies whether the two bodies should collide with each other.
----@diagnostic disable-next-line: args-after-dots
-function love.physics.newPrismaticJoint(body1, body2, x, y, ax, ay, collideConnected) end
-
----Creates a PrismaticJoint between two bodies.
----
----A prismatic joint constrains two bodies to move relatively to each other on a specified axis. It does not allow for relative rotation. Its definition and operation are similar to a  revolute joint, but with translation and force substituted for angle and torque.
----
----[Wiki](https://love2d.org/wiki/love.physics.newPrismaticJoint)
----
----@param body1 love.Body# The first body to connect with a prismatic joint.
----@param body2 love.Body# The second body to connect with a prismatic joint.
----@param x1 number# The x coordinate of the first anchor point.
----@param y1 number# The y coordinate of the first anchor point.
----@param x2 number# The x coordinate of the second anchor point.
----@param y2 number# The y coordinate of the second anchor point.
----@param ax number# The x coordinate of the axis unit vector.
----@param ay number# The y coordinate of the axis unit vector.
----@param collideConnected? boolean# (false) Specifies whether the two bodies should collide with each other.
----@diagnostic disable-next-line: args-after-dots
-function love.physics.newPrismaticJoint(body1, body2, x1, y1, x2, y2, ax, ay, collideConnected) end
-
----Creates a PrismaticJoint between two bodies.
----
----A prismatic joint constrains two bodies to move relatively to each other on a specified axis. It does not allow for relative rotation. Its definition and operation are similar to a  revolute joint, but with translation and force substituted for angle and torque.
----
----[Wiki](https://love2d.org/wiki/love.physics.newPrismaticJoint)
----
----@param body1 love.Body# The first body to connect with a prismatic joint.
----@param body2 love.Body# The second body to connect with a prismatic joint.
----@param x1 number# The x coordinate of the first anchor point.
----@param y1 number# The y coordinate of the first anchor point.
----@param x2 number# The x coordinate of the second anchor point.
----@param y2 number# The y coordinate of the second anchor point.
----@param ax number# The x coordinate of the axis unit vector.
----@param ay number# The y coordinate of the axis unit vector.
----@param collideConnected? boolean# (false) Specifies whether the two bodies should collide with each other.
----@param referenceAngle? number# (0) The reference angle between body1 and body2, in radians.
----@diagnostic disable-next-line: args-after-dots
-function love.physics.newPrismaticJoint(body1, body2, x1, y1, x2, y2, ax, ay, collideConnected, referenceAngle) end
-
----Creates a PulleyJoint to join two bodies to each other and the ground.
----
----The pulley joint simulates a pulley with an optional block and tackle. If the ratio parameter has a value different from one, then the simulated rope extends faster on one side than the other. In a pulley joint the total length of the simulated rope is the constant length1 + ratio * length2, which is set when the pulley joint is created.
----
----Pulley joints can behave unpredictably if one side is fully extended. It is recommended that the method  setMaxLengths  be used to constrain the maximum lengths each side can attain.
----
----[Wiki](https://love2d.org/wiki/love.physics.newPulleyJoint)
----
----@param body1 love.Body# The first body to connect with a pulley joint.
----@param body2 love.Body# The second body to connect with a pulley joint.
----@param gx1 number# The x coordinate of the first body's ground anchor.
----@param gy1 number# The y coordinate of the first body's ground anchor.
----@param gx2 number# The x coordinate of the second body's ground anchor.
----@param gy2 number# The y coordinate of the second body's ground anchor.
----@param x1 number# The x coordinate of the pulley joint anchor in the first body.
----@param y1 number# The y coordinate of the pulley joint anchor in the first body.
----@param x2 number# The x coordinate of the pulley joint anchor in the second body.
----@param y2 number# The y coordinate of the pulley joint anchor in the second body.
----@param ratio? number# (1) The joint ratio.
----@param collideConnected? boolean# (true) Specifies whether the two bodies should collide with each other.
----@diagnostic disable-next-line: args-after-dots
-function love.physics.newPulleyJoint(body1, body2, gx1, gy1, gx2, gy2, x1, y1, x2, y2, ratio, collideConnected) end
-
----Shorthand for creating rectangular PolygonShapes. 
----
----By default, the local origin is located at the '''center''' of the rectangle as opposed to the top left for graphics.
----
----[Wiki](https://love2d.org/wiki/love.physics.newRectangleShape)
----
----@param width number# The width of the rectangle.
----@param height number# The height of the rectangle.
----@diagnostic disable-next-line: args-after-dots
-function love.physics.newRectangleShape(width, height) end
-
----Shorthand for creating rectangular PolygonShapes. 
----
----By default, the local origin is located at the '''center''' of the rectangle as opposed to the top left for graphics.
----
----[Wiki](https://love2d.org/wiki/love.physics.newRectangleShape)
----
----@param x number# The offset along the x-axis.
----@param y number# The offset along the y-axis.
----@param width number# The width of the rectangle.
----@param height number# The height of the rectangle.
----@param angle? number# (0) The initial angle of the rectangle.
----@diagnostic disable-next-line: args-after-dots
-function love.physics.newRectangleShape(x, y, width, height, angle) end
-
----Creates a pivot joint between two bodies.
----
----This joint connects two bodies to a point around which they can pivot.
----
----[Wiki](https://love2d.org/wiki/love.physics.newRevoluteJoint)
----
----@param body1 love.Body# The first body.
----@param body2 love.Body# The second body.
----@param x number# The x position of the connecting point.
----@param y number# The y position of the connecting point.
----@param collideConnected? boolean# (false) Specifies whether the two bodies should collide with each other.
----@diagnostic disable-next-line: args-after-dots
-function love.physics.newRevoluteJoint(body1, body2, x, y, collideConnected) end
-
----Creates a pivot joint between two bodies.
----
----This joint connects two bodies to a point around which they can pivot.
----
----[Wiki](https://love2d.org/wiki/love.physics.newRevoluteJoint)
----
----@param body1 love.Body# The first body.
----@param body2 love.Body# The second body.
----@param x1 number# The x position of the first connecting point.
----@param y1 number# The y position of the first connecting point.
----@param x2 number# The x position of the second connecting point.
----@param y2 number# The y position of the second connecting point.
----@param collideConnected? boolean# (false) Specifies whether the two bodies should collide with each other.
----@param referenceAngle? number# (0) The reference angle between body1 and body2, in radians.
----@diagnostic disable-next-line: args-after-dots
-function love.physics.newRevoluteJoint(body1, body2, x1, y1, x2, y2, collideConnected, referenceAngle) end
-
----Creates a joint between two bodies. Its only function is enforcing a max distance between these bodies.
----
----[Wiki](https://love2d.org/wiki/love.physics.newRopeJoint)
----
----@param body1 love.Body# The first body to attach to the joint.
----@param body2 love.Body# The second body to attach to the joint.
----@param x1 number# The x position of the first anchor point.
----@param y1 number# The y position of the first anchor point.
----@param x2 number# The x position of the second anchor point.
----@param y2 number# The y position of the second anchor point.
----@param maxLength number# The maximum distance for the bodies.
----@param collideConnected? boolean# (false) Specifies whether the two bodies should collide with each other.
----@diagnostic disable-next-line: args-after-dots
-function love.physics.newRopeJoint(body1, body2, x1, y1, x2, y2, maxLength, collideConnected) end
-
----Creates a constraint joint between two bodies. A WeldJoint essentially glues two bodies together. The constraint is a bit soft, however, due to Box2D's iterative solver.
----
----[Wiki](https://love2d.org/wiki/love.physics.newWeldJoint)
----
----@param body1 love.Body# The first body to attach to the joint.
----@param body2 love.Body# The second body to attach to the joint.
----@param x number# The x position of the anchor point (world space).
----@param y number# The y position of the anchor point (world space).
----@param collideConnected? boolean# (false) Specifies whether the two bodies should collide with each other.
----@diagnostic disable-next-line: args-after-dots
-function love.physics.newWeldJoint(body1, body2, x, y, collideConnected) end
-
----Creates a constraint joint between two bodies. A WeldJoint essentially glues two bodies together. The constraint is a bit soft, however, due to Box2D's iterative solver.
----
----[Wiki](https://love2d.org/wiki/love.physics.newWeldJoint)
----
----@param body1 love.Body# The first body to attach to the joint.
----@param body2 love.Body# The second body to attach to the joint.
----@param x1 number# The x position of the first anchor point (world space).
----@param y1 number# The y position of the first anchor point (world space).
----@param x2 number# The x position of the second anchor point (world space).
----@param y2 number# The y position of the second anchor point (world space).
----@param collideConnected? boolean# (false) Specifies whether the two bodies should collide with each other.
----@diagnostic disable-next-line: args-after-dots
-function love.physics.newWeldJoint(body1, body2, x1, y1, x2, y2, collideConnected) end
-
----Creates a constraint joint between two bodies. A WeldJoint essentially glues two bodies together. The constraint is a bit soft, however, due to Box2D's iterative solver.
----
----[Wiki](https://love2d.org/wiki/love.physics.newWeldJoint)
----
----@param body1 love.Body# The first body to attach to the joint.
----@param body2 love.Body# The second body to attach to the joint.
----@param x1 number# The x position of the first anchor point (world space).
----@param y1 number# The y position of the first anchor point  (world space).
----@param x2 number# The x position of the second anchor point (world space).
----@param y2 number# The y position of the second anchor point (world space).
----@param collideConnected? boolean# (false) Specifies whether the two bodies should collide with each other.
----@param referenceAngle? number# (0) The reference angle between body1 and body2, in radians.
----@diagnostic disable-next-line: args-after-dots
-function love.physics.newWeldJoint(body1, body2, x1, y1, x2, y2, collideConnected, referenceAngle) end
-
----Creates a wheel joint.
----
----[Wiki](https://love2d.org/wiki/love.physics.newWheelJoint)
----
----@param body1 love.Body# The first body.
----@param body2 love.Body# The second body.
----@param x number# The x position of the anchor point.
----@param y number# The y position of the anchor point.
----@param ax number# The x position of the axis unit vector.
----@param ay number# The y position of the axis unit vector.
----@param collideConnected? boolean# (false) Specifies whether the two bodies should collide with each other.
----@diagnostic disable-next-line: args-after-dots
-function love.physics.newWheelJoint(body1, body2, x, y, ax, ay, collideConnected) end
-
----Creates a wheel joint.
----
----[Wiki](https://love2d.org/wiki/love.physics.newWheelJoint)
----
----@param body1 love.Body# The first body.
----@param body2 love.Body# The second body.
----@param x1 number# The x position of the first anchor point.
----@param y1 number# The y position of the first anchor point.
----@param x2 number# The x position of the second anchor point.
----@param y2 number# The y position of the second anchor point.
----@param ax number# The x position of the axis unit vector.
----@param ay number# The y position of the axis unit vector.
----@param collideConnected? boolean# (false) Specifies whether the two bodies should collide with each other.
----@diagnostic disable-next-line: args-after-dots
-function love.physics.newWheelJoint(body1, body2, x1, y1, x2, y2, ax, ay, collideConnected) end
-
----Creates a new World.
----
----[Wiki](https://love2d.org/wiki/love.physics.newWorld)
----
----@param xg? number# (0) The x component of gravity.
----@param yg? number# (0) The y component of gravity.
----@param sleep? boolean# (true) Whether the bodies in this world are allowed to sleep.
----@diagnostic disable-next-line: args-after-dots
-function love.physics.newWorld(xg, yg, sleep) end
-
----Sets the pixels to meter scale factor.
----
----All coordinates in the physics module are divided by this number and converted to meters, and it creates a convenient way to draw the objects directly to the screen without the need for graphics transformations.
----
----It is recommended to create shapes no larger than 10 times the scale. This is important because Box2D is tuned to work well with shape sizes from 0.1 to 10 meters. The default meter scale is 30.
----
----[Wiki](https://love2d.org/wiki/love.physics.setMeter)
----
----@param scale number# The scale factor as an integer.
----@diagnostic disable-next-line: args-after-dots
-function love.physics.setMeter(scale) end
+function love.sound.newSoundData(samples, rate, bits, channels) end
 
 ---Creates a new copy of current decoder.
 ---
@@ -13441,67 +13502,6 @@ function SoundData:setSample(i, sample) end
 ---@diagnostic disable-next-line: args-after-dots
 function SoundData:setSample(i, channel, sample) end
 
----Attempts to find a decoder for the encoded sound data in the specified file.
----
----[Wiki](https://love2d.org/wiki/love.sound.newDecoder)
----
----@param file love.File# The file with encoded sound data.
----@param buffer? number# (2048) The size of each decoded chunk, in bytes.
----@diagnostic disable-next-line: args-after-dots
-function love.sound.newDecoder(file, buffer) end
-
----Attempts to find a decoder for the encoded sound data in the specified file.
----
----[Wiki](https://love2d.org/wiki/love.sound.newDecoder)
----
----@param filename string# The filename of the file with encoded sound data.
----@param buffer? number# (2048) The size of each decoded chunk, in bytes.
----@diagnostic disable-next-line: args-after-dots
-function love.sound.newDecoder(filename, buffer) end
-
----Creates new SoundData from a filepath, File, or Decoder. It's also possible to create SoundData with a custom sample rate, channel and bit depth.
----
----The sound data will be decoded to the memory in a raw format. It is recommended to create only short sounds like effects, as a 3 minute song uses 30 MB of memory this way.
----
----[Wiki](https://love2d.org/wiki/love.sound.newSoundData)
----
----@param filename string# The file name of the file to load.
----@diagnostic disable-next-line: args-after-dots
-function love.sound.newSoundData(filename) end
-
----Creates new SoundData from a filepath, File, or Decoder. It's also possible to create SoundData with a custom sample rate, channel and bit depth.
----
----The sound data will be decoded to the memory in a raw format. It is recommended to create only short sounds like effects, as a 3 minute song uses 30 MB of memory this way.
----
----[Wiki](https://love2d.org/wiki/love.sound.newSoundData)
----
----@param file love.File# A File pointing to an audio file.
----@diagnostic disable-next-line: args-after-dots
-function love.sound.newSoundData(file) end
-
----Creates new SoundData from a filepath, File, or Decoder. It's also possible to create SoundData with a custom sample rate, channel and bit depth.
----
----The sound data will be decoded to the memory in a raw format. It is recommended to create only short sounds like effects, as a 3 minute song uses 30 MB of memory this way.
----
----[Wiki](https://love2d.org/wiki/love.sound.newSoundData)
----
----@param decoder love.Decoder# Decode data from this Decoder until EOF.
----@diagnostic disable-next-line: args-after-dots
-function love.sound.newSoundData(decoder) end
-
----Creates new SoundData from a filepath, File, or Decoder. It's also possible to create SoundData with a custom sample rate, channel and bit depth.
----
----The sound data will be decoded to the memory in a raw format. It is recommended to create only short sounds like effects, as a 3 minute song uses 30 MB of memory this way.
----
----[Wiki](https://love2d.org/wiki/love.sound.newSoundData)
----
----@param samples number# Total number of samples.
----@param rate? number# (44100) Number of samples per second
----@param bits? number# (16) Bits per sample (8 or 16).
----@param channels? number# (2) Either 1 for mono or 2 for stereo.
----@diagnostic disable-next-line: args-after-dots
-function love.sound.newSoundData(samples, rate, bits, channels) end
-
 ---Gets text from the clipboard.
 ---
 ---[Wiki](https://love2d.org/wiki/love.system.getClipboardText)
@@ -13562,6 +13562,47 @@ function love.system.setClipboardText(text) end
 ---@param seconds? number# (0.5) The duration to vibrate for. If called on an iOS device, it will always vibrate for 0.5 seconds due to limitations in the iOS system APIs.
 ---@diagnostic disable-next-line: args-after-dots
 function love.system.vibrate(seconds) end
+
+---Creates or retrieves a named thread channel.
+---
+---[Wiki](https://love2d.org/wiki/love.thread.getChannel)
+---
+---@param name string# The name of the channel you want to create or retrieve.
+---@diagnostic disable-next-line: args-after-dots
+function love.thread.getChannel(name) end
+
+---Create a new unnamed thread channel.
+---
+---One use for them is to pass new unnamed channels to other threads via Channel:push on a named channel.
+---
+---[Wiki](https://love2d.org/wiki/love.thread.newChannel)
+---
+---@diagnostic disable-next-line: args-after-dots
+function love.thread.newChannel() end
+
+---Creates a new Thread from a filename, string or FileData object containing Lua code.
+---
+---[Wiki](https://love2d.org/wiki/love.thread.newThread)
+---
+---@param filename string# The name of the Lua file to use as the source.
+---@diagnostic disable-next-line: args-after-dots
+function love.thread.newThread(filename) end
+
+---Creates a new Thread from a filename, string or FileData object containing Lua code.
+---
+---[Wiki](https://love2d.org/wiki/love.thread.newThread)
+---
+---@param fileData love.FileData# The FileData containing the Lua code to use as the source.
+---@diagnostic disable-next-line: args-after-dots
+function love.thread.newThread(fileData) end
+
+---Creates a new Thread from a filename, string or FileData object containing Lua code.
+---
+---[Wiki](https://love2d.org/wiki/love.thread.newThread)
+---
+---@param codestring string# A string containing the Lua code to use as the source. It needs to either be at least 1024 characters long, or contain at least one newline.
+---@diagnostic disable-next-line: args-after-dots
+function love.thread.newThread(codestring) end
 
 ---Clears all the messages in the Channel queue.
 ---
@@ -13710,47 +13751,6 @@ function Thread:start(...) end
 ---@diagnostic disable-next-line: args-after-dots
 function Thread:wait() end
 
----Creates or retrieves a named thread channel.
----
----[Wiki](https://love2d.org/wiki/love.thread.getChannel)
----
----@param name string# The name of the channel you want to create or retrieve.
----@diagnostic disable-next-line: args-after-dots
-function love.thread.getChannel(name) end
-
----Create a new unnamed thread channel.
----
----One use for them is to pass new unnamed channels to other threads via Channel:push on a named channel.
----
----[Wiki](https://love2d.org/wiki/love.thread.newChannel)
----
----@diagnostic disable-next-line: args-after-dots
-function love.thread.newChannel() end
-
----Creates a new Thread from a filename, string or FileData object containing Lua code.
----
----[Wiki](https://love2d.org/wiki/love.thread.newThread)
----
----@param filename string# The name of the Lua file to use as the source.
----@diagnostic disable-next-line: args-after-dots
-function love.thread.newThread(filename) end
-
----Creates a new Thread from a filename, string or FileData object containing Lua code.
----
----[Wiki](https://love2d.org/wiki/love.thread.newThread)
----
----@param fileData love.FileData# The FileData containing the Lua code to use as the source.
----@diagnostic disable-next-line: args-after-dots
-function love.thread.newThread(fileData) end
-
----Creates a new Thread from a filename, string or FileData object containing Lua code.
----
----[Wiki](https://love2d.org/wiki/love.thread.newThread)
----
----@param codestring string# A string containing the Lua code to use as the source. It needs to either be at least 1024 characters long, or contain at least one newline.
----@diagnostic disable-next-line: args-after-dots
-function love.thread.newThread(codestring) end
-
 ---Returns the average delta time (seconds per frame) over the last second.
 ---
 ---[Wiki](https://love2d.org/wiki/love.timer.getAverageDelta)
@@ -13821,6 +13821,22 @@ function love.touch.getPressure(id) end
 ---@diagnostic disable-next-line: args-after-dots
 function love.touch.getTouches() end
 
+---Creates a new VideoStream. Currently only Ogg Theora video files are supported. VideoStreams can't draw videos, see love.graphics.newVideo for that.
+---
+---[Wiki](https://love2d.org/wiki/love.video.newVideoStream)
+---
+---@param filename string# The file path to the Ogg Theora video file.
+---@diagnostic disable-next-line: args-after-dots
+function love.video.newVideoStream(filename) end
+
+---Creates a new VideoStream. Currently only Ogg Theora video files are supported. VideoStreams can't draw videos, see love.graphics.newVideo for that.
+---
+---[Wiki](https://love2d.org/wiki/love.video.newVideoStream)
+---
+---@param file love.File# The File object containing the Ogg Theora video.
+---@diagnostic disable-next-line: args-after-dots
+function love.video.newVideoStream(file) end
+
 ---Gets the filename of the VideoStream.
 ---
 ---[Wiki](https://love2d.org/wiki/VideoStream:getFilename)
@@ -13870,22 +13886,6 @@ function VideoStream:seek(offset) end
 ---
 ---@diagnostic disable-next-line: args-after-dots
 function VideoStream:tell() end
-
----Creates a new VideoStream. Currently only Ogg Theora video files are supported. VideoStreams can't draw videos, see love.graphics.newVideo for that.
----
----[Wiki](https://love2d.org/wiki/love.video.newVideoStream)
----
----@param filename string# The file path to the Ogg Theora video file.
----@diagnostic disable-next-line: args-after-dots
-function love.video.newVideoStream(filename) end
-
----Creates a new VideoStream. Currently only Ogg Theora video files are supported. VideoStreams can't draw videos, see love.graphics.newVideo for that.
----
----[Wiki](https://love2d.org/wiki/love.video.newVideoStream)
----
----@param file love.File# The File object containing the Ogg Theora video.
----@diagnostic disable-next-line: args-after-dots
-function love.video.newVideoStream(file) end
 
 ---Closes the window. It can be reopened with love.window.setMode.
 ---
