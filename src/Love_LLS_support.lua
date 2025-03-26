@@ -7,7 +7,8 @@ local type_aliasas = {
     Variant = "love.Variant",
     tables = "table",
     strings = "string",
-    RenderTargetSetup = "Canvas"
+    RenderTargetSetup = "Canvas",
+    ["..."] = "%[...%]"
 }
 
 ---@alias class_queue_item {obj: table, full_name: string, is_class: boolean}
@@ -90,9 +91,6 @@ end
 ---@return string
 local function serialize_arg_type(arg)
     local arg_type = arg.type
-    if arg_type == "..." then
-        return "%[...%]"
-    end
     if str_contains(arg.type, " or ") or str_contains(arg.type, " and ") then
         local old_arg_type = arg.type
         local splitter = (str_contains(arg.type, " or ") and " or ") or " and "
@@ -103,14 +101,6 @@ local function serialize_arg_type(arg)
         end
         arg_type = table.concat(arg_types, "|")
         arg.type = old_arg_type
-        return arg_type
-    end
-
-    if type_aliasas[arg_type] then
-        arg_type = get_type_alias(arg_type)
-    end
-    if arg.arraytype then
-        arg_type = arg_type .. "[]"
     elseif arg.signature then
         assert(not arg.tablearray)
         assert(not arg.table)
@@ -131,24 +121,23 @@ local function serialize_arg_type(arg)
     elseif arg.table then
         assert(not arg.signature)
         assert(not arg.arraytype)
-        arg_type = "{"
-        local not_first = false
+        local table_content = {}
         for _, v in ipairs(arg.table) do
-            if not_first then
-                arg_type = arg_type .. ","
-            end
-            not_first = true
             local v_name = v.name
             if v_name:match("^[%d%.]") then
                 v_name = "[" .. v_name .. "]"
             end
-            arg_type = arg_type .. "\n---" .. v_name .. " : " .. serialize_arg_type(v)
+            table.insert(table_content, "\n---" .. v_name .. " : " .. serialize_arg_type(v))
         end
-        arg_type = arg_type .. "}"
-        if arg.tablearray then
-            arg_type = arg_type .. "[]"
-        end
+        arg_type =  "{" .. table.concat(table_content, ",") .. "}"
+    elseif type_aliasas[arg_type] then
+        arg_type = get_type_alias(arg_type)
     end
+
+    if arg.arraytype or arg.tablearray then
+        arg_type = arg_type .. "[]"
+    end
+
     assert(arg.signature or arg.table or (not str_contains(arg_type, " ")), arg_type)
     return arg_type
 end
@@ -160,6 +149,7 @@ local function print_class(f, data)
     local obj = data.obj
     local full_name = data.full_name
     local is_class = data.is_class
+
     if obj.version then
         f:write("---Version: " .. obj.version .. "\n")
     end
@@ -168,24 +158,19 @@ local function print_class(f, data)
     f:write(format_head_desc(obj.description, wiki_name) .. "\n")
 
     f:write("---@class " .. full_name)
-    local has_parent = false
     if obj.supertypes then
+        local parents = {}
         for _, parent in ipairs(obj.supertypes) do
-            if has_parent then
-                f:write(", ")
-            else
-                has_parent = true
-                f:write(" : ")
-            end
-            f:write(get_type_alias(parent))
+            table.insert(parents, get_type_alias(parent))
         end
+        f:write(" : " .. table.concat(parents, ", "))
     end
     f:write("\n")
-    if obj.modules then
-        for _, v in ipairs(obj.modules) do
-            f:write("---@field " .. v.name .. " " .. get_type_alias(v.name) .. "\n")
-        end
+
+    for _, v in ipairs(obj.modules or {}) do
+        f:write("---@field " .. v.name .. " " .. get_type_alias(v.name) .. "\n")
     end
+
     if is_class then
         f:write("local " .. obj.name .. " = {}\n")
     else
