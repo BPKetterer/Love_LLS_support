@@ -1,6 +1,13 @@
 # Setup
 Simply copy the [love_lls.lua](love_lls.lua) into your project.
 
+To prevent the documentation of the generator, add this to you .vscode/settings.json:
+```
+"Lua.workspace.ignoreDir": [
+        "Love_LLS_support/src"
+]
+```
+
 # Handeling Callbacks
 Just define the type:
 ```
