@@ -96,19 +96,16 @@ local function serialize_arg_type(arg)
     if str_contains(arg.type, " or ") or str_contains(arg.type, " and ") then
         local old_arg_type = arg.type
         local splitter = (str_contains(arg.type, " or ") and " or ") or " and "
-        arg_type = ""
-        local not_first = false
+        local arg_types = {}
         for _, at in ipairs(split_str(arg.type, splitter)) do
-            if not_first then
-                arg_type = arg_type .. "|"
-            end
-            not_first = true
             arg.type = at
-            arg_type = arg_type .. serialize_arg_type(arg)
+            table.insert(arg_types, serialize_arg_type(arg))
         end
+        arg_type = table.concat(arg_types, "|")
         arg.type = old_arg_type
         return arg_type
     end
+
     if type_aliasas[arg_type] then
         arg_type = get_type_alias(arg_type)
     end
@@ -119,24 +116,17 @@ local function serialize_arg_type(arg)
         assert(not arg.table)
         assert(not arg.arraytype)
         arg_type = "fun("
-        local not_first = false
+        local fun_args = {}
         for _, arg2 in ipairs(arg.signature.arguments or {}) do
-            if not_first then
-                arg_type = arg_type .. ", "
-            end
-            not_first = true
-            arg_type = arg_type .. arg2.name ..":" .. serialize_arg_type(arg2)
+            table.insert(fun_args, arg2.name ..":" .. serialize_arg_type(arg2))
         end
-        arg_type = arg_type .. ")"
-        not_first = false
-        for _, re in ipairs(arg.signature.returns or {}) do
-            if not_first then
-                arg_type = arg_type .. ", "
-            else
-                arg_type = arg_type .. ": "
+        arg_type = arg_type .. table.concat(fun_args, ", ") .. ")"
+        if arg.signature.returns then
+            local fun_returns = {}
+            for _, re in ipairs(arg.signature.returns or {}) do
+                table.insert(fun_returns, re.name ..": " .. serialize_arg_type(re))
             end
-            not_first = true
-            arg_type = arg_type .. re.name ..":" .. serialize_arg_type(re)
+            arg_type = arg_type .. ":" .. table.concat(fun_returns, ", ")
         end
     elseif arg.table then
         assert(not arg.signature)
@@ -352,39 +342,25 @@ local function collect(obj, path, is_class)
     --adds the module/type to the print queue
     table.insert(class_queue, {obj = obj, full_name = full_name, is_class = is_class})
     --search for children
-    for k, v in pairs(obj) do
-        if k == "modules" then
-            --recursivly collects modules
-            for _, module in ipairs(v) do
-                collect(module, full_name, false)
-            end
-        elseif k == "types" then
-            --recursivly collects types
-            for _, type in ipairs(v) do
-                collect(type, full_name, true)
-            end
-        elseif k == "enums" then
-            for _, enum in ipairs(v) do
-                local full_enum_name = "love." .. enum.name
-                type_aliasas[enum.name] = full_enum_name
-                table.insert(enum_queue, {obj = enum, full_name = full_enum_name})
-            end
-        elseif k == "callbacks" then
-            for _, callback in ipairs(v) do
-                table.insert(callback_queue, {obj = callback, full_name = full_name .. "." .. callback.name})
-            end
-        elseif k == "functions"then
-            --collects functions/callbacks
-            local fun_name_prefix = ((
-                    is_class and (obj.name .. ":"))
-                    or full_name .. ".")
-            for _, fun in ipairs(v) do
-                table.insert(function_queue, {obj = fun, full_name = fun_name_prefix .. fun.name})
-            end
-        elseif k == "name" or k == "version" or k == "supertypes" or k == "description" or k == "constructors" then
-        else
-            assert(false, "unknown field in collect " .. k)
-        end
+    for _, module in ipairs(obj.modules or {}) do
+        collect(module, full_name, false)
+    end
+    for _, type in ipairs(obj.types or {}) do
+        collect(type, full_name, true)
+    end
+    for _, enum in ipairs(obj.enums or {}) do
+        local full_enum_name = "love." .. enum.name
+        type_aliasas[enum.name] = full_enum_name
+        table.insert(enum_queue, {obj = enum, full_name = full_enum_name})
+    end
+    for _, callback in ipairs(obj.callbacks or {}) do
+        table.insert(callback_queue, {obj = callback, full_name = full_name .. "." .. callback.name})
+    end
+    local fun_name_prefix = ((
+            is_class and (obj.name .. ":"))
+            or full_name .. ".")
+    for _, fun in ipairs(obj.functions or {}) do
+        table.insert(function_queue, {obj = fun, full_name = fun_name_prefix .. fun.name})
     end
 end
 
