@@ -7,8 +7,7 @@ local type_aliasas = {
     Variant = "love.Variant",
     tables = "table",
     strings = "string",
-    RenderTargetSetup = "Canvas",
-    ["..."] = "%[...%]"
+    RenderTargetSetup = "Canvas"
 }
 
 ---@alias class_queue_item {obj: table, full_name: string, is_class: boolean}
@@ -124,8 +123,10 @@ local function serialize_arg_type(arg)
         local table_content = {}
         for _, v in ipairs(arg.table) do
             local v_name = v.name
-            if v_name:match("^[%d%.]") then
+            if v_name:match("^[%d]") then
                 v_name = "[" .. v_name .. "]"
+            elseif v_name == "..." then
+                v_name = "['...']"
             end
             table.insert(table_content, "\n---" .. v_name .. " : " .. serialize_arg_type(v))
         end

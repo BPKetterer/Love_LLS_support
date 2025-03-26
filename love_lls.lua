@@ -3437,7 +3437,7 @@ function love.audio.setDopplerScale(scale) end
 ---@param settings {
 ---type : love.EffectType,
 ---volume : number,
----[...] : number}# The settings to use for this effect, with the following fields:
+---['...'] : number}# The settings to use for this effect, with the following fields:
 ---@return boolean success# Whether the effect was successfully created.
 ---@diagnostic disable-next-line: args-after-dots
 function love.audio.setEffect(name, settings) end
@@ -4996,7 +4996,7 @@ function Font:getWrap(text, wraplimit) end
 ---string1 : string,
 ---color2 : table,
 ---string2 : string,
----[...] : table|string}# A table containing colors and strings to add to the object, in the form of {color1, string1, color2, string2, ...}.
+---['...'] : table|string}# A table containing colors and strings to add to the object, in the form of {color1, string1, color2, string2, ...}.
 ---@param wraplimit number# The maximum width in pixels of each line that ''text'' is allowed before wrapping.
 ---@return number width# The maximum width of the wrapped text.
 ---@return table[] wrappedtext# A sequence containing each line of text that was wrapped.
@@ -5217,7 +5217,7 @@ function Mesh:getVertexCount() end
 ---
 ---@return {
 ---attribute : table,
----[...] : table} format# The vertex format of the Mesh, which is a table containing tables for each vertex attribute the Mesh was created with, in the form of {attribute, ...}.
+---['...'] : table} format# The vertex format of the Mesh, which is a table containing tables for each vertex attribute the Mesh was created with, in the form of {attribute, ...}.
 ---@diagnostic disable-next-line: args-after-dots
 function Mesh:getVertexFormat() end
 
@@ -5309,7 +5309,7 @@ function Mesh:setVertex(index, attributecomponent, ...) end
 ---@param index number# The index of the the vertex you want to modify (one-based).
 ---@param vertex {
 ---attributecomponent : number,
----[...] : number}# A table with vertex information, in the form of {attributecomponent, ...}.
+---['...'] : number}# A table with vertex information, in the form of {attributecomponent, ...}.
 ---@diagnostic disable-next-line: args-after-dots
 function Mesh:setVertex(index, vertex) end
 
@@ -5403,7 +5403,7 @@ function Mesh:setVertexMap(data, datatype) end
 ---
 ---@param vertices {
 ---attributecomponent : number,
----[...] : number}# The table filled with vertex information tables for each vertex, in the form of {vertex, ...} where each vertex is a table in the form of {attributecomponent, ...}.
+---['...'] : number}# The table filled with vertex information tables for each vertex, in the form of {vertex, ...} where each vertex is a table in the form of {attributecomponent, ...}.
 ---@param startvertex? number# (1) The index of the first vertex to replace.
 ---@param count? number# (all) Amount of vertices to replace.
 ---@diagnostic disable-next-line: args-after-dots
@@ -6661,7 +6661,7 @@ function Text:add(textstring, x, y, angle, sx, sy, ox, oy, kx, ky) end
 ---string1 : string,
 ---color2 : table,
 ---string2 : string,
----[...] : table|string}# A table containing colors and strings to add to the object, in the form of {color1, string1, color2, string2, ...}.
+---['...'] : table|string}# A table containing colors and strings to add to the object, in the form of {color1, string1, color2, string2, ...}.
 ---@param x? number# (0) The position of the new text on the x-axis.
 ---@param y? number# (0) The position of the new text on the y-axis.
 ---@param angle? number# (0) The orientation of the new text in radians.
@@ -6708,7 +6708,7 @@ function Text:addf(textstring, wraplimit, align, x, y, angle, sx, sy, ox, oy, kx
 ---string1 : string,
 ---color2 : table,
 ---string2 : string,
----[...] : table|string}# A table containing colors and strings to add to the object, in the form of {color1, string1, color2, string2, ...}.
+---['...'] : table|string}# A table containing colors and strings to add to the object, in the form of {color1, string1, color2, string2, ...}.
 ---@param wraplimit number# The maximum width in pixels of the text before it gets automatically wrapped to a new line.
 ---@param align love.AlignMode# The alignment of the text.
 ---@param x number# The position of the new text (x-axis).
@@ -6809,7 +6809,7 @@ function Text:set(textstring) end
 ---string1 : string,
 ---color2 : table,
 ---string2 : string,
----[...] : table|string}# A table containing colors and strings to use as the new text, in the form of {color1, string1, color2, string2, ...}.
+---['...'] : table|string}# A table containing colors and strings to use as the new text, in the form of {color1, string1, color2, string2, ...}.
 ---@diagnostic disable-next-line: args-after-dots
 function Text:set(coloredtext) end
 
@@ -6840,7 +6840,7 @@ function Text:setf(textstring, wraplimit, align) end
 ---string1 : string,
 ---color2 : table,
 ---string2 : string,
----[...] : table|string}# A table containing colors and strings to use as the new text, in the form of {color1, string1, color2, string2, ...}.
+---['...'] : table|string}# A table containing colors and strings to use as the new text, in the form of {color1, string1, color2, string2, ...}.
 ---@param wraplimit number# The maximum width in pixels of the text before it gets automatically wrapped to a new line.
 ---@param align love.AlignMode# The alignment of the text.
 ---@diagnostic disable-next-line: args-after-dots
@@ -8386,10 +8386,10 @@ function love.graphics.newMesh(vertexcount, mode, usage) end
 ---
 ---@param vertexformat {
 ---attribute : table,
----[...] : table}# A table in the form of {attribute, ...}. Each attribute is a table which specifies a custom vertex attribute used for each vertex.
+---['...'] : table}# A table in the form of {attribute, ...}. Each attribute is a table which specifies a custom vertex attribute used for each vertex.
 ---@param vertices {
 ---attributecomponent : number,
----[...] : number}# The table filled with vertex information tables for each vertex, in the form of {vertex, ...} where each vertex is a table in the form of {attributecomponent, ...}.
+---['...'] : number}# The table filled with vertex information tables for each vertex, in the form of {vertex, ...} where each vertex is a table in the form of {attributecomponent, ...}.
 ---@param mode? love.MeshDrawMode# ('fan') How the vertices are used when drawing. The default mode 'fan' is sufficient for simple convex polygons.
 ---@param usage? love.SpriteBatchUsage# ('dynamic') The expected usage of the Mesh. The specified usage mode affects the Mesh's memory usage and performance.
 ---@return love.Mesh mesh# The new mesh.
@@ -8406,7 +8406,7 @@ function love.graphics.newMesh(vertexformat, vertices, mode, usage) end
 ---
 ---@param vertexformat {
 ---attribute : table,
----[...] : table}# A table in the form of {attribute, ...}. Each attribute is a table which specifies a custom vertex attribute used for each vertex.
+---['...'] : table}# A table in the form of {attribute, ...}. Each attribute is a table which specifies a custom vertex attribute used for each vertex.
 ---@param vertexcount number# The total number of vertices the Mesh will use.
 ---@param mode? love.MeshDrawMode# ('fan') How the vertices are used when drawing. The default mode 'fan' is sufficient for simple convex polygons.
 ---@param usage? love.SpriteBatchUsage# ('dynamic') The expected usage of the Mesh. The specified usage mode affects the Mesh's memory usage and performance.
@@ -8555,7 +8555,7 @@ function love.graphics.newText(font, textstring) end
 ---string1 : string,
 ---color2 : table,
 ---string2 : string,
----[...] : love.Variant}# A table containing colors and strings to add to the object, in the form of {color1, string1, color2, string2, ...}.
+---['...'] : love.Variant}# A table containing colors and strings to add to the object, in the form of {color1, string1, color2, string2, ...}.
 ---@return love.Text text# The new drawable Text object.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.newText(font, coloredtext) end
@@ -8663,7 +8663,7 @@ function love.graphics.points(points) end
 ---
 ---@param points {
 ---point : table,
----[...] : table}# A table containing multiple individually colored points, in the form of {point, ...}.
+---['...'] : table}# A table containing multiple individually colored points, in the form of {point, ...}.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.points(points) end
 
@@ -8745,7 +8745,7 @@ function love.graphics.print(text, x, y, r, sx, sy, ox, oy, kx, ky) end
 ---string1 : string,
 ---color2 : table,
 ---string2 : string,
----[...] : table|string}# A table containing colors and strings to add to the object, in the form of {color1, string1, color2, string2, ...}.
+---['...'] : table|string}# A table containing colors and strings to add to the object, in the form of {color1, string1, color2, string2, ...}.
 ---@param x? number# (0) The position of the text on the x-axis.
 ---@param y? number# (0) The position of the text on the y-axis.
 ---@param angle? number# (0) The orientation of the text in radians.
@@ -8788,7 +8788,7 @@ function love.graphics.print(text, transform) end
 ---string1 : string,
 ---color2 : table,
 ---string2 : string,
----[...] : table|string}# A table containing colors and strings to add to the object, in the form of {color1, string1, color2, string2, ...}.
+---['...'] : table|string}# A table containing colors and strings to add to the object, in the form of {color1, string1, color2, string2, ...}.
 ---@param transform love.Transform# Transformation object.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.print(coloredtext, transform) end
@@ -8824,7 +8824,7 @@ function love.graphics.print(text, font, transform) end
 ---string1 : string,
 ---color2 : table,
 ---string2 : string,
----[...] : table|string}# A table containing colors and strings to add to the object, in the form of {color1, string1, color2, string2, ...}.
+---['...'] : table|string}# A table containing colors and strings to add to the object, in the form of {color1, string1, color2, string2, ...}.
 ---@param font love.Font# The Font object to use.
 ---@param transform love.Transform# Transformation object.
 ---@diagnostic disable-next-line: args-after-dots
@@ -8941,7 +8941,7 @@ function love.graphics.printf(text, font, transform, limit, align) end
 ---string1 : string,
 ---color2 : table,
 ---string2 : string,
----[...] : table|string}# A table containing colors and strings to add to the object, in the form of {color1, string1, color2, string2, ...}.
+---['...'] : table|string}# A table containing colors and strings to add to the object, in the form of {color1, string1, color2, string2, ...}.
 ---@param x number# The position of the text (x-axis).
 ---@param y number# The position of the text (y-axis).
 ---@param limit number# The maximum width in pixels of the text before it gets automatically wrapped to a new line.
@@ -8973,7 +8973,7 @@ function love.graphics.printf(coloredtext, x, y, limit, align, angle, sx, sy, ox
 ---string1 : string,
 ---color2 : table,
 ---string2 : string,
----[...] : table|string}# A table containing colors and strings to add to the object, in the form of {color1, string1, color2, string2, ...}.
+---['...'] : table|string}# A table containing colors and strings to add to the object, in the form of {color1, string1, color2, string2, ...}.
 ---@param font love.Font# The Font object to use.
 ---@param x number# The position on the x-axis.
 ---@param y number# The position on the y-axis.
@@ -9006,7 +9006,7 @@ function love.graphics.printf(coloredtext, font, x, y, limit, align, angle, sx, 
 ---string1 : string,
 ---color2 : table,
 ---string2 : string,
----[...] : table|string}# A table containing colors and strings to add to the object, in the form of {color1, string1, color2, string2, ...}.
+---['...'] : table|string}# A table containing colors and strings to add to the object, in the form of {color1, string1, color2, string2, ...}.
 ---@param transform love.Transform# Transformation object.
 ---@param limit number# Wrap the line after this many horizontal pixels.
 ---@param align? love.AlignMode# ('left') The alignment.
@@ -9030,7 +9030,7 @@ function love.graphics.printf(coloredtext, transform, limit, align) end
 ---string1 : string,
 ---color2 : table,
 ---string2 : string,
----[...] : table|string}# A table containing colors and strings to add to the object, in the form of {color1, string1, color2, string2, ...}.
+---['...'] : table|string}# A table containing colors and strings to add to the object, in the form of {color1, string1, color2, string2, ...}.
 ---@param font love.Font# The Font object to use.
 ---@param transform love.Transform# Transformation object.
 ---@param limit number# Wrap the line after this many horizontal pixels.
@@ -9207,7 +9207,7 @@ function love.graphics.setCanvas(canvas, slice, mipmap) end
 ---@param setup {
 ---[1] : love.Canvas,
 ---[2] : love.Canvas,
----[...] : love.Canvas,
+---['...'] : love.Canvas,
 ---stencil : boolean,
 ---depth : boolean,
 ---depthstencil : love.Canvas}# A table specifying the active Canvas(es), their mipmap levels and active layers if applicable, and whether to use a stencil and/or depth buffer.
