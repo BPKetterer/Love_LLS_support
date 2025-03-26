@@ -192,7 +192,7 @@ local function print_enum(f, data)
     f:write("\n")
     for _, con in ipairs(obj.constants) do
         if con.description then
-            f:write("---|\"" .. con.name .. "\"\n" .. format_head_desc(con.description) .. "\n")
+            f:write(format_head_desc(con.description) .. "\n" .. "---|\"" .. con.name .. "\"\n")
         else
             f:write("---|\"" .. con.name .. "\"\n")
         end

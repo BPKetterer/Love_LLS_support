@@ -887,68 +887,68 @@ local Object = {}
 ---[Wiki](https://love2d.org/wiki/DistanceModel)
 ---
 ---@alias love.DistanceModel
----|"none"
 ---Sources do not get attenuated.
----|"inverse"
+---|"none"
 ---Inverse distance attenuation.
----|"inverseclamped"
+---|"inverse"
 ---Inverse distance attenuation. Gain is clamped. In version 0.9.2 and older this is named '''inverse clamped'''.
----|"linear"
+---|"inverseclamped"
 ---Linear attenuation.
----|"linearclamped"
+---|"linear"
 ---Linear attenuation. Gain is clamped. In version 0.9.2 and older this is named '''linear clamped'''.
----|"exponent"
+---|"linearclamped"
 ---Exponential attenuation.
----|"exponentclamped"
+---|"exponent"
 ---Exponential attenuation. Gain is clamped. In version 0.9.2 and older this is named '''exponent clamped'''.
+---|"exponentclamped"
 
 ---The different types of effects supported by love.audio.setEffect.
 ---
 ---[Wiki](https://love2d.org/wiki/EffectType)
 ---
 ---@alias love.EffectType
----|"chorus"
 ---Plays multiple copies of the sound with slight pitch and time variation. Used to make sounds sound "fuller" or "thicker".
----|"compressor"
+---|"chorus"
 ---Decreases the dynamic range of the sound, making the loud and quiet parts closer in volume, producing a more uniform amplitude throughout time.
----|"distortion"
+---|"compressor"
 ---Alters the sound by amplifying it until it clips, shearing off parts of the signal, leading to a compressed and distorted sound.
----|"echo"
+---|"distortion"
 ---Decaying feedback based effect, on the order of seconds. Also known as delay; causes the sound to repeat at regular intervals at a decreasing volume.
----|"equalizer"
+---|"echo"
 ---Adjust the frequency components of the sound using a 4-band (low-shelf, two band-pass and a high-shelf) equalizer.
----|"flanger"
+---|"equalizer"
 ---Plays two copies of the sound; while varying the phase, or equivalently delaying one of them, by amounts on the order of milliseconds, resulting in phasing sounds.
----|"reverb"
+---|"flanger"
 ---Decaying feedback based effect, on the order of milliseconds. Used to simulate the reflection off of the surroundings.
----|"ringmodulator"
+---|"reverb"
 ---An implementation of amplitude modulation; multiplies the source signal with a simple waveform, to produce either volume changes, or inharmonic overtones.
+---|"ringmodulator"
 
 ---The different types of waveforms that can be used with the '''ringmodulator''' EffectType.
 ---
 ---[Wiki](https://love2d.org/wiki/EffectWaveform)
 ---
 ---@alias love.EffectWaveform
----|"sawtooth"
 ---A sawtooth wave, also known as a ramp wave. Named for its linear rise, and (near-)instantaneous fall along time.
----|"sine"
+---|"sawtooth"
 ---A sine wave. Follows a trigonometric sine function.
----|"square"
+---|"sine"
 ---A square wave. Switches between high and low states (near-)instantaneously.
----|"triangle"
+---|"square"
 ---A triangle wave. Follows a linear rise and fall that repeats periodically.
+---|"triangle"
 
 ---Types of filters for Sources.
 ---
 ---[Wiki](https://love2d.org/wiki/FilterType)
 ---
 ---@alias love.FilterType
----|"lowpass"
 ---Low-pass filter. High frequency sounds are attenuated.
----|"highpass"
+---|"lowpass"
 ---High-pass filter. Low frequency sounds are attenuated.
----|"bandpass"
+---|"highpass"
 ---Band-pass filter. Both high and low frequency sounds are attenuated based on the given parameters.
+---|"bandpass"
 
 ---Types of audio sources.
 ---
@@ -957,74 +957,74 @@ local Object = {}
 ---[Wiki](https://love2d.org/wiki/SourceType)
 ---
 ---@alias love.SourceType
----|"static"
 ---The whole audio is decoded.
----|"stream"
+---|"static"
 ---The audio is decoded in chunks when needed.
----|"queue"
+---|"stream"
 ---The audio must be manually queued by the user.
+---|"queue"
 
 ---Units that represent time.
 ---
 ---[Wiki](https://love2d.org/wiki/TimeUnit)
 ---
 ---@alias love.TimeUnit
----|"seconds"
 ---Regular seconds.
----|"samples"
+---|"seconds"
 ---Audio samples.
+---|"samples"
 
 ---Compressed data formats.
 ---
 ---[Wiki](https://love2d.org/wiki/CompressedDataFormat)
 ---
 ---@alias love.CompressedDataFormat
----|"lz4"
 ---The LZ4 compression format. Compresses and decompresses very quickly, but the compression ratio is not the best. LZ4-HC is used when compression level 9 is specified. Some benchmarks are available here.
----|"zlib"
+---|"lz4"
 ---The zlib format is DEFLATE-compressed data with a small bit of header data. Compresses relatively slowly and decompresses moderately quickly, and has a decent compression ratio.
----|"gzip"
+---|"zlib"
 ---The gzip format is DEFLATE-compressed data with a slightly larger header than zlib. Since it uses DEFLATE it has the same compression characteristics as the zlib format.
----|"deflate"
+---|"gzip"
 ---Raw DEFLATE-compressed data (no header).
+---|"deflate"
 
 ---Return type of various data-returning functions.
 ---
 ---[Wiki](https://love2d.org/wiki/ContainerType)
 ---
 ---@alias love.ContainerType
----|"data"
 ---Return type is ByteData.
----|"string"
+---|"data"
 ---Return type is string.
+---|"string"
 
 ---Encoding format used to encode or decode data.
 ---
 ---[Wiki](https://love2d.org/wiki/EncodeFormat)
 ---
 ---@alias love.EncodeFormat
----|"base64"
 ---Encode/decode data as base64 binary-to-text encoding.
----|"hex"
+---|"base64"
 ---Encode/decode data as hexadecimal string.
+---|"hex"
 
 ---Hash algorithm of love.data.hash.
 ---
 ---[Wiki](https://love2d.org/wiki/HashFunction)
 ---
 ---@alias love.HashFunction
----|"md5"
 ---MD5 hash algorithm (16 bytes).
----|"sha1"
+---|"md5"
 ---SHA1 hash algorithm (20 bytes).
----|"sha224"
+---|"sha1"
 ---SHA2 hash algorithm with message digest size of 224 bits (28 bytes).
----|"sha256"
+---|"sha224"
 ---SHA2 hash algorithm with message digest size of 256 bits (32 bytes).
----|"sha384"
+---|"sha256"
 ---SHA2 hash algorithm with message digest size of 384 bits (48 bytes).
----|"sha512"
+---|"sha384"
 ---SHA2 hash algorithm with message digest size of 512 bits (64 bytes).
+---|"sha512"
 
 ---Arguments to love.event.push() and the like.
 ---
@@ -1033,456 +1033,456 @@ local Object = {}
 ---[Wiki](https://love2d.org/wiki/Event)
 ---
 ---@alias love.Event
+---Window focus gained or lost
 ---|"focus"
----Window focus gained or lost
+---Joystick pressed
 ---|"joystickpressed"
----Joystick pressed
+---Joystick released
 ---|"joystickreleased"
----Joystick released
+---Key pressed
 ---|"keypressed"
----Key pressed
+---Key released
 ---|"keyreleased"
----Key released
+---Mouse pressed
 ---|"mousepressed"
----Mouse pressed
+---Mouse released
 ---|"mousereleased"
----Mouse released
+---Quit
 ---|"quit"
----Quit
----|"resize"
 ---Window size changed by the user
----|"visible"
+---|"resize"
 ---Window is minimized or un-minimized by the user
----|"mousefocus"
+---|"visible"
 ---Window mouse focus gained or lost
----|"threaderror"
+---|"mousefocus"
 ---A Lua error has occurred in a thread
----|"joystickadded"
+---|"threaderror"
 ---Joystick connected
----|"joystickremoved"
+---|"joystickadded"
 ---Joystick disconnected
----|"joystickaxis"
+---|"joystickremoved"
 ---Joystick axis motion
----|"joystickhat"
+---|"joystickaxis"
 ---Joystick hat pressed
----|"gamepadpressed"
+---|"joystickhat"
 ---Joystick's virtual gamepad button pressed
----|"gamepadreleased"
+---|"gamepadpressed"
 ---Joystick's virtual gamepad button released
----|"gamepadaxis"
+---|"gamepadreleased"
 ---Joystick's virtual gamepad axis moved
----|"textinput"
+---|"gamepadaxis"
 ---User entered text
----|"mousemoved"
+---|"textinput"
 ---Mouse position changed
----|"lowmemory"
+---|"mousemoved"
 ---Running out of memory on mobile devices system
----|"textedited"
+---|"lowmemory"
 ---Candidate text for an IME changed
----|"wheelmoved"
+---|"textedited"
 ---Mouse wheel moved
----|"touchpressed"
+---|"wheelmoved"
 ---Touch screen touched
----|"touchreleased"
+---|"touchpressed"
 ---Touch screen stop touching
----|"touchmoved"
+---|"touchreleased"
 ---Touch press moved inside touch screen
----|"directorydropped"
+---|"touchmoved"
 ---Directory is dragged and dropped onto the window
----|"filedropped"
+---|"directorydropped"
 ---File is dragged and dropped onto the window.
----|"jp"
+---|"filedropped"
 ---Joystick pressed
----|"jr"
+---|"jp"
 ---Joystick released
----|"kp"
+---|"jr"
 ---Key pressed
----|"kr"
+---|"kp"
 ---Key released
----|"mp"
+---|"kr"
 ---Mouse pressed
----|"mr"
+---|"mp"
 ---Mouse released
----|"q"
+---|"mr"
 ---Quit
----|"f"
+---|"q"
 ---Window focus gained or lost
+---|"f"
 
 ---Buffer modes for File objects.
 ---
 ---[Wiki](https://love2d.org/wiki/BufferMode)
 ---
 ---@alias love.BufferMode
----|"none"
 ---No buffering. The result of write and append operations appears immediately.
----|"line"
+---|"none"
 ---Line buffering. Write and append operations are buffered until a newline is output or the buffer size limit is reached.
----|"full"
+---|"line"
 ---Full buffering. Write and append operations are always buffered until the buffer size limit is reached.
+---|"full"
 
 ---How to decode a given FileData.
 ---
 ---[Wiki](https://love2d.org/wiki/FileDecoder)
 ---
 ---@alias love.FileDecoder
----|"file"
 ---The data is unencoded.
----|"base64"
+---|"file"
 ---The data is base64-encoded.
+---|"base64"
 
 ---The different modes you can open a File in.
 ---
 ---[Wiki](https://love2d.org/wiki/FileMode)
 ---
 ---@alias love.FileMode
----|"r"
 ---Open a file for read.
----|"w"
+---|"r"
 ---Open a file for write.
----|"a"
+---|"w"
 ---Open a file for append.
----|"c"
+---|"a"
 ---Do not open a file (represents a closed file.)
+---|"c"
 
 ---The type of a file.
 ---
 ---[Wiki](https://love2d.org/wiki/FileType)
 ---
 ---@alias love.FileType
----|"file"
 ---Regular file.
----|"directory"
+---|"file"
 ---Directory.
----|"symlink"
+---|"directory"
 ---Symbolic link.
----|"other"
+---|"symlink"
 ---Something completely different like a device.
+---|"other"
 
 ---True Type hinting mode.
 ---
 ---[Wiki](https://love2d.org/wiki/HintingMode)
 ---
 ---@alias love.HintingMode
----|"normal"
 ---Default hinting. Should be preferred for typical antialiased fonts.
----|"light"
+---|"normal"
 ---Results in fuzzier text but can sometimes preserve the original glyph shapes of the text better than normal hinting.
----|"mono"
+---|"light"
 ---Results in aliased / unsmoothed text with either full opacity or completely transparent pixels. Should be used when antialiasing is not desired for the font.
----|"none"
+---|"mono"
 ---Disables hinting for the font. Results in fuzzier text.
+---|"none"
 
 ---Text alignment.
 ---
 ---[Wiki](https://love2d.org/wiki/AlignMode)
 ---
 ---@alias love.AlignMode
----|"center"
 ---Align text center.
----|"left"
+---|"center"
 ---Align text left.
----|"right"
+---|"left"
 ---Align text right.
----|"justify"
+---|"right"
 ---Align text both left and right.
+---|"justify"
 
 ---Different types of arcs that can be drawn.
 ---
 ---[Wiki](https://love2d.org/wiki/ArcType)
 ---
 ---@alias love.ArcType
----|"pie"
 ---The arc is drawn like a slice of pie, with the arc circle connected to the center at its end-points.
----|"open"
+---|"pie"
 ---The arc circle's two end-points are unconnected when the arc is drawn as a line. Behaves like the "closed" arc type when the arc is drawn in filled mode.
----|"closed"
+---|"open"
 ---The arc circle's two end-points are connected to each other.
+---|"closed"
 
 ---Types of particle area spread distribution.
 ---
 ---[Wiki](https://love2d.org/wiki/AreaSpreadDistribution)
 ---
 ---@alias love.AreaSpreadDistribution
----|"uniform"
 ---Uniform distribution.
----|"normal"
+---|"uniform"
 ---Normal (gaussian) distribution.
----|"ellipse"
+---|"normal"
 ---Uniform distribution in an ellipse.
----|"borderellipse"
+---|"ellipse"
 ---Distribution in an ellipse with particles spawning at the edges of the ellipse.
----|"borderrectangle"
+---|"borderellipse"
 ---Distribution in a rectangle with particles spawning at the edges of the rectangle.
----|"none"
+---|"borderrectangle"
 ---No distribution - area spread is disabled.
+---|"none"
 
 ---Different ways alpha affects color blending. See BlendMode and the BlendMode Formulas for additional notes.
 ---
 ---[Wiki](https://love2d.org/wiki/BlendAlphaMode)
 ---
 ---@alias love.BlendAlphaMode
----|"alphamultiply"
 ---The RGB values of what's drawn are multiplied by the alpha values of those colors during blending. This is the default alpha mode.
----|"premultiplied"
+---|"alphamultiply"
 ---The RGB values of what's drawn are '''not''' multiplied by the alpha values of those colors during blending. For most blend modes to work correctly with this alpha mode, the colors of a drawn object need to have had their RGB values multiplied by their alpha values at some point previously ("premultiplied alpha").
+---|"premultiplied"
 
 ---Different ways to do color blending. See BlendAlphaMode and the BlendMode Formulas for additional notes.
 ---
 ---[Wiki](https://love2d.org/wiki/BlendMode)
 ---
 ---@alias love.BlendMode
----|"alpha"
 ---Alpha blending (normal). The alpha of what's drawn determines its opacity.
----|"replace"
+---|"alpha"
 ---The colors of what's drawn completely replace what was on the screen, with no additional blending. The BlendAlphaMode specified in love.graphics.setBlendMode still affects what happens.
----|"screen"
+---|"replace"
 ---'Screen' blending.
----|"add"
+---|"screen"
 ---The pixel colors of what's drawn are added to the pixel colors already on the screen. The alpha of the screen is not modified.
----|"subtract"
+---|"add"
 ---The pixel colors of what's drawn are subtracted from the pixel colors already on the screen. The alpha of the screen is not modified.
----|"multiply"
+---|"subtract"
 ---The pixel colors of what's drawn are multiplied with the pixel colors already on the screen (darkening them). The alpha of drawn objects is multiplied with the alpha of the screen rather than determining how much the colors on the screen are affected, even when the "alphamultiply" BlendAlphaMode is used.
----|"lighten"
+---|"multiply"
 ---The pixel colors of what's drawn are compared to the existing pixel colors, and the larger of the two values for each color component is used. Only works when the "premultiplied" BlendAlphaMode is used in love.graphics.setBlendMode.
----|"darken"
+---|"lighten"
 ---The pixel colors of what's drawn are compared to the existing pixel colors, and the smaller of the two values for each color component is used. Only works when the "premultiplied" BlendAlphaMode is used in love.graphics.setBlendMode.
----|"additive"
+---|"darken"
 ---Additive blend mode.
----|"subtractive"
+---|"additive"
 ---Subtractive blend mode.
----|"multiplicative"
+---|"subtractive"
 ---Multiply blend mode.
----|"premultiplied"
+---|"multiplicative"
 ---Premultiplied alpha blend mode.
+---|"premultiplied"
 
 ---Different types of per-pixel stencil test and depth test comparisons. The pixels of an object will be drawn if the comparison succeeds, for each pixel that the object touches.
 ---
 ---[Wiki](https://love2d.org/wiki/CompareMode)
 ---
 ---@alias love.CompareMode
----|"equal"
 ---* stencil tests: the stencil value of the pixel must be equal to the supplied value.
 ---* depth tests: the depth value of the drawn object at that pixel must be equal to the existing depth value of that pixel.
----|"notequal"
+---|"equal"
 ---* stencil tests: the stencil value of the pixel must not be equal to the supplied value.
 ---* depth tests: the depth value of the drawn object at that pixel must not be equal to the existing depth value of that pixel.
----|"less"
+---|"notequal"
 ---* stencil tests: the stencil value of the pixel must be less than the supplied value.
 ---* depth tests: the depth value of the drawn object at that pixel must be less than the existing depth value of that pixel.
----|"lequal"
+---|"less"
 ---* stencil tests: the stencil value of the pixel must be less than or equal to the supplied value.
 ---* depth tests: the depth value of the drawn object at that pixel must be less than or equal to the existing depth value of that pixel.
----|"gequal"
+---|"lequal"
 ---* stencil tests: the stencil value of the pixel must be greater than or equal to the supplied value.
 ---* depth tests: the depth value of the drawn object at that pixel must be greater than or equal to the existing depth value of that pixel.
----|"greater"
+---|"gequal"
 ---* stencil tests: the stencil value of the pixel must be greater than the supplied value.
 ---* depth tests: the depth value of the drawn object at that pixel must be greater than the existing depth value of that pixel.
----|"never"
+---|"greater"
 ---Objects will never be drawn.
----|"always"
+---|"never"
 ---Objects will always be drawn. Effectively disables the depth or stencil test.
+---|"always"
 
 ---How Mesh geometry is culled when rendering.
 ---
 ---[Wiki](https://love2d.org/wiki/CullMode)
 ---
 ---@alias love.CullMode
----|"back"
 ---Back-facing triangles in Meshes are culled (not rendered). The vertex order of a triangle determines whether it is back- or front-facing.
----|"front"
+---|"back"
 ---Front-facing triangles in Meshes are culled.
----|"none"
+---|"front"
 ---Both back- and front-facing triangles in Meshes are rendered.
+---|"none"
 
 ---Controls whether shapes are drawn as an outline, or filled.
 ---
 ---[Wiki](https://love2d.org/wiki/DrawMode)
 ---
 ---@alias love.DrawMode
----|"fill"
 ---Draw filled shape.
----|"line"
+---|"fill"
 ---Draw outlined shape.
+---|"line"
 
 ---How the image is filtered when scaling.
 ---
 ---[Wiki](https://love2d.org/wiki/FilterMode)
 ---
 ---@alias love.FilterMode
----|"linear"
 ---Scale image with linear interpolation.
----|"nearest"
+---|"linear"
 ---Scale image with nearest neighbor interpolation.
+---|"nearest"
 
 ---Graphics features that can be checked for with love.graphics.getSupported.
 ---
 ---[Wiki](https://love2d.org/wiki/GraphicsFeature)
 ---
 ---@alias love.GraphicsFeature
----|"clampzero"
 ---Whether the "clampzero" WrapMode is supported.
----|"lighten"
+---|"clampzero"
 ---Whether the "lighten" and "darken" BlendModes are supported.
----|"multicanvasformats"
+---|"lighten"
 ---Whether multiple formats can be used in the same love.graphics.setCanvas call.
----|"glsl3"
+---|"multicanvasformats"
 ---Whether GLSL 3 Shaders can be used.
----|"instancing"
+---|"glsl3"
 ---Whether mesh instancing is supported.
----|"fullnpot"
+---|"instancing"
 ---Whether textures with non-power-of-two dimensions can use mipmapping and the 'repeat' WrapMode.
----|"pixelshaderhighp"
+---|"fullnpot"
 ---Whether pixel shaders can use "highp" 32 bit floating point numbers (as opposed to just 16 bit or lower precision).
----|"shaderderivatives"
+---|"pixelshaderhighp"
 ---Whether shaders can use the dFdx, dFdy, and fwidth functions for computing derivatives.
+---|"shaderderivatives"
 
 ---Types of system-dependent graphics limits checked for using love.graphics.getSystemLimits.
 ---
 ---[Wiki](https://love2d.org/wiki/GraphicsLimit)
 ---
 ---@alias love.GraphicsLimit
----|"pointsize"
 ---The maximum size of points.
----|"texturesize"
+---|"pointsize"
 ---The maximum width or height of Images and Canvases.
----|"multicanvas"
+---|"texturesize"
 ---The maximum number of simultaneously active canvases (via love.graphics.setCanvas.)
----|"canvasmsaa"
+---|"multicanvas"
 ---The maximum number of antialiasing samples for a Canvas.
----|"texturelayers"
+---|"canvasmsaa"
 ---The maximum number of layers in an Array texture.
----|"volumetexturesize"
+---|"texturelayers"
 ---The maximum width, height, or depth of a Volume texture.
----|"cubetexturesize"
+---|"volumetexturesize"
 ---The maximum width or height of a Cubemap texture.
----|"anisotropy"
+---|"cubetexturesize"
 ---The maximum amount of anisotropic filtering. Texture:setMipmapFilter internally clamps the given anisotropy value to the system's limit.
+---|"anisotropy"
 
 ---Vertex map datatype for Data variant of Mesh:setVertexMap.
 ---
 ---[Wiki](https://love2d.org/wiki/IndexDataType)
 ---
 ---@alias love.IndexDataType
----|"uint16"
 ---The vertex map is array of unsigned word (16-bit).
----|"uint32"
+---|"uint16"
 ---The vertex map is array of unsigned dword (32-bit).
+---|"uint32"
 
 ---Line join style.
 ---
 ---[Wiki](https://love2d.org/wiki/LineJoin)
 ---
 ---@alias love.LineJoin
----|"miter"
 ---The ends of the line segments beveled in an angle so that they join seamlessly.
----|"none"
+---|"miter"
 ---No cap applied to the ends of the line segments.
----|"bevel"
+---|"none"
 ---Flattens the point where line segments join together.
+---|"bevel"
 
 ---The styles in which lines are drawn.
 ---
 ---[Wiki](https://love2d.org/wiki/LineStyle)
 ---
 ---@alias love.LineStyle
----|"rough"
 ---Draw rough lines.
----|"smooth"
+---|"rough"
 ---Draw smooth lines.
+---|"smooth"
 
 ---How a Mesh's vertices are used when drawing.
 ---
 ---[Wiki](https://love2d.org/wiki/MeshDrawMode)
 ---
 ---@alias love.MeshDrawMode
----|"fan"
 ---The vertices create a "fan" shape with the first vertex acting as the hub point. Can be easily used to draw simple convex polygons.
----|"strip"
+---|"fan"
 ---The vertices create a series of connected triangles using vertices 1, 2, 3, then 3, 2, 4 (note the order), then 3, 4, 5, and so on.
----|"triangles"
+---|"strip"
 ---The vertices create unconnected triangles.
----|"points"
+---|"triangles"
 ---The vertices are drawn as unconnected points (see love.graphics.setPointSize.)
+---|"points"
 
 ---Controls whether a Canvas has mipmaps, and its behaviour when it does.
 ---
 ---[Wiki](https://love2d.org/wiki/MipmapMode)
 ---
 ---@alias love.MipmapMode
----|"none"
 ---The Canvas has no mipmaps.
----|"auto"
+---|"none"
 ---The Canvas has mipmaps. love.graphics.setCanvas can be used to render to a specific mipmap level, or Canvas:generateMipmaps can (re-)compute all mipmap levels based on the base level.
----|"manual"
+---|"auto"
 ---The Canvas has mipmaps, and all mipmap levels will automatically be recomputed when switching away from the Canvas with love.graphics.setCanvas.
+---|"manual"
 
 ---How newly created particles are added to the ParticleSystem.
 ---
 ---[Wiki](https://love2d.org/wiki/ParticleInsertMode)
 ---
 ---@alias love.ParticleInsertMode
----|"top"
 ---Particles are inserted at the top of the ParticleSystem's list of particles.
----|"bottom"
+---|"top"
 ---Particles are inserted at the bottom of the ParticleSystem's list of particles.
----|"random"
+---|"bottom"
 ---Particles are inserted at random positions in the ParticleSystem's list of particles.
+---|"random"
 
 ---Usage hints for SpriteBatches and Meshes to optimize data storage and access.
 ---
 ---[Wiki](https://love2d.org/wiki/SpriteBatchUsage)
 ---
 ---@alias love.SpriteBatchUsage
----|"dynamic"
 ---The object's data will change occasionally during its lifetime. 
----|"static"
+---|"dynamic"
 ---The object will not be modified after initial sprites or vertices are added.
----|"stream"
+---|"static"
 ---The object data will always change between draws.
+---|"stream"
 
 ---Graphics state stack types used with love.graphics.push.
 ---
 ---[Wiki](https://love2d.org/wiki/StackType)
 ---
 ---@alias love.StackType
----|"transform"
 ---The transformation stack (love.graphics.translate, love.graphics.rotate, etc.)
----|"all"
+---|"transform"
 ---All love.graphics state, including transform state.
+---|"all"
 
 ---How a stencil function modifies the stencil values of pixels it touches.
 ---
 ---[Wiki](https://love2d.org/wiki/StencilAction)
 ---
 ---@alias love.StencilAction
----|"replace"
 ---The stencil value of a pixel will be replaced by the value specified in love.graphics.stencil, if any object touches the pixel.
----|"increment"
+---|"replace"
 ---The stencil value of a pixel will be incremented by 1 for each object that touches the pixel. If the stencil value reaches 255 it will stay at 255.
----|"decrement"
+---|"increment"
 ---The stencil value of a pixel will be decremented by 1 for each object that touches the pixel. If the stencil value reaches 0 it will stay at 0.
----|"incrementwrap"
+---|"decrement"
 ---The stencil value of a pixel will be incremented by 1 for each object that touches the pixel. If a stencil value of 255 is incremented it will be set to 0.
----|"decrementwrap"
+---|"incrementwrap"
 ---The stencil value of a pixel will be decremented by 1 for each object that touches the pixel. If the stencil value of 0 is decremented it will be set to 255.
----|"invert"
+---|"decrementwrap"
 ---The stencil value of a pixel will be bitwise-inverted for each object that touches the pixel. If a stencil value of 0 is inverted it will become 255.
+---|"invert"
 
 ---Types of textures (2D, cubemap, etc.)
 ---
 ---[Wiki](https://love2d.org/wiki/TextureType)
 ---
 ---@alias love.TextureType
----|"2d"
 ---Regular 2D texture with width and height.
----|"array"
+---|"2d"
 ---Several same-size 2D textures organized into a single object. Similar to a texture atlas / sprite sheet, but avoids sprite bleeding and other issues.
----|"cube"
+---|"array"
 ---Cubemap texture with 6 faces. Requires a custom shader (and Shader:send) to use. Sampling from a cube texture in a shader takes a 3D direction vector instead of a texture coordinate.
----|"volume"
+---|"cube"
 ---3D texture with width, height, and depth. Requires a custom shader to use. Volume textures can have texture filtering applied along the 3rd axis.
+---|"volume"
 
 ---The frequency at which a vertex shader fetches the vertex attribute's data from the Mesh when it's drawn.
 ---
@@ -1491,34 +1491,34 @@ local Object = {}
 ---[Wiki](https://love2d.org/wiki/VertexAttributeStep)
 ---
 ---@alias love.VertexAttributeStep
----|"pervertex"
 ---The vertex attribute will have a unique value for each vertex in the Mesh.
----|"perinstance"
+---|"pervertex"
 ---The vertex attribute will have a unique value for each instance of the Mesh.
+---|"perinstance"
 
 ---How Mesh geometry vertices are ordered.
 ---
 ---[Wiki](https://love2d.org/wiki/VertexWinding)
 ---
 ---@alias love.VertexWinding
----|"cw"
 ---Clockwise.
----|"ccw"
+---|"cw"
 ---Counter-clockwise.
+---|"ccw"
 
 ---How the image wraps inside a Quad with a larger quad size than image size. This also affects how Meshes with texture coordinates which are outside the range of 1 are drawn, and the color returned by the Texel Shader function when using it to sample from texture coordinates outside of the range of 1.
 ---
 ---[Wiki](https://love2d.org/wiki/WrapMode)
 ---
 ---@alias love.WrapMode
----|"clamp"
 ---Clamp the texture. Appears only once. The area outside the texture's normal range is colored based on the edge pixels of the texture.
----|"repeat"
+---|"clamp"
 ---Repeat the texture. Fills the whole available extent.
----|"mirroredrepeat"
+---|"repeat"
 ---Repeat the texture, flipping it each time it repeats. May produce better visual results than the repeat mode when the texture doesn't seamlessly tile.
----|"clampzero"
+---|"mirroredrepeat"
 ---Clamp the texture. Fills the area outside the texture's normal range with transparent black (or opaque black for textures with no alpha channel.)
+---|"clampzero"
 
 ---Compressed image data formats. Here and here are a couple overviews of many of the formats.
 ---
@@ -1527,610 +1527,610 @@ local Object = {}
 ---[Wiki](https://love2d.org/wiki/CompressedImageFormat)
 ---
 ---@alias love.CompressedImageFormat
----|"DXT1"
 ---The DXT1 format. RGB data at 4 bits per pixel (compared to 32 bits for ImageData and regular Images.) Suitable for fully opaque images on desktop systems.
----|"DXT3"
+---|"DXT1"
 ---The DXT3 format. RGBA data at 8 bits per pixel. Smooth variations in opacity do not mix well with this format.
----|"DXT5"
+---|"DXT3"
 ---The DXT5 format. RGBA data at 8 bits per pixel. Recommended for images with varying opacity on desktop systems.
----|"BC4"
+---|"DXT5"
 ---The BC4 format (also known as 3Dc+ or ATI1.) Stores just the red channel, at 4 bits per pixel.
----|"BC4s"
+---|"BC4"
 ---The signed variant of the BC4 format. Same as above but pixel values in the texture are in the range of 1 instead of 1 in shaders.
----|"BC5"
+---|"BC4s"
 ---The BC5 format (also known as 3Dc or ATI2.) Stores red and green channels at 8 bits per pixel.
----|"BC5s"
+---|"BC5"
 ---The signed variant of the BC5 format.
----|"BC6h"
+---|"BC5s"
 ---The BC6H format. Stores half-precision floating-point RGB data in the range of 65504 at 8 bits per pixel. Suitable for HDR images on desktop systems.
----|"BC6hs"
+---|"BC6h"
 ---The signed variant of the BC6H format. Stores RGB data in the range of +65504.
----|"BC7"
+---|"BC6hs"
 ---The BC7 format (also known as BPTC.) Stores RGB or RGBA data at 8 bits per pixel.
----|"ETC1"
+---|"BC7"
 ---The ETC1 format. RGB data at 4 bits per pixel. Suitable for fully opaque images on older Android devices.
----|"ETC2rgb"
+---|"ETC1"
 ---The RGB variant of the ETC2 format. RGB data at 4 bits per pixel. Suitable for fully opaque images on newer mobile devices.
----|"ETC2rgba"
+---|"ETC2rgb"
 ---The RGBA variant of the ETC2 format. RGBA data at 8 bits per pixel. Recommended for images with varying opacity on newer mobile devices.
----|"ETC2rgba1"
+---|"ETC2rgba"
 ---The RGBA variant of the ETC2 format where pixels are either fully transparent or fully opaque. RGBA data at 4 bits per pixel.
----|"EACr"
+---|"ETC2rgba1"
 ---The single-channel variant of the EAC format. Stores just the red channel, at 4 bits per pixel.
----|"EACrs"
+---|"EACr"
 ---The signed single-channel variant of the EAC format. Same as above but pixel values in the texture are in the range of 1 instead of 1 in shaders.
----|"EACrg"
+---|"EACrs"
 ---The two-channel variant of the EAC format. Stores red and green channels at 8 bits per pixel.
----|"EACrgs"
+---|"EACrg"
 ---The signed two-channel variant of the EAC format.
----|"PVR1rgb2"
+---|"EACrgs"
 ---The 2 bit per pixel RGB variant of the PVRTC1 format. Stores RGB data at 2 bits per pixel. Textures compressed with PVRTC1 formats must be square and power-of-two sized.
----|"PVR1rgb4"
+---|"PVR1rgb2"
 ---The 4 bit per pixel RGB variant of the PVRTC1 format. Stores RGB data at 4 bits per pixel.
----|"PVR1rgba2"
+---|"PVR1rgb4"
 ---The 2 bit per pixel RGBA variant of the PVRTC1 format.
----|"PVR1rgba4"
+---|"PVR1rgba2"
 ---The 4 bit per pixel RGBA variant of the PVRTC1 format.
----|"ASTC4x4"
+---|"PVR1rgba4"
 ---The 4x4 pixels per block variant of the ASTC format. RGBA data at 8 bits per pixel.
----|"ASTC5x4"
+---|"ASTC4x4"
 ---The 5x4 pixels per block variant of the ASTC format. RGBA data at 6.4 bits per pixel.
----|"ASTC5x5"
+---|"ASTC5x4"
 ---The 5x5 pixels per block variant of the ASTC format. RGBA data at 5.12 bits per pixel.
----|"ASTC6x5"
+---|"ASTC5x5"
 ---The 6x5 pixels per block variant of the ASTC format. RGBA data at 4.27 bits per pixel.
----|"ASTC6x6"
+---|"ASTC6x5"
 ---The 6x6 pixels per block variant of the ASTC format. RGBA data at 3.56 bits per pixel.
----|"ASTC8x5"
+---|"ASTC6x6"
 ---The 8x5 pixels per block variant of the ASTC format. RGBA data at 3.2 bits per pixel.
----|"ASTC8x6"
+---|"ASTC8x5"
 ---The 8x6 pixels per block variant of the ASTC format. RGBA data at 2.67 bits per pixel.
----|"ASTC8x8"
+---|"ASTC8x6"
 ---The 8x8 pixels per block variant of the ASTC format. RGBA data at 2 bits per pixel.
----|"ASTC10x5"
+---|"ASTC8x8"
 ---The 10x5 pixels per block variant of the ASTC format. RGBA data at 2.56 bits per pixel.
----|"ASTC10x6"
+---|"ASTC10x5"
 ---The 10x6 pixels per block variant of the ASTC format. RGBA data at 2.13 bits per pixel.
----|"ASTC10x8"
+---|"ASTC10x6"
 ---The 10x8 pixels per block variant of the ASTC format. RGBA data at 1.6 bits per pixel.
----|"ASTC10x10"
+---|"ASTC10x8"
 ---The 10x10 pixels per block variant of the ASTC format. RGBA data at 1.28 bits per pixel.
----|"ASTC12x10"
+---|"ASTC10x10"
 ---The 12x10 pixels per block variant of the ASTC format. RGBA data at 1.07 bits per pixel.
----|"ASTC12x12"
+---|"ASTC12x10"
 ---The 12x12 pixels per block variant of the ASTC format. RGBA data at 0.89 bits per pixel.
+---|"ASTC12x12"
 
 ---Encoded image formats.
 ---
 ---[Wiki](https://love2d.org/wiki/ImageFormat)
 ---
 ---@alias love.ImageFormat
----|"tga"
 ---Targa image format.
----|"png"
+---|"tga"
 ---PNG image format.
----|"jpg"
+---|"png"
 ---JPG image format.
----|"bmp"
+---|"jpg"
 ---BMP image format.
+---|"bmp"
 
 ---Pixel formats for Textures, ImageData, and CompressedImageData.
 ---
 ---[Wiki](https://love2d.org/wiki/PixelFormat)
 ---
 ---@alias love.PixelFormat
----|"unknown"
 ---Indicates unknown pixel format, used internally.
----|"normal"
+---|"unknown"
 ---Alias for rgba8, or srgba8 if gamma-correct rendering is enabled.
----|"hdr"
+---|"normal"
 ---A format suitable for high dynamic range content - an alias for the rgba16f format, normally.
----|"r8"
+---|"hdr"
 ---Single-channel (red component) format (8 bpp).
----|"rg8"
+---|"r8"
 ---Two channels (red and green components) with 8 bits per channel (16 bpp).
----|"rgba8"
+---|"rg8"
 ---8 bits per channel (32 bpp) RGBA. Color channel values range from 0-255 (0-1 in shaders).
----|"srgba8"
+---|"rgba8"
 ---gamma-correct version of rgba8.
----|"r16"
+---|"srgba8"
 ---Single-channel (red component) format (16 bpp).
----|"rg16"
+---|"r16"
 ---Two channels (red and green components) with 16 bits per channel (32 bpp).
----|"rgba16"
+---|"rg16"
 ---16 bits per channel (64 bpp) RGBA. Color channel values range from 0-65535 (0-1 in shaders).
----|"r16f"
+---|"rgba16"
 ---Floating point single-channel format (16 bpp). Color values can range from [-65504, +65504].
----|"rg16f"
+---|"r16f"
 ---Floating point two-channel format with 16 bits per channel (32 bpp). Color values can range from [-65504, +65504].
----|"rgba16f"
+---|"rg16f"
 ---Floating point RGBA with 16 bits per channel (64 bpp). Color values can range from [-65504, +65504].
----|"r32f"
+---|"rgba16f"
 ---Floating point single-channel format (32 bpp).
----|"rg32f"
+---|"r32f"
 ---Floating point two-channel format with 32 bits per channel (64 bpp).
----|"rgba32f"
+---|"rg32f"
 ---Floating point RGBA with 32 bits per channel (128 bpp).
----|"la8"
+---|"rgba32f"
 ---Same as rg8, but accessed as (L, L, L, A)
----|"rgba4"
+---|"la8"
 ---4 bits per channel (16 bpp) RGBA.
----|"rgb5a1"
+---|"rgba4"
 ---RGB with 5 bits each, and a 1-bit alpha channel (16 bpp).
----|"rgb565"
+---|"rgb5a1"
 ---RGB with 5, 6, and 5 bits each, respectively (16 bpp). There is no alpha channel in this format.
----|"rgb10a2"
+---|"rgb565"
 ---RGB with 10 bits per channel, and a 2-bit alpha channel (32 bpp).
----|"rg11b10f"
+---|"rgb10a2"
 ---Floating point RGB with 11 bits in the red and green channels, and 10 bits in the blue channel (32 bpp). There is no alpha channel. Color values can range from [0, +65024].
----|"stencil8"
+---|"rg11b10f"
 ---No depth buffer and 8-bit stencil buffer.
----|"depth16"
+---|"stencil8"
 ---16-bit depth buffer and no stencil buffer.
----|"depth24"
+---|"depth16"
 ---24-bit depth buffer and no stencil buffer.
----|"depth32f"
+---|"depth24"
 ---32-bit float depth buffer and no stencil buffer.
----|"depth24stencil8"
+---|"depth32f"
 ---24-bit depth buffer and 8-bit stencil buffer.
----|"depth32fstencil8"
+---|"depth24stencil8"
 ---32-bit float depth buffer and 8-bit stencil buffer.
----|"DXT1"
+---|"depth32fstencil8"
 ---The DXT1 format. RGB data at 4 bits per pixel (compared to 32 bits for ImageData and regular Images.) Suitable for fully opaque images on desktop systems.
----|"DXT3"
+---|"DXT1"
 ---The DXT3 format. RGBA data at 8 bits per pixel. Smooth variations in opacity do not mix well with this format.
----|"DXT5"
+---|"DXT3"
 ---The DXT5 format. RGBA data at 8 bits per pixel. Recommended for images with varying opacity on desktop systems.
----|"BC4"
+---|"DXT5"
 ---The BC4 format (also known as 3Dc+ or ATI1.) Stores just the red channel, at 4 bits per pixel.
----|"BC4s"
+---|"BC4"
 ---The signed variant of the BC4 format. Same as above but pixel values in the texture are in the range of 1 instead of 1 in shaders.
----|"BC5"
+---|"BC4s"
 ---The BC5 format (also known as 3Dc or ATI2.) Stores red and green channels at 8 bits per pixel.
----|"BC5s"
+---|"BC5"
 ---The signed variant of the BC5 format.
----|"BC6h"
+---|"BC5s"
 ---The BC6H format. Stores half-precision floating-point RGB data in the range of 65504 at 8 bits per pixel. Suitable for HDR images on desktop systems.
----|"BC6hs"
+---|"BC6h"
 ---The signed variant of the BC6H format. Stores RGB data in the range of +65504.
----|"BC7"
+---|"BC6hs"
 ---The BC7 format (also known as BPTC.) Stores RGB or RGBA data at 8 bits per pixel.
----|"ETC1"
+---|"BC7"
 ---The ETC1 format. RGB data at 4 bits per pixel. Suitable for fully opaque images on older Android devices.
----|"ETC2rgb"
+---|"ETC1"
 ---The RGB variant of the ETC2 format. RGB data at 4 bits per pixel. Suitable for fully opaque images on newer mobile devices.
----|"ETC2rgba"
+---|"ETC2rgb"
 ---The RGBA variant of the ETC2 format. RGBA data at 8 bits per pixel. Recommended for images with varying opacity on newer mobile devices.
----|"ETC2rgba1"
+---|"ETC2rgba"
 ---The RGBA variant of the ETC2 format where pixels are either fully transparent or fully opaque. RGBA data at 4 bits per pixel.
----|"EACr"
+---|"ETC2rgba1"
 ---The single-channel variant of the EAC format. Stores just the red channel, at 4 bits per pixel.
----|"EACrs"
+---|"EACr"
 ---The signed single-channel variant of the EAC format. Same as above but pixel values in the texture are in the range of 1 instead of 1 in shaders.
----|"EACrg"
+---|"EACrs"
 ---The two-channel variant of the EAC format. Stores red and green channels at 8 bits per pixel.
----|"EACrgs"
+---|"EACrg"
 ---The signed two-channel variant of the EAC format.
----|"PVR1rgb2"
+---|"EACrgs"
 ---The 2 bit per pixel RGB variant of the PVRTC1 format. Stores RGB data at 2 bits per pixel. Textures compressed with PVRTC1 formats must be square and power-of-two sized.
----|"PVR1rgb4"
+---|"PVR1rgb2"
 ---The 4 bit per pixel RGB variant of the PVRTC1 format. Stores RGB data at 4 bits per pixel.
----|"PVR1rgba2"
+---|"PVR1rgb4"
 ---The 2 bit per pixel RGBA variant of the PVRTC1 format.
----|"PVR1rgba4"
+---|"PVR1rgba2"
 ---The 4 bit per pixel RGBA variant of the PVRTC1 format.
----|"ASTC4x4"
+---|"PVR1rgba4"
 ---The 4x4 pixels per block variant of the ASTC format. RGBA data at 8 bits per pixel.
----|"ASTC5x4"
+---|"ASTC4x4"
 ---The 5x4 pixels per block variant of the ASTC format. RGBA data at 6.4 bits per pixel.
----|"ASTC5x5"
+---|"ASTC5x4"
 ---The 5x5 pixels per block variant of the ASTC format. RGBA data at 5.12 bits per pixel.
----|"ASTC6x5"
+---|"ASTC5x5"
 ---The 6x5 pixels per block variant of the ASTC format. RGBA data at 4.27 bits per pixel.
----|"ASTC6x6"
+---|"ASTC6x5"
 ---The 6x6 pixels per block variant of the ASTC format. RGBA data at 3.56 bits per pixel.
----|"ASTC8x5"
+---|"ASTC6x6"
 ---The 8x5 pixels per block variant of the ASTC format. RGBA data at 3.2 bits per pixel.
----|"ASTC8x6"
+---|"ASTC8x5"
 ---The 8x6 pixels per block variant of the ASTC format. RGBA data at 2.67 bits per pixel.
----|"ASTC8x8"
+---|"ASTC8x6"
 ---The 8x8 pixels per block variant of the ASTC format. RGBA data at 2 bits per pixel.
----|"ASTC10x5"
+---|"ASTC8x8"
 ---The 10x5 pixels per block variant of the ASTC format. RGBA data at 2.56 bits per pixel.
----|"ASTC10x6"
+---|"ASTC10x5"
 ---The 10x6 pixels per block variant of the ASTC format. RGBA data at 2.13 bits per pixel.
----|"ASTC10x8"
+---|"ASTC10x6"
 ---The 10x8 pixels per block variant of the ASTC format. RGBA data at 1.6 bits per pixel.
----|"ASTC10x10"
+---|"ASTC10x8"
 ---The 10x10 pixels per block variant of the ASTC format. RGBA data at 1.28 bits per pixel.
----|"ASTC12x10"
+---|"ASTC10x10"
 ---The 12x10 pixels per block variant of the ASTC format. RGBA data at 1.07 bits per pixel.
----|"ASTC12x12"
+---|"ASTC12x10"
 ---The 12x12 pixels per block variant of the ASTC format. RGBA data at 0.89 bits per pixel.
+---|"ASTC12x12"
 
 ---Virtual gamepad axes.
 ---
 ---[Wiki](https://love2d.org/wiki/GamepadAxis)
 ---
 ---@alias love.GamepadAxis
----|"leftx"
 ---The x-axis of the left thumbstick.
----|"lefty"
+---|"leftx"
 ---The y-axis of the left thumbstick.
----|"rightx"
+---|"lefty"
 ---The x-axis of the right thumbstick.
----|"righty"
+---|"rightx"
 ---The y-axis of the right thumbstick.
----|"triggerleft"
+---|"righty"
 ---Left analog trigger.
----|"triggerright"
+---|"triggerleft"
 ---Right analog trigger.
+---|"triggerright"
 
 ---Virtual gamepad buttons.
 ---
 ---[Wiki](https://love2d.org/wiki/GamepadButton)
 ---
 ---@alias love.GamepadButton
----|"a"
 ---Bottom face button (A).
----|"b"
+---|"a"
 ---Right face button (B).
----|"x"
+---|"b"
 ---Left face button (X).
----|"y"
+---|"x"
 ---Top face button (Y).
----|"back"
+---|"y"
 ---Back button.
----|"guide"
+---|"back"
 ---Guide button.
----|"start"
+---|"guide"
 ---Start button.
----|"leftstick"
+---|"start"
 ---Left stick click button.
----|"rightstick"
+---|"leftstick"
 ---Right stick click button.
----|"leftshoulder"
+---|"rightstick"
 ---Left bumper.
----|"rightshoulder"
+---|"leftshoulder"
 ---Right bumper.
----|"dpup"
+---|"rightshoulder"
 ---D-pad up.
----|"dpdown"
+---|"dpup"
 ---D-pad down.
----|"dpleft"
+---|"dpdown"
 ---D-pad left.
----|"dpright"
+---|"dpleft"
 ---D-pad right.
+---|"dpright"
 
 ---Joystick hat positions.
 ---
 ---[Wiki](https://love2d.org/wiki/JoystickHat)
 ---
 ---@alias love.JoystickHat
----|"c"
 ---Centered
----|"d"
+---|"c"
 ---Down
----|"l"
+---|"d"
 ---Left
----|"ld"
+---|"l"
 ---Left+Down
----|"lu"
+---|"ld"
 ---Left+Up
----|"r"
+---|"lu"
 ---Right
----|"rd"
+---|"r"
 ---Right+Down
----|"ru"
+---|"rd"
 ---Right+Up
----|"u"
+---|"ru"
 ---Up
+---|"u"
 
 ---Types of Joystick inputs.
 ---
 ---[Wiki](https://love2d.org/wiki/JoystickInputType)
 ---
 ---@alias love.JoystickInputType
----|"axis"
 ---Analog axis.
----|"button"
+---|"axis"
 ---Button.
----|"hat"
+---|"button"
 ---8-direction hat value.
+---|"hat"
 
 ---All the keys you can press. Note that some keys may not be available on your keyboard or system.
 ---
 ---[Wiki](https://love2d.org/wiki/KeyConstant)
 ---
 ---@alias love.KeyConstant
----|"a"
 ---The A key
----|"b"
+---|"a"
 ---The B key
----|"c"
+---|"b"
 ---The C key
----|"d"
+---|"c"
 ---The D key
----|"e"
+---|"d"
 ---The E key
----|"f"
+---|"e"
 ---The F key
----|"g"
+---|"f"
 ---The G key
----|"h"
+---|"g"
 ---The H key
----|"i"
+---|"h"
 ---The I key
----|"j"
+---|"i"
 ---The J key
----|"k"
+---|"j"
 ---The K key
----|"l"
+---|"k"
 ---The L key
----|"m"
+---|"l"
 ---The M key
----|"n"
+---|"m"
 ---The N key
----|"o"
+---|"n"
 ---The O key
----|"p"
+---|"o"
 ---The P key
----|"q"
+---|"p"
 ---The Q key
----|"r"
+---|"q"
 ---The R key
----|"s"
+---|"r"
 ---The S key
----|"t"
+---|"s"
 ---The T key
----|"u"
+---|"t"
 ---The U key
----|"v"
+---|"u"
 ---The V key
----|"w"
+---|"v"
 ---The W key
----|"x"
+---|"w"
 ---The X key
----|"y"
+---|"x"
 ---The Y key
----|"z"
+---|"y"
 ---The Z key
----|"0"
+---|"z"
 ---The zero key
----|"1"
+---|"0"
 ---The one key
----|"2"
+---|"1"
 ---The two key
----|"3"
+---|"2"
 ---The three key
----|"4"
+---|"3"
 ---The four key
----|"5"
+---|"4"
 ---The five key
----|"6"
+---|"5"
 ---The six key
----|"7"
+---|"6"
 ---The seven key
----|"8"
+---|"7"
 ---The eight key
----|"9"
+---|"8"
 ---The nine key
----|"space"
+---|"9"
 ---Space key
----|"!"
+---|"space"
 ---Exclamation mark key
----|"""
+---|"!"
 ---Double quote key
----|"#"
+---|"""
 ---Hash key
----|"$"
+---|"#"
 ---Dollar key
----|"&"
+---|"$"
 ---Ampersand key
----|"'"
+---|"&"
 ---Single quote key
----|"("
+---|"'"
 ---Left parenthesis key
----|")"
+---|"("
 ---Right parenthesis key
----|"*"
+---|")"
 ---Asterisk key
----|"+"
+---|"*"
 ---Plus key
----|","
+---|"+"
 ---Comma key
----|"-"
+---|","
 ---Hyphen-minus key
----|"."
+---|"-"
 ---Full stop key
----|"/"
+---|"."
 ---Slash key
----|":"
+---|"/"
 ---Colon key
----|";"
+---|":"
 ---Semicolon key
----|"<"
+---|";"
 ---Less-than key
----|"="
+---|"<"
 ---Equal key
----|">"
+---|"="
 ---Greater-than key
----|"?"
+---|">"
 ---Question mark key
----|"@"
+---|"?"
 ---At sign key
----|"["
+---|"@"
 ---Left square bracket key
----|"\"
+---|"["
 ---Backslash key
----|"]"
+---|"\"
 ---Right square bracket key
----|"^"
+---|"]"
 ---Caret key
----|"_"
+---|"^"
 ---Underscore key
----|"`"
+---|"_"
 ---Grave accent key
----|"kp0"
+---|"`"
 ---The numpad zero key
----|"kp1"
+---|"kp0"
 ---The numpad one key
----|"kp2"
+---|"kp1"
 ---The numpad two key
----|"kp3"
+---|"kp2"
 ---The numpad three key
----|"kp4"
+---|"kp3"
 ---The numpad four key
----|"kp5"
+---|"kp4"
 ---The numpad five key
----|"kp6"
+---|"kp5"
 ---The numpad six key
----|"kp7"
+---|"kp6"
 ---The numpad seven key
----|"kp8"
+---|"kp7"
 ---The numpad eight key
----|"kp9"
+---|"kp8"
 ---The numpad nine key
----|"kp."
+---|"kp9"
 ---The numpad decimal point key
----|"kp/"
+---|"kp."
 ---The numpad division key
----|"kp*"
+---|"kp/"
 ---The numpad multiplication key
----|"kp-"
+---|"kp*"
 ---The numpad substraction key
----|"kp+"
+---|"kp-"
 ---The numpad addition key
----|"kpenter"
+---|"kp+"
 ---The numpad enter key
----|"kp="
+---|"kpenter"
 ---The numpad equals key
----|"up"
+---|"kp="
 ---Up cursor key
----|"down"
+---|"up"
 ---Down cursor key
----|"right"
+---|"down"
 ---Right cursor key
----|"left"
+---|"right"
 ---Left cursor key
----|"home"
+---|"left"
 ---Home key
----|"end"
+---|"home"
 ---End key
----|"pageup"
+---|"end"
 ---Page up key
----|"pagedown"
+---|"pageup"
 ---Page down key
----|"insert"
+---|"pagedown"
 ---Insert key
----|"backspace"
+---|"insert"
 ---Backspace key
----|"tab"
+---|"backspace"
 ---Tab key
----|"clear"
+---|"tab"
 ---Clear key
----|"return"
+---|"clear"
 ---Return key
----|"delete"
+---|"return"
 ---Delete key
----|"f1"
+---|"delete"
 ---The 1st function key
----|"f2"
+---|"f1"
 ---The 2nd function key
----|"f3"
+---|"f2"
 ---The 3rd function key
----|"f4"
+---|"f3"
 ---The 4th function key
----|"f5"
+---|"f4"
 ---The 5th function key
----|"f6"
+---|"f5"
 ---The 6th function key
----|"f7"
+---|"f6"
 ---The 7th function key
----|"f8"
+---|"f7"
 ---The 8th function key
----|"f9"
+---|"f8"
 ---The 9th function key
----|"f10"
+---|"f9"
 ---The 10th function key
----|"f11"
+---|"f10"
 ---The 11th function key
----|"f12"
+---|"f11"
 ---The 12th function key
----|"f13"
+---|"f12"
 ---The 13th function key
----|"f14"
+---|"f13"
 ---The 14th function key
----|"f15"
+---|"f14"
 ---The 15th function key
----|"numlock"
+---|"f15"
 ---Num-lock key
----|"capslock"
+---|"numlock"
 ---Caps-lock key
----|"scrollock"
+---|"capslock"
 ---Scroll-lock key
----|"rshift"
+---|"scrollock"
 ---Right shift key
----|"lshift"
+---|"rshift"
 ---Left shift key
----|"rctrl"
+---|"lshift"
 ---Right control key
----|"lctrl"
+---|"rctrl"
 ---Left control key
----|"ralt"
+---|"lctrl"
 ---Right alt key
----|"lalt"
+---|"ralt"
 ---Left alt key
----|"rmeta"
+---|"lalt"
 ---Right meta key
----|"lmeta"
+---|"rmeta"
 ---Left meta key
----|"lsuper"
+---|"lmeta"
 ---Left super key
----|"rsuper"
+---|"lsuper"
 ---Right super key
----|"mode"
+---|"rsuper"
 ---Mode key
----|"compose"
+---|"mode"
 ---Compose key
----|"pause"
+---|"compose"
 ---Pause key
----|"escape"
+---|"pause"
 ---Escape key
----|"help"
+---|"escape"
 ---Help key
----|"print"
+---|"help"
 ---Print key
----|"sysreq"
+---|"print"
 ---System request key
----|"break"
+---|"sysreq"
 ---Break key
----|"menu"
+---|"break"
 ---Menu key
----|"power"
+---|"menu"
 ---Power key
----|"euro"
+---|"power"
 ---Euro (&euro;) key
----|"undo"
+---|"euro"
 ---Undo key
----|"www"
+---|"undo"
 ---WWW key
----|"mail"
+---|"www"
 ---Mail key
----|"calculator"
+---|"mail"
 ---Calculator key
----|"appsearch"
+---|"calculator"
 ---Application search key
----|"apphome"
+---|"appsearch"
 ---Application home key
----|"appback"
+---|"apphome"
 ---Application back key
----|"appforward"
+---|"appback"
 ---Application forward key
----|"apprefresh"
+---|"appforward"
 ---Application refresh key
----|"appbookmarks"
+---|"apprefresh"
 ---Application bookmarks key
+---|"appbookmarks"
 
 ---Keyboard scancodes.
 ---
@@ -2143,542 +2143,542 @@ local Object = {}
 ---[Wiki](https://love2d.org/wiki/Scancode)
 ---
 ---@alias love.Scancode
----|"a"
 ---The 'A' key on an American layout.
----|"b"
+---|"a"
 ---The 'B' key on an American layout.
----|"c"
+---|"b"
 ---The 'C' key on an American layout.
----|"d"
+---|"c"
 ---The 'D' key on an American layout.
----|"e"
+---|"d"
 ---The 'E' key on an American layout.
----|"f"
+---|"e"
 ---The 'F' key on an American layout.
----|"g"
+---|"f"
 ---The 'G' key on an American layout.
----|"h"
+---|"g"
 ---The 'H' key on an American layout.
----|"i"
+---|"h"
 ---The 'I' key on an American layout.
----|"j"
+---|"i"
 ---The 'J' key on an American layout.
----|"k"
+---|"j"
 ---The 'K' key on an American layout.
----|"l"
+---|"k"
 ---The 'L' key on an American layout.
----|"m"
+---|"l"
 ---The 'M' key on an American layout.
----|"n"
+---|"m"
 ---The 'N' key on an American layout.
----|"o"
+---|"n"
 ---The 'O' key on an American layout.
----|"p"
+---|"o"
 ---The 'P' key on an American layout.
----|"q"
+---|"p"
 ---The 'Q' key on an American layout.
----|"r"
+---|"q"
 ---The 'R' key on an American layout.
----|"s"
+---|"r"
 ---The 'S' key on an American layout.
----|"t"
+---|"s"
 ---The 'T' key on an American layout.
----|"u"
+---|"t"
 ---The 'U' key on an American layout.
----|"v"
+---|"u"
 ---The 'V' key on an American layout.
----|"w"
+---|"v"
 ---The 'W' key on an American layout.
----|"x"
+---|"w"
 ---The 'X' key on an American layout.
----|"y"
+---|"x"
 ---The 'Y' key on an American layout.
----|"z"
+---|"y"
 ---The 'Z' key on an American layout.
----|"1"
+---|"z"
 ---The '1' key on an American layout.
----|"2"
+---|"1"
 ---The '2' key on an American layout.
----|"3"
+---|"2"
 ---The '3' key on an American layout.
----|"4"
+---|"3"
 ---The '4' key on an American layout.
----|"5"
+---|"4"
 ---The '5' key on an American layout.
----|"6"
+---|"5"
 ---The '6' key on an American layout.
----|"7"
+---|"6"
 ---The '7' key on an American layout.
----|"8"
+---|"7"
 ---The '8' key on an American layout.
----|"9"
+---|"8"
 ---The '9' key on an American layout.
----|"0"
+---|"9"
 ---The '0' key on an American layout.
----|"return"
+---|"0"
 ---The 'return' / 'enter' key on an American layout.
----|"escape"
+---|"return"
 ---The 'escape' key on an American layout.
----|"backspace"
+---|"escape"
 ---The 'backspace' key on an American layout.
----|"tab"
+---|"backspace"
 ---The 'tab' key on an American layout.
----|"space"
+---|"tab"
 ---The spacebar on an American layout.
----|"-"
+---|"space"
 ---The minus key on an American layout.
----|"="
+---|"-"
 ---The equals key on an American layout.
----|"["
+---|"="
 ---The left-bracket key on an American layout.
----|"]"
+---|"["
 ---The right-bracket key on an American layout.
----|"\"
+---|"]"
 ---The backslash key on an American layout.
----|"nonus#"
+---|"\"
 ---The non-U.S. hash scancode.
----|";"
+---|"nonus#"
 ---The semicolon key on an American layout.
----|"'"
+---|";"
 ---The apostrophe key on an American layout.
----|"`"
+---|"'"
 ---The back-tick / grave key on an American layout.
----|","
+---|"`"
 ---The comma key on an American layout.
----|"."
+---|","
 ---The period key on an American layout.
----|"/"
+---|"."
 ---The forward-slash key on an American layout.
----|"capslock"
+---|"/"
 ---The capslock key on an American layout.
----|"f1"
+---|"capslock"
 ---The F1 key on an American layout.
----|"f2"
+---|"f1"
 ---The F2 key on an American layout.
----|"f3"
+---|"f2"
 ---The F3 key on an American layout.
----|"f4"
+---|"f3"
 ---The F4 key on an American layout.
----|"f5"
+---|"f4"
 ---The F5 key on an American layout.
----|"f6"
+---|"f5"
 ---The F6 key on an American layout.
----|"f7"
+---|"f6"
 ---The F7 key on an American layout.
----|"f8"
+---|"f7"
 ---The F8 key on an American layout.
----|"f9"
+---|"f8"
 ---The F9 key on an American layout.
----|"f10"
+---|"f9"
 ---The F10 key on an American layout.
----|"f11"
+---|"f10"
 ---The F11 key on an American layout.
----|"f12"
+---|"f11"
 ---The F12 key on an American layout.
----|"f13"
+---|"f12"
 ---The F13 key on an American layout.
----|"f14"
+---|"f13"
 ---The F14 key on an American layout.
----|"f15"
+---|"f14"
 ---The F15 key on an American layout.
----|"f16"
+---|"f15"
 ---The F16 key on an American layout.
----|"f17"
+---|"f16"
 ---The F17 key on an American layout.
----|"f18"
+---|"f17"
 ---The F18 key on an American layout.
----|"f19"
+---|"f18"
 ---The F19 key on an American layout.
----|"f20"
+---|"f19"
 ---The F20 key on an American layout.
----|"f21"
+---|"f20"
 ---The F21 key on an American layout.
----|"f22"
+---|"f21"
 ---The F22 key on an American layout.
----|"f23"
+---|"f22"
 ---The F23 key on an American layout.
----|"f24"
+---|"f23"
 ---The F24 key on an American layout.
----|"lctrl"
+---|"f24"
 ---The left control key on an American layout.
----|"lshift"
+---|"lctrl"
 ---The left shift key on an American layout.
----|"lalt"
+---|"lshift"
 ---The left alt / option key on an American layout.
----|"lgui"
+---|"lalt"
 ---The left GUI (command / windows / super) key on an American layout.
----|"rctrl"
+---|"lgui"
 ---The right control key on an American layout.
----|"rshift"
+---|"rctrl"
 ---The right shift key on an American layout.
----|"ralt"
+---|"rshift"
 ---The right alt / option key on an American layout.
----|"rgui"
+---|"ralt"
 ---The right GUI (command / windows / super) key on an American layout.
----|"printscreen"
+---|"rgui"
 ---The printscreen key on an American layout.
----|"scrolllock"
+---|"printscreen"
 ---The scroll-lock key on an American layout.
----|"pause"
+---|"scrolllock"
 ---The pause key on an American layout.
----|"insert"
+---|"pause"
 ---The insert key on an American layout.
----|"home"
+---|"insert"
 ---The home key on an American layout.
----|"numlock"
+---|"home"
 ---The numlock / clear key on an American layout.
----|"pageup"
+---|"numlock"
 ---The page-up key on an American layout.
----|"delete"
+---|"pageup"
 ---The forward-delete key on an American layout.
----|"end"
+---|"delete"
 ---The end key on an American layout.
----|"pagedown"
+---|"end"
 ---The page-down key on an American layout.
----|"right"
+---|"pagedown"
 ---The right-arrow key on an American layout.
----|"left"
+---|"right"
 ---The left-arrow key on an American layout.
----|"down"
+---|"left"
 ---The down-arrow key on an American layout.
----|"up"
+---|"down"
 ---The up-arrow key on an American layout.
----|"nonusbackslash"
+---|"up"
 ---The non-U.S. backslash scancode.
----|"application"
+---|"nonusbackslash"
 ---The application key on an American layout. Windows contextual menu, compose key.
----|"execute"
+---|"application"
 ---The 'execute' key on an American layout.
----|"help"
+---|"execute"
 ---The 'help' key on an American layout.
----|"menu"
+---|"help"
 ---The 'menu' key on an American layout.
----|"select"
+---|"menu"
 ---The 'select' key on an American layout.
----|"stop"
+---|"select"
 ---The 'stop' key on an American layout.
----|"again"
+---|"stop"
 ---The 'again' key on an American layout.
----|"undo"
+---|"again"
 ---The 'undo' key on an American layout.
----|"cut"
+---|"undo"
 ---The 'cut' key on an American layout.
----|"copy"
+---|"cut"
 ---The 'copy' key on an American layout.
----|"paste"
+---|"copy"
 ---The 'paste' key on an American layout.
----|"find"
+---|"paste"
 ---The 'find' key on an American layout.
----|"kp/"
+---|"find"
 ---The keypad forward-slash key on an American layout.
----|"kp*"
+---|"kp/"
 ---The keypad '*' key on an American layout.
----|"kp-"
+---|"kp*"
 ---The keypad minus key on an American layout.
----|"kp+"
+---|"kp-"
 ---The keypad plus key on an American layout.
----|"kp="
+---|"kp+"
 ---The keypad equals key on an American layout.
----|"kpenter"
+---|"kp="
 ---The keypad enter key on an American layout.
----|"kp1"
+---|"kpenter"
 ---The keypad '1' key on an American layout.
----|"kp2"
+---|"kp1"
 ---The keypad '2' key on an American layout.
----|"kp3"
+---|"kp2"
 ---The keypad '3' key on an American layout.
----|"kp4"
+---|"kp3"
 ---The keypad '4' key on an American layout.
----|"kp5"
+---|"kp4"
 ---The keypad '5' key on an American layout.
----|"kp6"
+---|"kp5"
 ---The keypad '6' key on an American layout.
----|"kp7"
+---|"kp6"
 ---The keypad '7' key on an American layout.
----|"kp8"
+---|"kp7"
 ---The keypad '8' key on an American layout.
----|"kp9"
+---|"kp8"
 ---The keypad '9' key on an American layout.
----|"kp0"
+---|"kp9"
 ---The keypad '0' key on an American layout.
----|"kp."
+---|"kp0"
 ---The keypad period key on an American layout.
----|"international1"
+---|"kp."
 ---The 1st international key on an American layout. Used on Asian keyboards.
----|"international2"
+---|"international1"
 ---The 2nd international key on an American layout.
----|"international3"
+---|"international2"
 ---The 3rd international  key on an American layout. Yen.
----|"international4"
+---|"international3"
 ---The 4th international key on an American layout.
----|"international5"
+---|"international4"
 ---The 5th international key on an American layout.
----|"international6"
+---|"international5"
 ---The 6th international key on an American layout.
----|"international7"
+---|"international6"
 ---The 7th international key on an American layout.
----|"international8"
+---|"international7"
 ---The 8th international key on an American layout.
----|"international9"
+---|"international8"
 ---The 9th international key on an American layout.
----|"lang1"
+---|"international9"
 ---Hangul/English toggle scancode.
----|"lang2"
+---|"lang1"
 ---Hanja conversion scancode.
----|"lang3"
+---|"lang2"
 ---Katakana scancode.
----|"lang4"
+---|"lang3"
 ---Hiragana scancode.
----|"lang5"
+---|"lang4"
 ---Zenkaku/Hankaku scancode.
----|"mute"
+---|"lang5"
 ---The mute key on an American layout.
----|"volumeup"
+---|"mute"
 ---The volume up key on an American layout.
----|"volumedown"
+---|"volumeup"
 ---The volume down key on an American layout.
----|"audionext"
+---|"volumedown"
 ---The audio next track key on an American layout.
----|"audioprev"
+---|"audionext"
 ---The audio previous track key on an American layout.
----|"audiostop"
+---|"audioprev"
 ---The audio stop key on an American layout.
----|"audioplay"
+---|"audiostop"
 ---The audio play key on an American layout.
----|"audiomute"
+---|"audioplay"
 ---The audio mute key on an American layout.
----|"mediaselect"
+---|"audiomute"
 ---The media select key on an American layout.
----|"www"
+---|"mediaselect"
 ---The 'WWW' key on an American layout.
----|"mail"
+---|"www"
 ---The Mail key on an American layout.
----|"calculator"
+---|"mail"
 ---The calculator key on an American layout.
----|"computer"
+---|"calculator"
 ---The 'computer' key on an American layout.
----|"acsearch"
+---|"computer"
 ---The AC Search key on an American layout.
----|"achome"
+---|"acsearch"
 ---The AC Home key on an American layout.
----|"acback"
+---|"achome"
 ---The AC Back key on an American layout.
----|"acforward"
+---|"acback"
 ---The AC Forward key on an American layout.
----|"acstop"
+---|"acforward"
 ---Th AC Stop key on an American layout.
----|"acrefresh"
+---|"acstop"
 ---The AC Refresh key on an American layout.
----|"acbookmarks"
+---|"acrefresh"
 ---The AC Bookmarks key on an American layout.
----|"power"
+---|"acbookmarks"
 ---The system power scancode.
----|"brightnessdown"
+---|"power"
 ---The brightness-down scancode.
----|"brightnessup"
+---|"brightnessdown"
 ---The brightness-up scancode.
----|"displayswitch"
+---|"brightnessup"
 ---The display switch scancode.
----|"kbdillumtoggle"
+---|"displayswitch"
 ---The keyboard illumination toggle scancode.
----|"kbdillumdown"
+---|"kbdillumtoggle"
 ---The keyboard illumination down scancode.
----|"kbdillumup"
+---|"kbdillumdown"
 ---The keyboard illumination up scancode.
----|"eject"
+---|"kbdillumup"
 ---The eject scancode.
----|"sleep"
+---|"eject"
 ---The system sleep scancode.
----|"alterase"
+---|"sleep"
 ---The alt-erase key on an American layout.
----|"sysreq"
+---|"alterase"
 ---The sysreq key on an American layout.
----|"cancel"
+---|"sysreq"
 ---The 'cancel' key on an American layout.
----|"clear"
+---|"cancel"
 ---The 'clear' key on an American layout.
----|"prior"
+---|"clear"
 ---The 'prior' key on an American layout.
----|"return2"
+---|"prior"
 ---The 'return2' key on an American layout.
----|"separator"
+---|"return2"
 ---The 'separator' key on an American layout.
----|"out"
+---|"separator"
 ---The 'out' key on an American layout.
----|"oper"
+---|"out"
 ---The 'oper' key on an American layout.
----|"clearagain"
+---|"oper"
 ---The 'clearagain' key on an American layout.
----|"crsel"
+---|"clearagain"
 ---The 'crsel' key on an American layout.
----|"exsel"
+---|"crsel"
 ---The 'exsel' key on an American layout.
----|"kp00"
+---|"exsel"
 ---The keypad 00 key on an American layout.
----|"kp000"
+---|"kp00"
 ---The keypad 000 key on an American layout.
----|"thsousandsseparator"
+---|"kp000"
 ---The thousands-separator key on an American layout.
----|"decimalseparator"
+---|"thsousandsseparator"
 ---The decimal separator key on an American layout.
----|"currencyunit"
+---|"decimalseparator"
 ---The currency unit key on an American layout.
----|"currencysubunit"
+---|"currencyunit"
 ---The currency sub-unit key on an American layout.
----|"app1"
+---|"currencysubunit"
 ---The 'app1' scancode.
----|"app2"
+---|"app1"
 ---The 'app2' scancode.
----|"unknown"
+---|"app2"
 ---An unknown key.
+---|"unknown"
 
 ---The layout of matrix elements (row-major or column-major).
 ---
 ---[Wiki](https://love2d.org/wiki/MatrixLayout)
 ---
 ---@alias love.MatrixLayout
----|"row"
 ---The matrix is row-major:
----|"column"
+---|"row"
 ---The matrix is column-major:
+---|"column"
 
 ---Types of hardware cursors.
 ---
 ---[Wiki](https://love2d.org/wiki/CursorType)
 ---
 ---@alias love.CursorType
----|"image"
 ---The cursor is using a custom image.
----|"arrow"
+---|"image"
 ---An arrow pointer.
----|"ibeam"
+---|"arrow"
 ---An I-beam, normally used when mousing over editable or selectable text.
----|"wait"
+---|"ibeam"
 ---Wait graphic.
----|"waitarrow"
+---|"wait"
 ---Small wait cursor with an arrow pointer.
----|"crosshair"
+---|"waitarrow"
 ---Crosshair symbol.
----|"sizenwse"
+---|"crosshair"
 ---Double arrow pointing to the top-left and bottom-right.
----|"sizenesw"
+---|"sizenwse"
 ---Double arrow pointing to the top-right and bottom-left.
----|"sizewe"
+---|"sizenesw"
 ---Double arrow pointing left and right.
----|"sizens"
+---|"sizewe"
 ---Double arrow pointing up and down.
----|"sizeall"
+---|"sizens"
 ---Four-pointed arrow pointing up, down, left, and right.
----|"no"
+---|"sizeall"
 ---Slashed circle or crossbones.
----|"hand"
+---|"no"
 ---Hand symbol.
+---|"hand"
 
 ---The types of a Body. 
 ---
 ---[Wiki](https://love2d.org/wiki/BodyType)
 ---
 ---@alias love.BodyType
----|"static"
 ---Static bodies do not move.
----|"dynamic"
+---|"static"
 ---Dynamic bodies collide with all bodies.
----|"kinematic"
+---|"dynamic"
 ---Kinematic bodies only collide with dynamic bodies.
+---|"kinematic"
 
 ---Different types of joints.
 ---
 ---[Wiki](https://love2d.org/wiki/JointType)
 ---
 ---@alias love.JointType
----|"distance"
 ---A DistanceJoint.
----|"friction"
+---|"distance"
 ---A FrictionJoint.
----|"gear"
+---|"friction"
 ---A GearJoint.
----|"mouse"
+---|"gear"
 ---A MouseJoint.
----|"prismatic"
+---|"mouse"
 ---A PrismaticJoint.
----|"pulley"
+---|"prismatic"
 ---A PulleyJoint.
----|"revolute"
+---|"pulley"
 ---A RevoluteJoint.
----|"rope"
+---|"revolute"
 ---A RopeJoint.
----|"weld"
+---|"rope"
 ---A WeldJoint.
+---|"weld"
 
 ---The different types of Shapes, as returned by Shape:getType.
 ---
 ---[Wiki](https://love2d.org/wiki/ShapeType)
 ---
 ---@alias love.ShapeType
----|"circle"
 ---The Shape is a CircleShape.
----|"polygon"
+---|"circle"
 ---The Shape is a PolygonShape.
----|"edge"
+---|"polygon"
 ---The Shape is a EdgeShape.
----|"chain"
+---|"edge"
 ---The Shape is a ChainShape.
+---|"chain"
 
 ---The basic state of the system's power supply.
 ---
 ---[Wiki](https://love2d.org/wiki/PowerState)
 ---
 ---@alias love.PowerState
----|"unknown"
 ---Cannot determine power status.
----|"battery"
+---|"unknown"
 ---Not plugged in, running on a battery.
----|"nobattery"
+---|"battery"
 ---Plugged in, no battery available.
----|"charging"
+---|"nobattery"
 ---Plugged in, charging battery.
----|"charged"
+---|"charging"
 ---Plugged in, battery is fully charged.
+---|"charged"
 
 ---Types of device display orientation.
 ---
 ---[Wiki](https://love2d.org/wiki/DisplayOrientation)
 ---
 ---@alias love.DisplayOrientation
----|"unknown"
 ---Orientation cannot be determined.
----|"landscape"
+---|"unknown"
 ---Landscape orientation.
----|"landscapeflipped"
+---|"landscape"
 ---Landscape orientation (flipped).
----|"portrait"
+---|"landscapeflipped"
 ---Portrait orientation.
----|"portraitflipped"
+---|"portrait"
 ---Portrait orientation (flipped).
+---|"portraitflipped"
 
 ---Types of fullscreen modes.
 ---
 ---[Wiki](https://love2d.org/wiki/FullscreenType)
 ---
 ---@alias love.FullscreenType
----|"desktop"
 ---Sometimes known as borderless fullscreen windowed mode. A borderless screen-sized window is created which sits on top of all desktop UI elements. The window is automatically resized to match the dimensions of the desktop, and its size cannot be changed.
+---|"desktop"
+---Standard exclusive-fullscreen mode. Changes the display mode (actual resolution) of the monitor.
 ---|"exclusive"
 ---Standard exclusive-fullscreen mode. Changes the display mode (actual resolution) of the monitor.
 ---|"normal"
----Standard exclusive-fullscreen mode. Changes the display mode (actual resolution) of the monitor.
 
 ---Types of message box dialogs. Different types may have slightly different looks.
 ---
 ---[Wiki](https://love2d.org/wiki/MessageBoxType)
 ---
 ---@alias love.MessageBoxType
----|"info"
 ---Informational dialog.
----|"warning"
+---|"info"
 ---Warning dialog.
----|"error"
+---|"warning"
 ---Error dialog.
+---|"error"
 
 ---Gets the number of bits per sample in the data currently being recorded.
 ---
