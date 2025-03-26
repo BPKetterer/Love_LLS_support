@@ -32,20 +32,6 @@ assert(false, "This file is only for LuaLS and should not be included")
 ---@field window love.window
 love = {}
 
----The superclass of all data.
----
----[Wiki](https://love2d.org/wiki/Data)
----
----@class love.Data : love.Object
-local Data = {}
-
----The superclass of all LÖVE types.
----
----[Wiki](https://love2d.org/wiki/Object)
----
----@class love.Object
-local Object = {}
-
 ---Provides an interface to create noise with the user's speakers.
 ---
 ---[Wiki](https://love2d.org/wiki/love.audio)
@@ -612,6 +598,20 @@ local VideoStream = {}
 ---
 ---@class love.window
 love.window = {}
+
+---The superclass of all data.
+---
+---[Wiki](https://love2d.org/wiki/Data)
+---
+---@class love.Data : love.Object
+local Data = {}
+
+---The superclass of all LÖVE types.
+---
+---[Wiki](https://love2d.org/wiki/Object)
+---
+---@class love.Object
+local Object = {}
 
 ---If a file called conf.lua is present in your game folder (or .love file), it is run before the LÖVE modules are loaded. You can use this file to overwrite the love.conf function, which is later called by the LÖVE 'boot' script. Using the love.conf function, you can set some configuration options, and change things like the default size of the window, which modules are loaded, and other stuff.
 ---
@@ -2723,67 +2723,6 @@ function love.isVersionCompatible(major, minor, revision) end
 ---@param enable boolean# Whether to enable or disable deprecation output.
 ---@diagnostic disable-next-line: args-after-dots
 function love.setDeprecationOutput(enable) end
-
----Creates a new copy of the Data object.
----
----[Wiki](https://love2d.org/wiki/Data:clone)
----
----@diagnostic disable-next-line: args-after-dots
-function Data:clone() end
-
----Gets an FFI pointer to the Data.
----
----This function should be preferred instead of Data:getPointer because the latter uses light userdata which can't store more all possible memory addresses on some new ARM64 architectures, when LuaJIT is used.
----
----[Wiki](https://love2d.org/wiki/Data:getFFIPointer)
----
----@diagnostic disable-next-line: args-after-dots
-function Data:getFFIPointer() end
-
----Gets a pointer to the Data. Can be used with libraries such as LuaJIT's FFI.
----
----[Wiki](https://love2d.org/wiki/Data:getPointer)
----
----@diagnostic disable-next-line: args-after-dots
-function Data:getPointer() end
-
----Gets the Data's size in bytes.
----
----[Wiki](https://love2d.org/wiki/Data:getSize)
----
----@diagnostic disable-next-line: args-after-dots
-function Data:getSize() end
-
----Gets the full Data as a string.
----
----[Wiki](https://love2d.org/wiki/Data:getString)
----
----@diagnostic disable-next-line: args-after-dots
-function Data:getString() end
-
----Destroys the object's Lua reference. The object will be completely deleted if it's not referenced by any other LÖVE object or thread.
----
----This method can be used to immediately clean up resources without waiting for Lua's garbage collector.
----
----[Wiki](https://love2d.org/wiki/Object:release)
----
----@diagnostic disable-next-line: args-after-dots
-function Object:release() end
-
----Gets the type of the object as a string.
----
----[Wiki](https://love2d.org/wiki/Object:type)
----
----@diagnostic disable-next-line: args-after-dots
-function Object:type() end
-
----Checks whether an object is of a certain type. If the object has the type with the specified name in its hierarchy, this function will return true.
----
----[Wiki](https://love2d.org/wiki/Object:typeOf)
----
----@param name string# The name of the type to check for.
----@diagnostic disable-next-line: args-after-dots
-function Object:typeOf(name) end
 
 ---Gets a list of the names of the currently enabled effects.
 ---
@@ -14330,4 +14269,65 @@ function love.window.toPixels(x, y) end
 ---y : number}# The settings table with the following optional fields. Any field not filled in will use the current value that would be returned by love.window.getMode.
 ---@diagnostic disable-next-line: args-after-dots
 function love.window.updateMode(width, height, settings) end
+
+---Creates a new copy of the Data object.
+---
+---[Wiki](https://love2d.org/wiki/Data:clone)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Data:clone() end
+
+---Gets an FFI pointer to the Data.
+---
+---This function should be preferred instead of Data:getPointer because the latter uses light userdata which can't store more all possible memory addresses on some new ARM64 architectures, when LuaJIT is used.
+---
+---[Wiki](https://love2d.org/wiki/Data:getFFIPointer)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Data:getFFIPointer() end
+
+---Gets a pointer to the Data. Can be used with libraries such as LuaJIT's FFI.
+---
+---[Wiki](https://love2d.org/wiki/Data:getPointer)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Data:getPointer() end
+
+---Gets the Data's size in bytes.
+---
+---[Wiki](https://love2d.org/wiki/Data:getSize)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Data:getSize() end
+
+---Gets the full Data as a string.
+---
+---[Wiki](https://love2d.org/wiki/Data:getString)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Data:getString() end
+
+---Destroys the object's Lua reference. The object will be completely deleted if it's not referenced by any other LÖVE object or thread.
+---
+---This method can be used to immediately clean up resources without waiting for Lua's garbage collector.
+---
+---[Wiki](https://love2d.org/wiki/Object:release)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Object:release() end
+
+---Gets the type of the object as a string.
+---
+---[Wiki](https://love2d.org/wiki/Object:type)
+---
+---@diagnostic disable-next-line: args-after-dots
+function Object:type() end
+
+---Checks whether an object is of a certain type. If the object has the type with the specified name in its hierarchy, this function will return true.
+---
+---[Wiki](https://love2d.org/wiki/Object:typeOf)
+---
+---@param name string# The name of the type to check for.
+---@diagnostic disable-next-line: args-after-dots
+function Object:typeOf(name) end
 

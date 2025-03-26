@@ -61,17 +61,15 @@ end
 ---@param description string
 ---@return string
 local function format_arg_desc(description, default)
+    if not (description or default) then
+        return ""
+    end
     description = description or ""
     if default then
         description = "(" .. default .. ") " .. description
     end
     description , _ = string.gsub(description, "\n", "")
-    
-    if description == "" then
-        return ""
-    else
-        return "# " .. description
-    end
+    return "# " .. description
 end
 
 ---formats a header desciption
@@ -100,7 +98,7 @@ local function serialize_arg_type(arg)
         local splitter = (str_contains(arg.type, " or ") and " or ") or " and "
         arg_type = ""
         local not_first = false
-        for _, at in pairs(split_str(arg.type, splitter)) do
+        for _, at in ipairs(split_str(arg.type, splitter)) do
             if not_first then
                 arg_type = arg_type .. "|"
             end
@@ -122,7 +120,7 @@ local function serialize_arg_type(arg)
         assert(not arg.arraytype)
         arg_type = "fun("
         local not_first = false
-        for _, arg2 in pairs(arg.signature.arguments or {}) do
+        for _, arg2 in ipairs(arg.signature.arguments or {}) do
             if not_first then
                 arg_type = arg_type .. ", "
             end
@@ -131,7 +129,7 @@ local function serialize_arg_type(arg)
         end
         arg_type = arg_type .. ")"
         not_first = false
-        for _, re in pairs(arg.signature.returns or {}) do
+        for _, re in ipairs(arg.signature.returns or {}) do
             if not_first then
                 arg_type = arg_type .. ", "
             else
@@ -145,7 +143,7 @@ local function serialize_arg_type(arg)
         assert(not arg.arraytype)
         arg_type = "{"
         local not_first = false
-        for _, v in pairs(arg.table) do
+        for _, v in ipairs(arg.table) do
             if not_first then
                 arg_type = arg_type .. ","
             end
@@ -182,7 +180,7 @@ local function print_class(f, data)
     f:write("---@class " .. full_name)
     local has_parent = false
     if obj.supertypes then
-        for _, parent in pairs(obj.supertypes) do
+        for _, parent in ipairs(obj.supertypes) do
             if has_parent then
                 f:write(", ")
             else
@@ -194,7 +192,7 @@ local function print_class(f, data)
     end
     f:write("\n")
     if obj.modules then
-        for _, v in pairs(obj.modules) do
+        for _, v in ipairs(obj.modules) do
             f:write("---@field " .. v.name .. " " .. get_type_alias(v.name) .. "\n")
         end
     end
@@ -217,7 +215,7 @@ local function print_enum(f, data)
     end
     f:write("---@alias " .. full_name )
     f:write("\n")
-    for _, con in pairs(obj.constants) do
+    for _, con in ipairs(obj.constants) do
         if con.description then
             f:write("---|\"" .. con.name .. "\"\n" .. format_head_desc(con.description) .. "\n")
         else
@@ -236,11 +234,11 @@ local function print_variant(f, variant, full_name, header)
     f:write(header)
     local raw_args = {}
     if variant.arguments then
-        for _, arg in pairs(variant.arguments) do
+        for _, arg in ipairs(variant.arguments) do
             local arg_name, _ = string.gsub(arg.name, "'", "")
             table.insert(raw_args, arg_name)
 
-            for _, arg_name in pairs(split_str(arg_name, ", ")) do
+            for _, arg_name in ipairs(split_str(arg_name, ", ")) do
                 assert(not str_contains(arg_name, " "))
                 assert(not str_contains(arg_name, "\n"))
                 if arg.default then
@@ -265,7 +263,7 @@ local function print_function(f, data)
         header = format_head_desc(obj.description, full_name) .. "\n"
     end
     
-    for _, variant in pairs(obj.variants) do
+    for _, variant in ipairs(obj.variants) do
         print_variant(f, variant, full_name, header)
     end
 end
@@ -278,16 +276,16 @@ local function print_callback(f, data)
     local full_name = data.full_name
     local variant_strs = {}
     --f:write(human_table(obj), "\n")
-    for _, variant in pairs(obj.variants) do
+    for _, variant in ipairs(obj.variants) do
         local arg_strs = {}
         local retruen_strs = {}
         if variant.arguments then
-            for _, arg in pairs(variant.arguments) do
+            for _, arg in ipairs(variant.arguments) do
                 table.insert(arg_strs, arg.name .. ": " .. serialize_arg_type(arg))    
             end
         end
         if variant.returns then
-            for _, re in pairs(variant.returns) do
+            for _, re in ipairs(variant.returns) do
                 if re.type == "function" then
                     table.insert(retruen_strs, "fun()")
                 else
@@ -312,7 +310,7 @@ end
 ---@param fun fun(file*, item)
 ---@param f file*
 local function print_queue(queue, fun, f)
-    for _, item in pairs(queue) do
+    for _, item in ipairs(queue) do
         fun(f, item)
     end
 end
@@ -357,22 +355,22 @@ local function collect(obj, path, is_class)
     for k, v in pairs(obj) do
         if k == "modules" then
             --recursivly collects modules
-            for _, module in pairs(v) do
+            for _, module in ipairs(v) do
                 collect(module, full_name, false)
             end
         elseif k == "types" then
             --recursivly collects types
-            for _, type in pairs(v) do
+            for _, type in ipairs(v) do
                 collect(type, full_name, true)
             end
         elseif k == "enums" then
-            for _, enum in pairs(v) do
+            for _, enum in ipairs(v) do
                 local full_enum_name = "love." .. enum.name
                 type_aliasas[enum.name] = full_enum_name
                 table.insert(enum_queue, {obj = enum, full_name = full_enum_name})
             end
         elseif k == "callbacks" then
-            for _, callback in pairs(v) do
+            for _, callback in ipairs(v) do
                 table.insert(callback_queue, {obj = callback, full_name = full_name .. "." .. callback.name})
             end
         elseif k == "functions"then
@@ -380,7 +378,7 @@ local function collect(obj, path, is_class)
             local fun_name_prefix = ((
                     is_class and (obj.name .. ":"))
                     or full_name .. ".")
-            for _, fun in pairs(v) do
+            for _, fun in ipairs(v) do
                 table.insert(function_queue, {obj = fun, full_name = fun_name_prefix .. fun.name})
             end
         elseif k == "name" or k == "version" or k == "supertypes" or k == "description" or k == "constructors" then
