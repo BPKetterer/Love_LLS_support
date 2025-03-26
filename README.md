@@ -1,7 +1,7 @@
 # Setup
 Simply copy the [love_lls.lua](love_lls.lua) into your project.
 
-# inluding as submodule
+## When inluding as submodule:
 To allow LuaLS to find the content and prevent the documentation of the generator, add this to you .vscode/settings.json:
 ```
 {
