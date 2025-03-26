@@ -3,6 +3,8 @@
 
 assert(false, "This file is only for LuaLS and should not be included")
 
+---@alias cdata table
+
 ---@alias love.Variant table|boolean|string|number|love.Object
 
 ---Version: 11.5
@@ -2684,6 +2686,7 @@ local Object = {}
 ---
 ---[Wiki](https://love2d.org/wiki/RecordingDevice:getBitDepth)
 ---
+---@return number bits# The number of bits per sample in the data that's currently being recorded.
 ---@diagnostic disable-next-line: args-after-dots
 function RecordingDevice:getBitDepth() end
 
@@ -2691,6 +2694,7 @@ function RecordingDevice:getBitDepth() end
 ---
 ---[Wiki](https://love2d.org/wiki/RecordingDevice:getChannelCount)
 ---
+---@return number channels# The number of channels being recorded (1 for mono, 2 for stereo).
 ---@diagnostic disable-next-line: args-after-dots
 function RecordingDevice:getChannelCount() end
 
@@ -2700,6 +2704,7 @@ function RecordingDevice:getChannelCount() end
 ---
 ---[Wiki](https://love2d.org/wiki/RecordingDevice:getData)
 ---
+---@return love.SoundData data# The recorded audio data, or nil if the device isn't recording.
 ---@diagnostic disable-next-line: args-after-dots
 function RecordingDevice:getData() end
 
@@ -2707,6 +2712,7 @@ function RecordingDevice:getData() end
 ---
 ---[Wiki](https://love2d.org/wiki/RecordingDevice:getName)
 ---
+---@return string name# The name of the device.
 ---@diagnostic disable-next-line: args-after-dots
 function RecordingDevice:getName() end
 
@@ -2714,6 +2720,7 @@ function RecordingDevice:getName() end
 ---
 ---[Wiki](https://love2d.org/wiki/RecordingDevice:getSampleCount)
 ---
+---@return number samples# The number of samples that have been recorded so far.
 ---@diagnostic disable-next-line: args-after-dots
 function RecordingDevice:getSampleCount() end
 
@@ -2721,6 +2728,7 @@ function RecordingDevice:getSampleCount() end
 ---
 ---[Wiki](https://love2d.org/wiki/RecordingDevice:getSampleRate)
 ---
+---@return number rate# The number of samples being recorded per second (sample rate).
 ---@diagnostic disable-next-line: args-after-dots
 function RecordingDevice:getSampleRate() end
 
@@ -2728,6 +2736,7 @@ function RecordingDevice:getSampleRate() end
 ---
 ---[Wiki](https://love2d.org/wiki/RecordingDevice:isRecording)
 ---
+---@return boolean recording# True if the recording, false otherwise.
 ---@diagnostic disable-next-line: args-after-dots
 function RecordingDevice:isRecording() end
 
@@ -2739,6 +2748,7 @@ function RecordingDevice:isRecording() end
 ---@param samplerate? number# (8000) The number of samples per second to store when recording.
 ---@param bitdepth? number# (16) The number of bits per sample.
 ---@param channels? number# (1) Whether to record in mono or stereo. Most microphones don't support more than 1 channel.
+---@return boolean success# True if the device successfully began recording using the specified parameters, false if not.
 ---@diagnostic disable-next-line: args-after-dots
 function RecordingDevice:start(samplecount, samplerate, bitdepth, channels) end
 
@@ -2746,6 +2756,7 @@ function RecordingDevice:start(samplecount, samplerate, bitdepth, channels) end
 ---
 ---[Wiki](https://love2d.org/wiki/RecordingDevice:stop)
 ---
+---@return love.SoundData data# The sound data currently in the device's buffer, or nil if the device wasn't recording.
 ---@diagnostic disable-next-line: args-after-dots
 function RecordingDevice:stop() end
 
@@ -2755,6 +2766,7 @@ function RecordingDevice:stop() end
 ---
 ---[Wiki](https://love2d.org/wiki/Source:clone)
 ---
+---@return love.Source source# The new identical copy of this Source.
 ---@diagnostic disable-next-line: args-after-dots
 function Source:clone() end
 
@@ -2762,6 +2774,7 @@ function Source:clone() end
 ---
 ---[Wiki](https://love2d.org/wiki/Source:getActiveEffects)
 ---
+---@return table[] effects# A list of the source's active effect names.
 ---@diagnostic disable-next-line: args-after-dots
 function Source:getActiveEffects() end
 
@@ -2771,6 +2784,7 @@ function Source:getActiveEffects() end
 ---
 ---[Wiki](https://love2d.org/wiki/Source:getAirAbsorption)
 ---
+---@return number amount# The amount of air absorption applied to the Source.
 ---@diagnostic disable-next-line: args-after-dots
 function Source:getAirAbsorption() end
 
@@ -2778,6 +2792,8 @@ function Source:getAirAbsorption() end
 ---
 ---[Wiki](https://love2d.org/wiki/Source:getAttenuationDistances)
 ---
+---@return number ref# The current reference attenuation distance. If the current DistanceModel is clamped, this is the minimum distance before the Source is no longer attenuated.
+---@return number max# The current maximum attenuation distance.
 ---@diagnostic disable-next-line: args-after-dots
 function Source:getAttenuationDistances() end
 
@@ -2785,6 +2801,7 @@ function Source:getAttenuationDistances() end
 ---
 ---[Wiki](https://love2d.org/wiki/Source:getChannelCount)
 ---
+---@return number channels# 1 for mono, 2 for stereo.
 ---@diagnostic disable-next-line: args-after-dots
 function Source:getChannelCount() end
 
@@ -2792,6 +2809,9 @@ function Source:getChannelCount() end
 ---
 ---[Wiki](https://love2d.org/wiki/Source:getCone)
 ---
+---@return number innerAngle# The inner angle from the Source's direction, in radians. The Source will play at normal volume if the listener is inside the cone defined by this angle.
+---@return number outerAngle# The outer angle from the Source's direction, in radians. The Source will play at a volume between the normal and outer volumes, if the listener is in between the cones defined by the inner and outer angles.
+---@return number outerVolume# The Source's volume when the listener is outside both the inner and outer cone angles.
 ---@diagnostic disable-next-line: args-after-dots
 function Source:getCone() end
 
@@ -2799,6 +2819,9 @@ function Source:getCone() end
 ---
 ---[Wiki](https://love2d.org/wiki/Source:getDirection)
 ---
+---@return number x# The X part of the direction vector.
+---@return number y# The Y part of the direction vector.
+---@return number z# The Z part of the direction vector.
 ---@diagnostic disable-next-line: args-after-dots
 function Source:getDirection() end
 
@@ -2807,6 +2830,7 @@ function Source:getDirection() end
 ---[Wiki](https://love2d.org/wiki/Source:getDuration)
 ---
 ---@param unit? love.TimeUnit# ('seconds') The time unit for the return value.
+---@return number duration# The duration of the Source, or -1 if it cannot be determined.
 ---@diagnostic disable-next-line: args-after-dots
 function Source:getDuration(unit) end
 
@@ -2818,6 +2842,10 @@ function Source:getDuration(unit) end
 ---
 ---@param name string# The name of the effect.
 ---@param filtersettings? table# ({}) An optional empty table that will be filled with the filter settings.
+---@return {
+---volume : number,
+---highgain : number,
+---lowgain : number} filtersettings# The settings for the filter associated to this effect, or nil if the effect is not present in this Source or has no filter associated. The table has the following fields:
 ---@diagnostic disable-next-line: args-after-dots
 function Source:getEffect(name, filtersettings) end
 
@@ -2825,6 +2853,11 @@ function Source:getEffect(name, filtersettings) end
 ---
 ---[Wiki](https://love2d.org/wiki/Source:getFilter)
 ---
+---@return {
+---type : love.FilterType,
+---volume : number,
+---highgain : number,
+---lowgain : number} settings# The filter settings to use for this Source, or nil if the Source has no active filter. The table has the following fields:
 ---@diagnostic disable-next-line: args-after-dots
 function Source:getFilter() end
 
@@ -2832,6 +2865,7 @@ function Source:getFilter() end
 ---
 ---[Wiki](https://love2d.org/wiki/Source:getFreeBufferCount)
 ---
+---@return number buffers# How many more SoundData objects can be queued up.
 ---@diagnostic disable-next-line: args-after-dots
 function Source:getFreeBufferCount() end
 
@@ -2839,6 +2873,7 @@ function Source:getFreeBufferCount() end
 ---
 ---[Wiki](https://love2d.org/wiki/Source:getPitch)
 ---
+---@return number pitch# The pitch, where 1.0 is normal.
 ---@diagnostic disable-next-line: args-after-dots
 function Source:getPitch() end
 
@@ -2846,6 +2881,9 @@ function Source:getPitch() end
 ---
 ---[Wiki](https://love2d.org/wiki/Source:getPosition)
 ---
+---@return number x# The X position of the Source.
+---@return number y# The Y position of the Source.
+---@return number z# The Z position of the Source.
 ---@diagnostic disable-next-line: args-after-dots
 function Source:getPosition() end
 
@@ -2853,6 +2891,7 @@ function Source:getPosition() end
 ---
 ---[Wiki](https://love2d.org/wiki/Source:getRolloff)
 ---
+---@return number rolloff# The rolloff factor.
 ---@diagnostic disable-next-line: args-after-dots
 function Source:getRolloff() end
 
@@ -2860,6 +2899,7 @@ function Source:getRolloff() end
 ---
 ---[Wiki](https://love2d.org/wiki/Source:getType)
 ---
+---@return love.SourceType sourcetype# The type of the source.
 ---@diagnostic disable-next-line: args-after-dots
 function Source:getType() end
 
@@ -2867,6 +2907,9 @@ function Source:getType() end
 ---
 ---[Wiki](https://love2d.org/wiki/Source:getVelocity)
 ---
+---@return number x# The X part of the velocity vector.
+---@return number y# The Y part of the velocity vector.
+---@return number z# The Z part of the velocity vector.
 ---@diagnostic disable-next-line: args-after-dots
 function Source:getVelocity() end
 
@@ -2874,6 +2917,7 @@ function Source:getVelocity() end
 ---
 ---[Wiki](https://love2d.org/wiki/Source:getVolume)
 ---
+---@return number volume# The volume of the Source, where 1.0 is normal volume.
 ---@diagnostic disable-next-line: args-after-dots
 function Source:getVolume() end
 
@@ -2881,6 +2925,8 @@ function Source:getVolume() end
 ---
 ---[Wiki](https://love2d.org/wiki/Source:getVolumeLimits)
 ---
+---@return number min# The minimum volume.
+---@return number max# The maximum volume.
 ---@diagnostic disable-next-line: args-after-dots
 function Source:getVolumeLimits() end
 
@@ -2888,6 +2934,7 @@ function Source:getVolumeLimits() end
 ---
 ---[Wiki](https://love2d.org/wiki/Source:isLooping)
 ---
+---@return boolean loop# True if the Source will loop, false otherwise.
 ---@diagnostic disable-next-line: args-after-dots
 function Source:isLooping() end
 
@@ -2895,6 +2942,7 @@ function Source:isLooping() end
 ---
 ---[Wiki](https://love2d.org/wiki/Source:isPlaying)
 ---
+---@return boolean playing# True if the Source is playing, false otherwise.
 ---@diagnostic disable-next-line: args-after-dots
 function Source:isPlaying() end
 
@@ -2902,6 +2950,7 @@ function Source:isPlaying() end
 ---
 ---[Wiki](https://love2d.org/wiki/Source:isRelative)
 ---
+---@return boolean relative# True if the position, velocity, direction and cone angles are relative to the listener, false if they're absolute.
 ---@diagnostic disable-next-line: args-after-dots
 function Source:isRelative() end
 
@@ -2916,6 +2965,7 @@ function Source:pause() end
 ---
 ---[Wiki](https://love2d.org/wiki/Source:play)
 ---
+---@return boolean success# Whether the Source was able to successfully start playing.
 ---@diagnostic disable-next-line: args-after-dots
 function Source:play() end
 
@@ -2926,6 +2976,7 @@ function Source:play() end
 ---[Wiki](https://love2d.org/wiki/Source:queue)
 ---
 ---@param sounddata love.SoundData# The data to queue. The SoundData's sample rate, bit depth, and channel count must match the Source's.
+---@return boolean success# True if the data was successfully queued for playback, false if there were no available buffers to use for queueing.
 ---@diagnostic disable-next-line: args-after-dots
 function Source:queue(sounddata) end
 
@@ -2989,6 +3040,7 @@ function Source:setDirection(x, y, z) end
 ---
 ---@param name string# The name of the effect previously set up with love.audio.setEffect.
 ---@param enable? boolean# (true) If false and the given effect name was previously enabled on this Source, disables the effect.
+---@return boolean success# Whether the effect was successfully applied to this Source.
 ---@diagnostic disable-next-line: args-after-dots
 function Source:setEffect(name, enable) end
 
@@ -3004,6 +3056,7 @@ function Source:setEffect(name, enable) end
 ---volume : number,
 ---highgain : number,
 ---lowgain : number}# The filter settings to apply prior to the effect, with the following fields:
+---@return boolean success# Whether the effect and filter were successfully applied to this Source.
 ---@diagnostic disable-next-line: args-after-dots
 function Source:setEffect(name, filtersettings) end
 
@@ -3016,6 +3069,7 @@ function Source:setEffect(name, filtersettings) end
 ---volume : number,
 ---highgain : number,
 ---lowgain : number}# The filter settings to use for this Source, with the following fields:
+---@return boolean success# Whether the filter was successfully applied to the Source.
 ---@diagnostic disable-next-line: args-after-dots
 function Source:setFilter(settings) end
 
@@ -3113,6 +3167,7 @@ function Source:stop() end
 ---[Wiki](https://love2d.org/wiki/Source:tell)
 ---
 ---@param unit? love.TimeUnit# ('seconds') The type of unit for the return value.
+---@return number position# The currently playing position of the Source.
 ---@diagnostic disable-next-line: args-after-dots
 function Source:tell(unit) end
 
@@ -3120,6 +3175,7 @@ function Source:tell(unit) end
 ---
 ---[Wiki](https://love2d.org/wiki/love.audio.getActiveEffects)
 ---
+---@return table[] effects# The list of the names of the currently enabled effects.
 ---@diagnostic disable-next-line: args-after-dots
 function love.audio.getActiveEffects() end
 
@@ -3127,6 +3183,7 @@ function love.audio.getActiveEffects() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.audio.getActiveSourceCount)
 ---
+---@return number count# The current number of simultaneously playing sources.
 ---@diagnostic disable-next-line: args-after-dots
 function love.audio.getActiveSourceCount() end
 
@@ -3134,6 +3191,7 @@ function love.audio.getActiveSourceCount() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.audio.getDistanceModel)
 ---
+---@return love.DistanceModel model# The current distance model. The default is 'inverseclamped'.
 ---@diagnostic disable-next-line: args-after-dots
 function love.audio.getDistanceModel() end
 
@@ -3141,6 +3199,7 @@ function love.audio.getDistanceModel() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.audio.getDopplerScale)
 ---
+---@return number scale# The current doppler scale factor.
 ---@diagnostic disable-next-line: args-after-dots
 function love.audio.getDopplerScale() end
 
@@ -3149,6 +3208,7 @@ function love.audio.getDopplerScale() end
 ---[Wiki](https://love2d.org/wiki/love.audio.getEffect)
 ---
 ---@param name string# The name of the effect.
+---@return table settings# The settings associated with the effect.
 ---@diagnostic disable-next-line: args-after-dots
 function love.audio.getEffect(name) end
 
@@ -3156,6 +3216,7 @@ function love.audio.getEffect(name) end
 ---
 ---[Wiki](https://love2d.org/wiki/love.audio.getMaxSceneEffects)
 ---
+---@return number maximum# The maximum number of active effects.
 ---@diagnostic disable-next-line: args-after-dots
 function love.audio.getMaxSceneEffects() end
 
@@ -3163,6 +3224,7 @@ function love.audio.getMaxSceneEffects() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.audio.getMaxSourceEffects)
 ---
+---@return number maximum# The maximum number of active Effects per Source.
 ---@diagnostic disable-next-line: args-after-dots
 function love.audio.getMaxSourceEffects() end
 
@@ -3170,6 +3232,12 @@ function love.audio.getMaxSourceEffects() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.audio.getOrientation)
 ---
+---@return number fx# Forward x of the listener orientation.
+---@return number fy# Forward y of the listener orientation.
+---@return number fz# Forward z of the listener orientation.
+---@return number ux# Up x of the listener orientation.
+---@return number uy# Up y of the listener orientation.
+---@return number uz# Up z of the listener orientation.
 ---@diagnostic disable-next-line: args-after-dots
 function love.audio.getOrientation() end
 
@@ -3177,6 +3245,9 @@ function love.audio.getOrientation() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.audio.getPosition)
 ---
+---@return number x# The X position of the listener.
+---@return number y# The Y position of the listener.
+---@return number z# The Z position of the listener.
 ---@diagnostic disable-next-line: args-after-dots
 function love.audio.getPosition() end
 
@@ -3188,6 +3259,7 @@ function love.audio.getPosition() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.audio.getRecordingDevices)
 ---
+---@return table[] devices# The list of connected recording devices.
 ---@diagnostic disable-next-line: args-after-dots
 function love.audio.getRecordingDevices() end
 
@@ -3195,6 +3267,9 @@ function love.audio.getRecordingDevices() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.audio.getVelocity)
 ---
+---@return number x# The X velocity of the listener.
+---@return number y# The Y velocity of the listener.
+---@return number z# The Z velocity of the listener.
 ---@diagnostic disable-next-line: args-after-dots
 function love.audio.getVelocity() end
 
@@ -3202,6 +3277,7 @@ function love.audio.getVelocity() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.audio.getVolume)
 ---
+---@return number volume# The current master volume
 ---@diagnostic disable-next-line: args-after-dots
 function love.audio.getVolume() end
 
@@ -3209,6 +3285,7 @@ function love.audio.getVolume() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.audio.isEffectsSupported)
 ---
+---@return boolean supported# True if effects are supported, false otherwise.
 ---@diagnostic disable-next-line: args-after-dots
 function love.audio.isEffectsSupported() end
 
@@ -3220,6 +3297,7 @@ function love.audio.isEffectsSupported() end
 ---@param bitdepth number# Bits per sample (8 or 16).
 ---@param channels number# 1 for mono or 2 for stereo.
 ---@param buffercount? number# (0) The number of buffers that can be queued up at any given time with Source:queue. Cannot be greater than 64. A sensible default (~8) is chosen if no value is specified.
+---@return love.Source source# The new Source usable with Source:queue.
 ---@diagnostic disable-next-line: args-after-dots
 function love.audio.newQueueableSource(samplerate, bitdepth, channels, buffercount) end
 
@@ -3231,6 +3309,7 @@ function love.audio.newQueueableSource(samplerate, bitdepth, channels, buffercou
 ---
 ---@param filename string# The filepath to the audio file.
 ---@param type love.SourceType# Streaming or static source.
+---@return love.Source source# A new Source that can play the specified audio.
 ---@diagnostic disable-next-line: args-after-dots
 function love.audio.newSource(filename, type) end
 
@@ -3242,6 +3321,7 @@ function love.audio.newSource(filename, type) end
 ---
 ---@param file love.File# A File pointing to an audio file.
 ---@param type love.SourceType# Streaming or static source.
+---@return love.Source source# A new Source that can play the specified audio.
 ---@diagnostic disable-next-line: args-after-dots
 function love.audio.newSource(file, type) end
 
@@ -3253,6 +3333,7 @@ function love.audio.newSource(file, type) end
 ---
 ---@param decoder love.Decoder# The Decoder to create a Source from.
 ---@param type love.SourceType# Streaming or static source.
+---@return love.Source source# A new Source that can play the specified audio.
 ---@diagnostic disable-next-line: args-after-dots
 function love.audio.newSource(decoder, type) end
 
@@ -3264,6 +3345,7 @@ function love.audio.newSource(decoder, type) end
 ---
 ---@param data love.FileData# The FileData to create a Source from.
 ---@param type love.SourceType# Streaming or static source.
+---@return love.Source source# A new Source that can play the specified audio.
 ---@diagnostic disable-next-line: args-after-dots
 function love.audio.newSource(data, type) end
 
@@ -3274,6 +3356,7 @@ function love.audio.newSource(data, type) end
 ---[Wiki](https://love2d.org/wiki/love.audio.newSource)
 ---
 ---@param data love.SoundData# The SoundData to create a Source from.
+---@return love.Source source# A new Source that can play the specified audio. The SourceType of the returned audio is 'static'.
 ---@diagnostic disable-next-line: args-after-dots
 function love.audio.newSource(data) end
 
@@ -3281,6 +3364,7 @@ function love.audio.newSource(data) end
 ---
 ---[Wiki](https://love2d.org/wiki/love.audio.pause)
 ---
+---@return table[] Sources# A table containing a list of Sources that were paused by this call.
 ---@diagnostic disable-next-line: args-after-dots
 function love.audio.pause() end
 
@@ -3354,6 +3438,7 @@ function love.audio.setDopplerScale(scale) end
 ---type : love.EffectType,
 ---volume : number,
 ---[...] : number}# The settings to use for this effect, with the following fields:
+---@return boolean success# Whether the effect was successfully created.
 ---@diagnostic disable-next-line: args-after-dots
 function love.audio.setEffect(name, settings) end
 
@@ -3365,6 +3450,7 @@ function love.audio.setEffect(name, settings) end
 ---
 ---@param name string# The name of the effect.
 ---@param enabled? boolean# (true) If false and the given effect name was previously set, disables the effect.
+---@return boolean success# Whether the effect was successfully disabled.
 ---@diagnostic disable-next-line: args-after-dots
 function love.audio.setEffect(name, enabled) end
 
@@ -3373,6 +3459,7 @@ function love.audio.setEffect(name, enabled) end
 ---[Wiki](https://love2d.org/wiki/love.audio.setMixWithSystem)
 ---
 ---@param mix boolean# True to enable mixing, false to disable it.
+---@return boolean success# True if the change succeeded, false otherwise.
 ---@diagnostic disable-next-line: args-after-dots
 function love.audio.setMixWithSystem(mix) end
 
@@ -3454,6 +3541,7 @@ function love.audio.stop(sources) end
 ---
 ---[Wiki](https://love2d.org/wiki/CompressedData:getFormat)
 ---
+---@return love.CompressedDataFormat format# The format of the CompressedData.
 ---@diagnostic disable-next-line: args-after-dots
 function CompressedData:getFormat() end
 
@@ -3465,6 +3553,7 @@ function CompressedData:getFormat() end
 ---@param format love.CompressedDataFormat# The format to use when compressing the string.
 ---@param rawstring string# The raw (un-compressed) string to compress.
 ---@param level? number# (-1) The level of compression to use, between 0 and 9. -1 indicates the default level. The meaning of this argument depends on the compression format being used.
+---@return love.CompressedData|string compressedData# CompressedData/string which contains the compressed version of rawstring.
 ---@diagnostic disable-next-line: args-after-dots
 function love.data.compress(container, format, rawstring, level) end
 
@@ -3476,6 +3565,7 @@ function love.data.compress(container, format, rawstring, level) end
 ---@param format love.CompressedDataFormat# The format to use when compressing the data.
 ---@param data love.Data# A Data object containing the raw (un-compressed) data to compress.
 ---@param level? number# (-1) The level of compression to use, between 0 and 9. -1 indicates the default level. The meaning of this argument depends on the compression format being used.
+---@return love.CompressedData|string compressedData# CompressedData/string which contains the compressed version of data.
 ---@diagnostic disable-next-line: args-after-dots
 function love.data.compress(container, format, data, level) end
 
@@ -3486,6 +3576,7 @@ function love.data.compress(container, format, data, level) end
 ---@param container love.ContainerType# What type to return the decoded data as.
 ---@param format love.EncodeFormat# The format of the input data.
 ---@param sourceString string# The raw (encoded) data to decode.
+---@return love.ByteData|string decoded# ByteData/string which contains the decoded version of source.
 ---@diagnostic disable-next-line: args-after-dots
 function love.data.decode(container, format, sourceString) end
 
@@ -3496,6 +3587,7 @@ function love.data.decode(container, format, sourceString) end
 ---@param container love.ContainerType# What type to return the decoded data as.
 ---@param format love.EncodeFormat# The format of the input data.
 ---@param sourceData love.Data# The raw (encoded) data to decode.
+---@return love.ByteData|string decoded# ByteData/string which contains the decoded version of source.
 ---@diagnostic disable-next-line: args-after-dots
 function love.data.decode(container, format, sourceData) end
 
@@ -3505,6 +3597,7 @@ function love.data.decode(container, format, sourceData) end
 ---
 ---@param container love.ContainerType# What type to return the decompressed data as.
 ---@param compressedData love.CompressedData# The compressed data to decompress.
+---@return love.Data|string decompressedData# Data/string containing the raw decompressed data.
 ---@diagnostic disable-next-line: args-after-dots
 function love.data.decompress(container, compressedData) end
 
@@ -3515,6 +3608,7 @@ function love.data.decompress(container, compressedData) end
 ---@param container love.ContainerType# What type to return the decompressed data as.
 ---@param format love.CompressedDataFormat# The format that was used to compress the given string.
 ---@param compressedString string# A string containing data previously compressed with love.data.compress.
+---@return love.Data|string decompressedData# Data/string containing the raw decompressed data.
 ---@diagnostic disable-next-line: args-after-dots
 function love.data.decompress(container, format, compressedString) end
 
@@ -3525,6 +3619,7 @@ function love.data.decompress(container, format, compressedString) end
 ---@param container love.ContainerType# What type to return the decompressed data as.
 ---@param format love.CompressedDataFormat# The format that was used to compress the given data.
 ---@param data love.Data# A Data object containing data previously compressed with love.data.compress.
+---@return love.Data|string decompressedData# Data/string containing the raw decompressed data.
 ---@diagnostic disable-next-line: args-after-dots
 function love.data.decompress(container, format, data) end
 
@@ -3536,6 +3631,7 @@ function love.data.decompress(container, format, data) end
 ---@param format love.EncodeFormat# The format of the output data.
 ---@param sourceString string# The raw data to encode.
 ---@param linelength? number# (0) The maximum line length of the output. Only supported for base64, ignored if 0.
+---@return love.ByteData|string encoded# ByteData/string which contains the encoded version of source.
 ---@diagnostic disable-next-line: args-after-dots
 function love.data.encode(container, format, sourceString, linelength) end
 
@@ -3547,6 +3643,7 @@ function love.data.encode(container, format, sourceString, linelength) end
 ---@param format love.EncodeFormat# The format of the output data.
 ---@param sourceData love.Data# The raw data to encode.
 ---@param linelength? number# (0) The maximum line length of the output. Only supported for base64, ignored if 0.
+---@return love.ByteData|string encoded# ByteData/string which contains the encoded version of source.
 ---@diagnostic disable-next-line: args-after-dots
 function love.data.encode(container, format, sourceData, linelength) end
 
@@ -3557,6 +3654,7 @@ function love.data.encode(container, format, sourceData, linelength) end
 ---[Wiki](https://love2d.org/wiki/love.data.getPackedSize)
 ---
 ---@param format string# A string determining how the values are packed. Follows the rules of Lua 5.3's string.pack format strings.
+---@return number size# The size in bytes that the packed data will use.
 ---@diagnostic disable-next-line: args-after-dots
 function love.data.getPackedSize(format) end
 
@@ -3566,6 +3664,7 @@ function love.data.getPackedSize(format) end
 ---
 ---@param hashFunction love.HashFunction# Hash algorithm to use.
 ---@param string string# String to hash.
+---@return string rawdigest# Raw message digest string.
 ---@diagnostic disable-next-line: args-after-dots
 function love.data.hash(hashFunction, string) end
 
@@ -3575,6 +3674,7 @@ function love.data.hash(hashFunction, string) end
 ---
 ---@param hashFunction love.HashFunction# Hash algorithm to use.
 ---@param data love.Data# Data to hash.
+---@return string rawdigest# Raw message digest string.
 ---@diagnostic disable-next-line: args-after-dots
 function love.data.hash(hashFunction, data) end
 
@@ -3585,6 +3685,7 @@ function love.data.hash(hashFunction, data) end
 ---[Wiki](https://love2d.org/wiki/love.data.newByteData)
 ---
 ---@param datastring string# The byte string to copy.
+---@return love.ByteData bytedata# The new Data object.
 ---@diagnostic disable-next-line: args-after-dots
 function love.data.newByteData(datastring) end
 
@@ -3597,6 +3698,7 @@ function love.data.newByteData(datastring) end
 ---@param Data love.Data# The existing Data object to copy.
 ---@param offset? number# (0) The offset of the subsection to copy, in bytes.
 ---@param size? number# (data:getSize()) The size in bytes of the new Data object.
+---@return love.ByteData bytedata# The new Data object.
 ---@diagnostic disable-next-line: args-after-dots
 function love.data.newByteData(Data, offset, size) end
 
@@ -3607,6 +3709,7 @@ function love.data.newByteData(Data, offset, size) end
 ---[Wiki](https://love2d.org/wiki/love.data.newByteData)
 ---
 ---@param size number# The size in bytes of the new Data object.
+---@return love.ByteData bytedata# The new Data object.
 ---@diagnostic disable-next-line: args-after-dots
 function love.data.newByteData(size) end
 
@@ -3617,6 +3720,7 @@ function love.data.newByteData(size) end
 ---@param data love.Data# The Data object to reference.
 ---@param offset number# The offset of the subsection to reference, in bytes.
 ---@param size number# The size in bytes of the subsection to reference.
+---@return love.Data view# The new Data view.
 ---@diagnostic disable-next-line: args-after-dots
 function love.data.newDataView(data, offset, size) end
 
@@ -3630,6 +3734,7 @@ function love.data.newDataView(data, offset, size) end
 ---@param format string# A string determining how the values are packed. Follows the rules of Lua 5.3's string.pack format strings.
 ---@param v1 number|boolean|string# The first value (number, boolean, or string) to serialize.
 ---@param ... number|boolean|string# Additional values to serialize.
+---@return love.Data|string data# Data/string which contains the serialized data.
 ---@diagnostic disable-next-line: args-after-dots
 function love.data.pack(container, format, v1, ...) end
 
@@ -3642,6 +3747,9 @@ function love.data.pack(container, format, v1, ...) end
 ---@param format string# A string determining how the values were packed. Follows the rules of Lua 5.3's string.pack format strings.
 ---@param datastring string# A string containing the packed (serialized) data.
 ---@param pos? number# (1) Where to start reading in the string. Negative values can be used to read relative from the end of the string.
+---@return number|boolean|string v1# The first value (number, boolean, or string) that was unpacked.
+---@return number|boolean|string ...# Additional unpacked values.
+---@return number index# The index of the first unread byte in the data string.
 ---@diagnostic disable-next-line: args-after-dots
 function love.data.unpack(format, datastring, pos) end
 
@@ -3654,6 +3762,9 @@ function love.data.unpack(format, datastring, pos) end
 ---@param format string# A string determining how the values were packed. Follows the rules of Lua 5.3's string.pack format strings.
 ---@param data love.Data# A Data object containing the packed (serialized) data.
 ---@param pos? number# (1) 1-based index indicating where to start reading in the Data. Negative values can be used to read relative from the end of the Data object.
+---@return number|boolean|string v1# The first value (number, boolean, or string) that was unpacked.
+---@return number|boolean|string ...# Additional unpacked values.
+---@return number index# The 1-based index of the first unread byte in the Data.
 ---@diagnostic disable-next-line: args-after-dots
 function love.data.unpack(format, data, pos) end
 
@@ -3668,6 +3779,7 @@ function love.event.clear() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.event.poll)
 ---
+---@return fun():name: string, ...: any i# Iterator function usable in a for loop.
 ---@diagnostic disable-next-line: args-after-dots
 function love.event.poll() end
 
@@ -3725,6 +3837,14 @@ function love.event.quit(restart) end
 ---
 ---[Wiki](https://love2d.org/wiki/love.event.wait)
 ---
+---@return love.Event n# The name of event.
+---@return love.Variant a# First event argument.
+---@return love.Variant b# Second event argument.
+---@return love.Variant c# Third event argument.
+---@return love.Variant d# Fourth event argument.
+---@return love.Variant e# Fifth event argument.
+---@return love.Variant f# Sixth event argument.
+---@return love.Variant ...# Further event arguments may follow.
 ---@diagnostic disable-next-line: args-after-dots
 function love.event.wait() end
 
@@ -3732,6 +3852,7 @@ function love.event.wait() end
 ---
 ---[Wiki](https://love2d.org/wiki/File:close)
 ---
+---@return boolean success# Whether closing was successful.
 ---@diagnostic disable-next-line: args-after-dots
 function File:close() end
 
@@ -3739,6 +3860,8 @@ function File:close() end
 ---
 ---[Wiki](https://love2d.org/wiki/File:flush)
 ---
+---@return boolean success# Whether the file successfully flushed any buffered data to the disk.
+---@return string err# The error string, if an error occurred and the file could not be flushed.
 ---@diagnostic disable-next-line: args-after-dots
 function File:flush() end
 
@@ -3746,6 +3869,8 @@ function File:flush() end
 ---
 ---[Wiki](https://love2d.org/wiki/File:getBuffer)
 ---
+---@return love.BufferMode mode# The current buffer mode of the file.
+---@return number size# The maximum size in bytes of the file's buffer.
 ---@diagnostic disable-next-line: args-after-dots
 function File:getBuffer() end
 
@@ -3753,6 +3878,7 @@ function File:getBuffer() end
 ---
 ---[Wiki](https://love2d.org/wiki/File:getFilename)
 ---
+---@return string filename# The filename of the File.
 ---@diagnostic disable-next-line: args-after-dots
 function File:getFilename() end
 
@@ -3760,6 +3886,7 @@ function File:getFilename() end
 ---
 ---[Wiki](https://love2d.org/wiki/File:getMode)
 ---
+---@return love.FileMode mode# The mode this file has been opened with.
 ---@diagnostic disable-next-line: args-after-dots
 function File:getMode() end
 
@@ -3767,6 +3894,7 @@ function File:getMode() end
 ---
 ---[Wiki](https://love2d.org/wiki/File:getSize)
 ---
+---@return number size# The file size in bytes.
 ---@diagnostic disable-next-line: args-after-dots
 function File:getSize() end
 
@@ -3774,6 +3902,7 @@ function File:getSize() end
 ---
 ---[Wiki](https://love2d.org/wiki/File:isEOF)
 ---
+---@return boolean eof# Whether EOF has been reached.
 ---@diagnostic disable-next-line: args-after-dots
 function File:isEOF() end
 
@@ -3781,6 +3910,7 @@ function File:isEOF() end
 ---
 ---[Wiki](https://love2d.org/wiki/File:isOpen)
 ---
+---@return boolean open# True if the file is currently open, false otherwise.
 ---@diagnostic disable-next-line: args-after-dots
 function File:isOpen() end
 
@@ -3788,6 +3918,7 @@ function File:isOpen() end
 ---
 ---[Wiki](https://love2d.org/wiki/File:lines)
 ---
+---@return fun():line: string iterator# The iterator (can be used in for loops).
 ---@diagnostic disable-next-line: args-after-dots
 function File:lines() end
 
@@ -3796,6 +3927,8 @@ function File:lines() end
 ---[Wiki](https://love2d.org/wiki/File:open)
 ---
 ---@param mode love.FileMode# The mode to open the file in.
+---@return boolean ok# True on success, false otherwise.
+---@return string err# The error string if an error occurred.
 ---@diagnostic disable-next-line: args-after-dots
 function File:open(mode) end
 
@@ -3804,6 +3937,8 @@ function File:open(mode) end
 ---[Wiki](https://love2d.org/wiki/File:read)
 ---
 ---@param bytes? number# (all) The number of bytes to read.
+---@return string contents# The contents of the read bytes.
+---@return number size# How many bytes have been read.
 ---@diagnostic disable-next-line: args-after-dots
 function File:read(bytes) end
 
@@ -3813,6 +3948,8 @@ function File:read(bytes) end
 ---
 ---@param container love.ContainerType# What type to return the file's contents as.
 ---@param bytes? number# (all) The number of bytes to read.
+---@return love.FileData|string contents# FileData or string containing the read bytes.
+---@return number size# How many bytes have been read.
 ---@diagnostic disable-next-line: args-after-dots
 function File:read(container, bytes) end
 
@@ -3821,6 +3958,7 @@ function File:read(container, bytes) end
 ---[Wiki](https://love2d.org/wiki/File:seek)
 ---
 ---@param pos number# The position to seek to
+---@return boolean success# Whether the operation was successful
 ---@diagnostic disable-next-line: args-after-dots
 function File:seek(pos) end
 
@@ -3832,6 +3970,8 @@ function File:seek(pos) end
 ---
 ---@param mode love.BufferMode# The buffer mode to use.
 ---@param size? number# (0) The maximum size in bytes of the file's buffer.
+---@return boolean success# Whether the buffer mode was successfully set.
+---@return string errorstr# The error string, if the buffer mode could not be set and an error occurred.
 ---@diagnostic disable-next-line: args-after-dots
 function File:setBuffer(mode, size) end
 
@@ -3839,6 +3979,7 @@ function File:setBuffer(mode, size) end
 ---
 ---[Wiki](https://love2d.org/wiki/File:tell)
 ---
+---@return number pos# The current position.
 ---@diagnostic disable-next-line: args-after-dots
 function File:tell() end
 
@@ -3848,6 +3989,8 @@ function File:tell() end
 ---
 ---@param data string# The string data to write.
 ---@param size? number# (all) How many bytes to write.
+---@return boolean success# Whether the operation was successful.
+---@return string err# The error string if an error occurred.
 ---@diagnostic disable-next-line: args-after-dots
 function File:write(data, size) end
 
@@ -3857,6 +4000,8 @@ function File:write(data, size) end
 ---
 ---@param data love.Data# The Data object to write.
 ---@param size? number# (all) How many bytes to write.
+---@return boolean success# Whether the operation was successful.
+---@return string errorstr# The error string if an error occurred.
 ---@diagnostic disable-next-line: args-after-dots
 function File:write(data, size) end
 
@@ -3864,6 +4009,7 @@ function File:write(data, size) end
 ---
 ---[Wiki](https://love2d.org/wiki/FileData:getExtension)
 ---
+---@return string ext# The extension of the file the FileData represents.
 ---@diagnostic disable-next-line: args-after-dots
 function FileData:getExtension() end
 
@@ -3871,6 +4017,7 @@ function FileData:getExtension() end
 ---
 ---[Wiki](https://love2d.org/wiki/FileData:getFilename)
 ---
+---@return string name# The name of the file the FileData represents.
 ---@diagnostic disable-next-line: args-after-dots
 function FileData:getFilename() end
 
@@ -3881,6 +4028,8 @@ function FileData:getFilename() end
 ---@param name string# The name (and path) of the file.
 ---@param data string# The string data to append to the file.
 ---@param size? number# (all) How many bytes to write.
+---@return boolean success# True if the operation was successful, or nil if there was an error.
+---@return string errormsg# The error message on failure.
 ---@diagnostic disable-next-line: args-after-dots
 function love.filesystem.append(name, data, size) end
 
@@ -3891,6 +4040,8 @@ function love.filesystem.append(name, data, size) end
 ---@param name string# The name (and path) of the file.
 ---@param data love.Data# The Data object to append to the file.
 ---@param size? number# (all) How many bytes to write.
+---@return boolean success# True if the operation was successful, or nil if there was an error.
+---@return string errormsg# The error message on failure.
 ---@diagnostic disable-next-line: args-after-dots
 function love.filesystem.append(name, data, size) end
 
@@ -3898,6 +4049,7 @@ function love.filesystem.append(name, data, size) end
 ---
 ---[Wiki](https://love2d.org/wiki/love.filesystem.areSymlinksEnabled)
 ---
+---@return boolean enable# Whether love.filesystem follows symbolic links.
 ---@diagnostic disable-next-line: args-after-dots
 function love.filesystem.areSymlinksEnabled() end
 
@@ -3908,6 +4060,7 @@ function love.filesystem.areSymlinksEnabled() end
 ---[Wiki](https://love2d.org/wiki/love.filesystem.createDirectory)
 ---
 ---@param name string# The directory to create.
+---@return boolean success# True if the directory was created, false if not.
 ---@diagnostic disable-next-line: args-after-dots
 function love.filesystem.createDirectory(name) end
 
@@ -3915,6 +4068,7 @@ function love.filesystem.createDirectory(name) end
 ---
 ---[Wiki](https://love2d.org/wiki/love.filesystem.getAppdataDirectory)
 ---
+---@return string path# The path of the application data directory
 ---@diagnostic disable-next-line: args-after-dots
 function love.filesystem.getAppdataDirectory() end
 
@@ -3926,6 +4080,7 @@ function love.filesystem.getAppdataDirectory() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.filesystem.getCRequirePath)
 ---
+---@return string paths# The paths that the ''require'' function will check for c libraries in love's filesystem.
 ---@diagnostic disable-next-line: args-after-dots
 function love.filesystem.getCRequirePath() end
 
@@ -3936,6 +4091,7 @@ function love.filesystem.getCRequirePath() end
 ---[Wiki](https://love2d.org/wiki/love.filesystem.getDirectoryItems)
 ---
 ---@param dir string# The directory.
+---@return table[] files# A sequence with the names of all files and subdirectories as strings.
 ---@diagnostic disable-next-line: args-after-dots
 function love.filesystem.getDirectoryItems(dir) end
 
@@ -3947,6 +4103,7 @@ function love.filesystem.getDirectoryItems(dir) end
 ---
 ---@param dir string# The directory.
 ---@param callback function# A function which is called for each file and folder in the directory. The filename is passed to the function as an argument.
+---@return table files# A sequence with the names of all files and subdirectories as strings.
 ---@diagnostic disable-next-line: args-after-dots
 function love.filesystem.getDirectoryItems(dir, callback) end
 
@@ -3956,6 +4113,7 @@ function love.filesystem.getDirectoryItems(dir, callback) end
 ---
 ---[Wiki](https://love2d.org/wiki/love.filesystem.getIdentity)
 ---
+---@return string name# The identity that is used as write directory.
 ---@diagnostic disable-next-line: args-after-dots
 function love.filesystem.getIdentity() end
 
@@ -3965,6 +4123,10 @@ function love.filesystem.getIdentity() end
 ---
 ---@param path string# The file or directory path to check.
 ---@param filtertype? love.FileType# (nil) If supplied, this parameter causes getInfo to only return the info table if the item at the given path matches the specified file type.
+---@return {
+---type : love.FileType,
+---size : number,
+---modtime : number} info# A table containing information about the specified path, or nil if nothing exists at the path. The table contains the following fields:
 ---@diagnostic disable-next-line: args-after-dots
 function love.filesystem.getInfo(path, filtertype) end
 
@@ -3974,6 +4136,10 @@ function love.filesystem.getInfo(path, filtertype) end
 ---
 ---@param path string# The file or directory path to check.
 ---@param info table# A table which will be filled in with info about the specified path.
+---@return {
+---type : love.FileType,
+---size : number,
+---modtime : number} info# The table given as an argument, or nil if nothing exists at the path. The table will be filled in with the following fields:
 ---@diagnostic disable-next-line: args-after-dots
 function love.filesystem.getInfo(path, info) end
 
@@ -3984,6 +4150,10 @@ function love.filesystem.getInfo(path, info) end
 ---@param path string# The file or directory path to check.
 ---@param filtertype love.FileType# Causes getInfo to only return the info table if the item at the given path matches the specified file type.
 ---@param info table# A table which will be filled in with info about the specified path.
+---@return {
+---type : love.FileType,
+---size : number,
+---modtime : number} info# The table given as an argument, or nil if nothing exists at the path. The table will be filled in with the following fields:
 ---@diagnostic disable-next-line: args-after-dots
 function love.filesystem.getInfo(path, filtertype, info) end
 
@@ -3994,6 +4164,7 @@ function love.filesystem.getInfo(path, filtertype, info) end
 ---[Wiki](https://love2d.org/wiki/love.filesystem.getRealDirectory)
 ---
 ---@param filepath string# The filepath to get the directory of.
+---@return string realdir# The platform-specific full path of the directory containing the filepath.
 ---@diagnostic disable-next-line: args-after-dots
 function love.filesystem.getRealDirectory(filepath) end
 
@@ -4005,6 +4176,7 @@ function love.filesystem.getRealDirectory(filepath) end
 ---
 ---[Wiki](https://love2d.org/wiki/love.filesystem.getRequirePath)
 ---
+---@return string paths# The paths that the ''require'' function will check in love's filesystem.
 ---@diagnostic disable-next-line: args-after-dots
 function love.filesystem.getRequirePath() end
 
@@ -4016,6 +4188,7 @@ function love.filesystem.getRequirePath() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.filesystem.getSaveDirectory)
 ---
+---@return string dir# The absolute path to the save directory.
 ---@diagnostic disable-next-line: args-after-dots
 function love.filesystem.getSaveDirectory() end
 
@@ -4023,6 +4196,7 @@ function love.filesystem.getSaveDirectory() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.filesystem.getSource)
 ---
+---@return string path# The full platform-dependent path of the .love file or directory.
 ---@diagnostic disable-next-line: args-after-dots
 function love.filesystem.getSource() end
 
@@ -4032,6 +4206,7 @@ function love.filesystem.getSource() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.filesystem.getSourceBaseDirectory)
 ---
+---@return string path# The full platform-dependent path of the directory containing the .love file.
 ---@diagnostic disable-next-line: args-after-dots
 function love.filesystem.getSourceBaseDirectory() end
 
@@ -4039,6 +4214,7 @@ function love.filesystem.getSourceBaseDirectory() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.filesystem.getUserDirectory)
 ---
+---@return string path# The path of the user's directory
 ---@diagnostic disable-next-line: args-after-dots
 function love.filesystem.getUserDirectory() end
 
@@ -4046,6 +4222,7 @@ function love.filesystem.getUserDirectory() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.filesystem.getWorkingDirectory)
 ---
+---@return string cwd# The current working directory.
 ---@diagnostic disable-next-line: args-after-dots
 function love.filesystem.getWorkingDirectory() end
 
@@ -4065,6 +4242,7 @@ function love.filesystem.init(appname) end
 ---
 ---[Wiki](https://love2d.org/wiki/love.filesystem.isFused)
 ---
+---@return boolean fused# True if the game is in fused mode, false otherwise.
 ---@diagnostic disable-next-line: args-after-dots
 function love.filesystem.isFused() end
 
@@ -4073,6 +4251,7 @@ function love.filesystem.isFused() end
 ---[Wiki](https://love2d.org/wiki/love.filesystem.lines)
 ---
 ---@param name string# The name (and path) of the file
+---@return fun():line: string iterator# A function that iterates over all the lines in the file
 ---@diagnostic disable-next-line: args-after-dots
 function love.filesystem.lines(name) end
 
@@ -4081,6 +4260,8 @@ function love.filesystem.lines(name) end
 ---[Wiki](https://love2d.org/wiki/love.filesystem.load)
 ---
 ---@param name string# The name (and path) of the file.
+---@return function chunk# The loaded chunk.
+---@return string errormsg# The error message if file could not be opened.
 ---@diagnostic disable-next-line: args-after-dots
 function love.filesystem.load(name) end
 
@@ -4093,6 +4274,7 @@ function love.filesystem.load(name) end
 ---@param archive string# The folder or zip file in the game's save directory to mount.
 ---@param mountpoint string# The new path the archive will be mounted to.
 ---@param appendToPath? boolean# (false) Whether the archive will be searched when reading a filepath before or after already-mounted archives. This includes the game's source and save directories.
+---@return boolean success# True if the archive was successfully mounted, false otherwise.
 ---@diagnostic disable-next-line: args-after-dots
 function love.filesystem.mount(archive, mountpoint, appendToPath) end
 
@@ -4105,6 +4287,7 @@ function love.filesystem.mount(archive, mountpoint, appendToPath) end
 ---@param filedata love.FileData# The FileData object in memory to mount.
 ---@param mountpoint string# The new path the archive will be mounted to.
 ---@param appendToPath? boolean# (false) Whether the archive will be searched when reading a filepath before or after already-mounted archives. This includes the game's source and save directories.
+---@return boolean success# True if the archive was successfully mounted, false otherwise.
 ---@diagnostic disable-next-line: args-after-dots
 function love.filesystem.mount(filedata, mountpoint, appendToPath) end
 
@@ -4118,6 +4301,7 @@ function love.filesystem.mount(filedata, mountpoint, appendToPath) end
 ---@param archivename string# The name to associate the mounted data with, for use with love.filesystem.unmount. Must be unique compared to other mounted data.
 ---@param mountpoint string# The new path the archive will be mounted to.
 ---@param appendToPath? boolean# (false) Whether the archive will be searched when reading a filepath before or after already-mounted archives. This includes the game's source and save directories.
+---@return boolean success# True if the archive was successfully mounted, false otherwise.
 ---@diagnostic disable-next-line: args-after-dots
 function love.filesystem.mount(data, archivename, mountpoint, appendToPath) end
 
@@ -4128,6 +4312,7 @@ function love.filesystem.mount(data, archivename, mountpoint, appendToPath) end
 ---[Wiki](https://love2d.org/wiki/love.filesystem.newFile)
 ---
 ---@param filename string# The filename of the file.
+---@return love.File file# The new File object.
 ---@diagnostic disable-next-line: args-after-dots
 function love.filesystem.newFile(filename) end
 
@@ -4139,6 +4324,8 @@ function love.filesystem.newFile(filename) end
 ---
 ---@param filename string# The filename of the file.
 ---@param mode love.FileMode# The mode to open the file in.
+---@return love.File file# The new File object, or nil if an error occurred.
+---@return string errorstr# The error string if an error occurred.
 ---@diagnostic disable-next-line: args-after-dots
 function love.filesystem.newFile(filename, mode) end
 
@@ -4148,6 +4335,7 @@ function love.filesystem.newFile(filename, mode) end
 ---
 ---@param contents string# The contents of the file in memory represented as a string.
 ---@param name string# The name of the file. The extension may be parsed and used by LÖVE when passing the FileData object into love.audio.newSource.
+---@return love.FileData data# The new FileData.
 ---@diagnostic disable-next-line: args-after-dots
 function love.filesystem.newFileData(contents, name) end
 
@@ -4157,6 +4345,7 @@ function love.filesystem.newFileData(contents, name) end
 ---
 ---@param originaldata love.Data# The Data object to copy into the new FileData object.
 ---@param name string# The name of the file. The extension may be parsed and used by LÖVE when passing the FileData object into love.audio.newSource.
+---@return love.FileData data# The new FileData.
 ---@diagnostic disable-next-line: args-after-dots
 function love.filesystem.newFileData(originaldata, name) end
 
@@ -4165,6 +4354,8 @@ function love.filesystem.newFileData(originaldata, name) end
 ---[Wiki](https://love2d.org/wiki/love.filesystem.newFileData)
 ---
 ---@param filepath string# Path to the file.
+---@return love.FileData data# The new FileData, or nil if an error occurred.
+---@return string err# The error string, if an error occurred.
 ---@diagnostic disable-next-line: args-after-dots
 function love.filesystem.newFileData(filepath) end
 
@@ -4174,6 +4365,10 @@ function love.filesystem.newFileData(filepath) end
 ---
 ---@param name string# The name (and path) of the file.
 ---@param size? number# (all) How many bytes to read.
+---@return string contents# The file contents.
+---@return number size# How many bytes have been read.
+---@return nil contents# returns nil as content.
+---@return string error# returns an error message.
 ---@diagnostic disable-next-line: args-after-dots
 function love.filesystem.read(name, size) end
 
@@ -4184,6 +4379,10 @@ function love.filesystem.read(name, size) end
 ---@param container love.ContainerType# What type to return the file's contents as.
 ---@param name string# The name (and path) of the file
 ---@param size? number# (all) How many bytes to read
+---@return love.FileData|string contents# FileData or string containing the file contents.
+---@return number size# How many bytes have been read.
+---@return nil contents# returns nil as content.
+---@return string error# returns an error message.
 ---@diagnostic disable-next-line: args-after-dots
 function love.filesystem.read(container, name, size) end
 
@@ -4192,6 +4391,7 @@ function love.filesystem.read(container, name, size) end
 ---[Wiki](https://love2d.org/wiki/love.filesystem.remove)
 ---
 ---@param name string# The file or directory to remove.
+---@return boolean success# True if the file/directory was removed, false otherwise.
 ---@diagnostic disable-next-line: args-after-dots
 function love.filesystem.remove(name) end
 
@@ -4260,6 +4460,7 @@ function love.filesystem.setSymlinksEnabled(enable) end
 ---[Wiki](https://love2d.org/wiki/love.filesystem.unmount)
 ---
 ---@param archive string# The folder or zip file in the game's save directory which is currently mounted.
+---@return boolean success# True if the archive was successfully unmounted, false otherwise.
 ---@diagnostic disable-next-line: args-after-dots
 function love.filesystem.unmount(archive) end
 
@@ -4270,6 +4471,8 @@ function love.filesystem.unmount(archive) end
 ---@param name string# The name (and path) of the file.
 ---@param data string# The string data to write to the file.
 ---@param size? number# (all) How many bytes to write.
+---@return boolean success# If the operation was successful.
+---@return string message# Error message if operation was unsuccessful.
 ---@diagnostic disable-next-line: args-after-dots
 function love.filesystem.write(name, data, size) end
 
@@ -4280,6 +4483,8 @@ function love.filesystem.write(name, data, size) end
 ---@param name string# The name (and path) of the file.
 ---@param data love.Data# The Data object to write to the file.
 ---@param size? number# (all) How many bytes to write.
+---@return boolean success# If the operation was successful.
+---@return string message# Error message if operation was unsuccessful.
 ---@diagnostic disable-next-line: args-after-dots
 function love.filesystem.write(name, data, size) end
 
@@ -4287,6 +4492,7 @@ function love.filesystem.write(name, data, size) end
 ---
 ---[Wiki](https://love2d.org/wiki/GlyphData:getAdvance)
 ---
+---@return number advance# Glyph advance.
 ---@diagnostic disable-next-line: args-after-dots
 function GlyphData:getAdvance() end
 
@@ -4294,6 +4500,8 @@ function GlyphData:getAdvance() end
 ---
 ---[Wiki](https://love2d.org/wiki/GlyphData:getBearing)
 ---
+---@return number bx# Glyph bearing X.
+---@return number by# Glyph bearing Y.
 ---@diagnostic disable-next-line: args-after-dots
 function GlyphData:getBearing() end
 
@@ -4301,6 +4509,10 @@ function GlyphData:getBearing() end
 ---
 ---[Wiki](https://love2d.org/wiki/GlyphData:getBoundingBox)
 ---
+---@return number x# Glyph position x.
+---@return number y# Glyph position y.
+---@return number width# Glyph width.
+---@return number height# Glyph height.
 ---@diagnostic disable-next-line: args-after-dots
 function GlyphData:getBoundingBox() end
 
@@ -4308,6 +4520,8 @@ function GlyphData:getBoundingBox() end
 ---
 ---[Wiki](https://love2d.org/wiki/GlyphData:getDimensions)
 ---
+---@return number width# Glyph width.
+---@return number height# Glyph height.
 ---@diagnostic disable-next-line: args-after-dots
 function GlyphData:getDimensions() end
 
@@ -4315,6 +4529,7 @@ function GlyphData:getDimensions() end
 ---
 ---[Wiki](https://love2d.org/wiki/GlyphData:getFormat)
 ---
+---@return love.PixelFormat format# Glyph pixel format.
 ---@diagnostic disable-next-line: args-after-dots
 function GlyphData:getFormat() end
 
@@ -4322,6 +4537,7 @@ function GlyphData:getFormat() end
 ---
 ---[Wiki](https://love2d.org/wiki/GlyphData:getGlyph)
 ---
+---@return number glyph# Glyph number.
 ---@diagnostic disable-next-line: args-after-dots
 function GlyphData:getGlyph() end
 
@@ -4329,6 +4545,7 @@ function GlyphData:getGlyph() end
 ---
 ---[Wiki](https://love2d.org/wiki/GlyphData:getGlyphString)
 ---
+---@return string glyph# Glyph string.
 ---@diagnostic disable-next-line: args-after-dots
 function GlyphData:getGlyphString() end
 
@@ -4336,6 +4553,7 @@ function GlyphData:getGlyphString() end
 ---
 ---[Wiki](https://love2d.org/wiki/GlyphData:getHeight)
 ---
+---@return number height# Glyph height.
 ---@diagnostic disable-next-line: args-after-dots
 function GlyphData:getHeight() end
 
@@ -4343,6 +4561,7 @@ function GlyphData:getHeight() end
 ---
 ---[Wiki](https://love2d.org/wiki/GlyphData:getWidth)
 ---
+---@return number width# Glyph width.
 ---@diagnostic disable-next-line: args-after-dots
 function GlyphData:getWidth() end
 
@@ -4350,6 +4569,7 @@ function GlyphData:getWidth() end
 ---
 ---[Wiki](https://love2d.org/wiki/Rasterizer:getAdvance)
 ---
+---@return number advance# Font advance.
 ---@diagnostic disable-next-line: args-after-dots
 function Rasterizer:getAdvance() end
 
@@ -4357,6 +4577,7 @@ function Rasterizer:getAdvance() end
 ---
 ---[Wiki](https://love2d.org/wiki/Rasterizer:getAscent)
 ---
+---@return number height# Ascent height.
 ---@diagnostic disable-next-line: args-after-dots
 function Rasterizer:getAscent() end
 
@@ -4364,6 +4585,7 @@ function Rasterizer:getAscent() end
 ---
 ---[Wiki](https://love2d.org/wiki/Rasterizer:getDescent)
 ---
+---@return number height# Descent height.
 ---@diagnostic disable-next-line: args-after-dots
 function Rasterizer:getDescent() end
 
@@ -4371,6 +4593,7 @@ function Rasterizer:getDescent() end
 ---
 ---[Wiki](https://love2d.org/wiki/Rasterizer:getGlyphCount)
 ---
+---@return number count# Glyphs count.
 ---@diagnostic disable-next-line: args-after-dots
 function Rasterizer:getGlyphCount() end
 
@@ -4379,6 +4602,7 @@ function Rasterizer:getGlyphCount() end
 ---[Wiki](https://love2d.org/wiki/Rasterizer:getGlyphData)
 ---
 ---@param glyph string# Glyph
+---@return love.GlyphData glyphData# Glyph data
 ---@diagnostic disable-next-line: args-after-dots
 function Rasterizer:getGlyphData(glyph) end
 
@@ -4387,6 +4611,7 @@ function Rasterizer:getGlyphData(glyph) end
 ---[Wiki](https://love2d.org/wiki/Rasterizer:getGlyphData)
 ---
 ---@param glyphNumber number# Glyph number
+---@return love.GlyphData glyphData# Glyph data
 ---@diagnostic disable-next-line: args-after-dots
 function Rasterizer:getGlyphData(glyphNumber) end
 
@@ -4394,6 +4619,7 @@ function Rasterizer:getGlyphData(glyphNumber) end
 ---
 ---[Wiki](https://love2d.org/wiki/Rasterizer:getHeight)
 ---
+---@return number height# Font height
 ---@diagnostic disable-next-line: args-after-dots
 function Rasterizer:getHeight() end
 
@@ -4401,6 +4627,7 @@ function Rasterizer:getHeight() end
 ---
 ---[Wiki](https://love2d.org/wiki/Rasterizer:getLineHeight)
 ---
+---@return number height# Line height of a font.
 ---@diagnostic disable-next-line: args-after-dots
 function Rasterizer:getLineHeight() end
 
@@ -4411,6 +4638,7 @@ function Rasterizer:getLineHeight() end
 ---@param glyph1 string|number# Glyph
 ---@param glyph2 string|number# Glyph
 ---@param ... string|number# Additional glyphs
+---@return boolean hasGlyphs# Whatever font contains specified glyphs.
 ---@diagnostic disable-next-line: args-after-dots
 function Rasterizer:hasGlyphs(glyph1, glyph2, ...) end
 
@@ -4421,6 +4649,7 @@ function Rasterizer:hasGlyphs(glyph1, glyph2, ...) end
 ---@param imageData love.ImageData# The image data containing the drawable pictures of font glyphs.
 ---@param glyphs string# The sequence of glyphs in the ImageData.
 ---@param dpiscale? number# (1) DPI scale.
+---@return love.Rasterizer rasterizer# The rasterizer.
 ---@diagnostic disable-next-line: args-after-dots
 function love.font.newBMFontRasterizer(imageData, glyphs, dpiscale) end
 
@@ -4431,6 +4660,7 @@ function love.font.newBMFontRasterizer(imageData, glyphs, dpiscale) end
 ---@param fileName string# The path to file containing the drawable pictures of font glyphs.
 ---@param glyphs string# The sequence of glyphs in the ImageData.
 ---@param dpiscale? number# (1) DPI scale.
+---@return love.Rasterizer rasterizer# The rasterizer.
 ---@diagnostic disable-next-line: args-after-dots
 function love.font.newBMFontRasterizer(fileName, glyphs, dpiscale) end
 
@@ -4451,6 +4681,7 @@ function love.font.newGlyphData(rasterizer, glyph) end
 ---@param glyphs string# String containing font glyphs.
 ---@param extraSpacing? number# (0) Font extra spacing.
 ---@param dpiscale? number# (1) Font DPI scale.
+---@return love.Rasterizer rasterizer# The rasterizer.
 ---@diagnostic disable-next-line: args-after-dots
 function love.font.newImageRasterizer(imageData, glyphs, extraSpacing, dpiscale) end
 
@@ -4459,6 +4690,7 @@ function love.font.newImageRasterizer(imageData, glyphs, extraSpacing, dpiscale)
 ---[Wiki](https://love2d.org/wiki/love.font.newRasterizer)
 ---
 ---@param filename string# The font file.
+---@return love.Rasterizer rasterizer# The rasterizer.
 ---@diagnostic disable-next-line: args-after-dots
 function love.font.newRasterizer(filename) end
 
@@ -4467,6 +4699,7 @@ function love.font.newRasterizer(filename) end
 ---[Wiki](https://love2d.org/wiki/love.font.newRasterizer)
 ---
 ---@param data love.FileData# The FileData of the font file.
+---@return love.Rasterizer rasterizer# The rasterizer.
 ---@diagnostic disable-next-line: args-after-dots
 function love.font.newRasterizer(data) end
 
@@ -4477,6 +4710,7 @@ function love.font.newRasterizer(data) end
 ---@param size? number# (12) The font size.
 ---@param hinting? love.HintingMode# ('normal') True Type hinting mode.
 ---@param dpiscale? number# (love.window.getDPIScale()) The font DPI scale.
+---@return love.Rasterizer rasterizer# The rasterizer.
 ---@diagnostic disable-next-line: args-after-dots
 function love.font.newRasterizer(size, hinting, dpiscale) end
 
@@ -4488,6 +4722,7 @@ function love.font.newRasterizer(size, hinting, dpiscale) end
 ---@param size? number# (12) The font size.
 ---@param hinting? love.HintingMode# ('normal') True Type hinting mode.
 ---@param dpiscale? number# (love.window.getDPIScale()) The font DPI scale.
+---@return love.Rasterizer rasterizer# The rasterizer.
 ---@diagnostic disable-next-line: args-after-dots
 function love.font.newRasterizer(fileName, size, hinting, dpiscale) end
 
@@ -4499,6 +4734,7 @@ function love.font.newRasterizer(fileName, size, hinting, dpiscale) end
 ---@param size? number# (12) The font size.
 ---@param hinting? love.HintingMode# ('normal') True Type hinting mode.
 ---@param dpiscale? number# (love.window.getDPIScale()) The font DPI scale.
+---@return love.Rasterizer rasterizer# The rasterizer.
 ---@diagnostic disable-next-line: args-after-dots
 function love.font.newRasterizer(fileData, size, hinting, dpiscale) end
 
@@ -4509,6 +4745,7 @@ function love.font.newRasterizer(fileData, size, hinting, dpiscale) end
 ---@param imageData love.ImageData# The image data containing the drawable pictures of font glyphs.
 ---@param glyphs string# The sequence of glyphs in the ImageData.
 ---@param dpiscale? number# (1) DPI scale.
+---@return love.Rasterizer rasterizer# The rasterizer.
 ---@diagnostic disable-next-line: args-after-dots
 function love.font.newRasterizer(imageData, glyphs, dpiscale) end
 
@@ -4519,6 +4756,7 @@ function love.font.newRasterizer(imageData, glyphs, dpiscale) end
 ---@param fileName string# The path to file containing the drawable pictures of font glyphs.
 ---@param glyphs string# The sequence of glyphs in the ImageData.
 ---@param dpiscale? number# (1) DPI scale.
+---@return love.Rasterizer rasterizer# The rasterizer.
 ---@diagnostic disable-next-line: args-after-dots
 function love.font.newRasterizer(fileName, glyphs, dpiscale) end
 
@@ -4529,6 +4767,7 @@ function love.font.newRasterizer(fileName, glyphs, dpiscale) end
 ---@param size? number# (12) The font size.
 ---@param hinting? love.HintingMode# ('normal') True Type hinting mode.
 ---@param dpiscale? number# (love.window.getDPIScale()) The font DPI scale.
+---@return love.Rasterizer rasterizer# The rasterizer.
 ---@diagnostic disable-next-line: args-after-dots
 function love.font.newTrueTypeRasterizer(size, hinting, dpiscale) end
 
@@ -4540,6 +4779,7 @@ function love.font.newTrueTypeRasterizer(size, hinting, dpiscale) end
 ---@param size? number# (12) The font size.
 ---@param hinting? love.HintingMode# ('normal') True Type hinting mode.
 ---@param dpiscale? number# (love.window.getDPIScale()) The font DPI scale.
+---@return love.Rasterizer rasterizer# The rasterizer.
 ---@diagnostic disable-next-line: args-after-dots
 function love.font.newTrueTypeRasterizer(fileName, size, hinting, dpiscale) end
 
@@ -4551,6 +4791,7 @@ function love.font.newTrueTypeRasterizer(fileName, size, hinting, dpiscale) end
 ---@param size? number# (12) The font size.
 ---@param hinting? love.HintingMode# ('normal') True Type hinting mode.
 ---@param dpiscale? number# (love.window.getDPIScale()) The font DPI scale.
+---@return love.Rasterizer rasterizer# The rasterizer.
 ---@diagnostic disable-next-line: args-after-dots
 function love.font.newTrueTypeRasterizer(fileData, size, hinting, dpiscale) end
 
@@ -4571,6 +4812,7 @@ function Canvas:generateMipmaps() end
 ---
 ---[Wiki](https://love2d.org/wiki/Canvas:getMSAA)
 ---
+---@return number samples# The number of multisample antialiasing samples used by the canvas when drawing to it.
 ---@diagnostic disable-next-line: args-after-dots
 function Canvas:getMSAA() end
 
@@ -4578,6 +4820,7 @@ function Canvas:getMSAA() end
 ---
 ---[Wiki](https://love2d.org/wiki/Canvas:getMipmapMode)
 ---
+---@return love.MipmapMode mode# The mipmap mode this Canvas was created with.
 ---@diagnostic disable-next-line: args-after-dots
 function Canvas:getMipmapMode() end
 
@@ -4585,6 +4828,7 @@ function Canvas:getMipmapMode() end
 ---
 ---[Wiki](https://love2d.org/wiki/Canvas:newImageData)
 ---
+---@return love.ImageData data# The new ImageData made from the Canvas' contents.
 ---@diagnostic disable-next-line: args-after-dots
 function Canvas:newImageData() end
 
@@ -4598,6 +4842,7 @@ function Canvas:newImageData() end
 ---@param y number# The y-axis of the top-left corner (in pixels) of the area within the Canvas to capture.
 ---@param width number# The width in pixels of the area within the Canvas to capture.
 ---@param height number# The height in pixels of the area within the Canvas to capture.
+---@return love.ImageData data# The new ImageData made from the Canvas' contents.
 ---@diagnostic disable-next-line: args-after-dots
 function Canvas:newImageData(slice, mipmap, x, y, width, height) end
 
@@ -4628,6 +4873,7 @@ function Canvas:renderTo(func, ...) end
 ---
 ---[Wiki](https://love2d.org/wiki/Font:getAscent)
 ---
+---@return number ascent# The ascent of the Font in pixels.
 ---@diagnostic disable-next-line: args-after-dots
 function Font:getAscent() end
 
@@ -4637,6 +4883,7 @@ function Font:getAscent() end
 ---
 ---[Wiki](https://love2d.org/wiki/Font:getBaseline)
 ---
+---@return number baseline# The baseline of the Font in pixels.
 ---@diagnostic disable-next-line: args-after-dots
 function Font:getBaseline() end
 
@@ -4648,6 +4895,7 @@ function Font:getBaseline() end
 ---
 ---[Wiki](https://love2d.org/wiki/Font:getDPIScale)
 ---
+---@return number dpiscale# The DPI scale factor of the Font.
 ---@diagnostic disable-next-line: args-after-dots
 function Font:getDPIScale() end
 
@@ -4657,6 +4905,7 @@ function Font:getDPIScale() end
 ---
 ---[Wiki](https://love2d.org/wiki/Font:getDescent)
 ---
+---@return number descent# The descent of the Font in pixels.
 ---@diagnostic disable-next-line: args-after-dots
 function Font:getDescent() end
 
@@ -4664,6 +4913,9 @@ function Font:getDescent() end
 ---
 ---[Wiki](https://love2d.org/wiki/Font:getFilter)
 ---
+---@return love.FilterMode min# Filter mode used when minifying the font.
+---@return love.FilterMode mag# Filter mode used when magnifying the font.
+---@return number anisotropy# Maximum amount of anisotropic filtering used.
 ---@diagnostic disable-next-line: args-after-dots
 function Font:getFilter() end
 
@@ -4673,6 +4925,7 @@ function Font:getFilter() end
 ---
 ---[Wiki](https://love2d.org/wiki/Font:getHeight)
 ---
+---@return number height# The height of the Font in pixels.
 ---@diagnostic disable-next-line: args-after-dots
 function Font:getHeight() end
 
@@ -4684,6 +4937,7 @@ function Font:getHeight() end
 ---
 ---@param leftchar string# The left character.
 ---@param rightchar string# The right character.
+---@return number kerning# The kerning amount to add to the spacing between the two characters. May be negative.
 ---@diagnostic disable-next-line: args-after-dots
 function Font:getKerning(leftchar, rightchar) end
 
@@ -4695,6 +4949,7 @@ function Font:getKerning(leftchar, rightchar) end
 ---
 ---@param leftglyph number# The unicode number for the left glyph.
 ---@param rightglyph number# The unicode number for the right glyph.
+---@return number kerning# The kerning amount to add to the spacing between the two characters. May be negative.
 ---@diagnostic disable-next-line: args-after-dots
 function Font:getKerning(leftglyph, rightglyph) end
 
@@ -4704,6 +4959,7 @@ function Font:getKerning(leftglyph, rightglyph) end
 ---
 ---[Wiki](https://love2d.org/wiki/Font:getLineHeight)
 ---
+---@return number height# The current line height.
 ---@diagnostic disable-next-line: args-after-dots
 function Font:getLineHeight() end
 
@@ -4712,6 +4968,7 @@ function Font:getLineHeight() end
 ---[Wiki](https://love2d.org/wiki/Font:getWidth)
 ---
 ---@param text string# A string.
+---@return number width# The width of the text.
 ---@diagnostic disable-next-line: args-after-dots
 function Font:getWidth(text) end
 
@@ -4723,6 +4980,8 @@ function Font:getWidth(text) end
 ---
 ---@param text string# The text that will be wrapped.
 ---@param wraplimit number# The maximum width in pixels of each line that ''text'' is allowed before wrapping.
+---@return number width# The maximum width of the wrapped text.
+---@return table[] wrappedtext# A sequence containing each line of text that was wrapped.
 ---@diagnostic disable-next-line: args-after-dots
 function Font:getWrap(text, wraplimit) end
 
@@ -4739,6 +4998,8 @@ function Font:getWrap(text, wraplimit) end
 ---string2 : string,
 ---[...] : table|string}# A table containing colors and strings to add to the object, in the form of {color1, string1, color2, string2, ...}.
 ---@param wraplimit number# The maximum width in pixels of each line that ''text'' is allowed before wrapping.
+---@return number width# The maximum width of the wrapped text.
+---@return table[] wrappedtext# A sequence containing each line of text that was wrapped.
 ---@diagnostic disable-next-line: args-after-dots
 function Font:getWrap(coloredtext, wraplimit) end
 
@@ -4747,6 +5008,7 @@ function Font:getWrap(coloredtext, wraplimit) end
 ---[Wiki](https://love2d.org/wiki/Font:hasGlyphs)
 ---
 ---@param text string# A UTF-8 encoded unicode string.
+---@return boolean hasglyph# Whether the font can render all the UTF-8 characters in the string.
 ---@diagnostic disable-next-line: args-after-dots
 function Font:hasGlyphs(text) end
 
@@ -4756,6 +5018,7 @@ function Font:hasGlyphs(text) end
 ---
 ---@param character1 string# A unicode character.
 ---@param character2 string# Another unicode character.
+---@return boolean hasglyph# Whether the font can render all the glyphs represented by the characters.
 ---@diagnostic disable-next-line: args-after-dots
 function Font:hasGlyphs(character1, character2) end
 
@@ -4765,6 +5028,7 @@ function Font:hasGlyphs(character1, character2) end
 ---
 ---@param codepoint1 number# A unicode codepoint number.
 ---@param codepoint2 number# Another unicode codepoint number.
+---@return boolean hasglyph# Whether the font can render all the glyphs represented by the codepoint numbers.
 ---@diagnostic disable-next-line: args-after-dots
 function Font:hasGlyphs(codepoint1, codepoint2) end
 
@@ -4803,6 +5067,7 @@ function Font:setLineHeight(height) end
 ---
 ---[Wiki](https://love2d.org/wiki/Image:isCompressed)
 ---
+---@return boolean compressed# Whether the Image is stored as a compressed texture on the GPU.
 ---@diagnostic disable-next-line: args-after-dots
 function Image:isCompressed() end
 
@@ -4812,6 +5077,7 @@ function Image:isCompressed() end
 ---
 ---[Wiki](https://love2d.org/wiki/Image:isFormatLinear)
 ---
+---@return boolean linear# Whether the Image's internal pixel format is linear (not gamma corrected), when gamma-correct rendering is enabled.
 ---@diagnostic disable-next-line: args-after-dots
 function Image:isFormatLinear() end
 
@@ -4853,6 +5119,7 @@ function Mesh:attachAttribute(name, mesh, step, attachname) end
 ---[Wiki](https://love2d.org/wiki/Mesh:detachAttribute)
 ---
 ---@param name string# The name of the attached vertex attribute to detach.
+---@return boolean success# Whether the attribute was successfully detached.
 ---@diagnostic disable-next-line: args-after-dots
 function Mesh:detachAttribute(name) end
 
@@ -4871,6 +5138,7 @@ function Mesh:flush() end
 ---
 ---[Wiki](https://love2d.org/wiki/Mesh:getDrawMode)
 ---
+---@return love.MeshDrawMode mode# The mode used when drawing the Mesh.
 ---@diagnostic disable-next-line: args-after-dots
 function Mesh:getDrawMode() end
 
@@ -4878,6 +5146,8 @@ function Mesh:getDrawMode() end
 ---
 ---[Wiki](https://love2d.org/wiki/Mesh:getDrawRange)
 ---
+---@return number min# The index of the first vertex used when drawing, or the index of the first value in the vertex map used if one is set for this Mesh.
+---@return number max# The index of the last vertex used when drawing, or the index of the last value in the vertex map used if one is set for this Mesh.
 ---@diagnostic disable-next-line: args-after-dots
 function Mesh:getDrawRange() end
 
@@ -4885,6 +5155,7 @@ function Mesh:getDrawRange() end
 ---
 ---[Wiki](https://love2d.org/wiki/Mesh:getTexture)
 ---
+---@return love.Texture texture# The Image or Canvas to texture the Mesh with when drawing, or nil if none is set.
 ---@diagnostic disable-next-line: args-after-dots
 function Mesh:getTexture() end
 
@@ -4895,6 +5166,8 @@ function Mesh:getTexture() end
 ---[Wiki](https://love2d.org/wiki/Mesh:getVertex)
 ---
 ---@param index number# The one-based index of the vertex you want to retrieve the information for.
+---@return number attributecomponent# The first component of the first vertex attribute in the specified vertex.
+---@return number ...# Additional components of all vertex attributes in the specified vertex.
 ---@diagnostic disable-next-line: args-after-dots
 function Mesh:getVertex(index) end
 
@@ -4905,6 +5178,14 @@ function Mesh:getVertex(index) end
 ---[Wiki](https://love2d.org/wiki/Mesh:getVertex)
 ---
 ---@param index number# The index of the vertex you want to retrieve the information for.
+---@return number x# The position of the vertex on the x-axis.
+---@return number y# The position of the vertex on the y-axis.
+---@return number u# The horizontal component of the texture coordinate.
+---@return number v# The vertical component of the texture coordinate.
+---@return number r# The red component of the vertex's color.
+---@return number g# The green component of the vertex's color.
+---@return number b# The blue component of the vertex's color.
+---@return number a# The alpha component of the vertex's color.
 ---@diagnostic disable-next-line: args-after-dots
 function Mesh:getVertex(index) end
 
@@ -4916,6 +5197,9 @@ function Mesh:getVertex(index) end
 ---
 ---@param vertexindex number# The index of the the vertex you want to retrieve the attribute for (one-based).
 ---@param attributeindex number# The index of the attribute within the vertex to be retrieved (one-based).
+---@return number value1# The value of the first component of the attribute.
+---@return number value2# The value of the second component of the attribute.
+---@return number ...# Any additional vertex attribute components.
 ---@diagnostic disable-next-line: args-after-dots
 function Mesh:getVertexAttribute(vertexindex, attributeindex) end
 
@@ -4923,6 +5207,7 @@ function Mesh:getVertexAttribute(vertexindex, attributeindex) end
 ---
 ---[Wiki](https://love2d.org/wiki/Mesh:getVertexCount)
 ---
+---@return number count# The total number of vertices in the mesh.
 ---@diagnostic disable-next-line: args-after-dots
 function Mesh:getVertexCount() end
 
@@ -4930,6 +5215,9 @@ function Mesh:getVertexCount() end
 ---
 ---[Wiki](https://love2d.org/wiki/Mesh:getVertexFormat)
 ---
+---@return {
+---attribute : table,
+---[...] : table} format# The vertex format of the Mesh, which is a table containing tables for each vertex attribute the Mesh was created with, in the form of {attribute, ...}.
 ---@diagnostic disable-next-line: args-after-dots
 function Mesh:getVertexFormat() end
 
@@ -4939,6 +5227,7 @@ function Mesh:getVertexFormat() end
 ---
 ---[Wiki](https://love2d.org/wiki/Mesh:getVertexMap)
 ---
+---@return table[] map# A table containing the list of vertex indices used when drawing.
 ---@diagnostic disable-next-line: args-after-dots
 function Mesh:getVertexMap() end
 
@@ -4947,6 +5236,7 @@ function Mesh:getVertexMap() end
 ---[Wiki](https://love2d.org/wiki/Mesh:isAttributeEnabled)
 ---
 ---@param name string# The name of the vertex attribute to be checked.
+---@return boolean enabled# Whether the vertex attribute is used when drawing this Mesh.
 ---@diagnostic disable-next-line: args-after-dots
 function Mesh:isAttributeEnabled(name) end
 
@@ -5148,6 +5438,7 @@ function Mesh:setVertices(vertices) end
 ---
 ---[Wiki](https://love2d.org/wiki/ParticleSystem:clone)
 ---
+---@return love.ParticleSystem particlesystem# The new identical copy of this ParticleSystem.
 ---@diagnostic disable-next-line: args-after-dots
 function ParticleSystem:clone() end
 
@@ -5163,6 +5454,7 @@ function ParticleSystem:emit(numparticles) end
 ---
 ---[Wiki](https://love2d.org/wiki/ParticleSystem:getBufferSize)
 ---
+---@return number size# The maximum number of particles.
 ---@diagnostic disable-next-line: args-after-dots
 function ParticleSystem:getBufferSize() end
 
@@ -5172,6 +5464,18 @@ function ParticleSystem:getBufferSize() end
 ---
 ---[Wiki](https://love2d.org/wiki/ParticleSystem:getColors)
 ---
+---@return number r1# First color, red component (0-1).
+---@return number g1# First color, green component (0-1).
+---@return number b1# First color, blue component (0-1).
+---@return number a1# First color, alpha component (0-1).
+---@return number r2# Second color, red component (0-1).
+---@return number g2# Second color, green component (0-1).
+---@return number b2# Second color, blue component (0-1).
+---@return number a2# Second color, alpha component (0-1).
+---@return number r8# Eighth color, red component (0-1).
+---@return number g8# Eighth color, green component (0-1).
+---@return number b8# Eighth color, blue component (0-1).
+---@return number a8# Eighth color, alpha component (0-1).
 ---@diagnostic disable-next-line: args-after-dots
 function ParticleSystem:getColors() end
 
@@ -5179,6 +5483,7 @@ function ParticleSystem:getColors() end
 ---
 ---[Wiki](https://love2d.org/wiki/ParticleSystem:getCount)
 ---
+---@return number count# The current number of live particles.
 ---@diagnostic disable-next-line: args-after-dots
 function ParticleSystem:getCount() end
 
@@ -5186,6 +5491,7 @@ function ParticleSystem:getCount() end
 ---
 ---[Wiki](https://love2d.org/wiki/ParticleSystem:getDirection)
 ---
+---@return number direction# The direction of the emitter (radians).
 ---@diagnostic disable-next-line: args-after-dots
 function ParticleSystem:getDirection() end
 
@@ -5193,6 +5499,11 @@ function ParticleSystem:getDirection() end
 ---
 ---[Wiki](https://love2d.org/wiki/ParticleSystem:getEmissionArea)
 ---
+---@return love.AreaSpreadDistribution distribution# The type of distribution for new particles.
+---@return number dx# The maximum spawn distance from the emitter along the x-axis for uniform distribution, or the standard deviation along the x-axis for normal distribution.
+---@return number dy# The maximum spawn distance from the emitter along the y-axis for uniform distribution, or the standard deviation along the y-axis for normal distribution.
+---@return number angle# The angle in radians of the emission area.
+---@return boolean directionRelativeToCenter# True if newly spawned particles will be oriented relative to the center of the emission area, false otherwise.
 ---@diagnostic disable-next-line: args-after-dots
 function ParticleSystem:getEmissionArea() end
 
@@ -5200,6 +5511,7 @@ function ParticleSystem:getEmissionArea() end
 ---
 ---[Wiki](https://love2d.org/wiki/ParticleSystem:getEmissionRate)
 ---
+---@return number rate# The amount of particles per second.
 ---@diagnostic disable-next-line: args-after-dots
 function ParticleSystem:getEmissionRate() end
 
@@ -5207,6 +5519,7 @@ function ParticleSystem:getEmissionRate() end
 ---
 ---[Wiki](https://love2d.org/wiki/ParticleSystem:getEmitterLifetime)
 ---
+---@return number life# The lifetime of the emitter (in seconds).
 ---@diagnostic disable-next-line: args-after-dots
 function ParticleSystem:getEmitterLifetime() end
 
@@ -5214,6 +5527,7 @@ function ParticleSystem:getEmitterLifetime() end
 ---
 ---[Wiki](https://love2d.org/wiki/ParticleSystem:getInsertMode)
 ---
+---@return love.ParticleInsertMode mode# The mode used when the ParticleSystem adds new particles.
 ---@diagnostic disable-next-line: args-after-dots
 function ParticleSystem:getInsertMode() end
 
@@ -5223,6 +5537,10 @@ function ParticleSystem:getInsertMode() end
 ---
 ---[Wiki](https://love2d.org/wiki/ParticleSystem:getLinearAcceleration)
 ---
+---@return number xmin# The minimum acceleration along the x axis.
+---@return number ymin# The minimum acceleration along the y axis.
+---@return number xmax# The maximum acceleration along the x axis.
+---@return number ymax# The maximum acceleration along the y axis.
 ---@diagnostic disable-next-line: args-after-dots
 function ParticleSystem:getLinearAcceleration() end
 
@@ -5230,6 +5548,8 @@ function ParticleSystem:getLinearAcceleration() end
 ---
 ---[Wiki](https://love2d.org/wiki/ParticleSystem:getLinearDamping)
 ---
+---@return number min# The minimum amount of linear damping applied to particles.
+---@return number max# The maximum amount of linear damping applied to particles.
 ---@diagnostic disable-next-line: args-after-dots
 function ParticleSystem:getLinearDamping() end
 
@@ -5237,6 +5557,8 @@ function ParticleSystem:getLinearDamping() end
 ---
 ---[Wiki](https://love2d.org/wiki/ParticleSystem:getOffset)
 ---
+---@return number ox# The x coordinate of the particle image's draw offset.
+---@return number oy# The y coordinate of the particle image's draw offset.
 ---@diagnostic disable-next-line: args-after-dots
 function ParticleSystem:getOffset() end
 
@@ -5244,6 +5566,8 @@ function ParticleSystem:getOffset() end
 ---
 ---[Wiki](https://love2d.org/wiki/ParticleSystem:getParticleLifetime)
 ---
+---@return number min# The minimum life of the particles (in seconds).
+---@return number max# The maximum life of the particles (in seconds).
 ---@diagnostic disable-next-line: args-after-dots
 function ParticleSystem:getParticleLifetime() end
 
@@ -5251,6 +5575,8 @@ function ParticleSystem:getParticleLifetime() end
 ---
 ---[Wiki](https://love2d.org/wiki/ParticleSystem:getPosition)
 ---
+---@return number x# Position along x-axis.
+---@return number y# Position along y-axis.
 ---@diagnostic disable-next-line: args-after-dots
 function ParticleSystem:getPosition() end
 
@@ -5258,6 +5584,7 @@ function ParticleSystem:getPosition() end
 ---
 ---[Wiki](https://love2d.org/wiki/ParticleSystem:getQuads)
 ---
+---@return table[] quads# A table containing the Quads used.
 ---@diagnostic disable-next-line: args-after-dots
 function ParticleSystem:getQuads() end
 
@@ -5265,6 +5592,8 @@ function ParticleSystem:getQuads() end
 ---
 ---[Wiki](https://love2d.org/wiki/ParticleSystem:getRadialAcceleration)
 ---
+---@return number min# The minimum acceleration.
+---@return number max# The maximum acceleration.
 ---@diagnostic disable-next-line: args-after-dots
 function ParticleSystem:getRadialAcceleration() end
 
@@ -5272,6 +5601,8 @@ function ParticleSystem:getRadialAcceleration() end
 ---
 ---[Wiki](https://love2d.org/wiki/ParticleSystem:getRotation)
 ---
+---@return number min# The minimum initial angle (radians).
+---@return number max# The maximum initial angle (radians).
 ---@diagnostic disable-next-line: args-after-dots
 function ParticleSystem:getRotation() end
 
@@ -5279,6 +5610,7 @@ function ParticleSystem:getRotation() end
 ---
 ---[Wiki](https://love2d.org/wiki/ParticleSystem:getSizeVariation)
 ---
+---@return number variation# The amount of variation (0 meaning no variation and 1 meaning full variation between start and end).
 ---@diagnostic disable-next-line: args-after-dots
 function ParticleSystem:getSizeVariation() end
 
@@ -5286,6 +5618,9 @@ function ParticleSystem:getSizeVariation() end
 ---
 ---[Wiki](https://love2d.org/wiki/ParticleSystem:getSizes)
 ---
+---@return number size1# The first size.
+---@return number size2# The second size.
+---@return number size8# The eighth size.
 ---@diagnostic disable-next-line: args-after-dots
 function ParticleSystem:getSizes() end
 
@@ -5293,6 +5628,8 @@ function ParticleSystem:getSizes() end
 ---
 ---[Wiki](https://love2d.org/wiki/ParticleSystem:getSpeed)
 ---
+---@return number min# The minimum linear speed of the particles.
+---@return number max# The maximum linear speed of the particles.
 ---@diagnostic disable-next-line: args-after-dots
 function ParticleSystem:getSpeed() end
 
@@ -5300,6 +5637,9 @@ function ParticleSystem:getSpeed() end
 ---
 ---[Wiki](https://love2d.org/wiki/ParticleSystem:getSpin)
 ---
+---@return number min# The minimum spin (radians per second).
+---@return number max# The maximum spin (radians per second).
+---@return number variation# The degree of variation (0 meaning no variation and 1 meaning full variation between start and end).
 ---@diagnostic disable-next-line: args-after-dots
 function ParticleSystem:getSpin() end
 
@@ -5307,6 +5647,7 @@ function ParticleSystem:getSpin() end
 ---
 ---[Wiki](https://love2d.org/wiki/ParticleSystem:getSpinVariation)
 ---
+---@return number variation# The amount of variation (0 meaning no variation and 1 meaning full variation between start and end).
 ---@diagnostic disable-next-line: args-after-dots
 function ParticleSystem:getSpinVariation() end
 
@@ -5314,6 +5655,7 @@ function ParticleSystem:getSpinVariation() end
 ---
 ---[Wiki](https://love2d.org/wiki/ParticleSystem:getSpread)
 ---
+---@return number spread# The spread of the emitter (radians).
 ---@diagnostic disable-next-line: args-after-dots
 function ParticleSystem:getSpread() end
 
@@ -5321,6 +5663,8 @@ function ParticleSystem:getSpread() end
 ---
 ---[Wiki](https://love2d.org/wiki/ParticleSystem:getTangentialAcceleration)
 ---
+---@return number min# The minimum acceleration.
+---@return number max# The maximum acceleration.
 ---@diagnostic disable-next-line: args-after-dots
 function ParticleSystem:getTangentialAcceleration() end
 
@@ -5328,6 +5672,7 @@ function ParticleSystem:getTangentialAcceleration() end
 ---
 ---[Wiki](https://love2d.org/wiki/ParticleSystem:getTexture)
 ---
+---@return love.Texture texture# The Image or Canvas used for the particles.
 ---@diagnostic disable-next-line: args-after-dots
 function ParticleSystem:getTexture() end
 
@@ -5335,6 +5680,7 @@ function ParticleSystem:getTexture() end
 ---
 ---[Wiki](https://love2d.org/wiki/ParticleSystem:hasRelativeRotation)
 ---
+---@return boolean enable# True if relative particle rotation is enabled, false if it's disabled.
 ---@diagnostic disable-next-line: args-after-dots
 function ParticleSystem:hasRelativeRotation() end
 
@@ -5342,6 +5688,7 @@ function ParticleSystem:hasRelativeRotation() end
 ---
 ---[Wiki](https://love2d.org/wiki/ParticleSystem:isActive)
 ---
+---@return boolean active# True if system is active, false otherwise.
 ---@diagnostic disable-next-line: args-after-dots
 function ParticleSystem:isActive() end
 
@@ -5349,6 +5696,7 @@ function ParticleSystem:isActive() end
 ---
 ---[Wiki](https://love2d.org/wiki/ParticleSystem:isPaused)
 ---
+---@return boolean paused# True if system is paused, false otherwise.
 ---@diagnostic disable-next-line: args-after-dots
 function ParticleSystem:isPaused() end
 
@@ -5356,6 +5704,7 @@ function ParticleSystem:isPaused() end
 ---
 ---[Wiki](https://love2d.org/wiki/ParticleSystem:isStopped)
 ---
+---@return boolean stopped# True if system is stopped, false otherwise.
 ---@diagnostic disable-next-line: args-after-dots
 function ParticleSystem:isStopped() end
 
@@ -5654,6 +6003,8 @@ function ParticleSystem:update(dt) end
 ---
 ---[Wiki](https://love2d.org/wiki/Quad:getTextureDimensions)
 ---
+---@return number sw# The Texture width used by the Quad.
+---@return number sh# The Texture height used by the Quad.
 ---@diagnostic disable-next-line: args-after-dots
 function Quad:getTextureDimensions() end
 
@@ -5661,6 +6012,10 @@ function Quad:getTextureDimensions() end
 ---
 ---[Wiki](https://love2d.org/wiki/Quad:getViewport)
 ---
+---@return number x# The top-left corner along the x-axis.
+---@return number y# The top-left corner along the y-axis.
+---@return number w# The width of the viewport.
+---@return number h# The height of the viewport.
 ---@diagnostic disable-next-line: args-after-dots
 function Quad:getViewport() end
 
@@ -5681,6 +6036,7 @@ function Quad:setViewport(x, y, w, h, sw, sh) end
 ---
 ---[Wiki](https://love2d.org/wiki/Shader:getWarnings)
 ---
+---@return string warnings# Warning and error messages (if any).
 ---@diagnostic disable-next-line: args-after-dots
 function Shader:getWarnings() end
 
@@ -5691,6 +6047,7 @@ function Shader:getWarnings() end
 ---[Wiki](https://love2d.org/wiki/Shader:hasUniform)
 ---
 ---@param name string# The name of the uniform variable.
+---@return boolean hasuniform# Whether the uniform exists in the shader and affects its final output.
 ---@diagnostic disable-next-line: args-after-dots
 function Shader:hasUniform(name) end
 
@@ -5986,6 +6343,7 @@ function Shader:sendColor(name, color, ...) end
 ---@param oy? number# (0) Origin offset (y-axis).
 ---@param kx? number# (0) Shear factor (x-axis).
 ---@param ky? number# (0) Shear factor (y-axis).
+---@return number id# An identifier for the added sprite.
 ---@diagnostic disable-next-line: args-after-dots
 function SpriteBatch:add(x, y, r, sx, sy, ox, oy, kx, ky) end
 
@@ -6003,6 +6361,7 @@ function SpriteBatch:add(x, y, r, sx, sy, ox, oy, kx, ky) end
 ---@param oy? number# (0) Origin offset (y-axis).
 ---@param kx? number# (0) Shear factor (x-axis).
 ---@param ky? number# (0) Shear factor (y-axis).
+---@return number id# An identifier for the added sprite.
 ---@diagnostic disable-next-line: args-after-dots
 function SpriteBatch:add(quad, x, y, r, sx, sy, ox, oy, kx, ky) end
 
@@ -6020,6 +6379,7 @@ function SpriteBatch:add(quad, x, y, r, sx, sy, ox, oy, kx, ky) end
 ---@param oy? number# (0) Origin offset (y-axis).
 ---@param kx? number# (0) Shearing factor (x-axis).
 ---@param ky? number# (0) Shearing factor (y-axis).
+---@return number spriteindex# The index of the added sprite, for use with SpriteBatch:set or SpriteBatch:setLayer.
 ---@diagnostic disable-next-line: args-after-dots
 function SpriteBatch:addLayer(layerindex, x, y, r, sx, sy, ox, oy, kx, ky) end
 
@@ -6038,6 +6398,7 @@ function SpriteBatch:addLayer(layerindex, x, y, r, sx, sy, ox, oy, kx, ky) end
 ---@param oy? number# (0) Origin offset (y-axis).
 ---@param kx? number# (0) Shearing factor (x-axis).
 ---@param ky? number# (0) Shearing factor (y-axis).
+---@return number spriteindex# The index of the added sprite, for use with SpriteBatch:set or SpriteBatch:setLayer.
 ---@diagnostic disable-next-line: args-after-dots
 function SpriteBatch:addLayer(layerindex, quad, x, y, r, sx, sy, ox, oy, kx, ky) end
 
@@ -6047,6 +6408,7 @@ function SpriteBatch:addLayer(layerindex, quad, x, y, r, sx, sy, ox, oy, kx, ky)
 ---
 ---@param layerindex number# The index of the layer to use for this sprite.
 ---@param transform love.Transform# A transform object.
+---@return number spriteindex# The index of the added sprite, for use with SpriteBatch:set or SpriteBatch:setLayer.
 ---@diagnostic disable-next-line: args-after-dots
 function SpriteBatch:addLayer(layerindex, transform) end
 
@@ -6057,6 +6419,7 @@ function SpriteBatch:addLayer(layerindex, transform) end
 ---@param layerindex number# The index of the layer to use for this sprite.
 ---@param quad love.Quad# The subsection of the texture's layer to use when drawing the sprite.
 ---@param transform love.Transform# A transform object.
+---@return number spriteindex# The index of the added sprite, for use with SpriteBatch:set or SpriteBatch:setLayer.
 ---@diagnostic disable-next-line: args-after-dots
 function SpriteBatch:addLayer(layerindex, quad, transform) end
 
@@ -6093,6 +6456,7 @@ function SpriteBatch:flush() end
 ---
 ---[Wiki](https://love2d.org/wiki/SpriteBatch:getBufferSize)
 ---
+---@return number size# The maximum number of sprites the batch can hold.
 ---@diagnostic disable-next-line: args-after-dots
 function SpriteBatch:getBufferSize() end
 
@@ -6104,6 +6468,10 @@ function SpriteBatch:getBufferSize() end
 ---
 ---[Wiki](https://love2d.org/wiki/SpriteBatch:getColor)
 ---
+---@return number r# The red component (0-1).
+---@return number g# The green component (0-1).
+---@return number b# The blue component (0-1).
+---@return number a# The alpha component (0-1).
 ---@diagnostic disable-next-line: args-after-dots
 function SpriteBatch:getColor() end
 
@@ -6111,6 +6479,7 @@ function SpriteBatch:getColor() end
 ---
 ---[Wiki](https://love2d.org/wiki/SpriteBatch:getCount)
 ---
+---@return number count# The number of sprites currently in the batch.
 ---@diagnostic disable-next-line: args-after-dots
 function SpriteBatch:getCount() end
 
@@ -6118,6 +6487,7 @@ function SpriteBatch:getCount() end
 ---
 ---[Wiki](https://love2d.org/wiki/SpriteBatch:getTexture)
 ---
+---@return love.Texture texture# The Image or Canvas used by the SpriteBatch.
 ---@diagnostic disable-next-line: args-after-dots
 function SpriteBatch:getTexture() end
 
@@ -6278,6 +6648,7 @@ function SpriteBatch:setTexture(texture) end
 ---@param oy? number# (0) Origin offset on the y-axis.
 ---@param kx? number# (0) Shearing / skew factor on the x-axis.
 ---@param ky? number# (0) Shearing / skew factor on the y-axis.
+---@return number index# An index number that can be used with Text:getWidth or Text:getHeight.
 ---@diagnostic disable-next-line: args-after-dots
 function Text:add(textstring, x, y, angle, sx, sy, ox, oy, kx, ky) end
 
@@ -6300,6 +6671,7 @@ function Text:add(textstring, x, y, angle, sx, sy, ox, oy, kx, ky) end
 ---@param oy? number# (0) Origin offset on the y-axis.
 ---@param kx? number# (0) Shearing / skew factor on the x-axis.
 ---@param ky? number# (0) Shearing / skew factor on the y-axis.
+---@return number index# An index number that can be used with Text:getWidth or Text:getHeight.
 ---@diagnostic disable-next-line: args-after-dots
 function Text:add(coloredtext, x, y, angle, sx, sy, ox, oy, kx, ky) end
 
@@ -6321,6 +6693,7 @@ function Text:add(coloredtext, x, y, angle, sx, sy, ox, oy, kx, ky) end
 ---@param oy? number# (0) Origin offset (y-axis).
 ---@param kx? number# (0) Shearing / skew factor (x-axis).
 ---@param ky? number# (0) Shearing / skew factor (y-axis).
+---@return number index# An index number that can be used with Text:getWidth or Text:getHeight.
 ---@diagnostic disable-next-line: args-after-dots
 function Text:addf(textstring, wraplimit, align, x, y, angle, sx, sy, ox, oy, kx, ky) end
 
@@ -6347,6 +6720,7 @@ function Text:addf(textstring, wraplimit, align, x, y, angle, sx, sy, ox, oy, kx
 ---@param oy? number# (0) Origin offset (y-axis).
 ---@param kx? number# (0) Shearing / skew factor (x-axis).
 ---@param ky? number# (0) Shearing / skew factor (y-axis).
+---@return number index# An index number that can be used with Text:getWidth or Text:getHeight.
 ---@diagnostic disable-next-line: args-after-dots
 function Text:addf(coloredtext, wraplimit, align, x, y, angle, sx, sy, ox, oy, kx, ky) end
 
@@ -6361,6 +6735,8 @@ function Text:clear() end
 ---
 ---[Wiki](https://love2d.org/wiki/Text:getDimensions)
 ---
+---@return number width# The width of the text. If multiple sub-strings have been added with Text:add, the width of the last sub-string is returned.
+---@return number height# The height of the text. If multiple sub-strings have been added with Text:add, the height of the last sub-string is returned.
 ---@diagnostic disable-next-line: args-after-dots
 function Text:getDimensions() end
 
@@ -6369,6 +6745,8 @@ function Text:getDimensions() end
 ---[Wiki](https://love2d.org/wiki/Text:getDimensions)
 ---
 ---@param index number# An index number returned by Text:add or Text:addf.
+---@return number width# The width of the sub-string (before scaling and other transformations).
+---@return number height# The height of the sub-string (before scaling and other transformations).
 ---@diagnostic disable-next-line: args-after-dots
 function Text:getDimensions(index) end
 
@@ -6376,6 +6754,7 @@ function Text:getDimensions(index) end
 ---
 ---[Wiki](https://love2d.org/wiki/Text:getFont)
 ---
+---@return love.Font font# The font used with this Text object.
 ---@diagnostic disable-next-line: args-after-dots
 function Text:getFont() end
 
@@ -6383,6 +6762,7 @@ function Text:getFont() end
 ---
 ---[Wiki](https://love2d.org/wiki/Text:getHeight)
 ---
+---@return number  height # The height of the text. If multiple sub-strings have been added with Text:add, the height of the last sub-string is returned.
 ---@diagnostic disable-next-line: args-after-dots
 function Text:getHeight() end
 
@@ -6391,6 +6771,7 @@ function Text:getHeight() end
 ---[Wiki](https://love2d.org/wiki/Text:getHeight)
 ---
 ---@param index number# An index number returned by Text:add or Text:addf.
+---@return number height# The height of the sub-string (before scaling and other transformations).
 ---@diagnostic disable-next-line: args-after-dots
 function Text:getHeight(index) end
 
@@ -6398,6 +6779,7 @@ function Text:getHeight(index) end
 ---
 ---[Wiki](https://love2d.org/wiki/Text:getWidth)
 ---
+---@return number width# The width of the text. If multiple sub-strings have been added with Text:add, the width of the last sub-string is returned.
 ---@diagnostic disable-next-line: args-after-dots
 function Text:getWidth() end
 
@@ -6406,6 +6788,7 @@ function Text:getWidth() end
 ---[Wiki](https://love2d.org/wiki/Text:getWidth)
 ---
 ---@param index number# An index number returned by Text:add or Text:addf.
+---@return number width# The width of the sub-string (before scaling and other transformations).
 ---@diagnostic disable-next-line: args-after-dots
 function Text:getWidth(index) end
 
@@ -6471,6 +6854,7 @@ function Text:setf(coloredtext, wraplimit, align) end
 ---
 ---[Wiki](https://love2d.org/wiki/Texture:getDPIScale)
 ---
+---@return number dpiscale# The DPI scale factor of the Texture.
 ---@diagnostic disable-next-line: args-after-dots
 function Texture:getDPIScale() end
 
@@ -6478,6 +6862,7 @@ function Texture:getDPIScale() end
 ---
 ---[Wiki](https://love2d.org/wiki/Texture:getDepth)
 ---
+---@return number depth# The depth of the volume Texture.
 ---@diagnostic disable-next-line: args-after-dots
 function Texture:getDepth() end
 
@@ -6487,6 +6872,7 @@ function Texture:getDepth() end
 ---
 ---[Wiki](https://love2d.org/wiki/Texture:getDepthSampleMode)
 ---
+---@return love.CompareMode compare# The comparison mode used when sampling from this texture in a shader, or nil if setDepthSampleMode has not been called on this Texture.
 ---@diagnostic disable-next-line: args-after-dots
 function Texture:getDepthSampleMode() end
 
@@ -6494,6 +6880,8 @@ function Texture:getDepthSampleMode() end
 ---
 ---[Wiki](https://love2d.org/wiki/Texture:getDimensions)
 ---
+---@return number width# The width of the Texture.
+---@return number height# The height of the Texture.
 ---@diagnostic disable-next-line: args-after-dots
 function Texture:getDimensions() end
 
@@ -6501,6 +6889,9 @@ function Texture:getDimensions() end
 ---
 ---[Wiki](https://love2d.org/wiki/Texture:getFilter)
 ---
+---@return love.FilterMode min# Filter mode to use when minifying the texture (rendering it at a smaller size on-screen than its size in pixels).
+---@return love.FilterMode mag# Filter mode to use when magnifying the texture (rendering it at a smaller size on-screen than its size in pixels).
+---@return number anisotropy# Maximum amount of anisotropic filtering used.
 ---@diagnostic disable-next-line: args-after-dots
 function Texture:getFilter() end
 
@@ -6508,6 +6899,7 @@ function Texture:getFilter() end
 ---
 ---[Wiki](https://love2d.org/wiki/Texture:getFormat)
 ---
+---@return love.PixelFormat format# The pixel format the Texture was created with.
 ---@diagnostic disable-next-line: args-after-dots
 function Texture:getFormat() end
 
@@ -6515,6 +6907,7 @@ function Texture:getFormat() end
 ---
 ---[Wiki](https://love2d.org/wiki/Texture:getHeight)
 ---
+---@return number height# The height of the Texture.
 ---@diagnostic disable-next-line: args-after-dots
 function Texture:getHeight() end
 
@@ -6522,6 +6915,7 @@ function Texture:getHeight() end
 ---
 ---[Wiki](https://love2d.org/wiki/Texture:getLayerCount)
 ---
+---@return number layers# The number of layers in the Array Texture.
 ---@diagnostic disable-next-line: args-after-dots
 function Texture:getLayerCount() end
 
@@ -6529,6 +6923,7 @@ function Texture:getLayerCount() end
 ---
 ---[Wiki](https://love2d.org/wiki/Texture:getMipmapCount)
 ---
+---@return number mipmaps# The number of mipmaps in the Texture.
 ---@diagnostic disable-next-line: args-after-dots
 function Texture:getMipmapCount() end
 
@@ -6536,6 +6931,8 @@ function Texture:getMipmapCount() end
 ---
 ---[Wiki](https://love2d.org/wiki/Texture:getMipmapFilter)
 ---
+---@return love.FilterMode mode# The filter mode used in between mipmap levels. nil if mipmap filtering is not enabled.
+---@return number sharpness# Value used to determine whether the image should use more or less detailed mipmap levels than normal when drawing.
 ---@diagnostic disable-next-line: args-after-dots
 function Texture:getMipmapFilter() end
 
@@ -6545,6 +6942,8 @@ function Texture:getMipmapFilter() end
 ---
 ---[Wiki](https://love2d.org/wiki/Texture:getPixelDimensions)
 ---
+---@return number pixelwidth# The width of the Texture, in pixels.
+---@return number pixelheight# The height of the Texture, in pixels.
 ---@diagnostic disable-next-line: args-after-dots
 function Texture:getPixelDimensions() end
 
@@ -6554,6 +6953,7 @@ function Texture:getPixelDimensions() end
 ---
 ---[Wiki](https://love2d.org/wiki/Texture:getPixelHeight)
 ---
+---@return number pixelheight# The height of the Texture, in pixels.
 ---@diagnostic disable-next-line: args-after-dots
 function Texture:getPixelHeight() end
 
@@ -6563,6 +6963,7 @@ function Texture:getPixelHeight() end
 ---
 ---[Wiki](https://love2d.org/wiki/Texture:getPixelWidth)
 ---
+---@return number pixelwidth# The width of the Texture, in pixels.
 ---@diagnostic disable-next-line: args-after-dots
 function Texture:getPixelWidth() end
 
@@ -6570,6 +6971,7 @@ function Texture:getPixelWidth() end
 ---
 ---[Wiki](https://love2d.org/wiki/Texture:getTextureType)
 ---
+---@return love.TextureType texturetype# The type of the Texture.
 ---@diagnostic disable-next-line: args-after-dots
 function Texture:getTextureType() end
 
@@ -6577,6 +6979,7 @@ function Texture:getTextureType() end
 ---
 ---[Wiki](https://love2d.org/wiki/Texture:getWidth)
 ---
+---@return number width# The width of the Texture.
 ---@diagnostic disable-next-line: args-after-dots
 function Texture:getWidth() end
 
@@ -6586,6 +6989,9 @@ function Texture:getWidth() end
 ---
 ---[Wiki](https://love2d.org/wiki/Texture:getWrap)
 ---
+---@return love.WrapMode horiz# Horizontal wrapping mode of the texture.
+---@return love.WrapMode vert# Vertical wrapping mode of the texture.
+---@return love.WrapMode depth# Wrapping mode for the z-axis of a Volume texture.
 ---@diagnostic disable-next-line: args-after-dots
 function Texture:getWrap() end
 
@@ -6597,6 +7003,7 @@ function Texture:getWrap() end
 ---
 ---[Wiki](https://love2d.org/wiki/Texture:isReadable)
 ---
+---@return boolean readable# Whether the Texture is readable.
 ---@diagnostic disable-next-line: args-after-dots
 function Texture:isReadable() end
 
@@ -6668,6 +7075,8 @@ function Texture:setWrap(horiz, vert, depth) end
 ---
 ---[Wiki](https://love2d.org/wiki/Video:getDimensions)
 ---
+---@return number width# The width of the Video.
+---@return number height# The height of the Video.
 ---@diagnostic disable-next-line: args-after-dots
 function Video:getDimensions() end
 
@@ -6675,6 +7084,9 @@ function Video:getDimensions() end
 ---
 ---[Wiki](https://love2d.org/wiki/Video:getFilter)
 ---
+---@return love.FilterMode min# The filter mode used when scaling the Video down.
+---@return love.FilterMode mag# The filter mode used when scaling the Video up.
+---@return number anisotropy# Maximum amount of anisotropic filtering used.
 ---@diagnostic disable-next-line: args-after-dots
 function Video:getFilter() end
 
@@ -6682,6 +7094,7 @@ function Video:getFilter() end
 ---
 ---[Wiki](https://love2d.org/wiki/Video:getHeight)
 ---
+---@return number height# The height of the Video.
 ---@diagnostic disable-next-line: args-after-dots
 function Video:getHeight() end
 
@@ -6689,6 +7102,7 @@ function Video:getHeight() end
 ---
 ---[Wiki](https://love2d.org/wiki/Video:getSource)
 ---
+---@return love.Source source# The audio Source used for audio playback, or nil if the video has no audio.
 ---@diagnostic disable-next-line: args-after-dots
 function Video:getSource() end
 
@@ -6696,6 +7110,7 @@ function Video:getSource() end
 ---
 ---[Wiki](https://love2d.org/wiki/Video:getStream)
 ---
+---@return love.VideoStream stream# The VideoStream used for decoding and controlling the video.
 ---@diagnostic disable-next-line: args-after-dots
 function Video:getStream() end
 
@@ -6703,6 +7118,7 @@ function Video:getStream() end
 ---
 ---[Wiki](https://love2d.org/wiki/Video:getWidth)
 ---
+---@return number width# The width of the Video.
 ---@diagnostic disable-next-line: args-after-dots
 function Video:getWidth() end
 
@@ -6710,6 +7126,7 @@ function Video:getWidth() end
 ---
 ---[Wiki](https://love2d.org/wiki/Video:isPlaying)
 ---
+---@return boolean playing# Whether the video is playing.
 ---@diagnostic disable-next-line: args-after-dots
 function Video:isPlaying() end
 
@@ -6764,6 +7181,7 @@ function Video:setSource(source) end
 ---
 ---[Wiki](https://love2d.org/wiki/Video:tell)
 ---
+---@return number seconds# The time in seconds since the beginning of the Video.
 ---@diagnostic disable-next-line: args-after-dots
 function Video:tell() end
 
@@ -7190,6 +7608,10 @@ function love.graphics.flushBatch() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.graphics.getBackgroundColor)
 ---
+---@return number r# The red component (0-1).
+---@return number g# The green component (0-1).
+---@return number b# The blue component (0-1).
+---@return number a# The alpha component (0-1).
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.getBackgroundColor() end
 
@@ -7197,6 +7619,8 @@ function love.graphics.getBackgroundColor() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.graphics.getBlendMode)
 ---
+---@return love.BlendMode mode# The current blend mode.
+---@return love.BlendAlphaMode alphamode# The current blend alpha mode – it determines how the alpha of drawn objects affects blending.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.getBlendMode() end
 
@@ -7204,6 +7628,7 @@ function love.graphics.getBlendMode() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.graphics.getCanvas)
 ---
+---@return love.Canvas canvas# The Canvas set by setCanvas. Returns nil if drawing to the real screen.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.getCanvas() end
 
@@ -7211,6 +7636,7 @@ function love.graphics.getCanvas() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.graphics.getCanvasFormats)
 ---
+---@return table formats# A table containing CanvasFormats as keys, and a boolean indicating whether the format is supported as values. Not all systems support all formats.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.getCanvasFormats() end
 
@@ -7219,6 +7645,7 @@ function love.graphics.getCanvasFormats() end
 ---[Wiki](https://love2d.org/wiki/love.graphics.getCanvasFormats)
 ---
 ---@param readable boolean# If true, the returned formats will only be indicated as supported if readable flag set to true for that format, and vice versa if the parameter is false.
+---@return table formats# A table containing CanvasFormats as keys, and a boolean indicating whether the format is supported as values (taking into account the readable parameter). Not all systems support all formats.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.getCanvasFormats(readable) end
 
@@ -7228,6 +7655,10 @@ function love.graphics.getCanvasFormats(readable) end
 ---
 ---[Wiki](https://love2d.org/wiki/love.graphics.getColor)
 ---
+---@return number r# The red component (0-1).
+---@return number g# The green component (0-1).
+---@return number b# The blue component (0-1).
+---@return number a# The alpha component (0-1).
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.getColor() end
 
@@ -7237,6 +7668,10 @@ function love.graphics.getColor() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.graphics.getColorMask)
 ---
+---@return boolean r# Whether the red color component is active when rendering.
+---@return boolean g# Whether the green color component is active when rendering.
+---@return boolean b# Whether the blue color component is active when rendering.
+---@return boolean a# Whether the alpha color component is active when rendering.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.getColorMask() end
 
@@ -7250,6 +7685,7 @@ function love.graphics.getColorMask() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.graphics.getDPIScale)
 ---
+---@return number scale# The pixel scale factor associated with the window.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.getDPIScale() end
 
@@ -7257,6 +7693,9 @@ function love.graphics.getDPIScale() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.graphics.getDefaultFilter)
 ---
+---@return love.FilterMode min# Filter mode used when scaling the image down.
+---@return love.FilterMode mag# Filter mode used when scaling the image up.
+---@return number anisotropy# Maximum amount of Anisotropic Filtering used.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.getDefaultFilter() end
 
@@ -7266,6 +7705,8 @@ function love.graphics.getDefaultFilter() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.graphics.getDepthMode)
 ---
+---@return love.CompareMode comparemode# Depth comparison mode used for depth testing.
+---@return boolean write# Whether to write update / write values to the depth buffer when rendering.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.getDepthMode() end
 
@@ -7273,6 +7714,8 @@ function love.graphics.getDepthMode() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.graphics.getDimensions)
 ---
+---@return number width# The width of the window.
+---@return number height# The height of the window.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.getDimensions() end
 
@@ -7280,6 +7723,7 @@ function love.graphics.getDimensions() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.graphics.getFont)
 ---
+---@return love.Font font# The current Font. Automatically creates and sets the default font, if none is set yet.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.getFont() end
 
@@ -7289,6 +7733,7 @@ function love.graphics.getFont() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.graphics.getFrontFaceWinding)
 ---
+---@return love.VertexWinding winding# The winding mode being used. The default winding is counterclockwise ('ccw').
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.getFrontFaceWinding() end
 
@@ -7296,6 +7741,7 @@ function love.graphics.getFrontFaceWinding() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.graphics.getHeight)
 ---
+---@return number height# The height of the window.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.getHeight() end
 
@@ -7303,6 +7749,7 @@ function love.graphics.getHeight() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.graphics.getImageFormats)
 ---
+---@return table formats# A table containing PixelFormats as keys, and a boolean indicating whether the format is supported as values. Not all systems support all formats.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.getImageFormats() end
 
@@ -7310,6 +7757,7 @@ function love.graphics.getImageFormats() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.graphics.getLineJoin)
 ---
+---@return love.LineJoin join# The LineJoin style.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.getLineJoin() end
 
@@ -7317,6 +7765,7 @@ function love.graphics.getLineJoin() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.graphics.getLineStyle)
 ---
+---@return love.LineStyle style# The current line style.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.getLineStyle() end
 
@@ -7324,6 +7773,7 @@ function love.graphics.getLineStyle() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.graphics.getLineWidth)
 ---
+---@return number width# The current line width.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.getLineWidth() end
 
@@ -7333,6 +7783,7 @@ function love.graphics.getLineWidth() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.graphics.getMeshCullMode)
 ---
+---@return love.CullMode mode# The Mesh face culling mode in use (whether to render everything, cull back-facing triangles, or cull front-facing triangles).
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.getMeshCullMode() end
 
@@ -7342,6 +7793,8 @@ function love.graphics.getMeshCullMode() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.graphics.getPixelDimensions)
 ---
+---@return number pixelwidth# The width of the window in pixels.
+---@return number pixelheight# The height of the window in pixels.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.getPixelDimensions() end
 
@@ -7351,6 +7804,7 @@ function love.graphics.getPixelDimensions() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.graphics.getPixelHeight)
 ---
+---@return number pixelheight# The height of the window in pixels.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.getPixelHeight() end
 
@@ -7360,6 +7814,7 @@ function love.graphics.getPixelHeight() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.graphics.getPixelWidth)
 ---
+---@return number pixelwidth# The width of the window in pixels.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.getPixelWidth() end
 
@@ -7367,6 +7822,7 @@ function love.graphics.getPixelWidth() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.graphics.getPointSize)
 ---
+---@return number size# The current point size.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.getPointSize() end
 
@@ -7374,6 +7830,10 @@ function love.graphics.getPointSize() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.graphics.getRendererInfo)
 ---
+---@return string name# The name of the renderer, e.g. 'OpenGL' or 'OpenGL ES'.
+---@return string version# The version of the renderer with some extra driver-dependent version info, e.g. '2.1 INTEL-8.10.44'.
+---@return string vendor# The name of the graphics card vendor, e.g. 'Intel Inc'. 
+---@return string device# The name of the graphics card, e.g. 'Intel HD Graphics 3000 OpenGL Engine'.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.getRendererInfo() end
 
@@ -7381,6 +7841,10 @@ function love.graphics.getRendererInfo() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.graphics.getScissor)
 ---
+---@return number x# The x-component of the top-left point of the box.
+---@return number y# The y-component of the top-left point of the box.
+---@return number width# The width of the box.
+---@return number height# The height of the box.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.getScissor() end
 
@@ -7388,6 +7852,7 @@ function love.graphics.getScissor() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.graphics.getShader)
 ---
+---@return love.Shader shader# The currently active Shader, or nil if none is set.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.getShader() end
 
@@ -7395,6 +7860,7 @@ function love.graphics.getShader() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.graphics.getStackDepth)
 ---
+---@return number depth# The current depth of the transform and state love.graphics stack.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.getStackDepth() end
 
@@ -7402,6 +7868,15 @@ function love.graphics.getStackDepth() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.graphics.getStats)
 ---
+---@return {
+---drawcalls : number,
+---canvasswitches : number,
+---texturememory : number,
+---images : number,
+---canvases : number,
+---fonts : number,
+---shaderswitches : number,
+---drawcallsbatched : number} stats# A table with the following fields:
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.getStats() end
 
@@ -7410,6 +7885,15 @@ function love.graphics.getStats() end
 ---[Wiki](https://love2d.org/wiki/love.graphics.getStats)
 ---
 ---@param stats table# A table which will be filled in with the stat fields below.
+---@return {
+---drawcalls : number,
+---canvasswitches : number,
+---texturememory : number,
+---images : number,
+---canvases : number,
+---fonts : number,
+---shaderswitches : number,
+---drawcallsbatched : number} stats# The table that was passed in above, now containing the following fields:
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.getStats(stats) end
 
@@ -7421,6 +7905,8 @@ function love.graphics.getStats(stats) end
 ---
 ---[Wiki](https://love2d.org/wiki/love.graphics.getStencilTest)
 ---
+---@return love.CompareMode comparemode# The type of comparison that is made for each pixel. Will be 'always' if stencil testing is disabled.
+---@return number comparevalue# The value used when comparing with the stencil value of each pixel.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.getStencilTest() end
 
@@ -7430,6 +7916,7 @@ function love.graphics.getStencilTest() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.graphics.getSupported)
 ---
+---@return table features# A table containing GraphicsFeature keys, and boolean values indicating whether each feature is supported.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.getSupported() end
 
@@ -7437,6 +7924,7 @@ function love.graphics.getSupported() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.graphics.getSystemLimits)
 ---
+---@return table limits# A table containing GraphicsLimit keys, and number values.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.getSystemLimits() end
 
@@ -7444,6 +7932,7 @@ function love.graphics.getSystemLimits() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.graphics.getTextureTypes)
 ---
+---@return table texturetypes# A table containing TextureTypes as keys, and a boolean indicating whether the type is supported as values. Not all systems support all types.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.getTextureTypes() end
 
@@ -7451,6 +7940,7 @@ function love.graphics.getTextureTypes() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.graphics.getWidth)
 ---
+---@return number width# The width of the window.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.getWidth() end
 
@@ -7477,6 +7967,8 @@ function love.graphics.intersectScissor(x, y, width, height) end
 ---
 ---@param screenX number# The x component of the screen-space position.
 ---@param screenY number# The y component of the screen-space position.
+---@return number globalX# The x component of the position in global coordinates.
+---@return number globalY# The y component of the position in global coordinates.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.inverseTransformPoint(screenX, screenY) end
 
@@ -7485,6 +7977,7 @@ function love.graphics.inverseTransformPoint(screenX, screenY) end
 ---
 ---[Wiki](https://love2d.org/wiki/love.graphics.isActive)
 ---
+---@return boolean active# Whether the graphics module is active and able to be used.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.isActive() end
 
@@ -7494,6 +7987,7 @@ function love.graphics.isActive() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.graphics.isGammaCorrect)
 ---
+---@return boolean gammacorrect# True if gamma-correct rendering is supported and was enabled in love.conf, false otherwise.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.isGammaCorrect() end
 
@@ -7501,6 +7995,7 @@ function love.graphics.isGammaCorrect() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.graphics.isWireframe)
 ---
+---@return boolean wireframe# True if wireframe lines are used when drawing, false if it's not.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.isWireframe() end
 
@@ -7539,6 +8034,7 @@ function love.graphics.line(points) end
 ---mipmaps : boolean,
 ---linear : boolean,
 ---dpiscale : number}# (nil) Optional table of settings to configure the array image, containing the following fields:
+---@return love.Image image# An Array Image object.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.newArrayImage(slices, settings) end
 
@@ -7546,6 +8042,7 @@ function love.graphics.newArrayImage(slices, settings) end
 ---
 ---[Wiki](https://love2d.org/wiki/love.graphics.newCanvas)
 ---
+---@return love.Canvas canvas# A new Canvas with dimensions equal to the window's size in pixels.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.newCanvas() end
 
@@ -7555,6 +8052,7 @@ function love.graphics.newCanvas() end
 ---
 ---@param width number# The desired width of the Canvas.
 ---@param height number# The desired height of the Canvas.
+---@return love.Canvas canvas# A new Canvas with specified width and height.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.newCanvas(width, height) end
 
@@ -7571,6 +8069,7 @@ function love.graphics.newCanvas(width, height) end
 ---msaa : number,
 ---dpiscale : number,
 ---mipmaps : love.MipmapMode}# (nil) A table containing the given fields:
+---@return love.Canvas canvas# A new Canvas with specified width and height.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.newCanvas(width, height, settings) end
 
@@ -7588,6 +8087,7 @@ function love.graphics.newCanvas(width, height, settings) end
 ---msaa : number,
 ---dpiscale : number,
 ---mipmaps : love.MipmapMode}# (nil) A table containing the given fields:
+---@return love.Canvas canvas# A new Canvas with specified width and height.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.newCanvas(width, height, layers, settings) end
 
@@ -7641,6 +8141,7 @@ function love.graphics.newCanvas(width, height, layers, settings) end
 ---@param settings? {
 ---mipmaps : boolean,
 ---linear : boolean}# (nil) Optional table of settings to configure the cubemap image, containing the following fields:
+---@return love.Image image# An cubemap Image object.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.newCubeImage(filename, settings) end
 
@@ -7694,6 +8195,7 @@ function love.graphics.newCubeImage(filename, settings) end
 ---@param settings? {
 ---mipmaps : boolean,
 ---linear : boolean}# (nil) Optional table of settings to configure the cubemap image, containing the following fields:
+---@return love.Image image# An cubemap Image object.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.newCubeImage(faces, settings) end
 
@@ -7704,6 +8206,7 @@ function love.graphics.newCubeImage(faces, settings) end
 ---[Wiki](https://love2d.org/wiki/love.graphics.newFont)
 ---
 ---@param filename string# The filepath to the BMFont or TrueType font file.
+---@return love.Font font# A Font object which can be used to draw text on screen.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.newFont(filename) end
 
@@ -7717,6 +8220,7 @@ function love.graphics.newFont(filename) end
 ---@param size number# The size of the font in pixels.
 ---@param hinting? love.HintingMode# ('normal') True Type hinting mode.
 ---@param dpiscale? number# (love.graphics.getDPIScale()) The DPI scale factor of the font.
+---@return love.Font font# A Font object which can be used to draw text on screen.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.newFont(filename, size, hinting, dpiscale) end
 
@@ -7728,6 +8232,7 @@ function love.graphics.newFont(filename, size, hinting, dpiscale) end
 ---
 ---@param filename string# The filepath to the BMFont file.
 ---@param imagefilename string# The filepath to the BMFont's image file. If this argument is omitted, the path specified inside the BMFont file will be used.
+---@return love.Font font# A Font object which can be used to draw text on screen.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.newFont(filename, imagefilename) end
 
@@ -7740,6 +8245,7 @@ function love.graphics.newFont(filename, imagefilename) end
 ---@param size? number# (12) The size of the font in pixels.
 ---@param hinting? love.HintingMode# ('normal') True Type hinting mode.
 ---@param dpiscale? number# (love.graphics.getDPIScale()) The DPI scale factor of the font.
+---@return love.Font font# A Font object which can be used to draw text on screen.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.newFont(size, hinting, dpiscale) end
 
@@ -7752,6 +8258,7 @@ function love.graphics.newFont(size, hinting, dpiscale) end
 ---dpiscale : number,
 ---linear : boolean,
 ---mipmaps : boolean}# (nil) A table containing the following fields:
+---@return love.Image image# A new Image object which can be drawn on screen.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.newImage(filename, settings) end
 
@@ -7764,6 +8271,7 @@ function love.graphics.newImage(filename, settings) end
 ---dpiscale : number,
 ---linear : boolean,
 ---mipmaps : boolean}# (nil) A table containing the following fields:
+---@return love.Image image# A new Image object which can be drawn on screen.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.newImage(fileData, settings) end
 
@@ -7776,6 +8284,7 @@ function love.graphics.newImage(fileData, settings) end
 ---dpiscale : number,
 ---linear : boolean,
 ---mipmaps : boolean}# (nil) A table containing the following fields:
+---@return love.Image image# A new Image object which can be drawn on screen.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.newImage(imageData, settings) end
 
@@ -7788,6 +8297,7 @@ function love.graphics.newImage(imageData, settings) end
 ---dpiscale : number,
 ---linear : boolean,
 ---mipmaps : boolean}# (nil) A table containing the following fields:
+---@return love.Image image# A new Image object which can be drawn on screen.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.newImage(compressedImageData, settings) end
 
@@ -7799,6 +8309,7 @@ function love.graphics.newImage(compressedImageData, settings) end
 ---
 ---@param filename string# The filepath to the image file.
 ---@param glyphs string# A string of the characters in the image in order from left to right.
+---@return love.Font font# A Font object which can be used to draw text on screen.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.newImageFont(filename, glyphs) end
 
@@ -7810,6 +8321,7 @@ function love.graphics.newImageFont(filename, glyphs) end
 ---
 ---@param imageData love.ImageData# The ImageData object to create the font from.
 ---@param glyphs string# A string of the characters in the image in order from left to right.
+---@return love.Font font# A Font object which can be used to draw text on screen.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.newImageFont(imageData, glyphs) end
 
@@ -7822,6 +8334,7 @@ function love.graphics.newImageFont(imageData, glyphs) end
 ---@param filename string# The filepath to the image file.
 ---@param glyphs string# A string of the characters in the image in order from left to right.
 ---@param extraspacing number# Additional spacing (positive or negative) to apply to each glyph in the Font.
+---@return love.Font font# A Font object which can be used to draw text on screen.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.newImageFont(filename, glyphs, extraspacing) end
 
@@ -7844,6 +8357,7 @@ function love.graphics.newImageFont(filename, glyphs, extraspacing) end
 ---[8] : number}[]# The table filled with vertex information tables for each vertex as follows:
 ---@param mode? love.MeshDrawMode# ('fan') How the vertices are used when drawing. The default mode 'fan' is sufficient for simple convex polygons.
 ---@param usage? love.SpriteBatchUsage# ('dynamic') The expected usage of the Mesh. The specified usage mode affects the Mesh's memory usage and performance.
+---@return love.Mesh mesh# The new mesh.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.newMesh(vertices, mode, usage) end
 
@@ -7858,6 +8372,7 @@ function love.graphics.newMesh(vertices, mode, usage) end
 ---@param vertexcount number# The total number of vertices the Mesh will use. Each vertex is initialized to {0,0, 0,0, 1,1,1,1}.
 ---@param mode? love.MeshDrawMode# ('fan') How the vertices are used when drawing. The default mode 'fan' is sufficient for simple convex polygons.
 ---@param usage? love.SpriteBatchUsage# ('dynamic') The expected usage of the Mesh. The specified usage mode affects the Mesh's memory usage and performance.
+---@return love.Mesh mesh# The new mesh.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.newMesh(vertexcount, mode, usage) end
 
@@ -7877,6 +8392,7 @@ function love.graphics.newMesh(vertexcount, mode, usage) end
 ---[...] : number}# The table filled with vertex information tables for each vertex, in the form of {vertex, ...} where each vertex is a table in the form of {attributecomponent, ...}.
 ---@param mode? love.MeshDrawMode# ('fan') How the vertices are used when drawing. The default mode 'fan' is sufficient for simple convex polygons.
 ---@param usage? love.SpriteBatchUsage# ('dynamic') The expected usage of the Mesh. The specified usage mode affects the Mesh's memory usage and performance.
+---@return love.Mesh mesh# The new mesh.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.newMesh(vertexformat, vertices, mode, usage) end
 
@@ -7894,6 +8410,7 @@ function love.graphics.newMesh(vertexformat, vertices, mode, usage) end
 ---@param vertexcount number# The total number of vertices the Mesh will use.
 ---@param mode? love.MeshDrawMode# ('fan') How the vertices are used when drawing. The default mode 'fan' is sufficient for simple convex polygons.
 ---@param usage? love.SpriteBatchUsage# ('dynamic') The expected usage of the Mesh. The specified usage mode affects the Mesh's memory usage and performance.
+---@return love.Mesh mesh# The new mesh.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.newMesh(vertexformat, vertexcount, mode, usage) end
 
@@ -7908,6 +8425,7 @@ function love.graphics.newMesh(vertexformat, vertexcount, mode, usage) end
 ---@param vertexcount number# The total number of vertices the Mesh will use. Each vertex is initialized to {0,0, 0,0, 255,255,255,255}.
 ---@param texture? love.Texture# (nil) The Image or Canvas to use when drawing the Mesh. May be nil to use no texture.
 ---@param mode? love.MeshDrawMode# ('fan') How the vertices are used when drawing. The default mode 'fan' is sufficient for simple convex polygons.
+---@return love.Mesh mesh# The new mesh.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.newMesh(vertexcount, texture, mode) end
 
@@ -7917,6 +8435,7 @@ function love.graphics.newMesh(vertexcount, texture, mode) end
 ---
 ---@param image love.Image# The image to use.
 ---@param buffer? number# (1000) The max number of particles at the same time.
+---@return love.ParticleSystem system# A new ParticleSystem.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.newParticleSystem(image, buffer) end
 
@@ -7926,6 +8445,7 @@ function love.graphics.newParticleSystem(image, buffer) end
 ---
 ---@param texture love.Texture# The texture (Image or Canvas) to use.
 ---@param buffer? number# (1000) The max number of particles at the same time.
+---@return love.ParticleSystem system# A new ParticleSystem.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.newParticleSystem(texture, buffer) end
 
@@ -7941,6 +8461,7 @@ function love.graphics.newParticleSystem(texture, buffer) end
 ---@param height number# The height of the Quad in the Image. (Must be greater than 0.)
 ---@param sw number# The reference width, the width of the Image. (Must be greater than 0.)
 ---@param sh number# The reference height, the height of the Image. (Must be greater than 0.)
+---@return love.Quad quad# The new Quad.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.newQuad(x, y, width, height, sw, sh) end
 
@@ -7955,6 +8476,7 @@ function love.graphics.newQuad(x, y, width, height, sw, sh) end
 ---@param width number# The width of the Quad in the Image. (Must be greater than 0.)
 ---@param height number# The height of the Quad in the Image. (Must be greater than 0.)
 ---@param texture love.Texture# The texture whose width and height will be used as the reference width and height.
+---@return love.Quad quad# The new Quad.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.newQuad(x, y, width, height, texture) end
 
@@ -7965,6 +8487,7 @@ function love.graphics.newQuad(x, y, width, height, texture) end
 ---[Wiki](https://love2d.org/wiki/love.graphics.newShader)
 ---
 ---@param code string# The pixel shader or vertex shader code, or a filename pointing to a file with the code.
+---@return love.Shader shader# A Shader object for use in drawing operations.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.newShader(code) end
 
@@ -7976,6 +8499,7 @@ function love.graphics.newShader(code) end
 ---
 ---@param pixelcode string# The pixel shader code, or a filename pointing to a file with the code.
 ---@param vertexcode string# The vertex shader code, or a filename pointing to a file with the code.
+---@return love.Shader shader# A Shader object for use in drawing operations.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.newShader(pixelcode, vertexcode) end
 
@@ -7985,6 +8509,7 @@ function love.graphics.newShader(pixelcode, vertexcode) end
 ---
 ---@param image love.Image# The Image to use for the sprites.
 ---@param maxsprites? number# (1000) The maximum number of sprites that the SpriteBatch can contain at any given time. Since version 11.0, additional sprites added past this number will automatically grow the spritebatch.
+---@return love.SpriteBatch spriteBatch# The new SpriteBatch.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.newSpriteBatch(image, maxsprites) end
 
@@ -7995,6 +8520,7 @@ function love.graphics.newSpriteBatch(image, maxsprites) end
 ---@param image love.Image# The Image to use for the sprites.
 ---@param maxsprites? number# (1000) The maximum number of sprites that the SpriteBatch can contain at any given time. Since version 11.0, additional sprites added past this number will automatically grow the spritebatch.
 ---@param usage? love.SpriteBatchUsage# ('dynamic') The expected usage of the SpriteBatch. The specified usage mode affects the SpriteBatch's memory usage and performance.
+---@return love.SpriteBatch spriteBatch# The new SpriteBatch.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.newSpriteBatch(image, maxsprites, usage) end
 
@@ -8005,6 +8531,7 @@ function love.graphics.newSpriteBatch(image, maxsprites, usage) end
 ---@param texture love.Texture# The Image or Canvas to use for the sprites.
 ---@param maxsprites? number# (1000) The maximum number of sprites that the SpriteBatch can contain at any given time. Since version 11.0, additional sprites added past this number will automatically grow the spritebatch.
 ---@param usage? love.SpriteBatchUsage# ('dynamic') The expected usage of the SpriteBatch. The specified usage mode affects the SpriteBatch's memory usage and performance.
+---@return love.SpriteBatch spriteBatch# The new SpriteBatch.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.newSpriteBatch(texture, maxsprites, usage) end
 
@@ -8014,6 +8541,7 @@ function love.graphics.newSpriteBatch(texture, maxsprites, usage) end
 ---
 ---@param font love.Font# The font to use for the text.
 ---@param textstring? string# (nil) The initial string of text that the new Text object will contain. May be nil.
+---@return love.Text text# The new drawable Text object.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.newText(font, textstring) end
 
@@ -8028,6 +8556,7 @@ function love.graphics.newText(font, textstring) end
 ---color2 : table,
 ---string2 : string,
 ---[...] : love.Variant}# A table containing colors and strings to add to the object, in the form of {color1, string1, color2, string2, ...}.
+---@return love.Text text# The new drawable Text object.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.newText(font, coloredtext) end
 
@@ -8036,6 +8565,7 @@ function love.graphics.newText(font, coloredtext) end
 ---[Wiki](https://love2d.org/wiki/love.graphics.newVideo)
 ---
 ---@param filename string# The file path to the Ogg Theora video file.
+---@return love.Video video# A new Video.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.newVideo(filename) end
 
@@ -8044,6 +8574,7 @@ function love.graphics.newVideo(filename) end
 ---[Wiki](https://love2d.org/wiki/love.graphics.newVideo)
 ---
 ---@param videostream love.VideoStream# A video stream object.
+---@return love.Video video# A new Video.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.newVideo(videostream) end
 
@@ -8055,6 +8586,7 @@ function love.graphics.newVideo(videostream) end
 ---@param settings? {
 ---audio : boolean,
 ---dpiscale : number}# (nil) A table containing the following fields:
+---@return love.Video video# A new Video.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.newVideo(filename, settings) end
 
@@ -8064,6 +8596,7 @@ function love.graphics.newVideo(filename, settings) end
 ---
 ---@param filename string# The file path to the Ogg Theora video file.
 ---@param loadaudio? boolean# (nil) Whether to try to load the video's audio into an audio Source. If not explicitly set to true or false, it will try without causing an error if the video has no audio.
+---@return love.Video video# A new Video.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.newVideo(filename, loadaudio) end
 
@@ -8073,6 +8606,7 @@ function love.graphics.newVideo(filename, loadaudio) end
 ---
 ---@param videostream love.VideoStream# A video stream object.
 ---@param loadaudio? boolean# (nil) Whether to try to load the video's audio into an audio Source. If not explicitly set to true or false, it will try without causing an error if the video has no audio.
+---@return love.Video video# A new Video.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.newVideo(videostream, loadaudio) end
 
@@ -8092,6 +8626,7 @@ function love.graphics.newVideo(videostream, loadaudio) end
 ---@param settings? {
 ---mipmaps : boolean,
 ---linear : boolean}# (nil) Optional table of settings to configure the volume image, containing the following fields:
+---@return love.Image image# A volume Image object.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.newVolumeImage(layers, settings) end
 
@@ -8811,6 +9346,7 @@ function love.graphics.setMeshCullMode(mode) end
 ---[Wiki](https://love2d.org/wiki/love.graphics.setNewFont)
 ---
 ---@param size? number# (12) The size of the font.
+---@return love.Font font# The new font.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.setNewFont(size) end
 
@@ -8820,6 +9356,7 @@ function love.graphics.setNewFont(size) end
 ---
 ---@param filename string# The path and name of the file with the font.
 ---@param size? number# (12) The size of the font.
+---@return love.Font font# The new font.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.setNewFont(filename, size) end
 
@@ -8829,6 +9366,7 @@ function love.graphics.setNewFont(filename, size) end
 ---
 ---@param file love.File# A File with the font.
 ---@param size? number# (12) The size of the font.
+---@return love.Font font# The new font.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.setNewFont(file, size) end
 
@@ -8838,6 +9376,7 @@ function love.graphics.setNewFont(file, size) end
 ---
 ---@param data love.Data# A Data with the font.
 ---@param size? number# (12) The size of the font.
+---@return love.Font font# The new font.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.setNewFont(data, size) end
 
@@ -8846,6 +9385,7 @@ function love.graphics.setNewFont(data, size) end
 ---[Wiki](https://love2d.org/wiki/love.graphics.setNewFont)
 ---
 ---@param rasterizer love.Rasterizer# A rasterizer.
+---@return love.Font font# The new font.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.setNewFont(rasterizer) end
 
@@ -8958,6 +9498,8 @@ function love.graphics.stencil(stencilfunction, action, value, keepvalues) end
 ---
 ---@param globalX number# The x component of the position in global coordinates.
 ---@param globalY number# The y component of the position in global coordinates.
+---@return number screenX# The x component of the position with graphics transformations applied.
+---@return number screenY# The y component of the position with graphics transformations applied.
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.transformPoint(globalX, globalY) end
 
@@ -8984,6 +9526,8 @@ function love.graphics.translate(dx, dy) end
 ---
 ---@param gles boolean# Validate code as GLSL ES shader.
 ---@param code string# The pixel shader or vertex shader code, or a filename pointing to a file with the code.
+---@return boolean status# true if specified shader code doesn't contain any errors. false otherwise.
+---@return string message# Reason why shader code validation failed (or nil if validation succeded).
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.validateShader(gles, code) end
 
@@ -8994,6 +9538,8 @@ function love.graphics.validateShader(gles, code) end
 ---@param gles boolean# Validate code as GLSL ES shader.
 ---@param pixelcode string# The pixel shader code, or a filename pointing to a file with the code.
 ---@param vertexcode string# The vertex shader code, or a filename pointing to a file with the code.
+---@return boolean status# true if specified shader code doesn't contain any errors. false otherwise.
+---@return string message# Reason why shader code validation failed (or nil if validation succeded).
 ---@diagnostic disable-next-line: args-after-dots
 function love.graphics.validateShader(gles, pixelcode, vertexcode) end
 
@@ -9001,6 +9547,8 @@ function love.graphics.validateShader(gles, pixelcode, vertexcode) end
 ---
 ---[Wiki](https://love2d.org/wiki/CompressedImageData:getDimensions)
 ---
+---@return number width# The width of the CompressedImageData.
+---@return number height# The height of the CompressedImageData.
 ---@diagnostic disable-next-line: args-after-dots
 function CompressedImageData:getDimensions() end
 
@@ -9009,6 +9557,8 @@ function CompressedImageData:getDimensions() end
 ---[Wiki](https://love2d.org/wiki/CompressedImageData:getDimensions)
 ---
 ---@param level number# A mipmap level. Must be in the range of CompressedImageData:getMipmapCount().
+---@return number width# The width of a specific mipmap level of the CompressedImageData.
+---@return number height# The height of a specific mipmap level of the CompressedImageData.
 ---@diagnostic disable-next-line: args-after-dots
 function CompressedImageData:getDimensions(level) end
 
@@ -9016,6 +9566,7 @@ function CompressedImageData:getDimensions(level) end
 ---
 ---[Wiki](https://love2d.org/wiki/CompressedImageData:getFormat)
 ---
+---@return love.CompressedImageFormat format# The format of the CompressedImageData.
 ---@diagnostic disable-next-line: args-after-dots
 function CompressedImageData:getFormat() end
 
@@ -9023,6 +9574,7 @@ function CompressedImageData:getFormat() end
 ---
 ---[Wiki](https://love2d.org/wiki/CompressedImageData:getHeight)
 ---
+---@return number height# The height of the CompressedImageData.
 ---@diagnostic disable-next-line: args-after-dots
 function CompressedImageData:getHeight() end
 
@@ -9031,6 +9583,7 @@ function CompressedImageData:getHeight() end
 ---[Wiki](https://love2d.org/wiki/CompressedImageData:getHeight)
 ---
 ---@param level number# A mipmap level. Must be in the range of CompressedImageData:getMipmapCount().
+---@return number height# The height of a specific mipmap level of the CompressedImageData.
 ---@diagnostic disable-next-line: args-after-dots
 function CompressedImageData:getHeight(level) end
 
@@ -9038,6 +9591,7 @@ function CompressedImageData:getHeight(level) end
 ---
 ---[Wiki](https://love2d.org/wiki/CompressedImageData:getMipmapCount)
 ---
+---@return number mipmaps# The number of mipmap levels stored in the CompressedImageData.
 ---@diagnostic disable-next-line: args-after-dots
 function CompressedImageData:getMipmapCount() end
 
@@ -9045,6 +9599,7 @@ function CompressedImageData:getMipmapCount() end
 ---
 ---[Wiki](https://love2d.org/wiki/CompressedImageData:getWidth)
 ---
+---@return number width# The width of the CompressedImageData.
 ---@diagnostic disable-next-line: args-after-dots
 function CompressedImageData:getWidth() end
 
@@ -9053,6 +9608,7 @@ function CompressedImageData:getWidth() end
 ---[Wiki](https://love2d.org/wiki/CompressedImageData:getWidth)
 ---
 ---@param level number# A mipmap level. Must be in the range of  CompressedImageData:getMipmapCount().
+---@return number width# The width of a specific mipmap level of the CompressedImageData.
 ---@diagnostic disable-next-line: args-after-dots
 function CompressedImageData:getWidth(level) end
 
@@ -9062,6 +9618,7 @@ function CompressedImageData:getWidth(level) end
 ---
 ---@param format love.ImageFormat# The format to encode the image as.
 ---@param filename? string# (nil) The filename to write the file to. If nil, no file will be written but the FileData will still be returned.
+---@return love.FileData filedata# The encoded image as a new FileData object.
 ---@diagnostic disable-next-line: args-after-dots
 function ImageData:encode(format, filename) end
 
@@ -9086,6 +9643,8 @@ function ImageData:encode(outFile, format) end
 ---
 ---[Wiki](https://love2d.org/wiki/ImageData:getDimensions)
 ---
+---@return number width# The width of the ImageData in pixels.
+---@return number height# The height of the ImageData in pixels.
 ---@diagnostic disable-next-line: args-after-dots
 function ImageData:getDimensions() end
 
@@ -9093,6 +9652,7 @@ function ImageData:getDimensions() end
 ---
 ---[Wiki](https://love2d.org/wiki/ImageData:getHeight)
 ---
+---@return number height# The height of the ImageData in pixels.
 ---@diagnostic disable-next-line: args-after-dots
 function ImageData:getHeight() end
 
@@ -9106,6 +9666,10 @@ function ImageData:getHeight() end
 ---
 ---@param x number# The position of the pixel on the x-axis.
 ---@param y number# The position of the pixel on the y-axis.
+---@return number r# The red component (0-1).
+---@return number g# The green component (0-1).
+---@return number b# The blue component (0-1).
+---@return number a# The alpha component (0-1).
 ---@diagnostic disable-next-line: args-after-dots
 function ImageData:getPixel(x, y) end
 
@@ -9113,6 +9677,7 @@ function ImageData:getPixel(x, y) end
 ---
 ---[Wiki](https://love2d.org/wiki/ImageData:getWidth)
 ---
+---@return number width# The width of the ImageData in pixels.
 ---@diagnostic disable-next-line: args-after-dots
 function ImageData:getWidth() end
 
@@ -9195,6 +9760,7 @@ function ImageData:setPixel(x, y, color) end
 ---
 ---[Wiki](https://love2d.org/wiki/ImageData:getFormat)
 ---
+---@return love.PixelFormat format# The pixel format the ImageData was created with.
 ---@diagnostic disable-next-line: args-after-dots
 function ImageData:getFormat() end
 
@@ -9203,6 +9769,7 @@ function ImageData:getFormat() end
 ---[Wiki](https://love2d.org/wiki/love.image.isCompressed)
 ---
 ---@param filename string# The filename of the potentially compressed image file.
+---@return boolean compressed# Whether the file can be loaded as CompressedImageData or not.
 ---@diagnostic disable-next-line: args-after-dots
 function love.image.isCompressed(filename) end
 
@@ -9211,6 +9778,7 @@ function love.image.isCompressed(filename) end
 ---[Wiki](https://love2d.org/wiki/love.image.isCompressed)
 ---
 ---@param fileData love.FileData# A FileData potentially containing a compressed image.
+---@return boolean compressed# Whether the FileData can be loaded as CompressedImageData or not.
 ---@diagnostic disable-next-line: args-after-dots
 function love.image.isCompressed(fileData) end
 
@@ -9219,6 +9787,7 @@ function love.image.isCompressed(fileData) end
 ---[Wiki](https://love2d.org/wiki/love.image.newCompressedData)
 ---
 ---@param filename string# The filename of the compressed image file.
+---@return love.CompressedImageData compressedImageData# The new CompressedImageData object.
 ---@diagnostic disable-next-line: args-after-dots
 function love.image.newCompressedData(filename) end
 
@@ -9227,6 +9796,7 @@ function love.image.newCompressedData(filename) end
 ---[Wiki](https://love2d.org/wiki/love.image.newCompressedData)
 ---
 ---@param fileData love.FileData# A FileData containing a compressed image.
+---@return love.CompressedImageData compressedImageData# The new CompressedImageData object.
 ---@diagnostic disable-next-line: args-after-dots
 function love.image.newCompressedData(fileData) end
 
@@ -9236,6 +9806,7 @@ function love.image.newCompressedData(fileData) end
 ---
 ---@param width number# The width of the ImageData.
 ---@param height number# The height of the ImageData.
+---@return love.ImageData imageData# The new blank ImageData object. Each pixel's color values, (including the alpha values!) will be set to zero.
 ---@diagnostic disable-next-line: args-after-dots
 function love.image.newImageData(width, height) end
 
@@ -9247,6 +9818,7 @@ function love.image.newImageData(width, height) end
 ---@param height number# The height of the ImageData.
 ---@param format? love.PixelFormat# ('rgba8') The pixel format of the ImageData.
 ---@param data? string# (nil) Optional raw byte data to load into the ImageData, in the format specified by ''format''.
+---@return love.ImageData imageData# The new ImageData object.
 ---@diagnostic disable-next-line: args-after-dots
 function love.image.newImageData(width, height, format, data) end
 
@@ -9257,6 +9829,7 @@ function love.image.newImageData(width, height, format, data) end
 ---@param width number# The width of the ImageData.
 ---@param height number# The height of the ImageData.
 ---@param data string# The data to load into the ImageData (RGBA bytes, left to right and top to bottom).
+---@return love.ImageData imageData# The new ImageData object.
 ---@diagnostic disable-next-line: args-after-dots
 function love.image.newImageData(width, height, data) end
 
@@ -9265,6 +9838,7 @@ function love.image.newImageData(width, height, data) end
 ---[Wiki](https://love2d.org/wiki/love.image.newImageData)
 ---
 ---@param filename string# The filename of the image file.
+---@return love.ImageData imageData# The new ImageData object.
 ---@diagnostic disable-next-line: args-after-dots
 function love.image.newImageData(filename) end
 
@@ -9273,6 +9847,7 @@ function love.image.newImageData(filename) end
 ---[Wiki](https://love2d.org/wiki/love.image.newImageData)
 ---
 ---@param filedata love.FileData# The encoded file data to decode into image data.
+---@return love.ImageData imageData# The new ImageData object.
 ---@diagnostic disable-next-line: args-after-dots
 function love.image.newImageData(filedata) end
 
@@ -9280,6 +9855,9 @@ function love.image.newImageData(filedata) end
 ---
 ---[Wiki](https://love2d.org/wiki/Joystick:getAxes)
 ---
+---@return number axisDir1# Direction of axis1.
+---@return number axisDir2# Direction of axis2.
+---@return number axisDirN# Direction of axisN.
 ---@diagnostic disable-next-line: args-after-dots
 function Joystick:getAxes() end
 
@@ -9288,6 +9866,7 @@ function Joystick:getAxes() end
 ---[Wiki](https://love2d.org/wiki/Joystick:getAxis)
 ---
 ---@param axis number# The index of the axis to be checked.
+---@return number direction# Current value of the axis.
 ---@diagnostic disable-next-line: args-after-dots
 function Joystick:getAxis(axis) end
 
@@ -9295,6 +9874,7 @@ function Joystick:getAxis(axis) end
 ---
 ---[Wiki](https://love2d.org/wiki/Joystick:getAxisCount)
 ---
+---@return number axes# The number of axes available.
 ---@diagnostic disable-next-line: args-after-dots
 function Joystick:getAxisCount() end
 
@@ -9302,6 +9882,7 @@ function Joystick:getAxisCount() end
 ---
 ---[Wiki](https://love2d.org/wiki/Joystick:getButtonCount)
 ---
+---@return number buttons# The number of buttons available.
 ---@diagnostic disable-next-line: args-after-dots
 function Joystick:getButtonCount() end
 
@@ -9311,6 +9892,9 @@ function Joystick:getButtonCount() end
 ---
 ---[Wiki](https://love2d.org/wiki/Joystick:getDeviceInfo)
 ---
+---@return number vendorID# The USB vendor ID of the joystick.
+---@return number productID# The USB product ID of the joystick.
+---@return number productVersion# The product version of the joystick.
 ---@diagnostic disable-next-line: args-after-dots
 function Joystick:getDeviceInfo() end
 
@@ -9318,6 +9902,7 @@ function Joystick:getDeviceInfo() end
 ---
 ---[Wiki](https://love2d.org/wiki/Joystick:getGUID)
 ---
+---@return string guid# The Joystick type's OS-dependent unique identifier.
 ---@diagnostic disable-next-line: args-after-dots
 function Joystick:getGUID() end
 
@@ -9326,6 +9911,7 @@ function Joystick:getGUID() end
 ---[Wiki](https://love2d.org/wiki/Joystick:getGamepadAxis)
 ---
 ---@param axis love.GamepadAxis# The virtual axis to be checked.
+---@return number direction# Current value of the axis.
 ---@diagnostic disable-next-line: args-after-dots
 function Joystick:getGamepadAxis(axis) end
 
@@ -9334,6 +9920,9 @@ function Joystick:getGamepadAxis(axis) end
 ---[Wiki](https://love2d.org/wiki/Joystick:getGamepadMapping)
 ---
 ---@param axis love.GamepadAxis# The virtual gamepad axis to get the binding for.
+---@return love.JoystickInputType inputtype# The type of input the virtual gamepad axis is bound to.
+---@return number inputindex# The index of the Joystick's button, axis or hat that the virtual gamepad axis is bound to.
+---@return love.JoystickHat hatdirection# The direction of the hat, if the virtual gamepad axis is bound to a hat. nil otherwise.
 ---@diagnostic disable-next-line: args-after-dots
 function Joystick:getGamepadMapping(axis) end
 
@@ -9342,6 +9931,9 @@ function Joystick:getGamepadMapping(axis) end
 ---[Wiki](https://love2d.org/wiki/Joystick:getGamepadMapping)
 ---
 ---@param button love.GamepadButton# The virtual gamepad button to get the binding for.
+---@return love.JoystickInputType inputtype# The type of input the virtual gamepad button is bound to.
+---@return number inputindex# The index of the Joystick's button, axis or hat that the virtual gamepad button is bound to.
+---@return love.JoystickHat hatdirection# The direction of the hat, if the virtual gamepad button is bound to a hat. nil otherwise.
 ---@diagnostic disable-next-line: args-after-dots
 function Joystick:getGamepadMapping(button) end
 
@@ -9351,6 +9943,7 @@ function Joystick:getGamepadMapping(button) end
 ---
 ---[Wiki](https://love2d.org/wiki/Joystick:getGamepadMappingString)
 ---
+---@return string mappingstring# A string containing the Joystick's gamepad mappings, or nil if the Joystick is not recognized as a gamepad.
 ---@diagnostic disable-next-line: args-after-dots
 function Joystick:getGamepadMappingString() end
 
@@ -9359,6 +9952,7 @@ function Joystick:getGamepadMappingString() end
 ---[Wiki](https://love2d.org/wiki/Joystick:getHat)
 ---
 ---@param hat number# The index of the hat to be checked.
+---@return love.JoystickHat direction# The direction the hat is pushed.
 ---@diagnostic disable-next-line: args-after-dots
 function Joystick:getHat(hat) end
 
@@ -9366,6 +9960,7 @@ function Joystick:getHat(hat) end
 ---
 ---[Wiki](https://love2d.org/wiki/Joystick:getHatCount)
 ---
+---@return number hats# How many hats the joystick has.
 ---@diagnostic disable-next-line: args-after-dots
 function Joystick:getHatCount() end
 
@@ -9373,6 +9968,8 @@ function Joystick:getHatCount() end
 ---
 ---[Wiki](https://love2d.org/wiki/Joystick:getID)
 ---
+---@return number id# The Joystick's unique identifier. Remains the same as long as the game is running.
+---@return number instanceid# Unique instance identifier. Changes every time the Joystick is reconnected. nil if the Joystick is not connected.
 ---@diagnostic disable-next-line: args-after-dots
 function Joystick:getID() end
 
@@ -9380,6 +9977,7 @@ function Joystick:getID() end
 ---
 ---[Wiki](https://love2d.org/wiki/Joystick:getName)
 ---
+---@return string name# The name of the joystick.
 ---@diagnostic disable-next-line: args-after-dots
 function Joystick:getName() end
 
@@ -9387,6 +9985,8 @@ function Joystick:getName() end
 ---
 ---[Wiki](https://love2d.org/wiki/Joystick:getVibration)
 ---
+---@return number left# Current strength of the left vibration motor on the Joystick.
+---@return number right# Current strength of the right vibration motor on the Joystick.
 ---@diagnostic disable-next-line: args-after-dots
 function Joystick:getVibration() end
 
@@ -9394,6 +9994,7 @@ function Joystick:getVibration() end
 ---
 ---[Wiki](https://love2d.org/wiki/Joystick:isConnected)
 ---
+---@return boolean connected# True if the Joystick is currently connected, false otherwise.
 ---@diagnostic disable-next-line: args-after-dots
 function Joystick:isConnected() end
 
@@ -9404,6 +10005,7 @@ function Joystick:isConnected() end
 ---[Wiki](https://love2d.org/wiki/Joystick:isDown)
 ---
 ---@param buttonN number# The index of a button to check.
+---@return boolean anyDown# True if any supplied button is down, false if not.
 ---@diagnostic disable-next-line: args-after-dots
 function Joystick:isDown(buttonN) end
 
@@ -9413,6 +10015,7 @@ function Joystick:isDown(buttonN) end
 ---
 ---[Wiki](https://love2d.org/wiki/Joystick:isGamepad)
 ---
+---@return boolean isgamepad# True if the Joystick is recognized as a gamepad, false otherwise.
 ---@diagnostic disable-next-line: args-after-dots
 function Joystick:isGamepad() end
 
@@ -9421,6 +10024,7 @@ function Joystick:isGamepad() end
 ---[Wiki](https://love2d.org/wiki/Joystick:isGamepadDown)
 ---
 ---@param buttonN love.GamepadButton# The gamepad button to check.
+---@return boolean anyDown# True if any supplied button is down, false if not.
 ---@diagnostic disable-next-line: args-after-dots
 function Joystick:isGamepadDown(buttonN) end
 
@@ -9428,6 +10032,7 @@ function Joystick:isGamepadDown(buttonN) end
 ---
 ---[Wiki](https://love2d.org/wiki/Joystick:isVibrationSupported)
 ---
+---@return boolean supported# True if rumble / force feedback vibration is supported on this Joystick, false if not.
 ---@diagnostic disable-next-line: args-after-dots
 function Joystick:isVibrationSupported() end
 
@@ -9437,6 +10042,7 @@ function Joystick:isVibrationSupported() end
 ---
 ---@param left number# Strength of the left vibration motor on the Joystick. Must be in the range of 1.
 ---@param right number# Strength of the right vibration motor on the Joystick. Must be in the range of 1.
+---@return boolean success# True if the vibration was successfully applied, false if not.
 ---@diagnostic disable-next-line: args-after-dots
 function Joystick:setVibration(left, right) end
 
@@ -9444,6 +10050,7 @@ function Joystick:setVibration(left, right) end
 ---
 ---[Wiki](https://love2d.org/wiki/Joystick:setVibration)
 ---
+---@return boolean success# True if the vibration was successfully disabled, false if not.
 ---@diagnostic disable-next-line: args-after-dots
 function Joystick:setVibration() end
 
@@ -9454,6 +10061,7 @@ function Joystick:setVibration() end
 ---@param left number# Strength of the left vibration motor on the Joystick. Must be in the range of 1.
 ---@param right number# Strength of the right vibration motor on the Joystick. Must be in the range of 1.
 ---@param duration? number# (-1) The duration of the vibration in seconds. A negative value means infinite duration.
+---@return boolean success# True if the vibration was successfully applied, false if not.
 ---@diagnostic disable-next-line: args-after-dots
 function Joystick:setVibration(left, right, duration) end
 
@@ -9464,6 +10072,7 @@ function Joystick:setVibration(left, right, duration) end
 ---[Wiki](https://love2d.org/wiki/love.joystick.getGamepadMappingString)
 ---
 ---@param guid string# The GUID value to get the mapping string for.
+---@return string mappingstring# A string containing the Joystick's gamepad mappings, or nil if the GUID is not recognized as a gamepad.
 ---@diagnostic disable-next-line: args-after-dots
 function love.joystick.getGamepadMappingString(guid) end
 
@@ -9471,6 +10080,7 @@ function love.joystick.getGamepadMappingString(guid) end
 ---
 ---[Wiki](https://love2d.org/wiki/love.joystick.getJoystickCount)
 ---
+---@return number joystickcount# The number of connected joysticks.
 ---@diagnostic disable-next-line: args-after-dots
 function love.joystick.getJoystickCount() end
 
@@ -9478,6 +10088,7 @@ function love.joystick.getJoystickCount() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.joystick.getJoysticks)
 ---
+---@return table[] joysticks# The list of currently connected Joysticks.
 ---@diagnostic disable-next-line: args-after-dots
 function love.joystick.getJoysticks() end
 
@@ -9508,6 +10119,7 @@ function love.joystick.loadGamepadMappings(mappings) end
 ---[Wiki](https://love2d.org/wiki/love.joystick.saveGamepadMappings)
 ---
 ---@param filename string# The filename to save the mappings string to.
+---@return string mappings# The mappings string that was written to the file.
 ---@diagnostic disable-next-line: args-after-dots
 function love.joystick.saveGamepadMappings(filename) end
 
@@ -9517,6 +10129,7 @@ function love.joystick.saveGamepadMappings(filename) end
 ---
 ---[Wiki](https://love2d.org/wiki/love.joystick.saveGamepadMappings)
 ---
+---@return string mappings# The mappings string.
 ---@diagnostic disable-next-line: args-after-dots
 function love.joystick.saveGamepadMappings() end
 
@@ -9533,6 +10146,7 @@ function love.joystick.saveGamepadMappings() end
 ---@param inputtype love.JoystickInputType# The type of input to bind the virtual gamepad button to.
 ---@param inputindex number# The index of the axis, button, or hat to bind the virtual gamepad button to.
 ---@param hatdir? love.JoystickHat# (nil) The direction of the hat, if the virtual gamepad button will be bound to a hat. nil otherwise.
+---@return boolean success# Whether the virtual gamepad button was successfully bound.
 ---@diagnostic disable-next-line: args-after-dots
 function love.joystick.setGamepadMapping(guid, button, inputtype, inputindex, hatdir) end
 
@@ -9549,6 +10163,7 @@ function love.joystick.setGamepadMapping(guid, button, inputtype, inputindex, ha
 ---@param inputtype love.JoystickInputType# The type of input to bind the virtual gamepad axis to.
 ---@param inputindex number# The index of the axis, button, or hat to bind the virtual gamepad axis to.
 ---@param hatdir? love.JoystickHat# (nil) The direction of the hat, if the virtual gamepad axis will be bound to a hat. nil otherwise.
+---@return boolean success# Whether the virtual gamepad axis was successfully bound.
 ---@diagnostic disable-next-line: args-after-dots
 function love.joystick.setGamepadMapping(guid, axis, inputtype, inputindex, hatdir) end
 
@@ -9561,6 +10176,7 @@ function love.joystick.setGamepadMapping(guid, axis, inputtype, inputindex, hatd
 ---[Wiki](https://love2d.org/wiki/love.keyboard.getKeyFromScancode)
 ---
 ---@param scancode love.Scancode# The scancode to get the key from.
+---@return love.KeyConstant key# The key corresponding to the given scancode, or 'unknown' if the scancode doesn't map to a KeyConstant on the current system.
 ---@diagnostic disable-next-line: args-after-dots
 function love.keyboard.getKeyFromScancode(scancode) end
 
@@ -9573,6 +10189,7 @@ function love.keyboard.getKeyFromScancode(scancode) end
 ---[Wiki](https://love2d.org/wiki/love.keyboard.getScancodeFromKey)
 ---
 ---@param key love.KeyConstant# The key to get the scancode from.
+---@return love.Scancode scancode# The scancode corresponding to the given key, or 'unknown' if the given key has no known physical representation on the current system.
 ---@diagnostic disable-next-line: args-after-dots
 function love.keyboard.getScancodeFromKey(key) end
 
@@ -9580,6 +10197,7 @@ function love.keyboard.getScancodeFromKey(key) end
 ---
 ---[Wiki](https://love2d.org/wiki/love.keyboard.hasKeyRepeat)
 ---
+---@return boolean enabled# Whether key repeat is enabled.
 ---@diagnostic disable-next-line: args-after-dots
 function love.keyboard.hasKeyRepeat() end
 
@@ -9587,6 +10205,7 @@ function love.keyboard.hasKeyRepeat() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.keyboard.hasScreenKeyboard)
 ---
+---@return boolean supported# Whether screen keyboard is supported.
 ---@diagnostic disable-next-line: args-after-dots
 function love.keyboard.hasScreenKeyboard() end
 
@@ -9594,6 +10213,7 @@ function love.keyboard.hasScreenKeyboard() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.keyboard.hasTextInput)
 ---
+---@return boolean enabled# Whether text input events are enabled.
 ---@diagnostic disable-next-line: args-after-dots
 function love.keyboard.hasTextInput() end
 
@@ -9602,6 +10222,7 @@ function love.keyboard.hasTextInput() end
 ---[Wiki](https://love2d.org/wiki/love.keyboard.isDown)
 ---
 ---@param key love.KeyConstant# The key to check.
+---@return boolean down# True if the key is down, false if not.
 ---@diagnostic disable-next-line: args-after-dots
 function love.keyboard.isDown(key) end
 
@@ -9611,6 +10232,7 @@ function love.keyboard.isDown(key) end
 ---
 ---@param key love.KeyConstant# A key to check.
 ---@param ... love.KeyConstant# Additional keys to check.
+---@return boolean anyDown# True if any supplied key is down, false if not.
 ---@diagnostic disable-next-line: args-after-dots
 function love.keyboard.isDown(key, ...) end
 
@@ -9622,6 +10244,7 @@ function love.keyboard.isDown(key, ...) end
 ---
 ---@param scancode love.Scancode# A Scancode to check.
 ---@param ... love.Scancode# Additional Scancodes to check.
+---@return boolean down# True if any supplied Scancode is down, false if not.
 ---@diagnostic disable-next-line: args-after-dots
 function love.keyboard.isScancodeDown(scancode, ...) end
 
@@ -9664,6 +10287,8 @@ function love.keyboard.setTextInput(enable, x, y, w, h) end
 ---[Wiki](https://love2d.org/wiki/BezierCurve:evaluate)
 ---
 ---@param t number# Where to evaluate the curve.
+---@return number x# x coordinate of the curve at parameter t.
+---@return number y# y coordinate of the curve at parameter t.
 ---@diagnostic disable-next-line: args-after-dots
 function BezierCurve:evaluate(t) end
 
@@ -9672,6 +10297,8 @@ function BezierCurve:evaluate(t) end
 ---[Wiki](https://love2d.org/wiki/BezierCurve:getControlPoint)
 ---
 ---@param i number# Index of the control point.
+---@return number x# Position of the control point along the x axis.
+---@return number y# Position of the control point along the y axis.
 ---@diagnostic disable-next-line: args-after-dots
 function BezierCurve:getControlPoint(i) end
 
@@ -9679,6 +10306,7 @@ function BezierCurve:getControlPoint(i) end
 ---
 ---[Wiki](https://love2d.org/wiki/BezierCurve:getControlPointCount)
 ---
+---@return number count# The number of control points.
 ---@diagnostic disable-next-line: args-after-dots
 function BezierCurve:getControlPointCount() end
 
@@ -9686,6 +10314,7 @@ function BezierCurve:getControlPointCount() end
 ---
 ---[Wiki](https://love2d.org/wiki/BezierCurve:getDegree)
 ---
+---@return number degree# Degree of the Bézier curve.
 ---@diagnostic disable-next-line: args-after-dots
 function BezierCurve:getDegree() end
 
@@ -9695,6 +10324,7 @@ function BezierCurve:getDegree() end
 ---
 ---[Wiki](https://love2d.org/wiki/BezierCurve:getDerivative)
 ---
+---@return love.BezierCurve derivative# The derivative curve.
 ---@diagnostic disable-next-line: args-after-dots
 function BezierCurve:getDerivative() end
 
@@ -9704,6 +10334,7 @@ function BezierCurve:getDerivative() end
 ---
 ---@param startpoint number# The starting point along the curve. Must be between 0 and 1.
 ---@param endpoint number# The end of the segment. Must be between 0 and 1.
+---@return love.BezierCurve curve# A BezierCurve that corresponds to the specified segment.
 ---@diagnostic disable-next-line: args-after-dots
 function BezierCurve:getSegment(startpoint, endpoint) end
 
@@ -9734,6 +10365,7 @@ function BezierCurve:removeControlPoint(index) end
 ---[Wiki](https://love2d.org/wiki/BezierCurve:render)
 ---
 ---@param depth? number# (5) Number of recursive subdivision steps.
+---@return table[] coordinates# List of x,y-coordinate pairs of points on the curve.
 ---@diagnostic disable-next-line: args-after-dots
 function BezierCurve:render(depth) end
 
@@ -9748,6 +10380,7 @@ function BezierCurve:render(depth) end
 ---@param startpoint number# The starting point along the curve. Must be between 0 and 1.
 ---@param endpoint number# The end of the segment to render. Must be between 0 and 1.
 ---@param depth? number# (5) Number of recursive subdivision steps.
+---@return table[] coordinates# List of x,y-coordinate pairs of points on the specified part of the curve.
 ---@diagnostic disable-next-line: args-after-dots
 function BezierCurve:renderSegment(startpoint, endpoint, depth) end
 
@@ -9796,6 +10429,8 @@ function BezierCurve:translate(dx, dy) end
 ---
 ---[Wiki](https://love2d.org/wiki/RandomGenerator:getSeed)
 ---
+---@return number low# Integer number representing the lower 32 bits of the RandomGenerator's 64 bit seed value.
+---@return number high# Integer number representing the higher 32 bits of the RandomGenerator's 64 bit seed value.
 ---@diagnostic disable-next-line: args-after-dots
 function RandomGenerator:getSeed() end
 
@@ -9805,6 +10440,7 @@ function RandomGenerator:getSeed() end
 ---
 ---[Wiki](https://love2d.org/wiki/RandomGenerator:getState)
 ---
+---@return string state# The current state of the RandomGenerator object, represented as a string.
 ---@diagnostic disable-next-line: args-after-dots
 function RandomGenerator:getState() end
 
@@ -9812,6 +10448,7 @@ function RandomGenerator:getState() end
 ---
 ---[Wiki](https://love2d.org/wiki/RandomGenerator:random)
 ---
+---@return number number# The pseudo-random number.
 ---@diagnostic disable-next-line: args-after-dots
 function RandomGenerator:random() end
 
@@ -9820,6 +10457,7 @@ function RandomGenerator:random() end
 ---[Wiki](https://love2d.org/wiki/RandomGenerator:random)
 ---
 ---@param max number# The maximum possible value it should return.
+---@return number number# The pseudo-random integer number.
 ---@diagnostic disable-next-line: args-after-dots
 function RandomGenerator:random(max) end
 
@@ -9829,6 +10467,7 @@ function RandomGenerator:random(max) end
 ---
 ---@param min number# The minimum possible value it should return.
 ---@param max number# The maximum possible value it should return.
+---@return number number# The pseudo-random integer number.
 ---@diagnostic disable-next-line: args-after-dots
 function RandomGenerator:random(min, max) end
 
@@ -9838,6 +10477,7 @@ function RandomGenerator:random(min, max) end
 ---
 ---@param stddev? number# (1) Standard deviation of the distribution.
 ---@param mean? number# (0) The mean of the distribution.
+---@return number number# Normally distributed random number with variance (stddev)² and the specified mean.
 ---@diagnostic disable-next-line: args-after-dots
 function RandomGenerator:randomNormal(stddev, mean) end
 
@@ -9875,6 +10515,7 @@ function RandomGenerator:setState(state) end
 ---[Wiki](https://love2d.org/wiki/Transform:apply)
 ---
 ---@param other love.Transform# The other Transform object to apply to this Transform.
+---@return love.Transform transform# The Transform object the method was called on. Allows easily chaining Transform methods.
 ---@diagnostic disable-next-line: args-after-dots
 function Transform:apply(other) end
 
@@ -9882,6 +10523,7 @@ function Transform:apply(other) end
 ---
 ---[Wiki](https://love2d.org/wiki/Transform:clone)
 ---
+---@return love.Transform clone# The copy of this Transform.
 ---@diagnostic disable-next-line: args-after-dots
 function Transform:clone() end
 
@@ -9889,6 +10531,22 @@ function Transform:clone() end
 ---
 ---[Wiki](https://love2d.org/wiki/Transform:getMatrix)
 ---
+---@return number e1_1# The first column of the first row of the matrix.
+---@return number e1_2# The second column of the first row of the matrix.
+---@return number e1_3# The third column of the first row of the matrix.
+---@return number e1_4# The fourth column of the first row of the matrix.
+---@return number e2_1# The first column of the second row of the matrix.
+---@return number e2_2# The second column of the second row of the matrix.
+---@return number e2_3# The third column of the second row of the matrix.
+---@return number e2_4# The fourth column of the second row of the matrix.
+---@return number e3_1# The first column of the third row of the matrix.
+---@return number e3_2# The second column of the third row of the matrix.
+---@return number e3_3# The third column of the third row of the matrix.
+---@return number e3_4# The fourth column of the third row of the matrix.
+---@return number e4_1# The first column of the fourth row of the matrix.
+---@return number e4_2# The second column of the fourth row of the matrix.
+---@return number e4_3# The third column of the fourth row of the matrix.
+---@return number e4_4# The fourth column of the fourth row of the matrix.
 ---@diagnostic disable-next-line: args-after-dots
 function Transform:getMatrix() end
 
@@ -9896,6 +10554,7 @@ function Transform:getMatrix() end
 ---
 ---[Wiki](https://love2d.org/wiki/Transform:inverse)
 ---
+---@return love.Transform inverse# A new Transform object representing the inverse of this Transform's matrix.
 ---@diagnostic disable-next-line: args-after-dots
 function Transform:inverse() end
 
@@ -9909,6 +10568,8 @@ function Transform:inverse() end
 ---
 ---@param localX number# The x component of the position with the transform applied.
 ---@param localY number# The y component of the position with the transform applied.
+---@return number globalX# The x component of the position in global coordinates.
+---@return number globalY# The y component of the position in global coordinates.
 ---@diagnostic disable-next-line: args-after-dots
 function Transform:inverseTransformPoint(localX, localY) end
 
@@ -9916,6 +10577,7 @@ function Transform:inverseTransformPoint(localX, localY) end
 ---
 ---[Wiki](https://love2d.org/wiki/Transform:isAffine2DTransform)
 ---
+---@return boolean affine# true if the transform object is an affine transformation, false otherwise.
 ---@diagnostic disable-next-line: args-after-dots
 function Transform:isAffine2DTransform() end
 
@@ -9923,6 +10585,7 @@ function Transform:isAffine2DTransform() end
 ---
 ---[Wiki](https://love2d.org/wiki/Transform:reset)
 ---
+---@return love.Transform transform# The Transform object the method was called on. Allows easily chaining Transform methods.
 ---@diagnostic disable-next-line: args-after-dots
 function Transform:reset() end
 
@@ -9931,6 +10594,7 @@ function Transform:reset() end
 ---[Wiki](https://love2d.org/wiki/Transform:rotate)
 ---
 ---@param angle number# The relative angle in radians to rotate this Transform by.
+---@return love.Transform transform# The Transform object the method was called on. Allows easily chaining Transform methods.
 ---@diagnostic disable-next-line: args-after-dots
 function Transform:rotate(angle) end
 
@@ -9940,6 +10604,7 @@ function Transform:rotate(angle) end
 ---
 ---@param sx number# The relative scale factor along the x-axis.
 ---@param sy? number# (sx) The relative scale factor along the y-axis.
+---@return love.Transform transform# The Transform object the method was called on. Allows easily chaining Transform methods.
 ---@diagnostic disable-next-line: args-after-dots
 function Transform:scale(sx, sy) end
 
@@ -9963,6 +10628,7 @@ function Transform:scale(sx, sy) end
 ---@param e4_2 number# The second column of the fourth row of the matrix.
 ---@param e4_3 number# The third column of the fourth row of the matrix.
 ---@param e4_4 number# The fourth column of the fourth row of the matrix.
+---@return love.Transform transform# The Transform object the method was called on. Allows easily chaining Transform methods.
 ---@diagnostic disable-next-line: args-after-dots
 function Transform:setMatrix(e1_1, e1_2, e1_3, e1_4, e2_1, e2_2, e2_3, e2_4, e3_1, e3_2, e3_3, e3_4, e4_1, e4_2, e4_3, e4_4) end
 
@@ -9987,6 +10653,7 @@ function Transform:setMatrix(e1_1, e1_2, e1_3, e1_4, e2_1, e2_2, e2_3, e2_4, e3_
 ---@param e4_2 number# The second column/row of the fourth row/column of the matrix.
 ---@param e4_3 number# The third column/row of the fourth row/column of the matrix.
 ---@param e4_4 number# The fourth column of the fourth row of the matrix.
+---@return love.Transform transform# The Transform object the method was called on. Allows easily chaining Transform methods.
 ---@diagnostic disable-next-line: args-after-dots
 function Transform:setMatrix(layout, e1_1, e1_2, e1_3, e1_4, e2_1, e2_2, e2_3, e2_4, e3_1, e3_2, e3_3, e3_4, e4_1, e4_2, e4_3, e4_4) end
 
@@ -9996,6 +10663,7 @@ function Transform:setMatrix(layout, e1_1, e1_2, e1_3, e1_4, e2_1, e2_2, e2_3, e
 ---
 ---@param layout love.MatrixLayout# How to interpret the matrix element arguments (row-major or column-major).
 ---@param matrix table[]# A flat table containing the 16 matrix elements.
+---@return love.Transform transform# The Transform object the method was called on. Allows easily chaining Transform methods.
 ---@diagnostic disable-next-line: args-after-dots
 function Transform:setMatrix(layout, matrix) end
 
@@ -10005,6 +10673,7 @@ function Transform:setMatrix(layout, matrix) end
 ---
 ---@param layout love.MatrixLayout# How to interpret the matrix element arguments (row-major or column-major).
 ---@param matrix table# A table of 4 tables, with each sub-table containing 4 matrix elements.
+---@return love.Transform transform# The Transform object the method was called on. Allows easily chaining Transform methods.
 ---@diagnostic disable-next-line: args-after-dots
 function Transform:setMatrix(layout, matrix) end
 
@@ -10021,6 +10690,7 @@ function Transform:setMatrix(layout, matrix) end
 ---@param oy? number# (0) Origin offset on the y-axis.
 ---@param kx? number# (0) Shearing / skew factor on the x-axis.
 ---@param ky? number# (0) Shearing / skew factor on the y-axis.
+---@return love.Transform transform# The Transform object the method was called on. Allows easily chaining Transform methods.
 ---@diagnostic disable-next-line: args-after-dots
 function Transform:setTransformation(x, y, angle, sx, sy, ox, oy, kx, ky) end
 
@@ -10030,6 +10700,7 @@ function Transform:setTransformation(x, y, angle, sx, sy, ox, oy, kx, ky) end
 ---
 ---@param kx number# The shear factor along the x-axis.
 ---@param ky number# The shear factor along the y-axis.
+---@return love.Transform transform# The Transform object the method was called on. Allows easily chaining Transform methods.
 ---@diagnostic disable-next-line: args-after-dots
 function Transform:shear(kx, ky) end
 
@@ -10041,6 +10712,8 @@ function Transform:shear(kx, ky) end
 ---
 ---@param globalX number# The x component of the position in global coordinates.
 ---@param globalY number# The y component of the position in global coordinates.
+---@return number localX# The x component of the position with the transform applied.
+---@return number localY# The y component of the position with the transform applied.
 ---@diagnostic disable-next-line: args-after-dots
 function Transform:transformPoint(globalX, globalY) end
 
@@ -10050,6 +10723,7 @@ function Transform:transformPoint(globalX, globalY) end
 ---
 ---@param dx number# The relative translation along the x-axis.
 ---@param dy number# The relative translation along the y-axis.
+---@return love.Transform transform# The Transform object the method was called on. Allows easily chaining Transform methods.
 ---@diagnostic disable-next-line: args-after-dots
 function Transform:translate(dx, dy) end
 
@@ -10061,6 +10735,10 @@ function Transform:translate(dx, dy) end
 ---@param gb number# Green color component in 0..255 range.
 ---@param bb number# Blue color component in 0..255 range.
 ---@param ab? number# (nil) Alpha color component in 0..255 range.
+---@return number r# Red color component in 0..1 range.
+---@return number g# Green color component in 0..1 range.
+---@return number b# Blue color component in 0..1 range.
+---@return number a# Alpha color component in 0..1 range or nil if alpha is not specified.
 ---@diagnostic disable-next-line: args-after-dots
 function love.math.colorFromBytes(rb, gb, bb, ab) end
 
@@ -10072,6 +10750,10 @@ function love.math.colorFromBytes(rb, gb, bb, ab) end
 ---@param g number# Green color component.
 ---@param b number# Blue color component.
 ---@param a? number# (nil) Alpha color component.
+---@return number rb# Red color component in 0..255 range.
+---@return number gb# Green color component in 0..255 range.
+---@return number bb# Blue color component in 0..255 range.
+---@return number ab# Alpha color component in 0..255 range or nil if alpha is not specified.
 ---@diagnostic disable-next-line: args-after-dots
 function love.math.colorToBytes(r, g, b, a) end
 
@@ -10086,6 +10768,9 @@ function love.math.colorToBytes(r, g, b, a) end
 ---@param r number# The red channel of the sRGB color to convert.
 ---@param g number# The green channel of the sRGB color to convert.
 ---@param b number# The blue channel of the sRGB color to convert.
+---@return number lr# The red channel of the converted color in linear RGB space.
+---@return number lg# The green channel of the converted color in linear RGB space.
+---@return number lb# The blue channel of the converted color in linear RGB space.
 ---@diagnostic disable-next-line: args-after-dots
 function love.math.gammaToLinear(r, g, b) end
 
@@ -10098,6 +10783,9 @@ function love.math.gammaToLinear(r, g, b) end
 ---[Wiki](https://love2d.org/wiki/love.math.gammaToLinear)
 ---
 ---@param color table# An array with the red, green, and blue channels of the sRGB color to convert.
+---@return number lr# The red channel of the converted color in linear RGB space.
+---@return number lg# The green channel of the converted color in linear RGB space.
+---@return number lb# The blue channel of the converted color in linear RGB space.
 ---@diagnostic disable-next-line: args-after-dots
 function love.math.gammaToLinear(color) end
 
@@ -10110,6 +10798,7 @@ function love.math.gammaToLinear(color) end
 ---[Wiki](https://love2d.org/wiki/love.math.gammaToLinear)
 ---
 ---@param c number# The value of a color channel in sRGB space to convert.
+---@return number lc# The value of the color channel in linear RGB space.
 ---@diagnostic disable-next-line: args-after-dots
 function love.math.gammaToLinear(c) end
 
@@ -10119,6 +10808,8 @@ function love.math.gammaToLinear(c) end
 ---
 ---[Wiki](https://love2d.org/wiki/love.math.getRandomSeed)
 ---
+---@return number low# Integer number representing the lower 32 bits of the random number generator's 64 bit seed value.
+---@return number high# Integer number representing the higher 32 bits of the random number generator's 64 bit seed value.
 ---@diagnostic disable-next-line: args-after-dots
 function love.math.getRandomSeed() end
 
@@ -10128,6 +10819,7 @@ function love.math.getRandomSeed() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.math.getRandomState)
 ---
+---@return string state# The current state of the random number generator, represented as a string.
 ---@diagnostic disable-next-line: args-after-dots
 function love.math.getRandomState() end
 
@@ -10138,6 +10830,7 @@ function love.math.getRandomState() end
 ---[Wiki](https://love2d.org/wiki/love.math.isConvex)
 ---
 ---@param vertices table[]# The vertices of the polygon as a table in the form of {x1, y1, x2, y2, x3, y3, ...}.
+---@return boolean convex# Whether the given polygon is convex.
 ---@diagnostic disable-next-line: args-after-dots
 function love.math.isConvex(vertices) end
 
@@ -10152,6 +10845,7 @@ function love.math.isConvex(vertices) end
 ---@param x2 number# The position of the second vertex of the polygon on the x-axis.
 ---@param y2 number# The position of the second vertex of the polygon on the y-axis.
 ---@param ... number# Additional position of the vertex of the polygon on the x-axis and y-axis.
+---@return boolean convex# Whether the given polygon is convex.
 ---@diagnostic disable-next-line: args-after-dots
 function love.math.isConvex(x1, y1, x2, y2, ...) end
 
@@ -10168,6 +10862,9 @@ function love.math.isConvex(x1, y1, x2, y2, ...) end
 ---@param lr number# The red channel of the linear RGB color to convert.
 ---@param lg number# The green channel of the linear RGB color to convert.
 ---@param lb number# The blue channel of the linear RGB color to convert.
+---@return number cr# The red channel of the converted color in gamma sRGB space.
+---@return number cg# The green channel of the converted color in gamma sRGB space.
+---@return number cb# The blue channel of the converted color in gamma sRGB space.
 ---@diagnostic disable-next-line: args-after-dots
 function love.math.linearToGamma(lr, lg, lb) end
 
@@ -10182,6 +10879,9 @@ function love.math.linearToGamma(lr, lg, lb) end
 ---[Wiki](https://love2d.org/wiki/love.math.linearToGamma)
 ---
 ---@param color table[]# An array with the red, green, and blue channels of the linear RGB color to convert.
+---@return number cr# The red channel of the converted color in gamma sRGB space.
+---@return number cg# The green channel of the converted color in gamma sRGB space.
+---@return number cb# The blue channel of the converted color in gamma sRGB space.
 ---@diagnostic disable-next-line: args-after-dots
 function love.math.linearToGamma(color) end
 
@@ -10196,6 +10896,7 @@ function love.math.linearToGamma(color) end
 ---[Wiki](https://love2d.org/wiki/love.math.linearToGamma)
 ---
 ---@param lc number# The value of a color channel in linear RGB space to convert.
+---@return number c# The value of the color channel in gamma sRGB space.
 ---@diagnostic disable-next-line: args-after-dots
 function love.math.linearToGamma(lc) end
 
@@ -10206,6 +10907,7 @@ function love.math.linearToGamma(lc) end
 ---[Wiki](https://love2d.org/wiki/love.math.newBezierCurve)
 ---
 ---@param vertices table[]# The vertices of the control polygon as a table in the form of {x1, y1, x2, y2, x3, y3, ...}.
+---@return love.BezierCurve curve# A Bézier curve object.
 ---@diagnostic disable-next-line: args-after-dots
 function love.math.newBezierCurve(vertices) end
 
@@ -10220,6 +10922,7 @@ function love.math.newBezierCurve(vertices) end
 ---@param x2 number# The position of the second vertex of the control polygon on the x-axis.
 ---@param y2 number# The position of the second vertex of the control polygon on the y-axis.
 ---@param ... number# Additional position of the vertex of the control polygon on the x-axis and y-axis.
+---@return love.BezierCurve curve# A Bézier curve object.
 ---@diagnostic disable-next-line: args-after-dots
 function love.math.newBezierCurve(x1, y1, x2, y2, ...) end
 
@@ -10227,6 +10930,7 @@ function love.math.newBezierCurve(x1, y1, x2, y2, ...) end
 ---
 ---[Wiki](https://love2d.org/wiki/love.math.newRandomGenerator)
 ---
+---@return love.RandomGenerator rng# The new Random Number Generator object.
 ---@diagnostic disable-next-line: args-after-dots
 function love.math.newRandomGenerator() end
 
@@ -10235,6 +10939,7 @@ function love.math.newRandomGenerator() end
 ---[Wiki](https://love2d.org/wiki/love.math.newRandomGenerator)
 ---
 ---@param seed number# The initial seed number to use for this object.
+---@return love.RandomGenerator rng# The new Random Number Generator object.
 ---@diagnostic disable-next-line: args-after-dots
 function love.math.newRandomGenerator(seed) end
 
@@ -10244,6 +10949,7 @@ function love.math.newRandomGenerator(seed) end
 ---
 ---@param low number# The lower 32 bits of the seed number to use for this object.
 ---@param high number# The higher 32 bits of the seed number to use for this object.
+---@return love.RandomGenerator rng# The new Random Number Generator object.
 ---@diagnostic disable-next-line: args-after-dots
 function love.math.newRandomGenerator(low, high) end
 
@@ -10251,6 +10957,7 @@ function love.math.newRandomGenerator(low, high) end
 ---
 ---[Wiki](https://love2d.org/wiki/love.math.newTransform)
 ---
+---@return love.Transform transform# The new Transform object.
 ---@diagnostic disable-next-line: args-after-dots
 function love.math.newTransform() end
 
@@ -10267,6 +10974,7 @@ function love.math.newTransform() end
 ---@param oy? number# (0) Origin offset on the y-axis.
 ---@param kx? number# (0) Shearing / skew factor on the x-axis.
 ---@param ky? number# (0) Shearing / skew factor on the y-axis.
+---@return love.Transform transform# The new Transform object.
 ---@diagnostic disable-next-line: args-after-dots
 function love.math.newTransform(x, y, angle, sx, sy, ox, oy, kx, ky) end
 
@@ -10279,6 +10987,7 @@ function love.math.newTransform(x, y, angle, sx, sy, ox, oy, kx, ky) end
 ---[Wiki](https://love2d.org/wiki/love.math.noise)
 ---
 ---@param x number# The number used to generate the noise value.
+---@return number value# The noise value in the range of 1.
 ---@diagnostic disable-next-line: args-after-dots
 function love.math.noise(x) end
 
@@ -10292,6 +11001,7 @@ function love.math.noise(x) end
 ---
 ---@param x number# The first value of the 2-dimensional vector used to generate the noise value.
 ---@param y number# The second value of the 2-dimensional vector used to generate the noise value.
+---@return number value# The noise value in the range of 1.
 ---@diagnostic disable-next-line: args-after-dots
 function love.math.noise(x, y) end
 
@@ -10306,6 +11016,7 @@ function love.math.noise(x, y) end
 ---@param x number# The first value of the 3-dimensional vector used to generate the noise value.
 ---@param y number# The second value of the 3-dimensional vector used to generate the noise value.
 ---@param z number# The third value of the 3-dimensional vector used to generate the noise value.
+---@return number value# The noise value in the range of 1.
 ---@diagnostic disable-next-line: args-after-dots
 function love.math.noise(x, y, z) end
 
@@ -10321,6 +11032,7 @@ function love.math.noise(x, y, z) end
 ---@param y number# The second value of the 4-dimensional vector used to generate the noise value.
 ---@param z number# The third value of the 4-dimensional vector used to generate the noise value.
 ---@param w number# The fourth value of the 4-dimensional vector used to generate the noise value.
+---@return number value# The noise value in the range of 1.
 ---@diagnostic disable-next-line: args-after-dots
 function love.math.noise(x, y, z, w) end
 
@@ -10328,6 +11040,7 @@ function love.math.noise(x, y, z, w) end
 ---
 ---[Wiki](https://love2d.org/wiki/love.math.random)
 ---
+---@return number number# The pseudo-random number.
 ---@diagnostic disable-next-line: args-after-dots
 function love.math.random() end
 
@@ -10336,6 +11049,7 @@ function love.math.random() end
 ---[Wiki](https://love2d.org/wiki/love.math.random)
 ---
 ---@param max number# The maximum possible value it should return.
+---@return number number# The pseudo-random integer number.
 ---@diagnostic disable-next-line: args-after-dots
 function love.math.random(max) end
 
@@ -10345,6 +11059,7 @@ function love.math.random(max) end
 ---
 ---@param min number# The minimum possible value it should return.
 ---@param max number# The maximum possible value it should return.
+---@return number number# The pseudo-random integer number.
 ---@diagnostic disable-next-line: args-after-dots
 function love.math.random(min, max) end
 
@@ -10354,6 +11069,7 @@ function love.math.random(min, max) end
 ---
 ---@param stddev? number# (1) Standard deviation of the distribution.
 ---@param mean? number# (0) The mean of the distribution.
+---@return number number# Normally distributed random number with variance (stddev)² and the specified mean.
 ---@diagnostic disable-next-line: args-after-dots
 function love.math.randomNormal(stddev, mean) end
 
@@ -10389,6 +11105,7 @@ function love.math.setRandomState(state) end
 ---[Wiki](https://love2d.org/wiki/love.math.triangulate)
 ---
 ---@param polygon table# Polygon to triangulate. Must not intersect itself.
+---@return table triangles# List of triangles the polygon is composed of, in the form of {{x1, y1, x2, y2, x3, y3},  {x1, y1, x2, y2, x3, y3}, ...}.
 ---@diagnostic disable-next-line: args-after-dots
 function love.math.triangulate(polygon) end
 
@@ -10402,6 +11119,7 @@ function love.math.triangulate(polygon) end
 ---@param y2 number# The position of the second vertex of the polygon on the y-axis.
 ---@param x3 number# The position of the third vertex of the polygon on the x-axis.
 ---@param y3 number# The position of the third vertex of the polygon on the y-axis.
+---@return table triangles# List of triangles the polygon is composed of, in the form of {{x1, y1, x2, y2, x3, y3},  {x1, y1, x2, y2, x3, y3}, ...}.
 ---@diagnostic disable-next-line: args-after-dots
 function love.math.triangulate(x1, y1, x2, y2, x3, y3) end
 
@@ -10409,6 +11127,7 @@ function love.math.triangulate(x1, y1, x2, y2, x3, y3) end
 ---
 ---[Wiki](https://love2d.org/wiki/Cursor:getType)
 ---
+---@return love.CursorType ctype# The type of the Cursor.
 ---@diagnostic disable-next-line: args-after-dots
 function Cursor:getType() end
 
@@ -10416,6 +11135,7 @@ function Cursor:getType() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.mouse.getCursor)
 ---
+---@return love.Cursor cursor# The current cursor, or nil if no cursor is set.
 ---@diagnostic disable-next-line: args-after-dots
 function love.mouse.getCursor() end
 
@@ -10423,6 +11143,8 @@ function love.mouse.getCursor() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.mouse.getPosition)
 ---
+---@return number x# The position of the mouse along the x-axis.
+---@return number y# The position of the mouse along the y-axis.
 ---@diagnostic disable-next-line: args-after-dots
 function love.mouse.getPosition() end
 
@@ -10434,6 +11156,7 @@ function love.mouse.getPosition() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.mouse.getRelativeMode)
 ---
+---@return boolean enabled# True if relative mode is enabled, false if it's disabled.
 ---@diagnostic disable-next-line: args-after-dots
 function love.mouse.getRelativeMode() end
 
@@ -10444,6 +11167,7 @@ function love.mouse.getRelativeMode() end
 ---[Wiki](https://love2d.org/wiki/love.mouse.getSystemCursor)
 ---
 ---@param ctype love.CursorType# The type of system cursor to get. 
+---@return love.Cursor cursor# The Cursor object representing the system cursor type.
 ---@diagnostic disable-next-line: args-after-dots
 function love.mouse.getSystemCursor(ctype) end
 
@@ -10451,6 +11175,7 @@ function love.mouse.getSystemCursor(ctype) end
 ---
 ---[Wiki](https://love2d.org/wiki/love.mouse.getX)
 ---
+---@return number x# The position of the mouse along the x-axis.
 ---@diagnostic disable-next-line: args-after-dots
 function love.mouse.getX() end
 
@@ -10458,6 +11183,7 @@ function love.mouse.getX() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.mouse.getY)
 ---
+---@return number y# The position of the mouse along the y-axis.
 ---@diagnostic disable-next-line: args-after-dots
 function love.mouse.getY() end
 
@@ -10467,6 +11193,7 @@ function love.mouse.getY() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.mouse.isCursorSupported)
 ---
+---@return boolean supported# Whether the system has cursor functionality.
 ---@diagnostic disable-next-line: args-after-dots
 function love.mouse.isCursorSupported() end
 
@@ -10478,6 +11205,7 @@ function love.mouse.isCursorSupported() end
 ---
 ---@param button number# The index of a button to check. 1 is the primary mouse button, 2 is the secondary mouse button and 3 is the middle button. Further buttons are mouse dependant.
 ---@param ... number# Additional button numbers to check.
+---@return boolean down# True if any specified button is down.
 ---@diagnostic disable-next-line: args-after-dots
 function love.mouse.isDown(button, ...) end
 
@@ -10485,6 +11213,7 @@ function love.mouse.isDown(button, ...) end
 ---
 ---[Wiki](https://love2d.org/wiki/love.mouse.isGrabbed)
 ---
+---@return boolean grabbed# True if the cursor is grabbed, false if it is not.
 ---@diagnostic disable-next-line: args-after-dots
 function love.mouse.isGrabbed() end
 
@@ -10492,6 +11221,7 @@ function love.mouse.isGrabbed() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.mouse.isVisible)
 ---
+---@return boolean visible# True if the cursor to visible, false if the cursor is hidden.
 ---@diagnostic disable-next-line: args-after-dots
 function love.mouse.isVisible() end
 
@@ -10506,6 +11236,7 @@ function love.mouse.isVisible() end
 ---@param imageData love.ImageData# The ImageData to use for the new Cursor.
 ---@param hotx? number# (0) The x-coordinate in the ImageData of the cursor's hot spot.
 ---@param hoty? number# (0) The y-coordinate in the ImageData of the cursor's hot spot.
+---@return love.Cursor cursor# The new Cursor object.
 ---@diagnostic disable-next-line: args-after-dots
 function love.mouse.newCursor(imageData, hotx, hoty) end
 
@@ -10520,6 +11251,7 @@ function love.mouse.newCursor(imageData, hotx, hoty) end
 ---@param filename string# Path to the image to use for the new Cursor.
 ---@param hotx? number# (0) The x-coordinate in the image of the cursor's hot spot.
 ---@param hoty? number# (0) The y-coordinate in the image of the cursor's hot spot.
+---@return love.Cursor cursor# The new Cursor object.
 ---@diagnostic disable-next-line: args-after-dots
 function love.mouse.newCursor(filename, hotx, hoty) end
 
@@ -10534,6 +11266,7 @@ function love.mouse.newCursor(filename, hotx, hoty) end
 ---@param fileData love.FileData# Data representing the image to use for the new Cursor.
 ---@param hotx? number# (0) The x-coordinate in the image of the cursor's hot spot.
 ---@param hoty? number# (0) The y-coordinate in the image of the cursor's hot spot.
+---@return love.Cursor cursor# The new Cursor object.
 ---@diagnostic disable-next-line: args-after-dots
 function love.mouse.newCursor(fileData, hotx, hoty) end
 
@@ -10714,6 +11447,7 @@ function Body:destroy() end
 ---
 ---[Wiki](https://love2d.org/wiki/Body:getAngle)
 ---
+---@return number angle# The angle in radians.
 ---@diagnostic disable-next-line: args-after-dots
 function Body:getAngle() end
 
@@ -10727,6 +11461,7 @@ function Body:getAngle() end
 ---
 ---[Wiki](https://love2d.org/wiki/Body:getAngularDamping)
 ---
+---@return number damping# The value of the angular damping.
 ---@diagnostic disable-next-line: args-after-dots
 function Body:getAngularDamping() end
 
@@ -10740,6 +11475,7 @@ function Body:getAngularDamping() end
 ---
 ---[Wiki](https://love2d.org/wiki/Body:getAngularVelocity)
 ---
+---@return number w# The angular velocity in radians/second.
 ---@diagnostic disable-next-line: args-after-dots
 function Body:getAngularVelocity() end
 
@@ -10747,6 +11483,7 @@ function Body:getAngularVelocity() end
 ---
 ---[Wiki](https://love2d.org/wiki/Body:getContacts)
 ---
+---@return table[] contacts# A list with all contacts associated with the Body.
 ---@diagnostic disable-next-line: args-after-dots
 function Body:getContacts() end
 
@@ -10754,6 +11491,7 @@ function Body:getContacts() end
 ---
 ---[Wiki](https://love2d.org/wiki/Body:getFixtures)
 ---
+---@return table[] fixtures# A sequence with all fixtures.
 ---@diagnostic disable-next-line: args-after-dots
 function Body:getFixtures() end
 
@@ -10761,6 +11499,7 @@ function Body:getFixtures() end
 ---
 ---[Wiki](https://love2d.org/wiki/Body:getGravityScale)
 ---
+---@return number scale# The gravity scale factor.
 ---@diagnostic disable-next-line: args-after-dots
 function Body:getGravityScale() end
 
@@ -10770,6 +11509,7 @@ function Body:getGravityScale() end
 ---
 ---[Wiki](https://love2d.org/wiki/Body:getInertia)
 ---
+---@return number inertia# The rotational inertial of the body.
 ---@diagnostic disable-next-line: args-after-dots
 function Body:getInertia() end
 
@@ -10777,6 +11517,7 @@ function Body:getInertia() end
 ---
 ---[Wiki](https://love2d.org/wiki/Body:getJoints)
 ---
+---@return table[] joints# A sequence with the Joints attached to the Body.
 ---@diagnostic disable-next-line: args-after-dots
 function Body:getJoints() end
 
@@ -10788,6 +11529,7 @@ function Body:getJoints() end
 ---
 ---[Wiki](https://love2d.org/wiki/Body:getLinearDamping)
 ---
+---@return number damping# The value of the linear damping.
 ---@diagnostic disable-next-line: args-after-dots
 function Body:getLinearDamping() end
 
@@ -10807,6 +11549,8 @@ function Body:getLinearDamping() end
 ---
 ---[Wiki](https://love2d.org/wiki/Body:getLinearVelocity)
 ---
+---@return number x# The x-component of the velocity vector
+---@return number y# The y-component of the velocity vector
 ---@diagnostic disable-next-line: args-after-dots
 function Body:getLinearVelocity() end
 
@@ -10820,6 +11564,8 @@ function Body:getLinearVelocity() end
 ---
 ---@param x number# The x position to measure velocity.
 ---@param y number# The y position to measure velocity.
+---@return number vx# The x component of velocity at point (x,y).
+---@return number vy# The y component of velocity at point (x,y).
 ---@diagnostic disable-next-line: args-after-dots
 function Body:getLinearVelocityFromLocalPoint(x, y) end
 
@@ -10833,6 +11579,8 @@ function Body:getLinearVelocityFromLocalPoint(x, y) end
 ---
 ---@param x number# The x position to measure velocity.
 ---@param y number# The y position to measure velocity.
+---@return number vx# The x component of velocity at point (x,y).
+---@return number vy# The y component of velocity at point (x,y).
 ---@diagnostic disable-next-line: args-after-dots
 function Body:getLinearVelocityFromWorldPoint(x, y) end
 
@@ -10842,6 +11590,8 @@ function Body:getLinearVelocityFromWorldPoint(x, y) end
 ---
 ---[Wiki](https://love2d.org/wiki/Body:getLocalCenter)
 ---
+---@return number x# The x coordinate of the center of mass.
+---@return number y# The y coordinate of the center of mass.
 ---@diagnostic disable-next-line: args-after-dots
 function Body:getLocalCenter() end
 
@@ -10851,6 +11601,8 @@ function Body:getLocalCenter() end
 ---
 ---@param worldX number# The x position in world coordinates.
 ---@param worldY number# The y position in world coordinates.
+---@return number localX# The x position in local coordinates.
+---@return number localY# The y position in local coordinates.
 ---@diagnostic disable-next-line: args-after-dots
 function Body:getLocalPoint(worldX, worldY) end
 
@@ -10863,6 +11615,11 @@ function Body:getLocalPoint(worldX, worldY) end
 ---@param x2 number# (Argument) The x position of the second point.
 ---@param y2 number# (Argument) The y position of the second point.
 ---@param ... number# (Argument) You can continue passing x and y position of the points.
+---@return number x1# (Result) The transformed x position of the first point.
+---@return number y1# (Result) The transformed y position of the first point.
+---@return number x2# (Result) The transformed x position of the second point.
+---@return number y2# (Result) The transformed y position of the second point.
+---@return number ...# (Result) Additional transformed x and y position of the points.
 ---@diagnostic disable-next-line: args-after-dots
 function Body:getLocalPoints(x1, y1, x2, y2, ...) end
 
@@ -10872,6 +11629,8 @@ function Body:getLocalPoints(x1, y1, x2, y2, ...) end
 ---
 ---@param worldX number# The vector x component in world coordinates.
 ---@param worldY number# The vector y component in world coordinates.
+---@return number localX# The vector x component in local coordinates.
+---@return number localY# The vector y component in local coordinates.
 ---@diagnostic disable-next-line: args-after-dots
 function Body:getLocalVector(worldX, worldY) end
 
@@ -10881,6 +11640,7 @@ function Body:getLocalVector(worldX, worldY) end
 ---
 ---[Wiki](https://love2d.org/wiki/Body:getMass)
 ---
+---@return number mass# The mass of the body (in kilograms).
 ---@diagnostic disable-next-line: args-after-dots
 function Body:getMass() end
 
@@ -10888,6 +11648,10 @@ function Body:getMass() end
 ---
 ---[Wiki](https://love2d.org/wiki/Body:getMassData)
 ---
+---@return number x# The x position of the center of mass.
+---@return number y# The y position of the center of mass.
+---@return number mass# The mass of the body.
+---@return number inertia# The rotational inertia.
 ---@diagnostic disable-next-line: args-after-dots
 function Body:getMassData() end
 
@@ -10897,6 +11661,8 @@ function Body:getMassData() end
 ---
 ---[Wiki](https://love2d.org/wiki/Body:getPosition)
 ---
+---@return number x# The x position.
+---@return number y# The y position.
 ---@diagnostic disable-next-line: args-after-dots
 function Body:getPosition() end
 
@@ -10906,6 +11672,9 @@ function Body:getPosition() end
 ---
 ---[Wiki](https://love2d.org/wiki/Body:getTransform)
 ---
+---@return number x# The x component of the position.
+---@return number y# The y component of the position.
+---@return number angle# The angle in radians.
 ---@diagnostic disable-next-line: args-after-dots
 function Body:getTransform() end
 
@@ -10913,6 +11682,7 @@ function Body:getTransform() end
 ---
 ---[Wiki](https://love2d.org/wiki/Body:getType)
 ---
+---@return love.BodyType type# The body type.
 ---@diagnostic disable-next-line: args-after-dots
 function Body:getType() end
 
@@ -10920,6 +11690,7 @@ function Body:getType() end
 ---
 ---[Wiki](https://love2d.org/wiki/Body:getUserData)
 ---
+---@return any value# The Lua value associated with the Body.
 ---@diagnostic disable-next-line: args-after-dots
 function Body:getUserData() end
 
@@ -10927,6 +11698,7 @@ function Body:getUserData() end
 ---
 ---[Wiki](https://love2d.org/wiki/Body:getWorld)
 ---
+---@return love.World world# The world the body lives in.
 ---@diagnostic disable-next-line: args-after-dots
 function Body:getWorld() end
 
@@ -10936,6 +11708,8 @@ function Body:getWorld() end
 ---
 ---[Wiki](https://love2d.org/wiki/Body:getWorldCenter)
 ---
+---@return number x# The x coordinate of the center of mass.
+---@return number y# The y coordinate of the center of mass.
 ---@diagnostic disable-next-line: args-after-dots
 function Body:getWorldCenter() end
 
@@ -10945,6 +11719,8 @@ function Body:getWorldCenter() end
 ---
 ---@param localX number# The x position in local coordinates.
 ---@param localY number# The y position in local coordinates.
+---@return number worldX# The x position in world coordinates.
+---@return number worldY# The y position in world coordinates.
 ---@diagnostic disable-next-line: args-after-dots
 function Body:getWorldPoint(localX, localY) end
 
@@ -10956,6 +11732,10 @@ function Body:getWorldPoint(localX, localY) end
 ---@param y1 number# The y position of the first point.
 ---@param x2 number# The x position of the second point.
 ---@param y2 number# The y position of the second point.
+---@return number x1# The transformed x position of the first point.
+---@return number y1# The transformed y position of the first point.
+---@return number x2# The transformed x position of the second point.
+---@return number y2# The transformed y position of the second point.
 ---@diagnostic disable-next-line: args-after-dots
 function Body:getWorldPoints(x1, y1, x2, y2) end
 
@@ -10965,6 +11745,8 @@ function Body:getWorldPoints(x1, y1, x2, y2) end
 ---
 ---@param localX number# The vector x component in local coordinates.
 ---@param localY number# The vector y component in local coordinates.
+---@return number worldX# The vector x component in world coordinates.
+---@return number worldY# The vector y component in world coordinates.
 ---@diagnostic disable-next-line: args-after-dots
 function Body:getWorldVector(localX, localY) end
 
@@ -10972,6 +11754,7 @@ function Body:getWorldVector(localX, localY) end
 ---
 ---[Wiki](https://love2d.org/wiki/Body:getX)
 ---
+---@return number x# The x position in world coordinates.
 ---@diagnostic disable-next-line: args-after-dots
 function Body:getX() end
 
@@ -10979,6 +11762,7 @@ function Body:getX() end
 ---
 ---[Wiki](https://love2d.org/wiki/Body:getY)
 ---
+---@return number y# The y position in world coordinates.
 ---@diagnostic disable-next-line: args-after-dots
 function Body:getY() end
 
@@ -10986,6 +11770,7 @@ function Body:getY() end
 ---
 ---[Wiki](https://love2d.org/wiki/Body:isActive)
 ---
+---@return boolean status# True if the body is active or false if not.
 ---@diagnostic disable-next-line: args-after-dots
 function Body:isActive() end
 
@@ -10993,6 +11778,7 @@ function Body:isActive() end
 ---
 ---[Wiki](https://love2d.org/wiki/Body:isAwake)
 ---
+---@return boolean status# True if the body is awake or false if not.
 ---@diagnostic disable-next-line: args-after-dots
 function Body:isAwake() end
 
@@ -11010,6 +11796,7 @@ function Body:isAwake() end
 ---
 ---[Wiki](https://love2d.org/wiki/Body:isBullet)
 ---
+---@return boolean status# The bullet status of the body.
 ---@diagnostic disable-next-line: args-after-dots
 function Body:isBullet() end
 
@@ -11017,6 +11804,7 @@ function Body:isBullet() end
 ---
 ---[Wiki](https://love2d.org/wiki/Body:isDestroyed)
 ---
+---@return boolean destroyed# Whether the Body is destroyed.
 ---@diagnostic disable-next-line: args-after-dots
 function Body:isDestroyed() end
 
@@ -11024,6 +11812,7 @@ function Body:isDestroyed() end
 ---
 ---[Wiki](https://love2d.org/wiki/Body:isFixedRotation)
 ---
+---@return boolean fixed# True if the body's rotation is locked or false if not.
 ---@diagnostic disable-next-line: args-after-dots
 function Body:isFixedRotation() end
 
@@ -11031,6 +11820,7 @@ function Body:isFixedRotation() end
 ---
 ---[Wiki](https://love2d.org/wiki/Body:isSleepingAllowed)
 ---
+---@return boolean allowed# True if the body is allowed to sleep or false if not.
 ---@diagnostic disable-next-line: args-after-dots
 function Body:isSleepingAllowed() end
 
@@ -11039,6 +11829,7 @@ function Body:isSleepingAllowed() end
 ---[Wiki](https://love2d.org/wiki/Body:isTouching)
 ---
 ---@param otherbody love.Body# The other body to check.
+---@return boolean touching# True if this body is touching the other body, false otherwise.
 ---@diagnostic disable-next-line: args-after-dots
 function Body:isTouching(otherbody) end
 
@@ -11269,6 +12060,7 @@ function Body:setY(y) end
 ---[Wiki](https://love2d.org/wiki/ChainShape:getChildEdge)
 ---
 ---@param index number# The index of the child.
+---@return love.EdgeShape shape# The child as an EdgeShape.
 ---@diagnostic disable-next-line: args-after-dots
 function ChainShape:getChildEdge(index) end
 
@@ -11278,6 +12070,8 @@ function ChainShape:getChildEdge(index) end
 ---
 ---[Wiki](https://love2d.org/wiki/ChainShape:getNextVertex)
 ---
+---@return number x# The x-component of the vertex, or nil if ChainShape:setNextVertex hasn't been called.
+---@return number y# The y-component of the vertex, or nil if ChainShape:setNextVertex hasn't been called.
 ---@diagnostic disable-next-line: args-after-dots
 function ChainShape:getNextVertex() end
 
@@ -11286,6 +12080,8 @@ function ChainShape:getNextVertex() end
 ---[Wiki](https://love2d.org/wiki/ChainShape:getPoint)
 ---
 ---@param index number# The index of the point to return.
+---@return number x# The x-coordinate of the point.
+---@return number y# The y-coordinate of the point.
 ---@diagnostic disable-next-line: args-after-dots
 function ChainShape:getPoint(index) end
 
@@ -11293,6 +12089,10 @@ function ChainShape:getPoint(index) end
 ---
 ---[Wiki](https://love2d.org/wiki/ChainShape:getPoints)
 ---
+---@return number x1# The x-coordinate of the first point.
+---@return number y1# The y-coordinate of the first point.
+---@return number x2# The x-coordinate of the second point.
+---@return number y2# The y-coordinate of the second point.
 ---@diagnostic disable-next-line: args-after-dots
 function ChainShape:getPoints() end
 
@@ -11302,6 +12102,8 @@ function ChainShape:getPoints() end
 ---
 ---[Wiki](https://love2d.org/wiki/ChainShape:getPreviousVertex)
 ---
+---@return number x# The x-component of the vertex, or nil if ChainShape:setPreviousVertex hasn't been called.
+---@return number y# The y-component of the vertex, or nil if ChainShape:setPreviousVertex hasn't been called.
 ---@diagnostic disable-next-line: args-after-dots
 function ChainShape:getPreviousVertex() end
 
@@ -11309,6 +12111,7 @@ function ChainShape:getPreviousVertex() end
 ---
 ---[Wiki](https://love2d.org/wiki/ChainShape:getVertexCount)
 ---
+---@return number count# The number of vertices.
 ---@diagnostic disable-next-line: args-after-dots
 function ChainShape:getVertexCount() end
 
@@ -11338,6 +12141,8 @@ function ChainShape:setPreviousVertex(x, y) end
 ---
 ---[Wiki](https://love2d.org/wiki/CircleShape:getPoint)
 ---
+---@return number x# The x-component of the center point of the circle.
+---@return number y# The y-component of the center point of the circle.
 ---@diagnostic disable-next-line: args-after-dots
 function CircleShape:getPoint() end
 
@@ -11345,6 +12150,7 @@ function CircleShape:getPoint() end
 ---
 ---[Wiki](https://love2d.org/wiki/CircleShape:getRadius)
 ---
+---@return number radius# The radius of the circle
 ---@diagnostic disable-next-line: args-after-dots
 function CircleShape:getRadius() end
 
@@ -11370,6 +12176,8 @@ function CircleShape:setRadius(radius) end
 ---
 ---[Wiki](https://love2d.org/wiki/Contact:getChildren)
 ---
+---@return number indexA# The child index of the first fixture's shape.
+---@return number indexB# The child index of the second fixture's shape.
 ---@diagnostic disable-next-line: args-after-dots
 function Contact:getChildren() end
 
@@ -11377,6 +12185,8 @@ function Contact:getChildren() end
 ---
 ---[Wiki](https://love2d.org/wiki/Contact:getFixtures)
 ---
+---@return love.Fixture fixtureA# The first Fixture.
+---@return love.Fixture fixtureB# The second Fixture.
 ---@diagnostic disable-next-line: args-after-dots
 function Contact:getFixtures() end
 
@@ -11384,6 +12194,7 @@ function Contact:getFixtures() end
 ---
 ---[Wiki](https://love2d.org/wiki/Contact:getFriction)
 ---
+---@return number friction# The friction of the contact.
 ---@diagnostic disable-next-line: args-after-dots
 function Contact:getFriction() end
 
@@ -11393,6 +12204,8 @@ function Contact:getFriction() end
 ---
 ---[Wiki](https://love2d.org/wiki/Contact:getNormal)
 ---
+---@return number nx# The x component of the normal vector.
+---@return number ny# The y component of the normal vector.
 ---@diagnostic disable-next-line: args-after-dots
 function Contact:getNormal() end
 
@@ -11400,6 +12213,10 @@ function Contact:getNormal() end
 ---
 ---[Wiki](https://love2d.org/wiki/Contact:getPositions)
 ---
+---@return number x1# The x coordinate of the first contact point.
+---@return number y1# The y coordinate of the first contact point.
+---@return number x2# The x coordinate of the second contact point.
+---@return number y2# The y coordinate of the second contact point.
 ---@diagnostic disable-next-line: args-after-dots
 function Contact:getPositions() end
 
@@ -11407,6 +12224,7 @@ function Contact:getPositions() end
 ---
 ---[Wiki](https://love2d.org/wiki/Contact:getRestitution)
 ---
+---@return number restitution# The restitution between the two shapes.
 ---@diagnostic disable-next-line: args-after-dots
 function Contact:getRestitution() end
 
@@ -11414,6 +12232,7 @@ function Contact:getRestitution() end
 ---
 ---[Wiki](https://love2d.org/wiki/Contact:isEnabled)
 ---
+---@return boolean enabled# True if enabled, false otherwise.
 ---@diagnostic disable-next-line: args-after-dots
 function Contact:isEnabled() end
 
@@ -11421,6 +12240,7 @@ function Contact:isEnabled() end
 ---
 ---[Wiki](https://love2d.org/wiki/Contact:isTouching)
 ---
+---@return boolean touching# True if they touch or false if not.
 ---@diagnostic disable-next-line: args-after-dots
 function Contact:isTouching() end
 
@@ -11466,6 +12286,7 @@ function Contact:setRestitution(restitution) end
 ---
 ---[Wiki](https://love2d.org/wiki/DistanceJoint:getDampingRatio)
 ---
+---@return number ratio# The damping ratio.
 ---@diagnostic disable-next-line: args-after-dots
 function DistanceJoint:getDampingRatio() end
 
@@ -11473,6 +12294,7 @@ function DistanceJoint:getDampingRatio() end
 ---
 ---[Wiki](https://love2d.org/wiki/DistanceJoint:getFrequency)
 ---
+---@return number Hz# The response speed.
 ---@diagnostic disable-next-line: args-after-dots
 function DistanceJoint:getFrequency() end
 
@@ -11480,6 +12302,7 @@ function DistanceJoint:getFrequency() end
 ---
 ---[Wiki](https://love2d.org/wiki/DistanceJoint:getLength)
 ---
+---@return number l# The length between the two Bodies.
 ---@diagnostic disable-next-line: args-after-dots
 function DistanceJoint:getLength() end
 
@@ -11513,6 +12336,8 @@ function DistanceJoint:setLength(l) end
 ---
 ---[Wiki](https://love2d.org/wiki/EdgeShape:getNextVertex)
 ---
+---@return number x# The x-component of the vertex, or nil if EdgeShape:setNextVertex hasn't been called.
+---@return number y# The y-component of the vertex, or nil if EdgeShape:setNextVertex hasn't been called.
 ---@diagnostic disable-next-line: args-after-dots
 function EdgeShape:getNextVertex() end
 
@@ -11520,6 +12345,10 @@ function EdgeShape:getNextVertex() end
 ---
 ---[Wiki](https://love2d.org/wiki/EdgeShape:getPoints)
 ---
+---@return number x1# The x-component of the first vertex.
+---@return number y1# The y-component of the first vertex.
+---@return number x2# The x-component of the second vertex.
+---@return number y2# The y-component of the second vertex.
 ---@diagnostic disable-next-line: args-after-dots
 function EdgeShape:getPoints() end
 
@@ -11529,6 +12358,8 @@ function EdgeShape:getPoints() end
 ---
 ---[Wiki](https://love2d.org/wiki/EdgeShape:getPreviousVertex)
 ---
+---@return number x# The x-component of the vertex, or nil if EdgeShape:setPreviousVertex hasn't been called.
+---@return number y# The y-component of the vertex, or nil if EdgeShape:setPreviousVertex hasn't been called.
 ---@diagnostic disable-next-line: args-after-dots
 function EdgeShape:getPreviousVertex() end
 
@@ -11565,6 +12396,7 @@ function Fixture:destroy() end
 ---
 ---[Wiki](https://love2d.org/wiki/Fixture:getBody)
 ---
+---@return love.Body body# The parent body.
 ---@diagnostic disable-next-line: args-after-dots
 function Fixture:getBody() end
 
@@ -11573,6 +12405,10 @@ function Fixture:getBody() end
 ---[Wiki](https://love2d.org/wiki/Fixture:getBoundingBox)
 ---
 ---@param index? number# (1) A bounding box of the fixture.
+---@return number topLeftX# The x position of the top-left point.
+---@return number topLeftY# The y position of the top-left point.
+---@return number bottomRightX# The x position of the bottom-right point.
+---@return number bottomRightY# The y position of the bottom-right point.
 ---@diagnostic disable-next-line: args-after-dots
 function Fixture:getBoundingBox(index) end
 
@@ -11580,6 +12416,7 @@ function Fixture:getBoundingBox(index) end
 ---
 ---[Wiki](https://love2d.org/wiki/Fixture:getCategory)
 ---
+---@return number ...# The categories.
 ---@diagnostic disable-next-line: args-after-dots
 function Fixture:getCategory() end
 
@@ -11587,6 +12424,7 @@ function Fixture:getCategory() end
 ---
 ---[Wiki](https://love2d.org/wiki/Fixture:getDensity)
 ---
+---@return number density# The fixture density in kilograms per square meter.
 ---@diagnostic disable-next-line: args-after-dots
 function Fixture:getDensity() end
 
@@ -11596,6 +12434,9 @@ function Fixture:getDensity() end
 ---
 ---[Wiki](https://love2d.org/wiki/Fixture:getFilterData)
 ---
+---@return number categories# The categories as an integer from 0 to 65535.
+---@return number mask# The mask as an integer from 0 to 65535.
+---@return number group# The group as an integer from -32768 to 32767.
 ---@diagnostic disable-next-line: args-after-dots
 function Fixture:getFilterData() end
 
@@ -11603,6 +12444,7 @@ function Fixture:getFilterData() end
 ---
 ---[Wiki](https://love2d.org/wiki/Fixture:getFriction)
 ---
+---@return number friction# The fixture friction.
 ---@diagnostic disable-next-line: args-after-dots
 function Fixture:getFriction() end
 
@@ -11612,6 +12454,7 @@ function Fixture:getFriction() end
 ---
 ---[Wiki](https://love2d.org/wiki/Fixture:getGroupIndex)
 ---
+---@return number group# The group of the fixture.
 ---@diagnostic disable-next-line: args-after-dots
 function Fixture:getGroupIndex() end
 
@@ -11619,6 +12462,7 @@ function Fixture:getGroupIndex() end
 ---
 ---[Wiki](https://love2d.org/wiki/Fixture:getMask)
 ---
+---@return number ...# The masks.
 ---@diagnostic disable-next-line: args-after-dots
 function Fixture:getMask() end
 
@@ -11626,6 +12470,10 @@ function Fixture:getMask() end
 ---
 ---[Wiki](https://love2d.org/wiki/Fixture:getMassData)
 ---
+---@return number x# The x position of the center of mass.
+---@return number y# The y position of the center of mass.
+---@return number mass# The mass of the fixture.
+---@return number inertia# The rotational inertia.
 ---@diagnostic disable-next-line: args-after-dots
 function Fixture:getMassData() end
 
@@ -11633,6 +12481,7 @@ function Fixture:getMassData() end
 ---
 ---[Wiki](https://love2d.org/wiki/Fixture:getRestitution)
 ---
+---@return number restitution# The fixture restitution.
 ---@diagnostic disable-next-line: args-after-dots
 function Fixture:getRestitution() end
 
@@ -11640,6 +12489,7 @@ function Fixture:getRestitution() end
 ---
 ---[Wiki](https://love2d.org/wiki/Fixture:getShape)
 ---
+---@return love.Shape shape# The fixture's shape.
 ---@diagnostic disable-next-line: args-after-dots
 function Fixture:getShape() end
 
@@ -11647,6 +12497,7 @@ function Fixture:getShape() end
 ---
 ---[Wiki](https://love2d.org/wiki/Fixture:getUserData)
 ---
+---@return any value# The Lua value associated with the fixture.
 ---@diagnostic disable-next-line: args-after-dots
 function Fixture:getUserData() end
 
@@ -11654,6 +12505,7 @@ function Fixture:getUserData() end
 ---
 ---[Wiki](https://love2d.org/wiki/Fixture:isDestroyed)
 ---
+---@return boolean destroyed# Whether the Fixture is destroyed.
 ---@diagnostic disable-next-line: args-after-dots
 function Fixture:isDestroyed() end
 
@@ -11661,6 +12513,7 @@ function Fixture:isDestroyed() end
 ---
 ---[Wiki](https://love2d.org/wiki/Fixture:isSensor)
 ---
+---@return boolean sensor# If the fixture is a sensor.
 ---@diagnostic disable-next-line: args-after-dots
 function Fixture:isSensor() end
 
@@ -11682,6 +12535,9 @@ function Fixture:isSensor() end
 ---@param y2 number# The y position of the input line end point.
 ---@param maxFraction number# Ray length parameter.
 ---@param childIndex? number# (1) The index of the child the ray gets cast against.
+---@return number xn# The x component of the normal vector of the edge where the ray hit the shape.
+---@return number yn# The y component of the normal vector of the edge where the ray hit the shape.
+---@return number fraction# The position on the input line where the intersection happened as a factor of the line length.
 ---@diagnostic disable-next-line: args-after-dots
 function Fixture:rayCast(x1, y1, x2, y2, maxFraction, childIndex) end
 
@@ -11787,6 +12643,7 @@ function Fixture:setUserData(value) end
 ---
 ---@param x number# The x position of the point.
 ---@param y number# The y position of the point.
+---@return boolean isInside# True if the point is inside or false if it is outside.
 ---@diagnostic disable-next-line: args-after-dots
 function Fixture:testPoint(x, y) end
 
@@ -11794,6 +12651,7 @@ function Fixture:testPoint(x, y) end
 ---
 ---[Wiki](https://love2d.org/wiki/FrictionJoint:getMaxForce)
 ---
+---@return number force# Maximum force in Newtons.
 ---@diagnostic disable-next-line: args-after-dots
 function FrictionJoint:getMaxForce() end
 
@@ -11801,6 +12659,7 @@ function FrictionJoint:getMaxForce() end
 ---
 ---[Wiki](https://love2d.org/wiki/FrictionJoint:getMaxTorque)
 ---
+---@return number torque# Maximum torque in Newton-meters.
 ---@diagnostic disable-next-line: args-after-dots
 function FrictionJoint:getMaxTorque() end
 
@@ -11824,6 +12683,8 @@ function FrictionJoint:setMaxTorque(torque) end
 ---
 ---[Wiki](https://love2d.org/wiki/GearJoint:getJoints)
 ---
+---@return love.Joint joint1# The first connected Joint.
+---@return love.Joint joint2# The second connected Joint.
 ---@diagnostic disable-next-line: args-after-dots
 function GearJoint:getJoints() end
 
@@ -11831,6 +12692,7 @@ function GearJoint:getJoints() end
 ---
 ---[Wiki](https://love2d.org/wiki/GearJoint:getRatio)
 ---
+---@return number ratio# The ratio of the joint.
 ---@diagnostic disable-next-line: args-after-dots
 function GearJoint:getRatio() end
 
@@ -11857,6 +12719,10 @@ function Joint:destroy() end
 ---
 ---[Wiki](https://love2d.org/wiki/Joint:getAnchors)
 ---
+---@return number x1# The x-component of the anchor on Body 1.
+---@return number y1# The y-component of the anchor on Body 1.
+---@return number x2# The x-component of the anchor on Body 2.
+---@return number y2# The y-component of the anchor on Body 2.
 ---@diagnostic disable-next-line: args-after-dots
 function Joint:getAnchors() end
 
@@ -11864,6 +12730,8 @@ function Joint:getAnchors() end
 ---
 ---[Wiki](https://love2d.org/wiki/Joint:getBodies)
 ---
+---@return love.Body bodyA# The first Body.
+---@return love.Body bodyB# The second Body.
 ---@diagnostic disable-next-line: args-after-dots
 function Joint:getBodies() end
 
@@ -11871,6 +12739,7 @@ function Joint:getBodies() end
 ---
 ---[Wiki](https://love2d.org/wiki/Joint:getCollideConnected)
 ---
+---@return boolean c# True if they collide, false otherwise.
 ---@diagnostic disable-next-line: args-after-dots
 function Joint:getCollideConnected() end
 
@@ -11879,6 +12748,8 @@ function Joint:getCollideConnected() end
 ---[Wiki](https://love2d.org/wiki/Joint:getReactionForce)
 ---
 ---@param x number# How long the force applies. Usually the inverse time step or 1/dt.
+---@return number x# The x-component of the force.
+---@return number y# The y-component of the force.
 ---@diagnostic disable-next-line: args-after-dots
 function Joint:getReactionForce(x) end
 
@@ -11887,6 +12758,7 @@ function Joint:getReactionForce(x) end
 ---[Wiki](https://love2d.org/wiki/Joint:getReactionTorque)
 ---
 ---@param invdt number# How long the force applies. Usually the inverse time step or 1/dt.
+---@return number torque# The reaction torque on the second body.
 ---@diagnostic disable-next-line: args-after-dots
 function Joint:getReactionTorque(invdt) end
 
@@ -11894,6 +12766,7 @@ function Joint:getReactionTorque(invdt) end
 ---
 ---[Wiki](https://love2d.org/wiki/Joint:getType)
 ---
+---@return love.JointType type# A string with the name of the Joint type.
 ---@diagnostic disable-next-line: args-after-dots
 function Joint:getType() end
 
@@ -11901,6 +12774,7 @@ function Joint:getType() end
 ---
 ---[Wiki](https://love2d.org/wiki/Joint:getUserData)
 ---
+---@return any value# The Lua value associated with the Joint.
 ---@diagnostic disable-next-line: args-after-dots
 function Joint:getUserData() end
 
@@ -11908,6 +12782,7 @@ function Joint:getUserData() end
 ---
 ---[Wiki](https://love2d.org/wiki/Joint:isDestroyed)
 ---
+---@return boolean destroyed# Whether the Joint is destroyed.
 ---@diagnostic disable-next-line: args-after-dots
 function Joint:isDestroyed() end
 
@@ -11925,6 +12800,7 @@ function Joint:setUserData(value) end
 ---
 ---[Wiki](https://love2d.org/wiki/MotorJoint:getAngularOffset)
 ---
+---@return number angleoffset# The target angular offset in radians: the second body's angle minus the first body's angle.
 ---@diagnostic disable-next-line: args-after-dots
 function MotorJoint:getAngularOffset() end
 
@@ -11932,6 +12808,8 @@ function MotorJoint:getAngularOffset() end
 ---
 ---[Wiki](https://love2d.org/wiki/MotorJoint:getLinearOffset)
 ---
+---@return number x# The x component of the target linear offset, relative to the first Body.
+---@return number y# The y component of the target linear offset, relative to the first Body.
 ---@diagnostic disable-next-line: args-after-dots
 function MotorJoint:getLinearOffset() end
 
@@ -11956,6 +12834,7 @@ function MotorJoint:setLinearOffset(x, y) end
 ---
 ---[Wiki](https://love2d.org/wiki/MouseJoint:getDampingRatio)
 ---
+---@return number ratio# The new damping ratio.
 ---@diagnostic disable-next-line: args-after-dots
 function MouseJoint:getDampingRatio() end
 
@@ -11963,6 +12842,7 @@ function MouseJoint:getDampingRatio() end
 ---
 ---[Wiki](https://love2d.org/wiki/MouseJoint:getFrequency)
 ---
+---@return number freq# The frequency in hertz.
 ---@diagnostic disable-next-line: args-after-dots
 function MouseJoint:getFrequency() end
 
@@ -11970,6 +12850,7 @@ function MouseJoint:getFrequency() end
 ---
 ---[Wiki](https://love2d.org/wiki/MouseJoint:getMaxForce)
 ---
+---@return number f# The max allowed force.
 ---@diagnostic disable-next-line: args-after-dots
 function MouseJoint:getMaxForce() end
 
@@ -11977,6 +12858,8 @@ function MouseJoint:getMaxForce() end
 ---
 ---[Wiki](https://love2d.org/wiki/MouseJoint:getTarget)
 ---
+---@return number x# The x-component of the target.
+---@return number y# The x-component of the target.
 ---@diagnostic disable-next-line: args-after-dots
 function MouseJoint:getTarget() end
 
@@ -12019,6 +12902,10 @@ function MouseJoint:setTarget(x, y) end
 ---
 ---[Wiki](https://love2d.org/wiki/PolygonShape:getPoints)
 ---
+---@return number x1# The x-component of the first vertex.
+---@return number y1# The y-component of the first vertex.
+---@return number x2# The x-component of the second vertex.
+---@return number y2# The y-component of the second vertex.
 ---@diagnostic disable-next-line: args-after-dots
 function PolygonShape:getPoints() end
 
@@ -12026,6 +12913,7 @@ function PolygonShape:getPoints() end
 ---
 ---[Wiki](https://love2d.org/wiki/PrismaticJoint:areLimitsEnabled)
 ---
+---@return boolean enabled# True if enabled, false otherwise.
 ---@diagnostic disable-next-line: args-after-dots
 function PrismaticJoint:areLimitsEnabled() end
 
@@ -12033,6 +12921,8 @@ function PrismaticJoint:areLimitsEnabled() end
 ---
 ---[Wiki](https://love2d.org/wiki/PrismaticJoint:getAxis)
 ---
+---@return number x# The x-axis coordinate of the world-space axis vector.
+---@return number y# The y-axis coordinate of the world-space axis vector.
 ---@diagnostic disable-next-line: args-after-dots
 function PrismaticJoint:getAxis() end
 
@@ -12040,6 +12930,7 @@ function PrismaticJoint:getAxis() end
 ---
 ---[Wiki](https://love2d.org/wiki/PrismaticJoint:getJointSpeed)
 ---
+---@return number s# Joint angle speed in meters/second.
 ---@diagnostic disable-next-line: args-after-dots
 function PrismaticJoint:getJointSpeed() end
 
@@ -12047,6 +12938,7 @@ function PrismaticJoint:getJointSpeed() end
 ---
 ---[Wiki](https://love2d.org/wiki/PrismaticJoint:getJointTranslation)
 ---
+---@return number t# Joint translation, usually in meters..
 ---@diagnostic disable-next-line: args-after-dots
 function PrismaticJoint:getJointTranslation() end
 
@@ -12054,6 +12946,8 @@ function PrismaticJoint:getJointTranslation() end
 ---
 ---[Wiki](https://love2d.org/wiki/PrismaticJoint:getLimits)
 ---
+---@return number lower# The lower limit, usually in meters.
+---@return number upper# The upper limit, usually in meters.
 ---@diagnostic disable-next-line: args-after-dots
 function PrismaticJoint:getLimits() end
 
@@ -12061,6 +12955,7 @@ function PrismaticJoint:getLimits() end
 ---
 ---[Wiki](https://love2d.org/wiki/PrismaticJoint:getLowerLimit)
 ---
+---@return number lower# The lower limit, usually in meters.
 ---@diagnostic disable-next-line: args-after-dots
 function PrismaticJoint:getLowerLimit() end
 
@@ -12068,6 +12963,7 @@ function PrismaticJoint:getLowerLimit() end
 ---
 ---[Wiki](https://love2d.org/wiki/PrismaticJoint:getMaxMotorForce)
 ---
+---@return number f# The maximum motor force, usually in N.
 ---@diagnostic disable-next-line: args-after-dots
 function PrismaticJoint:getMaxMotorForce() end
 
@@ -12076,6 +12972,7 @@ function PrismaticJoint:getMaxMotorForce() end
 ---[Wiki](https://love2d.org/wiki/PrismaticJoint:getMotorForce)
 ---
 ---@param invdt number# How long the force applies. Usually the inverse time step or 1/dt.
+---@return number force# The force on the motor in newtons.
 ---@diagnostic disable-next-line: args-after-dots
 function PrismaticJoint:getMotorForce(invdt) end
 
@@ -12083,6 +12980,7 @@ function PrismaticJoint:getMotorForce(invdt) end
 ---
 ---[Wiki](https://love2d.org/wiki/PrismaticJoint:getMotorSpeed)
 ---
+---@return number s# The motor speed, usually in meters per second.
 ---@diagnostic disable-next-line: args-after-dots
 function PrismaticJoint:getMotorSpeed() end
 
@@ -12090,6 +12988,7 @@ function PrismaticJoint:getMotorSpeed() end
 ---
 ---[Wiki](https://love2d.org/wiki/PrismaticJoint:getReferenceAngle)
 ---
+---@return number angle# The reference angle in radians.
 ---@diagnostic disable-next-line: args-after-dots
 function PrismaticJoint:getReferenceAngle() end
 
@@ -12097,6 +12996,7 @@ function PrismaticJoint:getReferenceAngle() end
 ---
 ---[Wiki](https://love2d.org/wiki/PrismaticJoint:getUpperLimit)
 ---
+---@return number upper# The upper limit, usually in meters.
 ---@diagnostic disable-next-line: args-after-dots
 function PrismaticJoint:getUpperLimit() end
 
@@ -12104,6 +13004,7 @@ function PrismaticJoint:getUpperLimit() end
 ---
 ---[Wiki](https://love2d.org/wiki/PrismaticJoint:isMotorEnabled)
 ---
+---@return boolean enabled# True if enabled, false if disabled.
 ---@diagnostic disable-next-line: args-after-dots
 function PrismaticJoint:isMotorEnabled() end
 
@@ -12120,6 +13021,7 @@ function PrismaticJoint:setLimits(lower, upper) end
 ---
 ---[Wiki](https://love2d.org/wiki/PrismaticJoint:setLimitsEnabled)
 ---
+---@return boolean enable# True if enabled, false if disabled.
 ---@diagnostic disable-next-line: args-after-dots
 function PrismaticJoint:setLimitsEnabled() end
 
@@ -12167,6 +13069,7 @@ function PrismaticJoint:setUpperLimit(upper) end
 ---
 ---[Wiki](https://love2d.org/wiki/PulleyJoint:getConstant)
 ---
+---@return number length# The length of the rope in the joint.
 ---@diagnostic disable-next-line: args-after-dots
 function PulleyJoint:getConstant() end
 
@@ -12174,6 +13077,10 @@ function PulleyJoint:getConstant() end
 ---
 ---[Wiki](https://love2d.org/wiki/PulleyJoint:getGroundAnchors)
 ---
+---@return number a1x# The x coordinate of the first anchor.
+---@return number a1y# The y coordinate of the first anchor.
+---@return number a2x# The x coordinate of the second anchor.
+---@return number a2y# The y coordinate of the second anchor.
 ---@diagnostic disable-next-line: args-after-dots
 function PulleyJoint:getGroundAnchors() end
 
@@ -12181,6 +13088,7 @@ function PulleyJoint:getGroundAnchors() end
 ---
 ---[Wiki](https://love2d.org/wiki/PulleyJoint:getLengthA)
 ---
+---@return number length# The length of the rope segment.
 ---@diagnostic disable-next-line: args-after-dots
 function PulleyJoint:getLengthA() end
 
@@ -12188,6 +13096,7 @@ function PulleyJoint:getLengthA() end
 ---
 ---[Wiki](https://love2d.org/wiki/PulleyJoint:getLengthB)
 ---
+---@return number length# The length of the rope segment.
 ---@diagnostic disable-next-line: args-after-dots
 function PulleyJoint:getLengthB() end
 
@@ -12195,6 +13104,8 @@ function PulleyJoint:getLengthB() end
 ---
 ---[Wiki](https://love2d.org/wiki/PulleyJoint:getMaxLengths)
 ---
+---@return number len1# The maximum length of the first rope segment.
+---@return number len2# The maximum length of the second rope segment.
 ---@diagnostic disable-next-line: args-after-dots
 function PulleyJoint:getMaxLengths() end
 
@@ -12202,6 +13113,7 @@ function PulleyJoint:getMaxLengths() end
 ---
 ---[Wiki](https://love2d.org/wiki/PulleyJoint:getRatio)
 ---
+---@return number ratio# The pulley ratio of the joint.
 ---@diagnostic disable-next-line: args-after-dots
 function PulleyJoint:getRatio() end
 
@@ -12238,6 +13150,7 @@ function PulleyJoint:setRatio(ratio) end
 ---
 ---[Wiki](https://love2d.org/wiki/RevoluteJoint:areLimitsEnabled)
 ---
+---@return boolean enabled# True if enabled, false otherwise.
 ---@diagnostic disable-next-line: args-after-dots
 function RevoluteJoint:areLimitsEnabled() end
 
@@ -12245,6 +13158,7 @@ function RevoluteJoint:areLimitsEnabled() end
 ---
 ---[Wiki](https://love2d.org/wiki/RevoluteJoint:getJointAngle)
 ---
+---@return number angle# The joint angle in radians.
 ---@diagnostic disable-next-line: args-after-dots
 function RevoluteJoint:getJointAngle() end
 
@@ -12252,6 +13166,7 @@ function RevoluteJoint:getJointAngle() end
 ---
 ---[Wiki](https://love2d.org/wiki/RevoluteJoint:getJointSpeed)
 ---
+---@return number s# Joint angle speed in radians/second.
 ---@diagnostic disable-next-line: args-after-dots
 function RevoluteJoint:getJointSpeed() end
 
@@ -12259,6 +13174,8 @@ function RevoluteJoint:getJointSpeed() end
 ---
 ---[Wiki](https://love2d.org/wiki/RevoluteJoint:getLimits)
 ---
+---@return number lower# The lower limit, in radians.
+---@return number upper# The upper limit, in radians.
 ---@diagnostic disable-next-line: args-after-dots
 function RevoluteJoint:getLimits() end
 
@@ -12266,6 +13183,7 @@ function RevoluteJoint:getLimits() end
 ---
 ---[Wiki](https://love2d.org/wiki/RevoluteJoint:getLowerLimit)
 ---
+---@return number lower# The lower limit, in radians.
 ---@diagnostic disable-next-line: args-after-dots
 function RevoluteJoint:getLowerLimit() end
 
@@ -12273,6 +13191,7 @@ function RevoluteJoint:getLowerLimit() end
 ---
 ---[Wiki](https://love2d.org/wiki/RevoluteJoint:getMaxMotorTorque)
 ---
+---@return number f# The maximum motor force, in Nm.
 ---@diagnostic disable-next-line: args-after-dots
 function RevoluteJoint:getMaxMotorTorque() end
 
@@ -12280,6 +13199,7 @@ function RevoluteJoint:getMaxMotorTorque() end
 ---
 ---[Wiki](https://love2d.org/wiki/RevoluteJoint:getMotorSpeed)
 ---
+---@return number s# The motor speed, radians per second.
 ---@diagnostic disable-next-line: args-after-dots
 function RevoluteJoint:getMotorSpeed() end
 
@@ -12287,6 +13207,7 @@ function RevoluteJoint:getMotorSpeed() end
 ---
 ---[Wiki](https://love2d.org/wiki/RevoluteJoint:getMotorTorque)
 ---
+---@return number f# The current motor force, in Nm.
 ---@diagnostic disable-next-line: args-after-dots
 function RevoluteJoint:getMotorTorque() end
 
@@ -12294,6 +13215,7 @@ function RevoluteJoint:getMotorTorque() end
 ---
 ---[Wiki](https://love2d.org/wiki/RevoluteJoint:getReferenceAngle)
 ---
+---@return number angle# The reference angle in radians.
 ---@diagnostic disable-next-line: args-after-dots
 function RevoluteJoint:getReferenceAngle() end
 
@@ -12301,6 +13223,7 @@ function RevoluteJoint:getReferenceAngle() end
 ---
 ---[Wiki](https://love2d.org/wiki/RevoluteJoint:getUpperLimit)
 ---
+---@return number upper# The upper limit, in radians.
 ---@diagnostic disable-next-line: args-after-dots
 function RevoluteJoint:getUpperLimit() end
 
@@ -12308,6 +13231,7 @@ function RevoluteJoint:getUpperLimit() end
 ---
 ---[Wiki](https://love2d.org/wiki/RevoluteJoint:hasLimitsEnabled)
 ---
+---@return boolean enabled# True if enabled, false otherwise.
 ---@diagnostic disable-next-line: args-after-dots
 function RevoluteJoint:hasLimitsEnabled() end
 
@@ -12315,6 +13239,7 @@ function RevoluteJoint:hasLimitsEnabled() end
 ---
 ---[Wiki](https://love2d.org/wiki/RevoluteJoint:isMotorEnabled)
 ---
+---@return boolean enabled# True if enabled, false if disabled.
 ---@diagnostic disable-next-line: args-after-dots
 function RevoluteJoint:isMotorEnabled() end
 
@@ -12379,6 +13304,7 @@ function RevoluteJoint:setUpperLimit(upper) end
 ---
 ---[Wiki](https://love2d.org/wiki/RopeJoint:getMaxLength)
 ---
+---@return number maxLength# The maximum length of the RopeJoint.
 ---@diagnostic disable-next-line: args-after-dots
 function RopeJoint:getMaxLength() end
 
@@ -12398,6 +13324,10 @@ function RopeJoint:setMaxLength(maxLength) end
 ---@param ty number# The translation of the shape on the y-axis.
 ---@param tr number# The shape rotation.
 ---@param childIndex? number# (1) The index of the child to compute the bounding box of.
+---@return number topLeftX# The x position of the top-left point.
+---@return number topLeftY# The y position of the top-left point.
+---@return number bottomRightX# The x position of the bottom-right point.
+---@return number bottomRightY# The y position of the bottom-right point.
 ---@diagnostic disable-next-line: args-after-dots
 function Shape:computeAABB(tx, ty, tr, childIndex) end
 
@@ -12406,6 +13336,10 @@ function Shape:computeAABB(tx, ty, tr, childIndex) end
 ---[Wiki](https://love2d.org/wiki/Shape:computeMass)
 ---
 ---@param density number# The shape density.
+---@return number x# The x postition of the center of mass.
+---@return number y# The y postition of the center of mass.
+---@return number mass# The mass of the shape.
+---@return number inertia# The rotational inertia.
 ---@diagnostic disable-next-line: args-after-dots
 function Shape:computeMass(density) end
 
@@ -12413,6 +13347,7 @@ function Shape:computeMass(density) end
 ---
 ---[Wiki](https://love2d.org/wiki/Shape:getChildCount)
 ---
+---@return number count# The number of children.
 ---@diagnostic disable-next-line: args-after-dots
 function Shape:getChildCount() end
 
@@ -12420,6 +13355,7 @@ function Shape:getChildCount() end
 ---
 ---[Wiki](https://love2d.org/wiki/Shape:getRadius)
 ---
+---@return number radius# The radius of the shape.
 ---@diagnostic disable-next-line: args-after-dots
 function Shape:getRadius() end
 
@@ -12429,6 +13365,7 @@ function Shape:getRadius() end
 ---
 ---[Wiki](https://love2d.org/wiki/Shape:getType)
 ---
+---@return love.ShapeType type# The type of the Shape.
 ---@diagnostic disable-next-line: args-after-dots
 function Shape:getType() end
 
@@ -12453,6 +13390,9 @@ function Shape:getType() end
 ---@param ty number# The translation of the shape on the y-axis.
 ---@param tr number# The shape rotation.
 ---@param childIndex? number# (1) The index of the child the ray gets cast against.
+---@return number xn# The x component of the normal vector of the edge where the ray hit the shape.
+---@return number yn# The y component of the normal vector of the edge where the ray hit the shape.
+---@return number fraction# The position on the input line where the intersection happened as a factor of the line length.
 ---@diagnostic disable-next-line: args-after-dots
 function Shape:rayCast(x1, y1, x2, y2, maxFraction, tx, ty, tr, childIndex) end
 
@@ -12465,6 +13405,7 @@ function Shape:rayCast(x1, y1, x2, y2, maxFraction, tx, ty, tr, childIndex) end
 ---@param tr number# Rotates the shape.
 ---@param x number# The x-component of the point.
 ---@param y number# The y-component of the point.
+---@return boolean hit# True if inside, false if outside
 ---@diagnostic disable-next-line: args-after-dots
 function Shape:testPoint(tx, ty, tr, x, y) end
 
@@ -12472,6 +13413,7 @@ function Shape:testPoint(tx, ty, tr, x, y) end
 ---
 ---[Wiki](https://love2d.org/wiki/WeldJoint:getDampingRatio)
 ---
+---@return number ratio# The damping ratio.
 ---@diagnostic disable-next-line: args-after-dots
 function WeldJoint:getDampingRatio() end
 
@@ -12479,6 +13421,7 @@ function WeldJoint:getDampingRatio() end
 ---
 ---[Wiki](https://love2d.org/wiki/WeldJoint:getFrequency)
 ---
+---@return number freq# The frequency in hertz.
 ---@diagnostic disable-next-line: args-after-dots
 function WeldJoint:getFrequency() end
 
@@ -12486,6 +13429,7 @@ function WeldJoint:getFrequency() end
 ---
 ---[Wiki](https://love2d.org/wiki/WeldJoint:getReferenceAngle)
 ---
+---@return number angle# The reference angle in radians.
 ---@diagnostic disable-next-line: args-after-dots
 function WeldJoint:getReferenceAngle() end
 
@@ -12509,6 +13453,8 @@ function WeldJoint:setFrequency(freq) end
 ---
 ---[Wiki](https://love2d.org/wiki/WheelJoint:getAxis)
 ---
+---@return number x# The x-axis coordinate of the world-space axis vector.
+---@return number y# The y-axis coordinate of the world-space axis vector.
 ---@diagnostic disable-next-line: args-after-dots
 function WheelJoint:getAxis() end
 
@@ -12516,6 +13462,7 @@ function WheelJoint:getAxis() end
 ---
 ---[Wiki](https://love2d.org/wiki/WheelJoint:getJointSpeed)
 ---
+---@return number speed# The translation speed of the joint in meters per second.
 ---@diagnostic disable-next-line: args-after-dots
 function WheelJoint:getJointSpeed() end
 
@@ -12523,6 +13470,7 @@ function WheelJoint:getJointSpeed() end
 ---
 ---[Wiki](https://love2d.org/wiki/WheelJoint:getJointTranslation)
 ---
+---@return number position# The translation of the joint in meters.
 ---@diagnostic disable-next-line: args-after-dots
 function WheelJoint:getJointTranslation() end
 
@@ -12530,6 +13478,7 @@ function WheelJoint:getJointTranslation() end
 ---
 ---[Wiki](https://love2d.org/wiki/WheelJoint:getMaxMotorTorque)
 ---
+---@return number maxTorque# The maximum torque of the joint motor in newton meters.
 ---@diagnostic disable-next-line: args-after-dots
 function WheelJoint:getMaxMotorTorque() end
 
@@ -12537,6 +13486,7 @@ function WheelJoint:getMaxMotorTorque() end
 ---
 ---[Wiki](https://love2d.org/wiki/WheelJoint:getMotorSpeed)
 ---
+---@return number speed# The speed of the joint motor in radians per second.
 ---@diagnostic disable-next-line: args-after-dots
 function WheelJoint:getMotorSpeed() end
 
@@ -12545,6 +13495,7 @@ function WheelJoint:getMotorSpeed() end
 ---[Wiki](https://love2d.org/wiki/WheelJoint:getMotorTorque)
 ---
 ---@param invdt number# How long the force applies. Usually the inverse time step or 1/dt.
+---@return number torque# The torque on the motor in newton meters.
 ---@diagnostic disable-next-line: args-after-dots
 function WheelJoint:getMotorTorque(invdt) end
 
@@ -12552,6 +13503,7 @@ function WheelJoint:getMotorTorque(invdt) end
 ---
 ---[Wiki](https://love2d.org/wiki/WheelJoint:getSpringDampingRatio)
 ---
+---@return number ratio# The damping ratio.
 ---@diagnostic disable-next-line: args-after-dots
 function WheelJoint:getSpringDampingRatio() end
 
@@ -12559,6 +13511,7 @@ function WheelJoint:getSpringDampingRatio() end
 ---
 ---[Wiki](https://love2d.org/wiki/WheelJoint:getSpringFrequency)
 ---
+---@return number freq# The frequency in hertz.
 ---@diagnostic disable-next-line: args-after-dots
 function WheelJoint:getSpringFrequency() end
 
@@ -12566,6 +13519,7 @@ function WheelJoint:getSpringFrequency() end
 ---
 ---[Wiki](https://love2d.org/wiki/WheelJoint:isMotorEnabled)
 ---
+---@return boolean on# The status of the joint motor.
 ---@diagnostic disable-next-line: args-after-dots
 function WheelJoint:isMotorEnabled() end
 
@@ -12622,6 +13576,7 @@ function World:destroy() end
 ---
 ---[Wiki](https://love2d.org/wiki/World:getBodies)
 ---
+---@return table[] bodies# A sequence with all bodies.
 ---@diagnostic disable-next-line: args-after-dots
 function World:getBodies() end
 
@@ -12629,6 +13584,7 @@ function World:getBodies() end
 ---
 ---[Wiki](https://love2d.org/wiki/World:getBodyCount)
 ---
+---@return number n# The number of bodies in the world.
 ---@diagnostic disable-next-line: args-after-dots
 function World:getBodyCount() end
 
@@ -12636,6 +13592,10 @@ function World:getBodyCount() end
 ---
 ---[Wiki](https://love2d.org/wiki/World:getCallbacks)
 ---
+---@return function beginContact# Gets called when two fixtures begin to overlap.
+---@return function endContact# Gets called when two fixtures cease to overlap.
+---@return function preSolve# Gets called before a collision gets resolved.
+---@return function postSolve# Gets called after the collision has been resolved.
 ---@diagnostic disable-next-line: args-after-dots
 function World:getCallbacks() end
 
@@ -12643,6 +13603,7 @@ function World:getCallbacks() end
 ---
 ---[Wiki](https://love2d.org/wiki/World:getContactCount)
 ---
+---@return number n# The number of contacts in the world.
 ---@diagnostic disable-next-line: args-after-dots
 function World:getContactCount() end
 
@@ -12650,6 +13611,7 @@ function World:getContactCount() end
 ---
 ---[Wiki](https://love2d.org/wiki/World:getContactFilter)
 ---
+---@return function contactFilter# The function that handles the contact filtering.
 ---@diagnostic disable-next-line: args-after-dots
 function World:getContactFilter() end
 
@@ -12657,6 +13619,7 @@ function World:getContactFilter() end
 ---
 ---[Wiki](https://love2d.org/wiki/World:getContacts)
 ---
+---@return table[] contacts# A sequence with all Contacts.
 ---@diagnostic disable-next-line: args-after-dots
 function World:getContacts() end
 
@@ -12664,6 +13627,8 @@ function World:getContacts() end
 ---
 ---[Wiki](https://love2d.org/wiki/World:getGravity)
 ---
+---@return number x# The x component of gravity.
+---@return number y# The y component of gravity.
 ---@diagnostic disable-next-line: args-after-dots
 function World:getGravity() end
 
@@ -12671,6 +13636,7 @@ function World:getGravity() end
 ---
 ---[Wiki](https://love2d.org/wiki/World:getJointCount)
 ---
+---@return number n# The number of joints in the world.
 ---@diagnostic disable-next-line: args-after-dots
 function World:getJointCount() end
 
@@ -12678,6 +13644,7 @@ function World:getJointCount() end
 ---
 ---[Wiki](https://love2d.org/wiki/World:getJoints)
 ---
+---@return table[] joints# A sequence with all joints.
 ---@diagnostic disable-next-line: args-after-dots
 function World:getJoints() end
 
@@ -12685,6 +13652,7 @@ function World:getJoints() end
 ---
 ---[Wiki](https://love2d.org/wiki/World:isDestroyed)
 ---
+---@return boolean destroyed# Whether the World is destroyed.
 ---@diagnostic disable-next-line: args-after-dots
 function World:isDestroyed() end
 
@@ -12694,6 +13662,7 @@ function World:isDestroyed() end
 ---
 ---[Wiki](https://love2d.org/wiki/World:isLocked)
 ---
+---@return boolean locked# Will be true if the world is in the process of updating its state.
 ---@diagnostic disable-next-line: args-after-dots
 function World:isLocked() end
 
@@ -12701,6 +13670,7 @@ function World:isLocked() end
 ---
 ---[Wiki](https://love2d.org/wiki/World:isSleepingAllowed)
 ---
+---@return boolean allow# True if bodies in the world are allowed to sleep, or false if not.
 ---@diagnostic disable-next-line: args-after-dots
 function World:isSleepingAllowed() end
 
@@ -12797,6 +13767,11 @@ function World:update(dt, velocityiterations, positioniterations) end
 ---
 ---@param fixture1 love.Fixture# The first fixture.
 ---@param fixture2 love.Fixture# The second fixture.
+---@return number distance# The distance of the two points.
+---@return number x1# The x-coordinate of the first point.
+---@return number y1# The y-coordinate of the first point.
+---@return number x2# The x-coordinate of the second point.
+---@return number y2# The y-coordinate of the second point.
 ---@diagnostic disable-next-line: args-after-dots
 function love.physics.getDistance(fixture1, fixture2) end
 
@@ -12808,6 +13783,7 @@ function love.physics.getDistance(fixture1, fixture2) end
 ---
 ---[Wiki](https://love2d.org/wiki/love.physics.getMeter)
 ---
+---@return number scale# The scale factor as an integer.
 ---@diagnostic disable-next-line: args-after-dots
 function love.physics.getMeter() end
 
@@ -12829,6 +13805,7 @@ function love.physics.getMeter() end
 ---@param x? number# (0) The x position of the body.
 ---@param y? number# (0) The y position of the body.
 ---@param type? love.BodyType# ('static') The type of the body.
+---@return love.Body body# A new body.
 ---@diagnostic disable-next-line: args-after-dots
 function love.physics.newBody(world, x, y, type) end
 
@@ -12842,6 +13819,7 @@ function love.physics.newBody(world, x, y, type) end
 ---@param x2 number# The x position of the second point.
 ---@param y2 number# The y position of the second point.
 ---@param ... number# Additional point positions.
+---@return love.ChainShape shape# The new shape.
 ---@diagnostic disable-next-line: args-after-dots
 function love.physics.newChainShape(loop, x1, y1, x2, y2, ...) end
 
@@ -12851,6 +13829,7 @@ function love.physics.newChainShape(loop, x1, y1, x2, y2, ...) end
 ---
 ---@param loop boolean# If the chain should loop back to the first point.
 ---@param points table[]# A list of points to construct the ChainShape, in the form of {x1, y1, x2, y2, ...}.
+---@return love.ChainShape shape# The new shape.
 ---@diagnostic disable-next-line: args-after-dots
 function love.physics.newChainShape(loop, points) end
 
@@ -12859,6 +13838,7 @@ function love.physics.newChainShape(loop, points) end
 ---[Wiki](https://love2d.org/wiki/love.physics.newCircleShape)
 ---
 ---@param radius number# The radius of the circle.
+---@return love.CircleShape shape# The new shape.
 ---@diagnostic disable-next-line: args-after-dots
 function love.physics.newCircleShape(radius) end
 
@@ -12869,6 +13849,7 @@ function love.physics.newCircleShape(radius) end
 ---@param x number# The x position of the circle.
 ---@param y number# The y position of the circle.
 ---@param radius number# The radius of the circle.
+---@return love.CircleShape shape# The new shape.
 ---@diagnostic disable-next-line: args-after-dots
 function love.physics.newCircleShape(x, y, radius) end
 
@@ -12885,6 +13866,7 @@ function love.physics.newCircleShape(x, y, radius) end
 ---@param x2 number# The x position of the second anchor point (world space).
 ---@param y2 number# The y position of the second anchor point (world space).
 ---@param collideConnected? boolean# (false) Specifies whether the two bodies should collide with each other.
+---@return love.DistanceJoint joint# The new distance joint.
 ---@diagnostic disable-next-line: args-after-dots
 function love.physics.newDistanceJoint(body1, body2, x1, y1, x2, y2, collideConnected) end
 
@@ -12896,6 +13878,7 @@ function love.physics.newDistanceJoint(body1, body2, x1, y1, x2, y2, collideConn
 ---@param y1 number# The y position of the first point.
 ---@param x2 number# The x position of the second point.
 ---@param y2 number# The y position of the second point.
+---@return love.EdgeShape shape# The new shape.
 ---@diagnostic disable-next-line: args-after-dots
 function love.physics.newEdgeShape(x1, y1, x2, y2) end
 
@@ -12908,6 +13891,7 @@ function love.physics.newEdgeShape(x1, y1, x2, y2) end
 ---@param body love.Body# The body which gets the fixture attached.
 ---@param shape love.Shape# The shape to be copied to the fixture.
 ---@param density? number# (1) The density of the fixture.
+---@return love.Fixture fixture# The new fixture.
 ---@diagnostic disable-next-line: args-after-dots
 function love.physics.newFixture(body, shape, density) end
 
@@ -12920,6 +13904,7 @@ function love.physics.newFixture(body, shape, density) end
 ---@param x number# The x position of the anchor point.
 ---@param y number# The y position of the anchor point.
 ---@param collideConnected? boolean# (false) Specifies whether the two bodies should collide with each other.
+---@return love.FrictionJoint joint# The new FrictionJoint.
 ---@diagnostic disable-next-line: args-after-dots
 function love.physics.newFrictionJoint(body1, body2, x, y, collideConnected) end
 
@@ -12934,6 +13919,7 @@ function love.physics.newFrictionJoint(body1, body2, x, y, collideConnected) end
 ---@param x2 number# The x position of the second anchor point.
 ---@param y2 number# The y position of the second anchor point.
 ---@param collideConnected? boolean# (false) Specifies whether the two bodies should collide with each other.
+---@return love.FrictionJoint joint# The new FrictionJoint.
 ---@diagnostic disable-next-line: args-after-dots
 function love.physics.newFrictionJoint(body1, body2, x1, y1, x2, y2, collideConnected) end
 
@@ -12949,6 +13935,7 @@ function love.physics.newFrictionJoint(body1, body2, x1, y1, x2, y2, collideConn
 ---@param joint2 love.Joint# The second joint to connect with a gear joint.
 ---@param ratio? number# (1) The gear ratio.
 ---@param collideConnected? boolean# (false) Specifies whether the two bodies should collide with each other.
+---@return love.GearJoint joint# The new gear joint.
 ---@diagnostic disable-next-line: args-after-dots
 function love.physics.newGearJoint(joint1, joint2, ratio, collideConnected) end
 
@@ -12961,6 +13948,7 @@ function love.physics.newGearJoint(joint1, joint2, ratio, collideConnected) end
 ---@param body1 love.Body# The first body to attach to the joint.
 ---@param body2 love.Body# The second body to attach to the joint.
 ---@param correctionFactor? number# (0.3) The joint's initial position correction factor, in the range of 1.
+---@return love.MotorJoint joint# The new MotorJoint.
 ---@diagnostic disable-next-line: args-after-dots
 function love.physics.newMotorJoint(body1, body2, correctionFactor) end
 
@@ -12974,6 +13962,7 @@ function love.physics.newMotorJoint(body1, body2, correctionFactor) end
 ---@param body2 love.Body# The second body to attach to the joint.
 ---@param correctionFactor? number# (0.3) The joint's initial position correction factor, in the range of 1.
 ---@param collideConnected? boolean# (false) Specifies whether the two bodies should collide with each other.
+---@return love.MotorJoint joint# The new MotorJoint.
 ---@diagnostic disable-next-line: args-after-dots
 function love.physics.newMotorJoint(body1, body2, correctionFactor, collideConnected) end
 
@@ -12988,6 +13977,7 @@ function love.physics.newMotorJoint(body1, body2, correctionFactor, collideConne
 ---@param body love.Body# The body to attach to the mouse.
 ---@param x number# The x position of the connecting point.
 ---@param y number# The y position of the connecting point.
+---@return love.MouseJoint joint# The new mouse joint.
 ---@diagnostic disable-next-line: args-after-dots
 function love.physics.newMouseJoint(body, x, y) end
 
@@ -13004,6 +13994,7 @@ function love.physics.newMouseJoint(body, x, y) end
 ---@param x3 number# The x position of the third point.
 ---@param y3 number# The y position of the third point.
 ---@param ... number# You can continue passing more point positions to create the PolygonShape.
+---@return love.PolygonShape shape# A new PolygonShape.
 ---@diagnostic disable-next-line: args-after-dots
 function love.physics.newPolygonShape(x1, y1, x2, y2, x3, y3, ...) end
 
@@ -13014,6 +14005,7 @@ function love.physics.newPolygonShape(x1, y1, x2, y2, x3, y3, ...) end
 ---[Wiki](https://love2d.org/wiki/love.physics.newPolygonShape)
 ---
 ---@param vertices table[]# A list of vertices to construct the polygon, in the form of {x1, y1, x2, y2, x3, y3, ...}.
+---@return love.PolygonShape shape# A new PolygonShape.
 ---@diagnostic disable-next-line: args-after-dots
 function love.physics.newPolygonShape(vertices) end
 
@@ -13030,6 +14022,7 @@ function love.physics.newPolygonShape(vertices) end
 ---@param ax number# The x coordinate of the axis vector.
 ---@param ay number# The y coordinate of the axis vector.
 ---@param collideConnected? boolean# (false) Specifies whether the two bodies should collide with each other.
+---@return love.PrismaticJoint joint# The new prismatic joint.
 ---@diagnostic disable-next-line: args-after-dots
 function love.physics.newPrismaticJoint(body1, body2, x, y, ax, ay, collideConnected) end
 
@@ -13048,6 +14041,7 @@ function love.physics.newPrismaticJoint(body1, body2, x, y, ax, ay, collideConne
 ---@param ax number# The x coordinate of the axis unit vector.
 ---@param ay number# The y coordinate of the axis unit vector.
 ---@param collideConnected? boolean# (false) Specifies whether the two bodies should collide with each other.
+---@return love.PrismaticJoint joint# The new prismatic joint.
 ---@diagnostic disable-next-line: args-after-dots
 function love.physics.newPrismaticJoint(body1, body2, x1, y1, x2, y2, ax, ay, collideConnected) end
 
@@ -13067,6 +14061,7 @@ function love.physics.newPrismaticJoint(body1, body2, x1, y1, x2, y2, ax, ay, co
 ---@param ay number# The y coordinate of the axis unit vector.
 ---@param collideConnected? boolean# (false) Specifies whether the two bodies should collide with each other.
 ---@param referenceAngle? number# (0) The reference angle between body1 and body2, in radians.
+---@return love.PrismaticJoint joint# The new prismatic joint.
 ---@diagnostic disable-next-line: args-after-dots
 function love.physics.newPrismaticJoint(body1, body2, x1, y1, x2, y2, ax, ay, collideConnected, referenceAngle) end
 
@@ -13090,6 +14085,7 @@ function love.physics.newPrismaticJoint(body1, body2, x1, y1, x2, y2, ax, ay, co
 ---@param y2 number# The y coordinate of the pulley joint anchor in the second body.
 ---@param ratio? number# (1) The joint ratio.
 ---@param collideConnected? boolean# (true) Specifies whether the two bodies should collide with each other.
+---@return love.PulleyJoint joint# The new pulley joint.
 ---@diagnostic disable-next-line: args-after-dots
 function love.physics.newPulleyJoint(body1, body2, gx1, gy1, gx2, gy2, x1, y1, x2, y2, ratio, collideConnected) end
 
@@ -13101,6 +14097,7 @@ function love.physics.newPulleyJoint(body1, body2, gx1, gy1, gx2, gy2, x1, y1, x
 ---
 ---@param width number# The width of the rectangle.
 ---@param height number# The height of the rectangle.
+---@return love.PolygonShape shape# A new PolygonShape.
 ---@diagnostic disable-next-line: args-after-dots
 function love.physics.newRectangleShape(width, height) end
 
@@ -13115,6 +14112,7 @@ function love.physics.newRectangleShape(width, height) end
 ---@param width number# The width of the rectangle.
 ---@param height number# The height of the rectangle.
 ---@param angle? number# (0) The initial angle of the rectangle.
+---@return love.PolygonShape shape# A new PolygonShape.
 ---@diagnostic disable-next-line: args-after-dots
 function love.physics.newRectangleShape(x, y, width, height, angle) end
 
@@ -13129,6 +14127,7 @@ function love.physics.newRectangleShape(x, y, width, height, angle) end
 ---@param x number# The x position of the connecting point.
 ---@param y number# The y position of the connecting point.
 ---@param collideConnected? boolean# (false) Specifies whether the two bodies should collide with each other.
+---@return love.RevoluteJoint joint# The new revolute joint.
 ---@diagnostic disable-next-line: args-after-dots
 function love.physics.newRevoluteJoint(body1, body2, x, y, collideConnected) end
 
@@ -13146,6 +14145,7 @@ function love.physics.newRevoluteJoint(body1, body2, x, y, collideConnected) end
 ---@param y2 number# The y position of the second connecting point.
 ---@param collideConnected? boolean# (false) Specifies whether the two bodies should collide with each other.
 ---@param referenceAngle? number# (0) The reference angle between body1 and body2, in radians.
+---@return love.RevoluteJoint joint# The new revolute joint.
 ---@diagnostic disable-next-line: args-after-dots
 function love.physics.newRevoluteJoint(body1, body2, x1, y1, x2, y2, collideConnected, referenceAngle) end
 
@@ -13161,6 +14161,7 @@ function love.physics.newRevoluteJoint(body1, body2, x1, y1, x2, y2, collideConn
 ---@param y2 number# The y position of the second anchor point.
 ---@param maxLength number# The maximum distance for the bodies.
 ---@param collideConnected? boolean# (false) Specifies whether the two bodies should collide with each other.
+---@return love.RopeJoint joint# The new RopeJoint.
 ---@diagnostic disable-next-line: args-after-dots
 function love.physics.newRopeJoint(body1, body2, x1, y1, x2, y2, maxLength, collideConnected) end
 
@@ -13173,6 +14174,7 @@ function love.physics.newRopeJoint(body1, body2, x1, y1, x2, y2, maxLength, coll
 ---@param x number# The x position of the anchor point (world space).
 ---@param y number# The y position of the anchor point (world space).
 ---@param collideConnected? boolean# (false) Specifies whether the two bodies should collide with each other.
+---@return love.WeldJoint joint# The new WeldJoint.
 ---@diagnostic disable-next-line: args-after-dots
 function love.physics.newWeldJoint(body1, body2, x, y, collideConnected) end
 
@@ -13187,6 +14189,7 @@ function love.physics.newWeldJoint(body1, body2, x, y, collideConnected) end
 ---@param x2 number# The x position of the second anchor point (world space).
 ---@param y2 number# The y position of the second anchor point (world space).
 ---@param collideConnected? boolean# (false) Specifies whether the two bodies should collide with each other.
+---@return love.WeldJoint joint# The new WeldJoint.
 ---@diagnostic disable-next-line: args-after-dots
 function love.physics.newWeldJoint(body1, body2, x1, y1, x2, y2, collideConnected) end
 
@@ -13202,6 +14205,7 @@ function love.physics.newWeldJoint(body1, body2, x1, y1, x2, y2, collideConnecte
 ---@param y2 number# The y position of the second anchor point (world space).
 ---@param collideConnected? boolean# (false) Specifies whether the two bodies should collide with each other.
 ---@param referenceAngle? number# (0) The reference angle between body1 and body2, in radians.
+---@return love.WeldJoint joint# The new WeldJoint.
 ---@diagnostic disable-next-line: args-after-dots
 function love.physics.newWeldJoint(body1, body2, x1, y1, x2, y2, collideConnected, referenceAngle) end
 
@@ -13216,6 +14220,7 @@ function love.physics.newWeldJoint(body1, body2, x1, y1, x2, y2, collideConnecte
 ---@param ax number# The x position of the axis unit vector.
 ---@param ay number# The y position of the axis unit vector.
 ---@param collideConnected? boolean# (false) Specifies whether the two bodies should collide with each other.
+---@return love.WheelJoint joint# The new WheelJoint.
 ---@diagnostic disable-next-line: args-after-dots
 function love.physics.newWheelJoint(body1, body2, x, y, ax, ay, collideConnected) end
 
@@ -13232,6 +14237,7 @@ function love.physics.newWheelJoint(body1, body2, x, y, ax, ay, collideConnected
 ---@param ax number# The x position of the axis unit vector.
 ---@param ay number# The y position of the axis unit vector.
 ---@param collideConnected? boolean# (false) Specifies whether the two bodies should collide with each other.
+---@return love.WheelJoint joint# The new WheelJoint.
 ---@diagnostic disable-next-line: args-after-dots
 function love.physics.newWheelJoint(body1, body2, x1, y1, x2, y2, ax, ay, collideConnected) end
 
@@ -13242,6 +14248,7 @@ function love.physics.newWheelJoint(body1, body2, x1, y1, x2, y2, ax, ay, collid
 ---@param xg? number# (0) The x component of gravity.
 ---@param yg? number# (0) The y component of gravity.
 ---@param sleep? boolean# (true) Whether the bodies in this world are allowed to sleep.
+---@return love.World world# A brave new World.
 ---@diagnostic disable-next-line: args-after-dots
 function love.physics.newWorld(xg, yg, sleep) end
 
@@ -13263,6 +14270,7 @@ function love.physics.setMeter(scale) end
 ---
 ---[Wiki](https://love2d.org/wiki/Decoder:clone)
 ---
+---@return love.Decoder decoder# New copy of the decoder.
 ---@diagnostic disable-next-line: args-after-dots
 function Decoder:clone() end
 
@@ -13270,6 +14278,7 @@ function Decoder:clone() end
 ---
 ---[Wiki](https://love2d.org/wiki/Decoder:decode)
 ---
+---@return love.SoundData soundData# Decoded audio data.
 ---@diagnostic disable-next-line: args-after-dots
 function Decoder:decode() end
 
@@ -13277,6 +14286,7 @@ function Decoder:decode() end
 ---
 ---[Wiki](https://love2d.org/wiki/Decoder:getBitDepth)
 ---
+---@return number bitDepth# Either 8, or 16.
 ---@diagnostic disable-next-line: args-after-dots
 function Decoder:getBitDepth() end
 
@@ -13284,6 +14294,7 @@ function Decoder:getBitDepth() end
 ---
 ---[Wiki](https://love2d.org/wiki/Decoder:getChannelCount)
 ---
+---@return number channels# 1 for mono, 2 for stereo.
 ---@diagnostic disable-next-line: args-after-dots
 function Decoder:getChannelCount() end
 
@@ -13291,6 +14302,7 @@ function Decoder:getChannelCount() end
 ---
 ---[Wiki](https://love2d.org/wiki/Decoder:getDuration)
 ---
+---@return number duration# The duration of the sound file in seconds, or -1 if it cannot be determined.
 ---@diagnostic disable-next-line: args-after-dots
 function Decoder:getDuration() end
 
@@ -13298,6 +14310,7 @@ function Decoder:getDuration() end
 ---
 ---[Wiki](https://love2d.org/wiki/Decoder:getSampleRate)
 ---
+---@return number rate# Number of samples per second.
 ---@diagnostic disable-next-line: args-after-dots
 function Decoder:getSampleRate() end
 
@@ -13313,6 +14326,7 @@ function Decoder:seek(offset) end
 ---
 ---[Wiki](https://love2d.org/wiki/SoundData:getBitDepth)
 ---
+---@return number bitdepth# Either 8, or 16.
 ---@diagnostic disable-next-line: args-after-dots
 function SoundData:getBitDepth() end
 
@@ -13320,6 +14334,7 @@ function SoundData:getBitDepth() end
 ---
 ---[Wiki](https://love2d.org/wiki/SoundData:getChannelCount)
 ---
+---@return number channels# 1 for mono, 2 for stereo.
 ---@diagnostic disable-next-line: args-after-dots
 function SoundData:getChannelCount() end
 
@@ -13327,6 +14342,7 @@ function SoundData:getChannelCount() end
 ---
 ---[Wiki](https://love2d.org/wiki/SoundData:getDuration)
 ---
+---@return number duration# The duration of the sound data in seconds.
 ---@diagnostic disable-next-line: args-after-dots
 function SoundData:getDuration() end
 
@@ -13335,6 +14351,7 @@ function SoundData:getDuration() end
 ---[Wiki](https://love2d.org/wiki/SoundData:getSample)
 ---
 ---@param i number# An integer value specifying the position of the sample (starting at 0).
+---@return number sample# The normalized samplepoint (range -1.0 to 1.0).
 ---@diagnostic disable-next-line: args-after-dots
 function SoundData:getSample(i) end
 
@@ -13344,6 +14361,7 @@ function SoundData:getSample(i) end
 ---
 ---@param i number# An integer value specifying the position of the sample (starting at 0).
 ---@param channel number# The index of the channel to get within the given sample.
+---@return number sample# The normalized samplepoint (range -1.0 to 1.0).
 ---@diagnostic disable-next-line: args-after-dots
 function SoundData:getSample(i, channel) end
 
@@ -13351,6 +14369,7 @@ function SoundData:getSample(i, channel) end
 ---
 ---[Wiki](https://love2d.org/wiki/SoundData:getSampleCount)
 ---
+---@return number count# Total number of samples.
 ---@diagnostic disable-next-line: args-after-dots
 function SoundData:getSampleCount() end
 
@@ -13358,6 +14377,7 @@ function SoundData:getSampleCount() end
 ---
 ---[Wiki](https://love2d.org/wiki/SoundData:getSampleRate)
 ---
+---@return number rate# Number of samples per second.
 ---@diagnostic disable-next-line: args-after-dots
 function SoundData:getSampleRate() end
 
@@ -13386,6 +14406,7 @@ function SoundData:setSample(i, channel, sample) end
 ---
 ---@param file love.File# The file with encoded sound data.
 ---@param buffer? number# (2048) The size of each decoded chunk, in bytes.
+---@return love.Decoder decoder# A new Decoder object.
 ---@diagnostic disable-next-line: args-after-dots
 function love.sound.newDecoder(file, buffer) end
 
@@ -13395,6 +14416,7 @@ function love.sound.newDecoder(file, buffer) end
 ---
 ---@param filename string# The filename of the file with encoded sound data.
 ---@param buffer? number# (2048) The size of each decoded chunk, in bytes.
+---@return love.Decoder decoder# A new Decoder object.
 ---@diagnostic disable-next-line: args-after-dots
 function love.sound.newDecoder(filename, buffer) end
 
@@ -13405,6 +14427,7 @@ function love.sound.newDecoder(filename, buffer) end
 ---[Wiki](https://love2d.org/wiki/love.sound.newSoundData)
 ---
 ---@param filename string# The file name of the file to load.
+---@return love.SoundData soundData# A new SoundData object.
 ---@diagnostic disable-next-line: args-after-dots
 function love.sound.newSoundData(filename) end
 
@@ -13415,6 +14438,7 @@ function love.sound.newSoundData(filename) end
 ---[Wiki](https://love2d.org/wiki/love.sound.newSoundData)
 ---
 ---@param file love.File# A File pointing to an audio file.
+---@return love.SoundData soundData# A new SoundData object.
 ---@diagnostic disable-next-line: args-after-dots
 function love.sound.newSoundData(file) end
 
@@ -13425,6 +14449,7 @@ function love.sound.newSoundData(file) end
 ---[Wiki](https://love2d.org/wiki/love.sound.newSoundData)
 ---
 ---@param decoder love.Decoder# Decode data from this Decoder until EOF.
+---@return love.SoundData soundData# A new SoundData object.
 ---@diagnostic disable-next-line: args-after-dots
 function love.sound.newSoundData(decoder) end
 
@@ -13438,6 +14463,7 @@ function love.sound.newSoundData(decoder) end
 ---@param rate? number# (44100) Number of samples per second
 ---@param bits? number# (16) Bits per sample (8 or 16).
 ---@param channels? number# (2) Either 1 for mono or 2 for stereo.
+---@return love.SoundData soundData# A new SoundData object.
 ---@diagnostic disable-next-line: args-after-dots
 function love.sound.newSoundData(samples, rate, bits, channels) end
 
@@ -13445,6 +14471,7 @@ function love.sound.newSoundData(samples, rate, bits, channels) end
 ---
 ---[Wiki](https://love2d.org/wiki/love.system.getClipboardText)
 ---
+---@return string text# The text currently held in the system's clipboard.
 ---@diagnostic disable-next-line: args-after-dots
 function love.system.getClipboardText() end
 
@@ -13452,6 +14479,7 @@ function love.system.getClipboardText() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.system.getOS)
 ---
+---@return string osString# The current operating system. 'OS X', 'Windows', 'Linux', 'Android' or 'iOS'.
 ---@diagnostic disable-next-line: args-after-dots
 function love.system.getOS() end
 
@@ -13459,6 +14487,9 @@ function love.system.getOS() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.system.getPowerInfo)
 ---
+---@return love.PowerState state# The basic state of the power supply.
+---@return number percent# Percentage of battery life left, between 0 and 100. nil if the value can't be determined or there's no battery.
+---@return number seconds# Seconds of battery life left. nil if the value can't be determined or there's no battery.
 ---@diagnostic disable-next-line: args-after-dots
 function love.system.getPowerInfo() end
 
@@ -13466,6 +14497,7 @@ function love.system.getPowerInfo() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.system.getProcessorCount)
 ---
+---@return number processorCount# Amount of logical processors.
 ---@diagnostic disable-next-line: args-after-dots
 function love.system.getProcessorCount() end
 
@@ -13475,6 +14507,7 @@ function love.system.getProcessorCount() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.system.hasBackgroundMusic)
 ---
+---@return boolean backgroundmusic# True if the user is playing music in the background via another app, false otherwise.
 ---@diagnostic disable-next-line: args-after-dots
 function love.system.hasBackgroundMusic() end
 
@@ -13483,6 +14516,7 @@ function love.system.hasBackgroundMusic() end
 ---[Wiki](https://love2d.org/wiki/love.system.openURL)
 ---
 ---@param url string# The URL to open. Must be formatted as a proper URL.
+---@return boolean success# Whether the URL was opened successfully.
 ---@diagnostic disable-next-line: args-after-dots
 function love.system.openURL(url) end
 
@@ -13515,6 +14549,7 @@ function Channel:clear() end
 ---
 ---[Wiki](https://love2d.org/wiki/Channel:demand)
 ---
+---@return love.Variant value# The contents of the message.
 ---@diagnostic disable-next-line: args-after-dots
 function Channel:demand() end
 
@@ -13525,6 +14560,7 @@ function Channel:demand() end
 ---[Wiki](https://love2d.org/wiki/Channel:demand)
 ---
 ---@param timeout number# The maximum amount of time to wait.
+---@return love.Variant value# The contents of the message or nil if the timeout expired.
 ---@diagnostic disable-next-line: args-after-dots
 function Channel:demand(timeout) end
 
@@ -13532,6 +14568,7 @@ function Channel:demand(timeout) end
 ---
 ---[Wiki](https://love2d.org/wiki/Channel:getCount)
 ---
+---@return number count# The number of messages in the queue.
 ---@diagnostic disable-next-line: args-after-dots
 function Channel:getCount() end
 
@@ -13540,6 +14577,7 @@ function Channel:getCount() end
 ---[Wiki](https://love2d.org/wiki/Channel:hasRead)
 ---
 ---@param id number# An id value previously returned by Channel:push.
+---@return boolean hasread# Whether the value represented by the id has been removed from the Channel via Channel:pop, Channel:demand, or Channel:clear.
 ---@diagnostic disable-next-line: args-after-dots
 function Channel:hasRead(id) end
 
@@ -13549,6 +14587,7 @@ function Channel:hasRead(id) end
 ---
 ---[Wiki](https://love2d.org/wiki/Channel:peek)
 ---
+---@return love.Variant value# The contents of the message.
 ---@diagnostic disable-next-line: args-after-dots
 function Channel:peek() end
 
@@ -13562,6 +14601,8 @@ function Channel:peek() end
 ---
 ---@param func fun(channel:love.Channel, ...:any):...: any# The function to call, the form of function(channel, arg1, arg2, ...) end. The Channel is passed as the first argument to the function when it is called.
 ---@param ... any# Additional arguments that the given function will receive when it is called.
+---@return any ret1# The first return value of the given function (if any.)
+---@return any ...# Any other return values.
 ---@diagnostic disable-next-line: args-after-dots
 function Channel:performAtomic(func, ...) end
 
@@ -13571,6 +14612,7 @@ function Channel:performAtomic(func, ...) end
 ---
 ---[Wiki](https://love2d.org/wiki/Channel:pop)
 ---
+---@return love.Variant value# The contents of the message.
 ---@diagnostic disable-next-line: args-after-dots
 function Channel:pop() end
 
@@ -13581,6 +14623,7 @@ function Channel:pop() end
 ---[Wiki](https://love2d.org/wiki/Channel:push)
 ---
 ---@param value love.Variant# The contents of the message.
+---@return number id# Identifier which can be supplied to Channel:hasRead
 ---@diagnostic disable-next-line: args-after-dots
 function Channel:push(value) end
 
@@ -13591,6 +14634,7 @@ function Channel:push(value) end
 ---[Wiki](https://love2d.org/wiki/Channel:supply)
 ---
 ---@param value love.Variant# The contents of the message.
+---@return boolean success# Whether the message was successfully supplied (always true).
 ---@diagnostic disable-next-line: args-after-dots
 function Channel:supply(value) end
 
@@ -13602,6 +14646,7 @@ function Channel:supply(value) end
 ---
 ---@param value love.Variant# The contents of the message.
 ---@param timeout number# The maximum amount of time to wait.
+---@return boolean success# Whether the message was successfully supplied before the timeout expired.
 ---@diagnostic disable-next-line: args-after-dots
 function Channel:supply(value, timeout) end
 
@@ -13609,6 +14654,7 @@ function Channel:supply(value, timeout) end
 ---
 ---[Wiki](https://love2d.org/wiki/Thread:getError)
 ---
+---@return string err# The error message, or nil if the Thread has not caused an error.
 ---@diagnostic disable-next-line: args-after-dots
 function Thread:getError() end
 
@@ -13618,6 +14664,7 @@ function Thread:getError() end
 ---
 ---[Wiki](https://love2d.org/wiki/Thread:isRunning)
 ---
+---@return boolean value# True if the thread is running, false otherwise.
 ---@diagnostic disable-next-line: args-after-dots
 function Thread:isRunning() end
 
@@ -13654,6 +14701,7 @@ function Thread:wait() end
 ---[Wiki](https://love2d.org/wiki/love.thread.getChannel)
 ---
 ---@param name string# The name of the channel you want to create or retrieve.
+---@return love.Channel channel# The Channel object associated with the name.
 ---@diagnostic disable-next-line: args-after-dots
 function love.thread.getChannel(name) end
 
@@ -13663,6 +14711,7 @@ function love.thread.getChannel(name) end
 ---
 ---[Wiki](https://love2d.org/wiki/love.thread.newChannel)
 ---
+---@return love.Channel channel# The new Channel object.
 ---@diagnostic disable-next-line: args-after-dots
 function love.thread.newChannel() end
 
@@ -13671,6 +14720,7 @@ function love.thread.newChannel() end
 ---[Wiki](https://love2d.org/wiki/love.thread.newThread)
 ---
 ---@param filename string# The name of the Lua file to use as the source.
+---@return love.Thread thread# A new Thread that has yet to be started.
 ---@diagnostic disable-next-line: args-after-dots
 function love.thread.newThread(filename) end
 
@@ -13679,6 +14729,7 @@ function love.thread.newThread(filename) end
 ---[Wiki](https://love2d.org/wiki/love.thread.newThread)
 ---
 ---@param fileData love.FileData# The FileData containing the Lua code to use as the source.
+---@return love.Thread thread# A new Thread that has yet to be started.
 ---@diagnostic disable-next-line: args-after-dots
 function love.thread.newThread(fileData) end
 
@@ -13687,6 +14738,7 @@ function love.thread.newThread(fileData) end
 ---[Wiki](https://love2d.org/wiki/love.thread.newThread)
 ---
 ---@param codestring string# A string containing the Lua code to use as the source. It needs to either be at least 1024 characters long, or contain at least one newline.
+---@return love.Thread thread# A new Thread that has yet to be started.
 ---@diagnostic disable-next-line: args-after-dots
 function love.thread.newThread(codestring) end
 
@@ -13694,6 +14746,7 @@ function love.thread.newThread(codestring) end
 ---
 ---[Wiki](https://love2d.org/wiki/love.timer.getAverageDelta)
 ---
+---@return number delta# The average delta time over the last second.
 ---@diagnostic disable-next-line: args-after-dots
 function love.timer.getAverageDelta() end
 
@@ -13701,6 +14754,7 @@ function love.timer.getAverageDelta() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.timer.getDelta)
 ---
+---@return number dt# The time passed (in seconds).
 ---@diagnostic disable-next-line: args-after-dots
 function love.timer.getDelta() end
 
@@ -13708,6 +14762,7 @@ function love.timer.getDelta() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.timer.getFPS)
 ---
+---@return number fps# The current FPS.
 ---@diagnostic disable-next-line: args-after-dots
 function love.timer.getFPS() end
 
@@ -13717,6 +14772,7 @@ function love.timer.getFPS() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.timer.getTime)
 ---
+---@return number time# The time in seconds. Given as a decimal, accurate to the microsecond.
 ---@diagnostic disable-next-line: args-after-dots
 function love.timer.getTime() end
 
@@ -13734,6 +14790,7 @@ function love.timer.sleep(s) end
 ---
 ---[Wiki](https://love2d.org/wiki/love.timer.step)
 ---
+---@return number dt# The time passed (in seconds).
 ---@diagnostic disable-next-line: args-after-dots
 function love.timer.step() end
 
@@ -13742,6 +14799,8 @@ function love.timer.step() end
 ---[Wiki](https://love2d.org/wiki/love.touch.getPosition)
 ---
 ---@param id lightuserdata# The identifier of the touch-press. Use love.touch.getTouches, love.touchpressed, or love.touchmoved to obtain touch id values.
+---@return number x# The position along the x-axis of the touch-press inside the window, in pixels.
+---@return number y# The position along the y-axis of the touch-press inside the window, in pixels.
 ---@diagnostic disable-next-line: args-after-dots
 function love.touch.getPosition(id) end
 
@@ -13750,6 +14809,7 @@ function love.touch.getPosition(id) end
 ---[Wiki](https://love2d.org/wiki/love.touch.getPressure)
 ---
 ---@param id lightuserdata# The identifier of the touch-press. Use love.touch.getTouches, love.touchpressed, or love.touchmoved to obtain touch id values.
+---@return number pressure# The pressure of the touch-press. Most touch screens aren't pressure sensitive, in which case the pressure will be 1.
 ---@diagnostic disable-next-line: args-after-dots
 function love.touch.getPressure(id) end
 
@@ -13757,6 +14817,7 @@ function love.touch.getPressure(id) end
 ---
 ---[Wiki](https://love2d.org/wiki/love.touch.getTouches)
 ---
+---@return table[] touches# A list of active touch-press id values, which can be used with love.touch.getPosition.
 ---@diagnostic disable-next-line: args-after-dots
 function love.touch.getTouches() end
 
@@ -13764,6 +14825,7 @@ function love.touch.getTouches() end
 ---
 ---[Wiki](https://love2d.org/wiki/VideoStream:getFilename)
 ---
+---@return string filename# The filename of the VideoStream
 ---@diagnostic disable-next-line: args-after-dots
 function VideoStream:getFilename() end
 
@@ -13771,6 +14833,7 @@ function VideoStream:getFilename() end
 ---
 ---[Wiki](https://love2d.org/wiki/VideoStream:isPlaying)
 ---
+---@return boolean playing# Whether the VideoStream is playing.
 ---@diagnostic disable-next-line: args-after-dots
 function VideoStream:isPlaying() end
 
@@ -13807,6 +14870,7 @@ function VideoStream:seek(offset) end
 ---
 ---[Wiki](https://love2d.org/wiki/VideoStream:tell)
 ---
+---@return number seconds# The number of seconds sionce the beginning of the VideoStream.
 ---@diagnostic disable-next-line: args-after-dots
 function VideoStream:tell() end
 
@@ -13815,6 +14879,7 @@ function VideoStream:tell() end
 ---[Wiki](https://love2d.org/wiki/love.video.newVideoStream)
 ---
 ---@param filename string# The file path to the Ogg Theora video file.
+---@return love.VideoStream videostream# A new VideoStream.
 ---@diagnostic disable-next-line: args-after-dots
 function love.video.newVideoStream(filename) end
 
@@ -13823,6 +14888,7 @@ function love.video.newVideoStream(filename) end
 ---[Wiki](https://love2d.org/wiki/love.video.newVideoStream)
 ---
 ---@param file love.File# The File object containing the Ogg Theora video.
+---@return love.VideoStream videostream# A new VideoStream.
 ---@diagnostic disable-next-line: args-after-dots
 function love.video.newVideoStream(file) end
 
@@ -13844,6 +14910,7 @@ function love.window.close() end
 ---[Wiki](https://love2d.org/wiki/love.window.fromPixels)
 ---
 ---@param pixelvalue number# A number in pixels to convert to density-independent units.
+---@return number value# The converted number, in density-independent units.
 ---@diagnostic disable-next-line: args-after-dots
 function love.window.fromPixels(pixelvalue) end
 
@@ -13859,6 +14926,8 @@ function love.window.fromPixels(pixelvalue) end
 ---
 ---@param px number# The x-axis value of a coordinate in pixels.
 ---@param py number# The y-axis value of a coordinate in pixels.
+---@return number x# The converted x-axis value of the coordinate, in density-independent units.
+---@return number y# The converted y-axis value of the coordinate, in density-independent units.
 ---@diagnostic disable-next-line: args-after-dots
 function love.window.fromPixels(px, py) end
 
@@ -13872,6 +14941,7 @@ function love.window.fromPixels(px, py) end
 ---
 ---[Wiki](https://love2d.org/wiki/love.window.getDPIScale)
 ---
+---@return number scale# The pixel scale factor associated with the window.
 ---@diagnostic disable-next-line: args-after-dots
 function love.window.getDPIScale() end
 
@@ -13880,6 +14950,8 @@ function love.window.getDPIScale() end
 ---[Wiki](https://love2d.org/wiki/love.window.getDesktopDimensions)
 ---
 ---@param displayindex? number# (1) The index of the display, if multiple monitors are available.
+---@return number width# The width of the desktop.
+---@return number height# The height of the desktop.
 ---@diagnostic disable-next-line: args-after-dots
 function love.window.getDesktopDimensions(displayindex) end
 
@@ -13887,6 +14959,7 @@ function love.window.getDesktopDimensions(displayindex) end
 ---
 ---[Wiki](https://love2d.org/wiki/love.window.getDisplayCount)
 ---
+---@return number count# The number of currently connected displays.
 ---@diagnostic disable-next-line: args-after-dots
 function love.window.getDisplayCount() end
 
@@ -13895,6 +14968,7 @@ function love.window.getDisplayCount() end
 ---[Wiki](https://love2d.org/wiki/love.window.getDisplayName)
 ---
 ---@param displayindex? number# (1) The index of the display to get the name of.
+---@return string name# The name of the specified display.
 ---@diagnostic disable-next-line: args-after-dots
 function love.window.getDisplayName(displayindex) end
 
@@ -13903,6 +14977,7 @@ function love.window.getDisplayName(displayindex) end
 ---[Wiki](https://love2d.org/wiki/love.window.getDisplayOrientation)
 ---
 ---@param displayindex? number# (nil) Display index to get its display orientation, or nil for default display index.
+---@return love.DisplayOrientation orientation# Current device display orientation.
 ---@diagnostic disable-next-line: args-after-dots
 function love.window.getDisplayOrientation(displayindex) end
 
@@ -13910,6 +14985,8 @@ function love.window.getDisplayOrientation(displayindex) end
 ---
 ---[Wiki](https://love2d.org/wiki/love.window.getFullscreen)
 ---
+---@return boolean fullscreen# True if the window is fullscreen, false otherwise.
+---@return love.FullscreenType fstype# The type of fullscreen mode used.
 ---@diagnostic disable-next-line: args-after-dots
 function love.window.getFullscreen() end
 
@@ -13918,6 +14995,9 @@ function love.window.getFullscreen() end
 ---[Wiki](https://love2d.org/wiki/love.window.getFullscreenModes)
 ---
 ---@param displayindex? number# (1) The index of the display, if multiple monitors are available.
+---@return {
+---width : number,
+---height : number}[] modes# A table of width/height pairs. (Note that this may not be in order.)
 ---@diagnostic disable-next-line: args-after-dots
 function love.window.getFullscreenModes(displayindex) end
 
@@ -13925,6 +15005,7 @@ function love.window.getFullscreenModes(displayindex) end
 ---
 ---[Wiki](https://love2d.org/wiki/love.window.getIcon)
 ---
+---@return love.ImageData imagedata# The window icon imagedata, or nil if no icon has been set with love.window.setIcon.
 ---@diagnostic disable-next-line: args-after-dots
 function love.window.getIcon() end
 
@@ -13932,6 +15013,24 @@ function love.window.getIcon() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.window.getMode)
 ---
+---@return number width# Window width.
+---@return number height# Window height.
+---@return {
+---fullscreen : boolean,
+---fullscreentype : love.FullscreenType,
+---vsync : boolean,
+---msaa : number,
+---resizable : boolean,
+---borderless : boolean,
+---centered : boolean,
+---display : number,
+---minwidth : number,
+---minheight : number,
+---highdpi : boolean,
+---refreshrate : number,
+---x : number,
+---y : number,
+---srgb : boolean} flags# Table with the window properties:
 ---@diagnostic disable-next-line: args-after-dots
 function love.window.getMode() end
 
@@ -13941,6 +15040,9 @@ function love.window.getMode() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.window.getPosition)
 ---
+---@return number x# The x-coordinate of the window's position.
+---@return number y# The y-coordinate of the window's position.
+---@return number displayindex# The index of the display that the window is in.
 ---@diagnostic disable-next-line: args-after-dots
 function love.window.getPosition() end
 
@@ -13948,6 +15050,10 @@ function love.window.getPosition() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.window.getSafeArea)
 ---
+---@return number x# Starting position of safe area (x-axis).
+---@return number y# Starting position of safe area (y-axis).
+---@return number w# Width of safe area.
+---@return number h# Height of safe area.
 ---@diagnostic disable-next-line: args-after-dots
 function love.window.getSafeArea() end
 
@@ -13955,6 +15061,7 @@ function love.window.getSafeArea() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.window.getTitle)
 ---
+---@return string title# The current window title.
 ---@diagnostic disable-next-line: args-after-dots
 function love.window.getTitle() end
 
@@ -13962,6 +15069,7 @@ function love.window.getTitle() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.window.getVSync)
 ---
+---@return number vsync# Current vsync status. 1 if enabled, 0 if disabled, and -1 for adaptive vsync.
 ---@diagnostic disable-next-line: args-after-dots
 function love.window.getVSync() end
 
@@ -13969,6 +15077,7 @@ function love.window.getVSync() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.window.hasFocus)
 ---
+---@return boolean focus# True if the window has the focus or false if not.
 ---@diagnostic disable-next-line: args-after-dots
 function love.window.hasFocus() end
 
@@ -13976,6 +15085,7 @@ function love.window.hasFocus() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.window.hasMouseFocus)
 ---
+---@return boolean focus# True if the window has mouse focus or false if not.
 ---@diagnostic disable-next-line: args-after-dots
 function love.window.hasMouseFocus() end
 
@@ -13985,6 +15095,7 @@ function love.window.hasMouseFocus() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.window.isDisplaySleepEnabled)
 ---
+---@return boolean enabled# True if system display sleep is enabled / allowed, false otherwise.
 ---@diagnostic disable-next-line: args-after-dots
 function love.window.isDisplaySleepEnabled() end
 
@@ -13994,6 +15105,7 @@ function love.window.isDisplaySleepEnabled() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.window.isMaximized)
 ---
+---@return boolean maximized# True if the window is currently maximized in windowed mode, false otherwise.
 ---@diagnostic disable-next-line: args-after-dots
 function love.window.isMaximized() end
 
@@ -14001,6 +15113,7 @@ function love.window.isMaximized() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.window.isMinimized)
 ---
+---@return boolean minimized# True if the window is currently minimized, false otherwise.
 ---@diagnostic disable-next-line: args-after-dots
 function love.window.isMinimized() end
 
@@ -14008,6 +15121,7 @@ function love.window.isMinimized() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.window.isOpen)
 ---
+---@return boolean open# True if the window is open, false otherwise.
 ---@diagnostic disable-next-line: args-after-dots
 function love.window.isOpen() end
 
@@ -14017,6 +15131,7 @@ function love.window.isOpen() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.window.isVisible)
 ---
+---@return boolean visible# True if the window is visible or false if not.
 ---@diagnostic disable-next-line: args-after-dots
 function love.window.isVisible() end
 
@@ -14068,6 +15183,7 @@ function love.window.setDisplaySleepEnabled(enable) end
 ---[Wiki](https://love2d.org/wiki/love.window.setFullscreen)
 ---
 ---@param fullscreen boolean# Whether to enter or exit fullscreen mode.
+---@return boolean success# True if an attempt to enter fullscreen was successful, false otherwise.
 ---@diagnostic disable-next-line: args-after-dots
 function love.window.setFullscreen(fullscreen) end
 
@@ -14077,6 +15193,7 @@ function love.window.setFullscreen(fullscreen) end
 ---
 ---@param fullscreen boolean# Whether to enter or exit fullscreen mode.
 ---@param fstype love.FullscreenType# The type of fullscreen mode to use.
+---@return boolean success# True if an attempt to enter fullscreen was successful, false otherwise.
 ---@diagnostic disable-next-line: args-after-dots
 function love.window.setFullscreen(fullscreen, fstype) end
 
@@ -14085,6 +15202,7 @@ function love.window.setFullscreen(fullscreen, fstype) end
 ---[Wiki](https://love2d.org/wiki/love.window.setIcon)
 ---
 ---@param imagedata love.ImageData# The window icon image.
+---@return boolean success# Whether the icon has been set successfully.
 ---@diagnostic disable-next-line: args-after-dots
 function love.window.setIcon(imagedata) end
 
@@ -14116,6 +15234,7 @@ function love.window.setIcon(imagedata) end
 ---y : number,
 ---usedpiscale : boolean,
 ---srgb : boolean}# The flags table with the options:
+---@return boolean success# True if successful, false otherwise.
 ---@diagnostic disable-next-line: args-after-dots
 function love.window.setMode(width, height, flags) end
 
@@ -14155,6 +15274,7 @@ function love.window.setVSync(vsync) end
 ---@param message string# The text inside the message box.
 ---@param type? love.MessageBoxType# ('info') The type of the message box.
 ---@param attachtowindow? boolean# (true) Whether the message box should be attached to the love window or free-floating.
+---@return boolean success# Whether the message box was successfully displayed.
 ---@diagnostic disable-next-line: args-after-dots
 function love.window.showMessageBox(title, message, type, attachtowindow) end
 
@@ -14167,6 +15287,7 @@ function love.window.showMessageBox(title, message, type, attachtowindow) end
 ---@param buttonlist table# A table containing a list of button names to show. The table can also contain the fields enterbutton and escapebutton, which should be the index of the default button to use when the user presses 'enter' or 'escape', respectively.
 ---@param type? love.MessageBoxType# ('info') The type of the message box.
 ---@param attachtowindow? boolean# (true) Whether the message box should be attached to the love window or free-floating.
+---@return number pressedbutton# The index of the button pressed by the user. May be 0 if the message box dialog was closed without pressing a button.
 ---@diagnostic disable-next-line: args-after-dots
 function love.window.showMessageBox(title, message, buttonlist, type, attachtowindow) end
 
@@ -14181,6 +15302,7 @@ function love.window.showMessageBox(title, message, buttonlist, type, attachtowi
 ---[Wiki](https://love2d.org/wiki/love.window.toPixels)
 ---
 ---@param value number# A number in density-independent units to convert to pixels.
+---@return number pixelvalue# The converted number, in pixels.
 ---@diagnostic disable-next-line: args-after-dots
 function love.window.toPixels(value) end
 
@@ -14196,6 +15318,8 @@ function love.window.toPixels(value) end
 ---
 ---@param x number# The x-axis value of a coordinate in density-independent units to convert to pixels.
 ---@param y number# The y-axis value of a coordinate in density-independent units to convert to pixels.
+---@return number px# The converted x-axis value of the coordinate, in pixels.
+---@return number py# The converted y-axis value of the coordinate, in pixels.
 ---@diagnostic disable-next-line: args-after-dots
 function love.window.toPixels(x, y) end
 
@@ -14223,6 +15347,7 @@ function love.window.toPixels(x, y) end
 ---highdpi : boolean,
 ---x : number,
 ---y : number}# The settings table with the following optional fields. Any field not filled in will use the current value that would be returned by love.window.getMode.
+---@return boolean success# True if successful, false otherwise.
 ---@diagnostic disable-next-line: args-after-dots
 function love.window.updateMode(width, height, settings) end
 
@@ -14230,6 +15355,7 @@ function love.window.updateMode(width, height, settings) end
 ---
 ---[Wiki](https://love2d.org/wiki/Data:clone)
 ---
+---@return love.Data clone# The new copy.
 ---@diagnostic disable-next-line: args-after-dots
 function Data:clone() end
 
@@ -14239,6 +15365,7 @@ function Data:clone() end
 ---
 ---[Wiki](https://love2d.org/wiki/Data:getFFIPointer)
 ---
+---@return cdata pointer# A raw void* pointer to the Data, or nil if FFI is unavailable.
 ---@diagnostic disable-next-line: args-after-dots
 function Data:getFFIPointer() end
 
@@ -14246,6 +15373,7 @@ function Data:getFFIPointer() end
 ---
 ---[Wiki](https://love2d.org/wiki/Data:getPointer)
 ---
+---@return lightuserdata pointer# A raw pointer to the Data.
 ---@diagnostic disable-next-line: args-after-dots
 function Data:getPointer() end
 
@@ -14253,6 +15381,7 @@ function Data:getPointer() end
 ---
 ---[Wiki](https://love2d.org/wiki/Data:getSize)
 ---
+---@return number size# The size of the Data in bytes.
 ---@diagnostic disable-next-line: args-after-dots
 function Data:getSize() end
 
@@ -14260,6 +15389,7 @@ function Data:getSize() end
 ---
 ---[Wiki](https://love2d.org/wiki/Data:getString)
 ---
+---@return string data# The raw data.
 ---@diagnostic disable-next-line: args-after-dots
 function Data:getString() end
 
@@ -14269,6 +15399,7 @@ function Data:getString() end
 ---
 ---[Wiki](https://love2d.org/wiki/Object:release)
 ---
+---@return boolean success# True if the object was released by this call, false if it had been previously released.
 ---@diagnostic disable-next-line: args-after-dots
 function Object:release() end
 
@@ -14276,6 +15407,7 @@ function Object:release() end
 ---
 ---[Wiki](https://love2d.org/wiki/Object:type)
 ---
+---@return string type# The type as a string.
 ---@diagnostic disable-next-line: args-after-dots
 function Object:type() end
 
@@ -14284,6 +15416,7 @@ function Object:type() end
 ---[Wiki](https://love2d.org/wiki/Object:typeOf)
 ---
 ---@param name string# The name of the type to check for.
+---@return boolean b# True if the object is of the specified type, false otherwise.
 ---@diagnostic disable-next-line: args-after-dots
 function Object:typeOf(name) end
 
@@ -14291,6 +15424,10 @@ function Object:typeOf(name) end
 ---
 ---[Wiki](https://love2d.org/wiki/love.getVersion)
 ---
+---@return number major# The major version of LÖVE, i.e. 0 for version 0.9.1.
+---@return number minor# The minor version of LÖVE, i.e. 9 for version 0.9.1.
+---@return number revision# The revision version of LÖVE, i.e. 1 for version 0.9.1.
+---@return string codename# The codename of the current version, i.e. 'Baby Inspector' for version 0.9.1.
 ---@diagnostic disable-next-line: args-after-dots
 function love.getVersion() end
 
@@ -14300,6 +15437,7 @@ function love.getVersion() end
 ---
 ---[Wiki](https://love2d.org/wiki/love.hasDeprecationOutput)
 ---
+---@return boolean enabled# Whether deprecation output is enabled.
 ---@diagnostic disable-next-line: args-after-dots
 function love.hasDeprecationOutput() end
 
@@ -14308,6 +15446,7 @@ function love.hasDeprecationOutput() end
 ---[Wiki](https://love2d.org/wiki/love.isVersionCompatible)
 ---
 ---@param version string# The version to check (for example '11.3' or '0.10.2').
+---@return boolean compatible# Whether the given version is compatible with the current running version of LÖVE.
 ---@diagnostic disable-next-line: args-after-dots
 function love.isVersionCompatible(version) end
 
@@ -14318,6 +15457,7 @@ function love.isVersionCompatible(version) end
 ---@param major number# The major version to check (for example 11 for 11.3 or 0 for 0.10.2).
 ---@param minor number# The minor version to check (for example 3 for 11.3 or 10 for 0.10.2).
 ---@param revision number# The revision of version to check (for example 0 for 11.3 or 2 for 0.10.2).
+---@return boolean compatible# Whether the given version is compatible with the current running version of LÖVE.
 ---@diagnostic disable-next-line: args-after-dots
 function love.isVersionCompatible(major, minor, revision) end
 
