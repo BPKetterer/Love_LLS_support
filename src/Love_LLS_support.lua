@@ -208,7 +208,6 @@ end
 local function print_variant(f, variant, full_name, header)
     f:write(header)
     local raw_args = {}
-    local raw_returns = {}
     for _, arg in ipairs(variant.arguments or {}) do
         local arg_names, _ = string.gsub(arg.name, "'", "")
         table.insert(raw_args, arg_names)
@@ -238,7 +237,6 @@ local function print_function(f, data)
     if obj.description then
         header = format_head_desc(obj.description, full_name) .. "\n"
     end
-    
     for _, variant in ipairs(obj.variants) do
         print_variant(f, variant, full_name, header)
     end
@@ -251,27 +249,22 @@ local function print_callback(f, data)
     local obj =  data.obj
     local full_name = data.full_name
     local variant_strs = {}
-    --f:write(human_table(obj), "\n")
     for _, variant in ipairs(obj.variants) do
         local arg_strs = {}
-        local retruen_strs = {}
-        if variant.arguments then
-            for _, arg in ipairs(variant.arguments) do
-                table.insert(arg_strs, arg.name .. ": " .. serialize_arg_type(arg))    
-            end
+        local return_strs = {}
+        for _, arg in ipairs(variant.arguments or {}) do
+            table.insert(arg_strs, arg.name .. ": " .. serialize_arg_type(arg))    
         end
-        if variant.returns then
-            for _, re in ipairs(variant.returns) do
-                if re.type == "function" then
-                    table.insert(retruen_strs, "fun()")
-                else
-                    table.insert(retruen_strs, serialize_arg_type(re))
-                end 
-            end
+        for _, re in ipairs(variant.returns or {}) do
+            if re.type == "function" then
+                table.insert(return_strs, "fun()")
+            else
+                table.insert(return_strs, serialize_arg_type(re))
+            end 
         end
         local variant_str = "fun(" .. table.concat(arg_strs, ", ") .. ")"
         if variant.returns then
-            variant_str = variant_str .. ":" .. table.concat(retruen_strs, ", ")
+            variant_str = variant_str .. ":" .. table.concat(return_strs, ", ")
         end
         table.insert(variant_strs, variant_str)
     end
@@ -314,13 +307,10 @@ end
 ---@param path? string
 ---@param is_class? boolean
 local function collect(obj, path, is_class)
-    assert(obj)
     local full_name = "love"
     if is_class then
-        assert(obj.name)
         full_name = "love." .. obj.name    
     elseif path then
-        assert(obj.name)
         full_name = path .. "." .. obj.name
     end
     --adds the module to the alias lookup
@@ -363,12 +353,6 @@ return function(file_path)
     assert(file)
 
     collect(love_api)
-
-    ---refer RenderTargetSetup type
-    if not type_aliasas["RenderTargetSetup"] then
-        type_aliasas["RenderTargetSetup"] = get_type_alias("Canvas")
-    end
-    
     print_all(file)
 
     file:close()
