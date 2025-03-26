@@ -2680,6 +2680,50 @@ love.window = {}
 ---|"error"
 ---Error dialog.
 
+---Gets the current running version of LÖVE.
+---
+---[Wiki](https://love2d.org/wiki/love.getVersion)
+---
+---@diagnostic disable-next-line: args-after-dots
+function love.getVersion() end
+
+---Gets whether LÖVE displays warnings when using deprecated functionality. It is disabled by default in fused mode, and enabled by default otherwise.
+---
+---When deprecation output is enabled, the first use of a formally deprecated LÖVE API will show a message at the bottom of the screen for a short time, and print the message to the console.
+---
+---[Wiki](https://love2d.org/wiki/love.hasDeprecationOutput)
+---
+---@diagnostic disable-next-line: args-after-dots
+function love.hasDeprecationOutput() end
+
+---Gets whether the given version is compatible with the current running version of LÖVE.
+---
+---[Wiki](https://love2d.org/wiki/love.isVersionCompatible)
+---
+---@param version string# The version to check (for example '11.3' or '0.10.2').
+---@diagnostic disable-next-line: args-after-dots
+function love.isVersionCompatible(version) end
+
+---Gets whether the given version is compatible with the current running version of LÖVE.
+---
+---[Wiki](https://love2d.org/wiki/love.isVersionCompatible)
+---
+---@param major number# The major version to check (for example 11 for 11.3 or 0 for 0.10.2).
+---@param minor number# The minor version to check (for example 3 for 11.3 or 10 for 0.10.2).
+---@param revision number# The revision of version to check (for example 0 for 11.3 or 2 for 0.10.2).
+---@diagnostic disable-next-line: args-after-dots
+function love.isVersionCompatible(major, minor, revision) end
+
+---Sets whether LÖVE displays warnings when using deprecated functionality. It is disabled by default in fused mode, and enabled by default otherwise.
+---
+---When deprecation output is enabled, the first use of a formally deprecated LÖVE API will show a message at the bottom of the screen for a short time, and print the message to the console.
+---
+---[Wiki](https://love2d.org/wiki/love.setDeprecationOutput)
+---
+---@param enable boolean# Whether to enable or disable deprecation output.
+---@diagnostic disable-next-line: args-after-dots
+function love.setDeprecationOutput(enable) end
+
 ---Creates a new copy of the Data object.
 ---
 ---[Wiki](https://love2d.org/wiki/Data:clone)
@@ -14286,48 +14330,4 @@ function love.window.toPixels(x, y) end
 ---y : number}# The settings table with the following optional fields. Any field not filled in will use the current value that would be returned by love.window.getMode.
 ---@diagnostic disable-next-line: args-after-dots
 function love.window.updateMode(width, height, settings) end
-
----Gets the current running version of LÖVE.
----
----[Wiki](https://love2d.org/wiki/love.getVersion)
----
----@diagnostic disable-next-line: args-after-dots
-function love.getVersion() end
-
----Gets whether LÖVE displays warnings when using deprecated functionality. It is disabled by default in fused mode, and enabled by default otherwise.
----
----When deprecation output is enabled, the first use of a formally deprecated LÖVE API will show a message at the bottom of the screen for a short time, and print the message to the console.
----
----[Wiki](https://love2d.org/wiki/love.hasDeprecationOutput)
----
----@diagnostic disable-next-line: args-after-dots
-function love.hasDeprecationOutput() end
-
----Gets whether the given version is compatible with the current running version of LÖVE.
----
----[Wiki](https://love2d.org/wiki/love.isVersionCompatible)
----
----@param version string# The version to check (for example '11.3' or '0.10.2').
----@diagnostic disable-next-line: args-after-dots
-function love.isVersionCompatible(version) end
-
----Gets whether the given version is compatible with the current running version of LÖVE.
----
----[Wiki](https://love2d.org/wiki/love.isVersionCompatible)
----
----@param major number# The major version to check (for example 11 for 11.3 or 0 for 0.10.2).
----@param minor number# The minor version to check (for example 3 for 11.3 or 10 for 0.10.2).
----@param revision number# The revision of version to check (for example 0 for 11.3 or 2 for 0.10.2).
----@diagnostic disable-next-line: args-after-dots
-function love.isVersionCompatible(major, minor, revision) end
-
----Sets whether LÖVE displays warnings when using deprecated functionality. It is disabled by default in fused mode, and enabled by default otherwise.
----
----When deprecation output is enabled, the first use of a formally deprecated LÖVE API will show a message at the bottom of the screen for a short time, and print the message to the console.
----
----[Wiki](https://love2d.org/wiki/love.setDeprecationOutput)
----
----@param enable boolean# Whether to enable or disable deprecation output.
----@diagnostic disable-next-line: args-after-dots
-function love.setDeprecationOutput(enable) end
 
